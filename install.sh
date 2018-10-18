@@ -11,3 +11,5 @@ source ./asdf/install.sh
 source ./iterm2/install.sh
 
 source ./plugins/install.sh
+
+source ./tools/install.sh
