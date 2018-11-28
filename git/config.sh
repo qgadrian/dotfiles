@@ -8,6 +8,10 @@ git config --global alias.cl "clone --recursive"
 git config --global alias.unstage 'reset HEAD --'
 git config --global alias.last 'log -1 HEAD'
 
-echo "Enabling recursive cloning..."
+echo "Enable recursive cloning..."
 
 git config --global submodule.recurse true
+
+echo "Enable follow tags option"
+
+git config --global push.followTags true
