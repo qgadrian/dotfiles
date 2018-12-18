@@ -1,0 +1,152 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Set swp directories
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
+set undodir=~/.vim/undo//
+
+" Set line numbers
+set ruler
+set number
+
+" Show trailing whitepace and spaces before a tab:
+Plugin 'ntpeters/vim-better-whitespace'
+
+" Autocomplete
+Plugin 'Valloric/YouCompleteMe'
+
+" Fix backspace
+set backspace=indent,eol,start
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * call TrimWhiteSpace()
+autocmd FileAppendPre * call TrimWhiteSpace()
+autocmd FilterWritePre * call TrimWhiteSpace()
+autocmd BufWritePre * call TrimWhiteSpace()
+
+" Copy to clipboard
+" set clipboard=unnamed
+
+" Enable syntax color
+syntax on
+
+" Remap leader key
+let mapleader = ','
+
+" Custom plugins
+
+" Elixir
+ Plugin 'slashmili/alchemist.vim'
+"Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'mhinz/vim-mix-format'
+let g:mix_format_on_save = 1
+let g:mix_format_silent_errors = 1
+
+" nerdtree
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+map <C-o> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen = 0
+" Auto open NERDTree
+autocmd vimenter * if !argc() | NERDTree | endif
+"Auto close NERDTree if the latest buffer is the file tree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" fzf
+"set rtp+=~/.fzf
+"Plugin 'junegunn/fzf.vim'
+
+" lint
+Plugin 'w0rp/ale'
+let g:ale_sign_column_always = 1
+let g:ale_set_balloons = 1
+let g:ale_list_window_size = 5
+let g:airline#extensions#ale#enabled = 1
+
+" git line changes
+Plugin 'airblade/vim-gitgutter'
+" Warning, high update frequency might cause vim to get extremly slow when
+" typing
+"set updatetime=100
+
+" Color scheme
+Plugin 'joshdick/onedark.vim'
+colorscheme onedark
+
+" status tab
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Comments
+Plugin 'scrooloose/nerdcommenter'
+map <leader>/ <plug>NERDCommenterToggle
+
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
+Plugin 'junegunn/vim-easy-align'
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+Plugin 'JamshedVesuna/vim-markdown-preview'
+let vim_markdown_preview_github=1
+
+" Multiple cursors
+Plugin 'terryma/vim-multiple-cursors'
+
+" Indentation
+set shiftwidth=2
+set autoindent
+set smartindent
+
