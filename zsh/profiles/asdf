@@ -1,0 +1,8 @@
+echo "Import asdf"
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+# Disable jvm when installing asdf plugins
+
+export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"

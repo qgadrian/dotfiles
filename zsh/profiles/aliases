@@ -1,0 +1,9 @@
+echo "Import aliases"
+
+# Common
+alias ls='ls -lah'
+alias cping='ping -c 3 www.google.com'
+
+# Docker
+alias dockercompose="docker-compose"
+alias docker_rm_exited="docker rm -v $(docker ps -a -q -f status=exited)"
