@@ -1,6 +1,9 @@
 echo "Install tools"
 
 brew install \
-	watch
-	htop
+	watch \
+	htop \
+  gettext
+
+brew link --force gettext
 
