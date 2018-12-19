@@ -34,3 +34,7 @@ cmake -G "Unix Makefiles" -B ~/.vim/bundle/YouCompleteMe/ycmbuild -S ~/.vim/bund
 # make ycm_core
 make -C ~/.vim/bundle/YouCompleteMe/ycmbuild ycm_core
 
+echo "Install nerd fonts"
+
+brew tap caskroom/fonts
+brew cask install font-meslo-nerd-font

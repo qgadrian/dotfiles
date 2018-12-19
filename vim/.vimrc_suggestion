@@ -77,6 +77,7 @@ autocmd BufWritePre * call TrimWhiteSpace()
 
 " Enable syntax color
 syntax on
+Plugin 'sheerun/vim-polyglot'
 
 " Remap leader key
 let mapleader = ','
@@ -84,7 +85,10 @@ let mapleader = ','
 " Custom plugins
 
 " Elixir
- Plugin 'slashmili/alchemist.vim'
+Plugin 'slashmili/alchemist.vim'
+Plugin 'elixir-editors/vim-elixir'
+autocmd BufNewFile,BufRead *.ex,*.exs set syntax=elixir
+autocmd BufNewFile,BufRead *.eex set syntax=elixir
 "Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'mhinz/vim-mix-format'
 let g:mix_format_on_save = 1
@@ -102,6 +106,14 @@ let NERDTreeQuitOnOpen = 0
 autocmd vimenter * if !argc() | NERDTree | endif
 "Auto close NERDTree if the latest buffer is the file tree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" NERDTree fileicons and color syntax
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Icons
+Plugin 'ryanoasis/vim-devicons'
+"filetype plugin indent on
+set encoding=UTF-8
 
 " fzf
 "set rtp+=~/.fzf
@@ -121,8 +133,21 @@ Plugin 'airblade/vim-gitgutter'
 "set updatetime=100
 
 " Color scheme
-Plugin 'joshdick/onedark.vim'
-colorscheme onedark
+"Plugin 'joshdick/onedark.vim'
+"colorscheme onedark
+
+Plugin 'dracula/vim'
+" https://github.com/dracula/vim/issues/81
+let g:dracula_italic = 0
+colorscheme dracula
+
+"Bundle 'sonph/onehalf', {'rtp': 'vim/'}
+"colorscheme onehalfdark
+"let g:airline_theme='onehalfdark'
+
+set background=dark
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
 
 " status tab
 Plugin 'vim-airline/vim-airline'
@@ -141,6 +166,8 @@ nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_github=1
+" auto toc
+Plugin 'mzlogin/vim-markdown-toc'
 
 " Multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
