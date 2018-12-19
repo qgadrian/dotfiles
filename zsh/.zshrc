@@ -42,9 +42,6 @@ export LANG=en_US.UTF-8
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -77,9 +74,10 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export DYLD_FORCE_FLAT_NAMESPACE=1
 
 source ~/.zsh/profiles/zsh
+#source ~/.zsh/profiles/powerline
 source ~/.zsh/profiles/aliases
-source ~/.zsh/profiles/powerline
 source ~/.zsh/profiles/asdf
 source ~/.zsh/profiles/derivco
 source ~/.zsh/profiles/brew
-source ~/.zsh/profiles/macports
+#source ~/.zsh/profiles/macports
+source ~/.zsh/profiles/entrypoint

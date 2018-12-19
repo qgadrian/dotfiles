@@ -1,9 +1,17 @@
 echo "Setup zsh"
 
+# zplug
+
+zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
 source $ZSH/oh-my-zsh.sh
+
+autoload -Uz promptinit
+promptinit
+prompt spaceship
 
 # Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -16,7 +24,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="avit"
-ZSH_THEME=pygmalion
+#ZSH_THEME=pygmalion
+#ZSH_THEME="spaceship"
 
 alias zshconfig="subl ~/.zshrc"
 alias envconfig="subl ~/Projects/config/env.sh"
