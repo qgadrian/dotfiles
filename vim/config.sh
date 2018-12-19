@@ -19,6 +19,12 @@ brew install cmake
 
 # If python crashses at start: ./install.py --clang-completer
 
-ln -s .vimrc_suggestion ~/.vimrc
+mv ~/.vimrc ~/.vimrc.old.deleteme
+# ln -s .vimrc_suggestion ~/.vimrc
+cp .vimrc_suggestion ~/.vimrc
 
+mkdir ~/.vim/backup
+mkdir ~/.vim/swp
+mkdir ~/.vim/undo
 
+vim +PluginInstall +qall
