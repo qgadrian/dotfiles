@@ -1,7 +1,7 @@
 echo "Setup zsh"
 
 # zplug
-
+source ~/.zplug/init.zsh
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 
 # Path to your oh-my-zsh installation.
