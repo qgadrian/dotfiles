@@ -4,10 +4,11 @@ brew install \
 	watch \
 	htop \
 	gettext \
-	dash \
 	ack \
 
-brew cask install bettertouchtool
+brew cask install \
+	bettertouchtool \
+	dash \
 
 brew link --force gettext
 
