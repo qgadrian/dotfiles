@@ -1,6 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Remap leader key
+let mapleader = ','
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -28,8 +31,59 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
+"
+" Show trailing whitepace and spaces before a tab:
+Plugin 'ntpeters/vim-better-whitespace'
+
+" Autocomplete
+Plugin 'Valloric/YouCompleteMe'
+
+" Enable syntax color
+Plugin 'sheerun/vim-polyglot'
+
+" Elixir
+Plugin 'slashmili/alchemist.vim'
+Plugin 'elixir-editors/vim-elixir'
+"Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'mhinz/vim-mix-format', {'merged': 0}
+" Autoclose
+Plugin 'tpope/vim-endwise'
+Plugin 'jiangmiao/auto-pairs'
+
+" Comments
+Plugin 'scrooloose/nerdcommenter'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'w0rp/ale'
+Plugin 'airblade/vim-gitgutter'
+
+" status tab
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Colorscheme
+Plugin 'dracula/vim'
+
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+" auto toc
+Plugin 'mzlogin/vim-markdown-toc'
+
+" Multiple cursors
+Plugin 'terryma/vim-multiple-cursors'
+
+" Ansible
+Plugin 'pearofducks/ansible-vim'
+
 call vundle#end()            " required
+
 filetype plugin indent on    " required
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -42,6 +96,11 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+map <leader>/ <plug>NERDCommenterToggle
+
+let g:mix_format_on_save = 1
+let g:mix_format_silent_errors = 1
+
 " Set swp directories
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
@@ -51,11 +110,9 @@ set undodir=~/.vim/undo//
 set ruler
 set number
 
-" Show trailing whitepace and spaces before a tab:
-Plugin 'ntpeters/vim-better-whitespace'
-
-" Autocomplete
-Plugin 'Valloric/YouCompleteMe'
+" Tab to spaces
+set expandtab
+set tabstop=2
 
 " Fix backspace
 set backspace=indent,eol,start
@@ -75,31 +132,9 @@ autocmd BufWritePre * call TrimWhiteSpace()
 " Copy to clipboard
 " set clipboard=unnamed
 
-" Enable syntax color
-syntax on
-Plugin 'sheerun/vim-polyglot'
-
-" Remap leader key
-let mapleader = ','
-
 " Custom plugins
 
-" Elixir
-Plugin 'slashmili/alchemist.vim'
-Plugin 'elixir-editors/vim-elixir'
-autocmd BufNewFile,BufRead *.ex,*.exs set syntax=elixir
-autocmd BufNewFile,BufRead *.eex set syntax=elixir
-"Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'mhinz/vim-mix-format'
-let g:mix_format_on_save = 1
-let g:mix_format_silent_errors = 1
-" Autoclose
-Plugin 'tpope/vim-endwise'
-Plugin 'jiangmiao/auto-pairs'
-
 " nerdtree
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 map <C-o> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
@@ -111,11 +146,13 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " NERDTree fileicons and color syntax
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Icons
-Plugin 'ryanoasis/vim-devicons'
-"filetype plugin indent on
+"Plugin 'ryanoasis/vim-devicons'
+" To fix wrong padding
+"let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+"let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 set encoding=UTF-8
 
 " fzf
@@ -123,14 +160,12 @@ set encoding=UTF-8
 "Plugin 'junegunn/fzf.vim'
 
 " lint
-Plugin 'w0rp/ale'
 let g:ale_sign_column_always = 1
 let g:ale_set_balloons = 1
 let g:ale_list_window_size = 5
 let g:airline#extensions#ale#enabled = 1
 
 " git line changes
-Plugin 'airblade/vim-gitgutter'
 " Warning, high update frequency might cause vim to get extremly slow when
 " typing
 "set updatetime=100
@@ -139,7 +174,6 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'joshdick/onedark.vim'
 "colorscheme onedark
 
-Plugin 'dracula/vim'
 " https://github.com/dracula/vim/issues/81
 let g:dracula_italic = 0
 colorscheme dracula
@@ -152,31 +186,15 @@ set background=dark
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
-" status tab
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" Comments
-Plugin 'scrooloose/nerdcommenter'
-map <leader>/ <plug>NERDCommenterToggle
-
 " Markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
-Plugin 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
-Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_github=1
-" auto toc
-Plugin 'mzlogin/vim-markdown-toc'
-
-" Multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
 
 " Indentation
 set shiftwidth=2
 set autoindent
 set smartindent
 
+syntax on
