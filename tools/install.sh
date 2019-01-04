@@ -7,6 +7,7 @@ brew install \
 	ack \
 	automake \
   nmap \
+  telnet \
 
 brew cask install \
 	bettertouchtool \
