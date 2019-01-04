@@ -6,6 +6,7 @@ brew install \
 	gettext \
 	ack \
 	automake \
+  nmap \
 
 brew cask install \
 	bettertouchtool \
