@@ -2,7 +2,11 @@ echo "Setup zsh"
 
 # zplug
 source ~/.zplug/init.zsh
+
+# Terminal theme: spacheship-promt
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+export SPACESHIP_DOCKER_SHOW=false
+export SPACESHIP_PROMPT_DEFAULT_PREFIX="# "
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
