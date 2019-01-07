@@ -7,79 +7,78 @@ let mapleader = ','
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+  " let Vundle manage Vundle, required
+  Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+  " The following are examples of different formats supported.
+  " Keep Plugin commands between vundle#begin/end.
+  " plugin on GitHub repo
+  Plugin 'tpope/vim-fugitive'
+  " plugin from http://vim-scripts.org/vim/scripts.html
+  " Plugin 'L9'
+  " Git plugin not hosted on GitHub
+  Plugin 'git://git.wincent.com/command-t.git'
+  " git repos on your local machine (i.e. when working on your own plugin)
+  " Plugin 'file:///home/gmarik/path/to/plugin'
+  " The sparkup vim script is in a subdirectory of this repo called vim.
+  " Pass the path to set the runtimepath properly.
+  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+  " Install L9 and avoid a Naming conflict if you've already installed a
+  " different version somewhere else.
+  " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" All of your Plugins must be added before the following line
-"
-" Show trailing whitepace and spaces before a tab:
-Plugin 'ntpeters/vim-better-whitespace'
+  " All of your Plugins must be added before the following line
+  "
+  " Show trailing whitepace and spaces before a tab:
+  Plugin 'ntpeters/vim-better-whitespace'
 
-" Autocomplete
-Plugin 'Valloric/YouCompleteMe'
+  " Autocomplete
+  Plugin 'Valloric/YouCompleteMe'
 
-" Enable syntax color
-Plugin 'sheerun/vim-polyglot'
+  " Enable syntax color
+  Plugin 'sheerun/vim-polyglot'
 
-" Elixir
-Plugin 'slashmili/alchemist.vim'
-Plugin 'elixir-editors/vim-elixir'
-"Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'mhinz/vim-mix-format', {'merged': 0}
-" Autoclose
-Plugin 'tpope/vim-endwise'
-Plugin 'jiangmiao/auto-pairs'
+  " Elixir
+  Plugin 'slashmili/alchemist.vim'
+  Plugin 'elixir-editors/vim-elixir'
+  "Plugin 'vim-erlang/vim-erlang-runtime'
+  Plugin 'mhinz/vim-mix-format', {'merged': 0}
+  " Autoclose
+  Plugin 'tpope/vim-endwise'
+  Plugin 'jiangmiao/auto-pairs'
 
-" Comments
-Plugin 'scrooloose/nerdcommenter'
+  " Comments
+  Plugin 'scrooloose/nerdcommenter'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-Plugin 'w0rp/ale'
-Plugin 'airblade/vim-gitgutter'
+  Plugin 'w0rp/ale'
+  Plugin 'airblade/vim-gitgutter'
 
-" status tab
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+  " status tab
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
 
-" Colorscheme
-Plugin 'dracula/vim'
+  " Colorscheme
+  Plugin 'dracula/vim'
 
-" Markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-" auto toc
-Plugin 'mzlogin/vim-markdown-toc'
+  " Markdown
+  Plugin 'godlygeek/tabular'
+  Plugin 'plasticboy/vim-markdown'
+  Plugin 'junegunn/vim-easy-align'
+  Plugin 'JamshedVesuna/vim-markdown-preview'
+  " auto toc
+  Plugin 'mzlogin/vim-markdown-toc'
 
-" Multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
+  " Multiple cursors
+  Plugin 'terryma/vim-multiple-cursors'
 
-" Ansible
-Plugin 'pearofducks/ansible-vim'
-
+  " Ansible
+  Plugin 'pearofducks/ansible-vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
