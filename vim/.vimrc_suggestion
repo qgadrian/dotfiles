@@ -145,7 +145,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 "Auto close NERDTree if the latest buffer is the file tree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" NERDTree fileicons and color syntax
+" NERDTree file icons and color syntax
 "Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Icons
@@ -166,7 +166,7 @@ let g:ale_list_window_size = 5
 let g:airline#extensions#ale#enabled = 1
 
 " git line changes
-" Warning, high update frequency might cause vim to get extremly slow when
+" Warning, high update frequency might cause vim to get extremely slow when
 " typing
 "set updatetime=100
 
@@ -191,6 +191,9 @@ let g:vim_markdown_folding_disabled = 1
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 let vim_markdown_preview_github=1
+
+" Spell checking
+set spell spelllang=en_us
 
 " Indentation
 set shiftwidth=2
