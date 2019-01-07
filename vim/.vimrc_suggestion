@@ -193,7 +193,7 @@ xmap ga <Plug>(EasyAlign)
 let vim_markdown_preview_github=1
 
 " Spell checking
-set spell spelllang=en_us
+set spell spelllang=en_us,es_es
 
 " Indentation
 set shiftwidth=2
