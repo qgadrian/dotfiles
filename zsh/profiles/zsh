@@ -8,6 +8,7 @@ zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 export SPACESHIP_DOCKER_SHOW=false
 export SPACESHIP_PROMPT_DEFAULT_PREFIX="# "
 export SPACESHIP_PROMPT_SEPARATE_LINE=false
+export SPACESHIP_GIT_STATUS_DIVERGED="⇡⇣"
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
