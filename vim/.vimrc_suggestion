@@ -195,6 +195,9 @@ let vim_markdown_preview_github=1
 " Spell checking
 set spell spelllang=en_us,es_es
 
+" Open HTML in browser
+nnoremap <C-p> :!open -a Safari %<CR><CR>
+
 " Indentation
 set shiftwidth=2
 set autoindent
