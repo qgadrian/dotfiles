@@ -31,8 +31,8 @@ call vundle#begin()
   " Plugin 'ascenator/L9', {'name': 'newL9'}
 
   " All of your Plugins must be added before the following line
-  "
-  " Show trailing whitepace and spaces before a tab:
+
+  " Show trailing whitespace and spaces before a tab:
   Plugin 'ntpeters/vim-better-whitespace'
 
   " Autocomplete
@@ -53,9 +53,11 @@ call vundle#begin()
   " Comments
   Plugin 'scrooloose/nerdcommenter'
 
+  " NERDtree plugins
   Plugin 'scrooloose/nerdtree'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 
+  " Linting
   Plugin 'w0rp/ale'
   Plugin 'airblade/vim-gitgutter'
 
@@ -74,10 +76,8 @@ call vundle#begin()
   " auto toc
   Plugin 'mzlogin/vim-markdown-toc'
 
-  " Multiple cursors
   Plugin 'terryma/vim-multiple-cursors'
 
-  " Ansible
   Plugin 'pearofducks/ansible-vim'
 call vundle#end()            " required
 
@@ -152,7 +152,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " To fix wrong padding
 "let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 "let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-set encoding=UTF-8
+"set encoding=UTF-8
 
 " fzf
 "set rtp+=~/.fzf
