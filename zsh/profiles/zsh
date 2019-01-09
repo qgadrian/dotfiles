@@ -1,10 +1,10 @@
 echo "Setup zsh"
 
 # zplug
-source ~/.zplug/init.zsh
+#source ~/.zplug/init.zsh
 
 # Terminal theme: spacheship-promt
-zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+#zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 export SPACESHIP_DOCKER_SHOW=false
 export SPACESHIP_PROMPT_DEFAULT_PREFIX="# "
 export SPACESHIP_PROMPT_SEPARATE_LINE=false
