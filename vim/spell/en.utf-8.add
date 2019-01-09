@@ -33,3 +33,4 @@ localhost
 dev
 REPO
 DNS
+haproxy
