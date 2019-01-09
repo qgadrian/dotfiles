@@ -20,9 +20,11 @@ asdf plugin-add elixir
 asdf plugin-add ruby
 
 asdf install elixir 1.7
-asdf install erlang 20.0
+asdf install elixir 1.7-otp-21
+asdf install erlang 20.3
+asdf install erlang 21.2
 asdf install ruby 2.3.7
 
-asdf global erlang 20.0
-asdf global elixir 1.7
+asdf global erlang 21.2
+asdf global elixir 1.7-otp-21
 asdf global ruby 2.3.7
