@@ -202,4 +202,8 @@ set shiftwidth=2
 set autoindent
 set smartindent
 
+" Tab key to switch windows
+set autochdir
+map <Tab> <C-W>W:cd %:p:h<CR>:<CR>
+
 syntax on
