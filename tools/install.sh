@@ -8,6 +8,8 @@ brew install \
 	automake \
   nmap \
   telnet \
+  npm \
+  slack \
 
 brew cask install \
 	bettertouchtool \
