@@ -34,3 +34,11 @@ dev
 REPO
 DNS
 haproxy
+formatter
+README
+Makefile
+alexa
+dockerignore
+gitignore
+Dockerfile
+Leia
