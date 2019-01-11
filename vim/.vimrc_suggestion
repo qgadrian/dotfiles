@@ -79,6 +79,8 @@ call vundle#begin()
   Plugin 'terryma/vim-multiple-cursors'
 
   Plugin 'pearofducks/ansible-vim'
+
+  Plugin 'dkprice/vim-easygrep'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
