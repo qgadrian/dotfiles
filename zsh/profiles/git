@@ -1,0 +1,1 @@
+alias git_account_setup="git config user.name qgadrian && git config user.email qgadrian@users.noreply.github.com"
