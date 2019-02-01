@@ -211,4 +211,9 @@ set smartindent
 set autochdir
 map <Tab> <C-W>W:cd %:p:h<CR>:<CR>
 
+" Delete text without yank
+vnoremap <leader>D "_D
+vnoremap <leader>dd "_dd
+vnoremap <leader>y "*y
+vnoremap <leader>yy "*yy
 syntax on
