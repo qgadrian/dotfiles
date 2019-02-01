@@ -61,4 +61,5 @@ plugins=(
   docker
   yarn
   command-not-found
+  mix
 )
