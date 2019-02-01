@@ -12,6 +12,9 @@ brew coreutils automake autoconf openssl libyaml readline libxslt libtool unixod
 
 echo "Install asdf plugins"
 
+# Needed for Erlang
+brew install autoconf wxmac
+
 # exclude java deps with erlang installation
 echo "\n#Disable jvm when installing asdf plugins\n\nexport KERL_CONFIGURE_OPTIONS=\"--disable-debug --without-javac\"" >> ~/.zshrc
 
@@ -28,3 +31,4 @@ asdf install ruby 2.3.7
 asdf global erlang 21.2
 asdf global elixir 1.7-otp-21
 asdf global ruby 2.3.7
+
