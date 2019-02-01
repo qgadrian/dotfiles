@@ -1,5 +1,8 @@
 echo "Setup zsh"
 
+# Ignore duplicates and spacebar commands in history
+HISTCONTROL=ignoreboth
+
 # zplug
 #source ~/.zplug/init.zsh
 
