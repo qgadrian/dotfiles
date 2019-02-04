@@ -221,6 +221,8 @@ vnoremap <leader>yy "*yy
 
 " Search and replace word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+nnoremap <Leader>BS :1,.s/\<<C-r><C-w>\>/
+nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
 
 " Enable highligt when searching
 set hlsearch
