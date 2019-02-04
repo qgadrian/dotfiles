@@ -101,6 +101,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 map <leader>/ <plug>NERDCommenterToggle
+nmap ,rf :NERDTreeFind<CR>
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
