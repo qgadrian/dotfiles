@@ -46,6 +46,7 @@ call vundle#begin()
   Plugin 'elixir-editors/vim-elixir'
   "Plugin 'vim-erlang/vim-erlang-runtime'
   Plugin 'mhinz/vim-mix-format', {'merged': 0}
+  Plugin 'mattreduce/vim-mix.git'
   " Autoclose
   Plugin 'tpope/vim-endwise'
   Plugin 'jiangmiao/auto-pairs'
@@ -58,8 +59,8 @@ call vundle#begin()
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 
   " Linting
-  Plugin 'w0rp/ale'
-  Plugin 'airblade/vim-gitgutter'
+  "Plugin 'w0rp/ale'
+  "Plugin 'airblade/vim-gitgutter'
 
   " status tab
   Plugin 'vim-airline/vim-airline'
