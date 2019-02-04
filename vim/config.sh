@@ -39,6 +39,9 @@ echo "Install nerd fonts"
 brew tap caskroom/fonts
 brew cask install font-meslo-nerd-font
 
+# Needed by markdown preview
+brew install grip
+
 echo "Install spell checks"
 mv ~/.vim/spell/ ~/.vim/spell.deleteme
 ln -s $(pwd)/spell ~/.vim/spell
