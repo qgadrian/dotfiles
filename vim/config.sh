@@ -46,3 +46,5 @@ echo "Install spell checks"
 mv ~/.vim/spell/ ~/.vim/spell.deleteme
 ln -s $(pwd)/spell ~/.vim/spell
 
+# Neded by command-t
+# cd /Users/adrian/.vim/bundle/command-t && rake make
