@@ -227,4 +227,8 @@ nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
 " Enable highligt when searching
 set hlsearch
 
+" Empty lines without insert mode
+nnoremap o o<Esc>
+nnoremap O O<Esc>
+
 syntax on
