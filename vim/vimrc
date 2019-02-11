@@ -218,6 +218,7 @@ vnoremap <leader>D "_D
 vnoremap <leader>dd "_dd
 vnoremap <leader>y "*y
 vnoremap <leader>yy "*yy
+vnoremap <leader>Y "*Y
 
 " Search and replace word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
