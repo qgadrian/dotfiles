@@ -232,6 +232,12 @@ set hlsearch
 nnoremap o o<Esc>
 nnoremap O O<Esc>
 
+" Remap arrow keys to change between buffers
+noremap <C-S-Up> <C-w>k
+noremap <C-S-Down> <C-w>j
+noremap <C-S-Left> <C-w>h
+noremap <C-S-Right> <C-w>l
+
 " Disable ycm
 let g:loaded_youcompleteme = 0
 syntax on
