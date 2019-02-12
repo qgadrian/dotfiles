@@ -7,6 +7,8 @@ git config --global alias.ci commit
 git config --global alias.cl "clone --recursive"
 git config --global alias.unstage 'reset HEAD --'
 git config --global alias.last 'log -1 HEAD'
+git config --global alias.cia 'commit --amend'
+git config --global alias.ciar 'commit --amend --reset-author'
 
 echo "Enable recursive cloning..."
 
