@@ -10,6 +10,7 @@ brew install \
   telnet \
   npm \
   slack \
+  peco \
 
 brew cask install \
 	bettertouchtool \

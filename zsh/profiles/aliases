@@ -13,3 +13,7 @@ alias cd=' cd'
 alias ll=' ll'
 alias ps=' ps'
 alias vim=' vim'
+
+ # Peco aliases
+alias gco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
+alias gtrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
