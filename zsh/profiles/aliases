@@ -16,5 +16,7 @@ alias vim=' vim'
 
  # Peco aliases
 alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
+alias gitap="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add -p"
 alias gitmerge="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git merge"
 alias gittrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
+alias gitclear="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
