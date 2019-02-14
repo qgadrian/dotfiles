@@ -15,5 +15,6 @@ alias ps=' ps'
 alias vim=' vim'
 
  # Peco aliases
-alias gco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
-alias gtrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
+alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
+alias gitmerge="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git merge"
+alias gittrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
