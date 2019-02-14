@@ -11,6 +11,7 @@ git config --global alias.cia 'commit --amend'
 git config --global alias.ciar 'commit --amend --reset-author'
 git config --global alias.p 'pull'
 git config --global alias.pr 'pull --rebase'
+git config --global alias.ap 'add -p'
 
 echo "Enable recursive cloning..."
 
