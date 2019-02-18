@@ -62,3 +62,6 @@ boolean
 util
 Metadata
 metadata
+discoverable
+TOPOLOGIES
+topologies
