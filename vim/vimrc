@@ -254,7 +254,7 @@ nnoremap <silent> <leader>. :Ag<CR>
 " nnoremap <silent> <leader>/ :execute 'Ag ' . input(':Ag ')<CR>
 
 " Column width indicator
-set colorcolumn=98
+set colorcolumn=99
 highlight ColorColumn ctermbg=lightred guibg=lightred
 
 syntax on
