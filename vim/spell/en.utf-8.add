@@ -65,3 +65,5 @@ metadata
 discoverable
 TOPOLOGIES
 topologies
+mnesia
+Kraken
