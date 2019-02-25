@@ -13,11 +13,19 @@ alias cd=' cd'
 alias ll=' ll'
 alias ps=' ps'
 alias vim=' vim'
+alias exit=' exit'
 
- # Peco aliases
+# Peco aliases
+
+## Git
 alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
+alias gitpo='git push -u origin --force-with-lease `git rev-parse --abbrev-ref HEAD`'
+alias gitadd="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add"
 alias gitaddp="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add -p"
 alias gitmerge="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git merge"
 alias gitrebase="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git rebase"
 alias gittrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
 alias gitclear="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
+
+## Docker
+alias dockerexecb="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker exec -ti {} /bin/bash"
