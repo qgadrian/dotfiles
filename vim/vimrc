@@ -165,6 +165,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "set rtp+=~/.fzf
 "Plugin 'junegunn/fzf.vim'
 
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+
 " lint
 let g:ale_sign_column_always = 1
 let g:ale_set_balloons = 1
@@ -240,4 +243,8 @@ noremap <C-S-Right> <C-w>l
 
 " Disable ycm
 let g:loaded_youcompleteme = 0
+" fzf
+nnoremap <silent> <leader>. :Ag<CR>
+" Colision with NERDCommenter mapping
+" nnoremap <silent> <leader>/ :execute 'Ag ' . input(':Ag ')<CR>
 syntax on
