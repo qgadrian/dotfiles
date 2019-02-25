@@ -21,7 +21,9 @@ mkdir ~/.vim/undo
 
 vim +PluginInstall +qall
 
-# Compile and install YCM
+#
+# You complete me
+#
 
 # Needed by 'youcompleteme'
 brew install cmake
@@ -33,6 +35,16 @@ mkdir ~/.vim/bundle/YouCompleteMe/ycmbuild
 cmake -G "Unix Makefiles" -B ~/.vim/bundle/YouCompleteMe/ycmbuild -S ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/
 # make ycm_core
 make -C ~/.vim/bundle/YouCompleteMe/ycmbuild ycm_core
+
+#
+# Fuzzy search deps
+#
+
+brew install the_silver_searcher
+
+#
+# Nerd fonts
+#
 
 echo "Install nerd fonts"
 
