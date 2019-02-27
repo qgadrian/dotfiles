@@ -48,8 +48,8 @@ call vundle#begin()
   Plugin 'mhinz/vim-mix-format', {'merged': 0}
   Plugin 'mattreduce/vim-mix.git'
   " Autoclose
-  Plugin 'tpope/vim-endwise'
-  Plugin 'jiangmiao/auto-pairs'
+  "Plugin 'tpope/vim-endwise'
+  "Plugin 'jiangmiao/auto-pairs'
 
   " Comments
   Plugin 'scrooloose/nerdcommenter'
