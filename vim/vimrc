@@ -255,6 +255,9 @@ nnoremap <silent> <leader>. :Ag<CR>
 
 " Column width indicator
 set colorcolumn=99
-highlight ColorColumn ctermbg=lightred guibg=lightred
+autocmd ColorScheme * highlight ColorColumn ctermbg=red
+
+" Line number indicator
+autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
 
 syntax on
