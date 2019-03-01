@@ -20,3 +20,9 @@ git config --global submodule.recurse true
 echo "Enable follow tags option"
 
 git config --global push.followTags true
+
+echo "Add git gone scrip to /usr/bin"
+
+chmod +x ./scripts/git-gone.sh
+
+ln -sf $(pwd)/scripts/git-gone.sh /usr/bin/git-gone.sh
