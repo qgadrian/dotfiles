@@ -298,7 +298,7 @@ autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
 
 " Fixes problem with Kitty and random data displayed. More info:
 " https://github.com/vim-airline/vim-airline/issues/393#issuecomment-176033750
-set term=builtin_xterm
+"set term=builtin_xterm
 
 " Resizes
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 10/9)<CR>

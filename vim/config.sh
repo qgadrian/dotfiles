@@ -55,8 +55,18 @@ brew cask install font-meslo-nerd-font
 brew install grip
 
 echo "Install spell checks"
-mv ~/.vim/spell/ ~/.vim/spell.deleteme
+#mv ~/.vim/spell/ ~/.vim/spell.deleteme
+mkdir ~/.vim/spell
 ln -s $(pwd)/spell ~/.vim/spell
 
 # Neded by command-t
 # cd /Users/adrian/.vim/bundle/command-t && rake make
+
+#
+# neovim
+#
+
+brew install neovim
+mkdir -p ~/.config/nvim
+touch ~/.config/nvim/init.vim
+echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after\nlet &packpath = &runtimepath\nsource ~/.vimrc" > ~/.config/nvim/init.vim
