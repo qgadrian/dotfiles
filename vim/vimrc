@@ -82,6 +82,10 @@ call vundle#begin()
 
   " Remove highlight when move the cursor after a search
   Plugin 'romainl/vim-cool'
+  " fzf
+  Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plugin 'junegunn/fzf.vim'
+
   "
   " Colors schemes
   "
