@@ -160,10 +160,10 @@ autocmd vimenter * if !argc() | NERDTree | endif
 
 
 " lint
-let g:ale_sign_column_always = 1
-let g:ale_set_balloons = 1
-let g:ale_list_window_size = 5
-let g:airline#extensions#ale#enabled = 1
+"let g:ale_sign_column_always = 1
+"let g:ale_set_balloons = 1
+"let g:ale_list_window_size = 5
+"let g:airline#extensions#ale#enabled = 1
 
 " git line changes
 " Warning, high update frequency might cause vim to get extremely slow when
@@ -178,11 +178,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:dracula_italic = 0
 colorscheme dracula
 
-"Bundle 'sonph/onehalf', {'rtp': 'vim/'}
-"colorscheme onehalfdark
-"let g:airline_theme='onehalfdark'
-
-set background=dark
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
