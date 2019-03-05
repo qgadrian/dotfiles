@@ -82,6 +82,13 @@ call vundle#begin()
 
   " Remove highlight when move the cursor after a search
   Plugin 'romainl/vim-cool'
+  "
+  " Colors schemes
+  "
+  "Plugin 'KeitaNakamura/neodark.vim'
+  Plugin 'dracula/vim'
+  "Plugin 'joshdick/onedark.vim'
+  "Plugin 'rakr/vim-one'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -170,9 +177,16 @@ autocmd vimenter * if !argc() | NERDTree | endif
 " typing
 "set updatetime=100
 
-" Color scheme
-"Plugin 'joshdick/onedark.vim'
+"
+" Color schemes
+"
+
+set background=dark
+
 "colorscheme onedark
+"colorscheme one
+"colorscheme neodark
+"colorscheme idlefingers
 
 " https://github.com/dracula/vim/issues/81
 let g:dracula_italic = 0
