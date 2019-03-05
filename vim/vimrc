@@ -297,4 +297,6 @@ autocmd ColorScheme * highlight ColorColumn ctermbg=red
 " Line number indicator
 autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
 
+" Open cursor in Dash
+noremap <leader>da :Dash<CR>
 syntax on
