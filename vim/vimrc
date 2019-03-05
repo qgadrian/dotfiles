@@ -297,6 +297,14 @@ autocmd ColorScheme * highlight ColorColumn ctermbg=red
 " Line number indicator
 autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
 
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
+
 " Open cursor in Dash
 noremap <leader>da :Dash<CR>
 syntax on
