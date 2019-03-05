@@ -324,14 +324,21 @@ function! CreateNewTabShell(cmd)
   if (a:cmd == 'terminal_new_tab')
     tabnew
     setlocal nonumber
+    setlocal nospell
     term
   elseif (a:cmd == 'terminal_new_buffer')
     new
     setlocal nonumber
+    setlocal nospell
     term
   elseif (a:cmd == 'terminal_new_buffer_vertical')
     vnew
     setlocal nonumber
+    setlocal nospell
+    term
+  else
+    setlocal nonumber
+    setlocal nospell
     term
   end
 endfunction()
