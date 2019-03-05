@@ -13,6 +13,7 @@ alias cd=' cd'
 alias ll=' ll'
 alias ps=' ps'
 alias vim=' vim'
+alias nvim=' nvim'
 alias exit=' exit'
 
 # Peco aliases
