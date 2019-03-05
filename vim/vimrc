@@ -93,6 +93,9 @@ call vundle#begin()
   Plugin 'dracula/vim'
   "Plugin 'joshdick/onedark.vim'
   "Plugin 'rakr/vim-one'
+
+  " Dash integration
+  Plugin 'rizzatti/dash.vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
