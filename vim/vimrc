@@ -243,11 +243,6 @@ set hlsearch
 nnoremap o o<Esc>
 nnoremap O O<Esc>
 
-" Remap arrow keys to change between buffers
-noremap <C-S-Up> <C-w>k
-noremap <C-S-Down> <C-w>j
-noremap <C-S-Left> <C-w>h
-noremap <C-S-Right> <C-w>l
 
 " Disable ycm
 let g:loaded_youcompleteme = 0
@@ -322,5 +317,42 @@ vnoremap <leader>p "_dP
 
 " Open cursor in Dash
 noremap <leader>da :Dash<CR>
+
+" Window management
+function! CreateNewTabShell(cmd)
+  startinsert
+  if (a:cmd == 'terminal_new_tab')
+    tabnew
+    setlocal nonumber
+    term
+  elseif (a:cmd == 'terminal_new_buffer')
+    new
+    setlocal nonumber
+    term
+  elseif (a:cmd == 'terminal_new_buffer_vertical')
+    vnew
+    setlocal nonumber
+    term
+  end
+endfunction()
+
+noremap <leader>c :<C-u>call CreateNewTabShell('')<CR>
+noremap <leader>ct :<C-u>call CreateNewTabShell('terminal_new_tab')<CR>
+noremap <leader>cb :<C-u>call CreateNewTabShell('terminal_new_buffer')<CR>
+noremap <leader>cbv :<C-u>call CreateNewTabShell('terminal_new_buffer_vertical')<CR>
+tnoremap <Esc> <C-\><C-n>
+"noremap <leader>c :terminal<CR>
+" Tabs
+noremap <leader>nt :tabnew<CR>
+noremap <M-S-Left> gT
+noremap <M-S-Right> gt
+" Buffers
+noremap <leader>nb :new<CR>
+noremap <leader>nbv :vnew<CR>
+" Remap arrow keys to change between buffers
+noremap <C-S-Up> <C-w>k
+noremap <C-S-Down> <C-w>j
+noremap <C-S-Left> <C-w>h
+noremap <C-S-Right> <C-w>l
 
 syntax on
