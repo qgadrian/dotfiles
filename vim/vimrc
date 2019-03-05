@@ -38,6 +38,9 @@ call vundle#begin()
   " Autocomplete
   Plugin 'Valloric/YouCompleteMe'
 
+  " Smooth scroll
+  Plugin 'yuttie/comfortable-motion.vim'
+
   " Enable syntax color
   Plugin 'sheerun/vim-polyglot'
 
@@ -348,7 +351,6 @@ noremap <leader>ct :<C-u>call CreateNewTabShell('terminal_new_tab')<CR>
 noremap <leader>cb :<C-u>call CreateNewTabShell('terminal_new_buffer')<CR>
 noremap <leader>cbv :<C-u>call CreateNewTabShell('terminal_new_buffer_vertical')<CR>
 tnoremap <Esc> <C-\><C-n>
-"noremap <leader>c :terminal<CR>
 " Tabs
 noremap <leader>nt :tabnew<CR>
 noremap <M-S-Left> gT
@@ -361,5 +363,10 @@ noremap <C-S-Up> <C-w>k
 noremap <C-S-Down> <C-w>j
 noremap <C-S-Left> <C-w>h
 noremap <C-S-Right> <C-w>l
+" Smooth scroll
+nnoremap <silent> <M-Down> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <M-Up> :call comfortable_motion#flick(-100)<CR>
+nnoremap <silent> <M-S-Down> :call comfortable_motion#flick(200)<CR>
+nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
 
 syntax on
