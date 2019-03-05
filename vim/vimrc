@@ -66,9 +66,6 @@ call vundle#begin()
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
 
-  " Colorscheme
-  Plugin 'dracula/vim'
-
   " Markdown
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
@@ -161,12 +158,6 @@ autocmd vimenter * if !argc() | NERDTree | endif
 "let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "set encoding=UTF-8
 
-" fzf
-"set rtp+=~/.fzf
-"Plugin 'junegunn/fzf.vim'
-
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
 
 " lint
 let g:ale_sign_column_always = 1
