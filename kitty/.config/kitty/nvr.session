@@ -1,0 +1,3 @@
+layout tall
+
+launch zsh -c "source ~/.zshrc && nvim"
