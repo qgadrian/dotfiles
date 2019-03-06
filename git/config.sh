@@ -1,3 +1,7 @@
+echo "Setting git default editor..."
+
+git config --global core.editor 'nvr --remote-wait-silent'
+
 echo "Setting git aliases..."
 
 git config --global alias.st status
