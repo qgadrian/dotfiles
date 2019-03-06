@@ -81,3 +81,6 @@ source ~/.zsh/profiles/derivco
 source ~/.zsh/profiles/brew
 source ~/.zsh/profiles/git
 source ~/.zsh/profiles/entrypoint
+
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+alias nvr="nvr -s ."

@@ -70,3 +70,6 @@ brew install neovim
 mkdir -p ~/.config/nvim
 touch ~/.config/nvim/init.vim
 echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after\nlet &packpath = &runtimepath\nsource ~/.vimrc" > ~/.config/nvim/init.vim
+
+# neovim
+pip3 install neovim-remote# map cmd+v        paste_from_clipboard

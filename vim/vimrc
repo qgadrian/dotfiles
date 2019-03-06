@@ -369,4 +369,12 @@ nnoremap <silent> <M-Up> :call comfortable_motion#flick(-100)<CR>
 nnoremap <silent> <M-S-Down> :call comfortable_motion#flick(200)<CR>
 nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
 
+if has('nvim')
+  let $VISUAL = 'nvr -cc split --remote-wait'
+endif
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 syntax on
