@@ -313,51 +313,36 @@ noremap <leader>v= <C-w>=
 " delete without yanking
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+nnoremap x "_x
+vnoremap x "_x
 
 " replace currently selected text with default register
 " without yanking it
-vnoremap <leader>p "_dP
+vnoremap p "_dP
 
 " Open cursor in Dash
 noremap <leader>da :Dash<CR>
 
 " Window management
-function! CreateNewTabShell(cmd)
-  startinsert
-  if (a:cmd == 'terminal_new_tab')
-    tabnew
-    setlocal nonumber
-    setlocal nospell
-    term
-  elseif (a:cmd == 'terminal_new_buffer')
-    new
-    setlocal nonumber
-    setlocal nospell
-    term
-  elseif (a:cmd == 'terminal_new_buffer_vertical')
-    vnew
-    setlocal nonumber
-    setlocal nospell
-    term
-  else
-    setlocal nonumber
-    setlocal nospell
-    term
-  end
-endfunction()
+"autocmd BufEnter * silent! lcd %:p:h
+augroup terminal
+  autocmd TermOpen * setlocal nospell
+  autocmd TermOpen * setlocal nonumber
+augroup END
 
-noremap <leader>c :<C-u>call CreateNewTabShell('')<CR>
-noremap <leader>ct :<C-u>call CreateNewTabShell('terminal_new_tab')<CR>
-noremap <leader>cb :<C-u>call CreateNewTabShell('terminal_new_buffer')<CR>
-noremap <leader>cbv :<C-u>call CreateNewTabShell('terminal_new_buffer_vertical')<CR>
+noremap c  :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
+noremap ct :tabnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
+noremap cb :new<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
+noremap cbv :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
 tnoremap <Esc> <C-\><C-n>
 " Tabs
-noremap <leader>nt :tabnew<CR>
+noremap <silent> nt :tabnew<CR>
+map <silent> <C-w> :q<CR>
 noremap <M-S-Left> gT
 noremap <M-S-Right> gt
 " Buffers
-noremap <leader>nb :new<CR>
-noremap <leader>nbv :vnew<CR>
+map <silent> nb :new<CR>
+map <silent> nbv :vnew<CR>
 " Remap arrow keys to change between buffers
 noremap <C-S-Up> <C-w>k
 noremap <C-S-Down> <C-w>j
