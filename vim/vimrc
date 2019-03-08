@@ -99,21 +99,12 @@ call vundle#begin()
 
   " Dash integration
   Plugin 'rizzatti/dash.vim'
+
+  " Startup buffer
+  Plugin 'mhinz/vim-startify'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 map <leader>/ <plug>NERDCommenterToggle
 nmap ,rf :NERDTreeFind<CR>
@@ -239,13 +230,12 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 nnoremap <Leader>BS :1,.s/\<<C-r><C-w>\>/
 nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
 
-" Enable highligt when searching
+" Enable highlight when searching
 set hlsearch
 
 " Empty lines without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
-
 
 " Disable ycm
 let g:loaded_youcompleteme = 0
@@ -320,10 +310,14 @@ vnoremap x "_x
 " without yanking it
 vnoremap p "_dP
 
+"
 " Open cursor in Dash
+"
 noremap <leader>da :Dash<CR>
 
+"
 " Window management
+"
 "autocmd BufEnter * silent! lcd %:p:h
 augroup terminal
   autocmd TermOpen * setlocal nospell
@@ -354,15 +348,18 @@ nnoremap <silent> <M-Up> :call comfortable_motion#flick(-100)<CR>
 nnoremap <silent> <M-S-Down> :call comfortable_motion#flick(200)<CR>
 nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
 
-"if has('nvim')
-  "let $VISUAL = 'nvr -cc split --remote-wait'
-"endif
+" Startify
+let g:startify_commands = [
+  \ {'c': ['Terminal', ':terminal']},
+  \ {'t': ['New tab', ':tabnew']},
+\ ]
 
-autocmd FileType gitcommit set bufhidden=delete
-
-if (has("termguicolors"))
- set termguicolors
-endif
-
+let g:startify_lists = [
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+\ ]
 
 syntax on
