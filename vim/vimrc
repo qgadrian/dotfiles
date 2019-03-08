@@ -350,7 +350,7 @@ augroup terminal
 augroup END
 
 " enter and leave terminal mode (insert mode) when switching between buffers
-autocmd VimEnter * nested terminal
+autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
 
 set splitbelow
