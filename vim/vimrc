@@ -129,19 +129,16 @@ set tabstop=2
 set backspace=indent,eol,start
 
 " Removes trailing spaces
-function TrimWhiteSpace()
+function TrimWhiteSpaces()
   %s/\s*$//
   ''
 endfunction
 
 set list listchars=trail:.,extends:>
-autocmd FileWritePre * call TrimWhiteSpace()
-autocmd FileAppendPre * call TrimWhiteSpace()
-autocmd FilterWritePre * call TrimWhiteSpace()
-autocmd BufWritePre * call TrimWhiteSpace()
-
-" Copy to clipboard
-" set clipboard=unnamed
+autocmd FileWritePre * call TrimWhiteSpaces()
+autocmd FileAppendPre * call TrimWhiteSpaces()
+autocmd FilterWritePre * call TrimWhiteSpaces()
+autocmd BufWritePre * call TrimWhiteSpaces()
 
 " Custom plugins
 
