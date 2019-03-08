@@ -221,16 +221,7 @@ set shiftwidth=2
 set autoindent
 set smartindent
 
-" Tab key to switch windows
 set autochdir
-map <Tab> <C-W>W:cd %:p:h<CR>:<CR>
-
-" Delete text without yank
-vnoremap <leader>D "_D
-vnoremap <leader>dd "_dd
-vnoremap <leader>y "*y
-vnoremap <leader>yy "*yy
-vnoremap <leader>Y "*Y
 
 " Search and replace word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
@@ -298,6 +289,25 @@ noremap <leader>v7 :vertical resize 70<CR>
 noremap <leader>v8 :vertical resize 80<CR>
 noremap <leader>v= <C-w>=
 
+
+"
+" Delete, yanking...
+"
+" Delete text without yank
+noremap <leader>D "_D
+vnoremap <leader>D "_D
+noremap <leader>dd "_dd
+vnoremap <leader>dd "_dd
+noremap <leader>y "*y
+vnoremap <leader>y "*y
+noremap <leader>yy "*yy
+vnoremap <leader>yy "*yy
+noremap <leader>Y "*Y
+vnoremap <leader>Y "*Y
+noremap <leader>p "*p
+vnoremap <leader>p "*p
+noremap <leader>P "*P
+vnoremap <leader>P "*P
 " delete without yanking
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
