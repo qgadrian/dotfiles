@@ -83,4 +83,23 @@ source ~/.zsh/profiles/git
 source ~/.zsh/profiles/entrypoint
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-alias nvr="nvr -s ."
+
+#if [ ! -e /tmp/nvimsocket ]; then
+  ##NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+  #export EDITOR="nvim"
+#else
+  #export EDITOR="nvr --remote"
+  ##alias nvim="nvr --remote"
+#fi
+
+#export GIT_EDITOR="$EDITOR"
+#export VISUAL="$EDITOR"
+
+#export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+#export EDITOR="nvim"
+#export VISUAL="nvim"
+
+export EDITOR="nvr --remote"
+#alias nvim="nvr --remote"
+
+#alias nvr="nvr --remote ."

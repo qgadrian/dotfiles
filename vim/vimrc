@@ -268,6 +268,21 @@ function! WrapSelect (front)
 endfunction
 vnoremap <C-l> :<C-u>call WrapSelect(input('Wrapping? Give both (space separated) or just the first one: '))<cr>
 
+"
+" GIT edit
+"
+" Split buffer in git edit
+if has('nvim')
+  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+endif
+
+if has("autocmd")
+  " Delete git buffer when hidden
+  autocmd FileType gitcommit set bufhidden=delete
+  autocmd FileType markdown setlocal spell wrap textwidth=80
+end
+
+"
 " fzf
 "
 nnoremap <silent> <leader>. :Ag<CR>
