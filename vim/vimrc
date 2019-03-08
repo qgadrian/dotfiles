@@ -345,10 +345,19 @@ noremap <leader>da :Dash<CR>
 augroup terminal
   autocmd TermOpen * setlocal nospell
   autocmd TermOpen * setlocal nonumber
+  autocmd TermOpen * setlocal wrap
+  autocmd TermOpen * startinsert
 augroup END
 
-noremap c  :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
-noremap ct :tabnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
+" enter and leave terminal mode (insert mode) when switching between buffers
+autocmd VimEnter * nested terminal
+autocmd BufLeave term://* stopinsert
+
+set splitbelow
+set splitright
+
+noremap c  :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+noremap ct :tabnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 noremap cb :new<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
 noremap cbv :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
 tnoremap <Esc> <C-\><C-n>
@@ -370,6 +379,11 @@ nnoremap <silent> <M-Down> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <M-Up> :call comfortable_motion#flick(-100)<CR>
 nnoremap <silent> <M-S-Down> :call comfortable_motion#flick(200)<CR>
 nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
+" Change between buffers
+nnoremap <Tab> :bprevious<CR>
+nnoremap <S-Tab> :bnext<CR>
+" Make splitted buffers open in right side
+set splitright
 
 " Startify
 let g:startify_commands = [
