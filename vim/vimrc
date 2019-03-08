@@ -193,6 +193,17 @@ colorscheme dracula
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
+" Column width indicator
+set colorcolumn=99
+autocmd ColorScheme * highlight ColorColumn ctermbg=red
+
+" Line number indicator
+autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 " Markdown
 let g:vim_markdown_folding_disabled = 1
 nmap ga <Plug>(EasyAlign)
@@ -237,8 +248,6 @@ nnoremap O O<Esc>
 " Disable ycm
 let g:loaded_youcompleteme = 0
 
-" Make splitted buffers open in right side
-set splitright
 
 function! WrapSelect (front)
     "puts characters around the selected text.
@@ -269,23 +278,15 @@ endfunction
 vnoremap <C-l> :<C-u>call WrapSelect(input('Wrapping? Give both (space separated) or just the first one: '))<cr>
 
 " fzf
+"
 nnoremap <silent> <leader>. :Ag<CR>
 nnoremap <silent> <leader>; :Rg<CR>
 " Colision with NERDCommenter mapping
 " nnoremap <silent> <leader>/ :execute 'Ag ' . input(':Ag ')<CR>
 
-" Column width indicator
-set colorcolumn=99
-autocmd ColorScheme * highlight ColorColumn ctermbg=red
-
-" Line number indicator
-autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
-
-" Fixes problem with Kitty and random data displayed. More info:
-" https://github.com/vim-airline/vim-airline/issues/393#issuecomment-176033750
-"set term=builtin_xterm
-
+"
 " Resizes
+"
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 10/9)<CR>
 noremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 9/10)<CR>
 
