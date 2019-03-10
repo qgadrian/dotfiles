@@ -350,8 +350,18 @@ augroup terminal
 augroup END
 
 " enter and leave terminal mode (insert mode) when switching between buffers
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
+"autocmd BufWinEnter,WinEnter term://* startinsert
+"autocmd BufLeave term://* stopinsert
+
+" Skip sending escape characters for arrow keys in terminal mode
+tnoremap <C-S-Up> <Nop>
+tnoremap <M-S-Up> <Nop>
+tnoremap <C-S-Down> <Nop>
+tnoremap <M-S-Down> <Nop>
+tnoremap <C-S-Left> <Nop>
+tnoremap <M-S-Left> <Nop>
+tnoremap <C-S-Right> <Nop>
+tnoremap <M-S-Right> <Nop>
 
 set splitbelow
 set splitright
