@@ -349,6 +349,9 @@ augroup terminal
   autocmd TermOpen * startinsert
 augroup END
 
+"autocmd FileType,BufLeave gitcommit :autocmd! TermOpen * startinsert
+autocmd FileType,BufLeave gitcommit :startinsert!
+
 " enter and leave terminal mode (insert mode) when switching between buffers
 "autocmd BufWinEnter,WinEnter term://* startinsert
 "autocmd BufLeave term://* stopinsert
