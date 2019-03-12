@@ -358,13 +358,17 @@ autocmd FileType,BufLeave gitcommit :startinsert!
 
 " Skip sending escape characters for arrow keys in terminal mode
 tnoremap <C-S-Up> <Nop>
-tnoremap <M-S-Up> <Nop>
 tnoremap <C-S-Down> <Nop>
-tnoremap <M-S-Down> <Nop>
 tnoremap <C-S-Left> <Nop>
-tnoremap <M-S-Left> <Nop>
 tnoremap <C-S-Right> <Nop>
+tnoremap <M-S-Up> <Nop>
+tnoremap <M-S-Down> <Nop>
+tnoremap <M-S-Left> <Nop>
 tnoremap <M-S-Right> <Nop>
+tnoremap <S-Up> <Nop>
+tnoremap <S-Down> <Nop>
+tnoremap <silent> <S-Left> <Esc>b
+tnoremap <silent> <S-Right> <Esc>f
 
 set splitbelow
 set splitright
