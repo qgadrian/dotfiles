@@ -20,6 +20,8 @@ source ./docker/install.sh
 
 #source ./iterm2/install.sh
 
+source ./kitty/install.sh
+
 source ./plugins/install.sh
 
 source ./tools/install.sh
