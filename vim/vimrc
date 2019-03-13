@@ -107,7 +107,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 map <leader>/ <plug>NERDCommenterToggle
-nmap ,rf :NERDTreeFind<CR>
+nmap <leader>rf :NERDTreeFind<CR>
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
