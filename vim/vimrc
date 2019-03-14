@@ -383,6 +383,9 @@ noremap <silent> nt :tabnew<CR>
 map <silent> <C-w> :q<CR>
 noremap <M-S-Left> gT
 noremap <M-S-Right> gt
+"move
+noremap <silent> <C-M-Left> :tabm -1<CR>
+noremap <silent> <C-M-Right> :tabm +1<CR>
 " Buffers
 map <silent> nb :new<CR>
 map <silent> nbv :vnew<CR>
