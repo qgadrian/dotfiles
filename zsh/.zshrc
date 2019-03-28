@@ -82,10 +82,10 @@ source ~/.zsh/profiles/brew
 source ~/.zsh/profiles/git
 source ~/.zsh/profiles/entrypoint
 
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+#export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 #if [ ! -e /tmp/nvimsocket ]; then
-  ##NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+  #NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
   #export EDITOR="nvim"
 #else
   #export EDITOR="nvr --remote"
@@ -99,7 +99,7 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 #export EDITOR="nvim"
 #export VISUAL="nvim"
 
-export EDITOR="nvr --remote"
+#export EDITOR="nvr --remote"
 #alias nvim="nvr --remote"
 
 #alias nvr="nvr --remote ."
