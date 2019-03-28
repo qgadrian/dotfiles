@@ -106,8 +106,6 @@ call vundle#end()            " required
 
 filetype plugin indent on    " required
 
-map <leader>/ <plug>NERDCommenterToggle
-nmap <leader>rf :NERDTreeFind<CR>
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
@@ -148,6 +146,9 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 0
+map <leader>/ <plug>NERDCommenterToggle
+nmap <leader>rf :NERDTreeFind<CR>
+nmap <leader>o :NERDTreeFocus<CR>
 " Auto open NERDTree
 "autocmd vimenter * if !argc() | NERDTree | endif
 "Auto close NERDTree if the latest buffer is the file tree
