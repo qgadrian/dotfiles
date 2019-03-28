@@ -81,7 +81,7 @@ call vundle#begin()
 
   Plugin 'pearofducks/ansible-vim'
 
-  Plugin 'dkprice/vim-easygrep'
+  Plugin 'brooth/far.vim'
 
   " Remove highlight when move the cursor after a search
   Plugin 'romainl/vim-cool'
