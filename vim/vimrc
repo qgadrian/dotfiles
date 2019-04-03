@@ -385,7 +385,7 @@ noremap cbv :vnew<CR>:terminal<CR>
 tnoremap <Esc> <C-\><C-n>
 " Tabs
 noremap <silent> nt :tabnew<CR>
-map <silent> <C-w> :q<CR>
+"map <silent> <C-w> :q<CR>
 noremap <M-S-Left> gT
 noremap <M-S-Right> gt
 "move
@@ -405,8 +405,8 @@ nnoremap <silent> <M-Up> :call comfortable_motion#flick(-100)<CR>
 nnoremap <silent> <M-S-Down> :call comfortable_motion#flick(200)<CR>
 nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
 " Change between buffers
-nnoremap <Tab> :bprevious<CR>
-nnoremap <S-Tab> :bnext<CR>
+"nnoremap <Tab> :bprevious<CR>
+"nnoremap <S-Tab> :bnext<CR>
 " Make splitted buffers open in right side
 set splitright
 
