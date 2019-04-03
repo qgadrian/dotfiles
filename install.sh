@@ -30,6 +30,8 @@ source ./ansible/install.sh
 
 source ./vim/config.sh
 
+source ./window_manager/install.sh
+
 echo "\n########################\n"
 echo "########################\n"
 echo "Done setting up the system"

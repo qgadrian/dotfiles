@@ -1,0 +1,25 @@
+# open terminal
+cmd - return : /Applications/kitty.app/Contents/MacOS/kitty:
+
+# close focused window
+alt - w : chunkc tiling::window --close
+
+#
+# Focus
+#
+
+# Focus Window
+alt + shift - j : chunkc tiling::window --focus prev
+alt + shift - k : chunkc tiling::window --focus next
+
+# Focus Monitor
+alt + shift - u : chunkc tiling::monitor -f prev
+alt + shift - i : chunkc tiling::monitor -f next
+
+#
+# Monitor
+#
+
+# Send Window to Desktop
+alt + ctrl - j : chunkc tiling::window --send-to-desktop prev
+alt + ctrl - k : chunkc tiling::window --send-to-desktop next
