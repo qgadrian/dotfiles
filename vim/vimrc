@@ -13,52 +13,30 @@ call vundle#begin()
   " let Vundle manage Vundle, required
   Plugin 'VundleVim/Vundle.vim'
 
-  " The following are examples of different formats supported.
-  " Keep Plugin commands between vundle#begin/end.
-  " plugin on GitHub repo
   Plugin 'tpope/vim-fugitive'
-  " plugin from http://vim-scripts.org/vim/scripts.html
-  " Plugin 'L9'
-  " Git plugin not hosted on GitHub
   Plugin 'git://git.wincent.com/command-t.git'
-  " git repos on your local machine (i.e. when working on your own plugin)
-  " Plugin 'file:///home/gmarik/path/to/plugin'
   " The sparkup vim script is in a subdirectory of this repo called vim.
   " Pass the path to set the runtimepath properly.
   Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-  " Install L9 and avoid a Naming conflict if you've already installed a
-  " different version somewhere else.
-  " Plugin 'ascenator/L9', {'name': 'newL9'}
-
-  " All of your Plugins must be added before the following line
 
   " Show trailing whitespace and spaces before a tab:
   Plugin 'ntpeters/vim-better-whitespace'
-
   " Smooth scroll
   Plugin 'yuttie/comfortable-motion.vim'
-
   " Enable syntax color
   Plugin 'sheerun/vim-polyglot'
-
   " Elixir
   Plugin 'elixir-editors/vim-elixir'
-
   " Comments
   Plugin 'scrooloose/nerdcommenter'
-
   " NERDtree plugins
   Plugin 'scrooloose/nerdtree'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-  " Linting
+  " Lint and fixeds
   Plugin 'w0rp/ale'
-  "Plugin 'airblade/vim-gitgutter'
-
-  " status tab
+  " Status tab
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
-
   " Markdown
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
@@ -66,13 +44,16 @@ call vundle#begin()
   Plugin 'JamshedVesuna/vim-markdown-preview'
   " auto toc
   Plugin 'mzlogin/vim-markdown-toc'
-
   Plugin 'terryma/vim-multiple-cursors'
-
   Plugin 'brooth/far.vim'
-
   " Remove highlight when move the cursor after a search
   Plugin 'romainl/vim-cool'
+  " Dash integration
+  Plugin 'rizzatti/dash.vim'
+  " Startup buffer
+  Plugin 'mhinz/vim-startify'
+  " Change to project root directory automatically
+  Plugin 'airblade/vim-rooter'
   " fzf
   Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plugin 'junegunn/fzf.vim'
@@ -84,19 +65,9 @@ call vundle#begin()
   Plugin 'dracula/vim'
   "Plugin 'joshdick/onedark.vim'
   "Plugin 'rakr/vim-one'
-
-  " Dash integration
-  Plugin 'rizzatti/dash.vim'
-
-  " Startup buffer
-  Plugin 'mhinz/vim-startify'
-
-  " Change to project root directory automatically
-  Plugin 'airblade/vim-rooter'
-call vundle#end()            " required
+call vundle#end()
 
 filetype plugin indent on    " required
-
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
@@ -272,11 +243,9 @@ if has('nvim')
   let $GIT_EDITOR = 'nvr -cc split --remote-wait'
 endif
 
-if has("autocmd")
-  " Delete git buffer when hidden
-  autocmd FileType gitcommit set bufhidden=delete
-  autocmd FileType markdown setlocal spell wrap textwidth=80
-end
+" Delete git buffer when hidden
+autocmd FileType gitcommit set bufhidden=delete
+autocmd FileType markdown setlocal spell wrap textwidth=80
 
 "
 " fzf
@@ -297,7 +266,6 @@ noremap <leader>v6 :vertical resize 60<CR>
 noremap <leader>v7 :vertical resize 70<CR>
 noremap <leader>v8 :vertical resize 80<CR>
 noremap <leader>v= <C-w>=
-
 
 "
 " Delete, yanking...
@@ -397,9 +365,6 @@ nnoremap <silent> <M-Down> :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> <M-Up> :call comfortable_motion#flick(-100)<CR>
 nnoremap <silent> <M-S-Down> :call comfortable_motion#flick(200)<CR>
 nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
-" Change between buffers
-"nnoremap <Tab> :bprevious<CR>
-"nnoremap <S-Tab> :bnext<CR>
 " Make splitted buffers open in right side
 set splitright
 
