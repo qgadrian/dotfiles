@@ -2,15 +2,12 @@ echo "Install vimrc"
 
 brew install macvim
 
-#brew cask install xquartz
-#brew install vim --with-client-server
-
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-# If python crashses at start: ./install.py --clang-completer
+# If python crashes at start: ./install.py --clang-completer
 
 mv ~/.vimrc ~/.vimrc.old.deleteme
 ln -s $(pwd)/vimrc ~/.vimrc
@@ -44,10 +41,10 @@ brew install the_silver_searcher
 # Nerd fonts
 #
 
-echo "Install nerd fonts"
+#echo "Install nerd fonts"
 
-brew tap caskroom/fonts
-brew cask install font-meslo-nerd-font
+#brew tap caskroom/fonts
+#brew cask install font-meslo-nerd-font
 
 # Needed by markdown preview
 brew install grip

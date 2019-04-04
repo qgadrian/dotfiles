@@ -35,9 +35,6 @@ call vundle#begin()
   " Show trailing whitespace and spaces before a tab:
   Plugin 'ntpeters/vim-better-whitespace'
 
-  " Autocomplete
-  Plugin 'Valloric/YouCompleteMe'
-
   " Smooth scroll
   Plugin 'yuttie/comfortable-motion.vim'
 
@@ -45,14 +42,7 @@ call vundle#begin()
   Plugin 'sheerun/vim-polyglot'
 
   " Elixir
-  Plugin 'slashmili/alchemist.vim'
   Plugin 'elixir-editors/vim-elixir'
-  "Plugin 'vim-erlang/vim-erlang-runtime'
-  Plugin 'mhinz/vim-mix-format', {'merged': 0}
-  Plugin 'mattreduce/vim-mix.git'
-  " Autoclose
-  "Plugin 'tpope/vim-endwise'
-  "Plugin 'jiangmiao/auto-pairs'
 
   " Comments
   Plugin 'scrooloose/nerdcommenter'
@@ -78,8 +68,6 @@ call vundle#begin()
   Plugin 'mzlogin/vim-markdown-toc'
 
   Plugin 'terryma/vim-multiple-cursors'
-
-  Plugin 'pearofducks/ansible-vim'
 
   Plugin 'brooth/far.vim'
 
@@ -185,11 +173,6 @@ imap <C-Space> <Plug>(ale_complete)
 noremap <Leader>gd :ALEGoToDefinition<CR>
 noremap <Leader>gdt :ALEGoToDefinitionInTab<CR>
 
-" git line changes
-" Warning, high update frequency might cause vim to get extremely slow when
-" typing
-"set updatetime=100
-
 "
 " Color schemes
 "
@@ -240,7 +223,6 @@ set autochdir
 
 " Search and replace word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-"vnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 nnoremap <Leader>BS :1,.s/\<<C-r><C-w>\>/
 nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
 
@@ -250,10 +232,6 @@ set hlsearch
 " Empty lines without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
-
-" Disable ycm
-let g:loaded_youcompleteme = 0
-
 
 function! WrapSelect (front)
     "puts characters around the selected text.
@@ -302,8 +280,6 @@ end
 "
 nnoremap <silent> <leader>. :Ag<CR>
 nnoremap <silent> <leader>; :Rg<CR>
-" Colision with NERDCommenter mapping
-" nnoremap <silent> <leader>/ :execute 'Ag ' . input(':Ag ')<CR>
 
 "
 " Resizes
