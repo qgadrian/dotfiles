@@ -8,6 +8,8 @@ echo "Start configuring system"
 echo "########################\n"
 echo "########################\n"
 
+source ./mac/config.sh
+
 source ./brew/install.sh
 
 source ./asdf/install.sh
