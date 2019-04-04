@@ -90,6 +90,9 @@ call vundle#begin()
 
   " Startup buffer
   Plugin 'mhinz/vim-startify'
+
+  " Change to project root directory automatically
+  Plugin 'airblade/vim-rooter'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -399,6 +402,9 @@ nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
 "nnoremap <S-Tab> :bnext<CR>
 " Make splitted buffers open in right side
 set splitright
+
+" Auto project root cd
+let g:rooter_patterns = ['mix.exs', '.git/']
 
 " Startify
 let g:startify_commands = [
