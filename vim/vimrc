@@ -62,7 +62,7 @@ call vundle#begin()
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 
   " Linting
-  "Plugin 'w0rp/ale'
+  Plugin 'w0rp/ale'
   "Plugin 'airblade/vim-gitgutter'
 
   " status tab
@@ -164,12 +164,26 @@ nmap <leader>o :NERDTreeFocus<CR>
 "let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "set encoding=UTF-8
 
+"
+" Ale
+"
 
-" lint
-"let g:ale_sign_column_always = 1
-"let g:ale_set_balloons = 1
-"let g:ale_list_window_size = 5
-"let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 1
+let g:ale_c_parse_makefile = 1
+let g:ale_fix_on_save = 1
+let g:ale_elixir_elixir_ls_release = $HOME.'/.vim/elixir-ls/rel'
+let g:ale_linters = {
+\ 'elixir': ['elixir-ls'],
+\}
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'elixir': ['mix_format'],
+\ }
+
+imap <C-Space> <Plug>(ale_complete)
+noremap <Leader>gd :ALEGoToDefinition<CR>
+noremap <Leader>gdt :ALEGoToDefinitionInTab<CR>
 
 " git line changes
 " Warning, high update frequency might cause vim to get extremely slow when

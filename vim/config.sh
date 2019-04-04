@@ -22,19 +22,17 @@ mkdir ~/.vim/undo
 vim +PluginInstall +qall
 
 #
-# You complete me
+# elixir ls
 #
 
-# Needed by 'youcompleteme'
-brew install cmake
-
-# mkdir YouCompleteMe/ycmbuild
-mkdir ~/.vim/bundle/YouCompleteMe/ycmbuild
-# cd YouCompleteMe/ycmbuild
-# cmake -G "Unix Makefiles" . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/
-cmake -G "Unix Makefiles" -B ~/.vim/bundle/YouCompleteMe/ycmbuild -S ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/
-# make ycm_core
-make -C ~/.vim/bundle/YouCompleteMe/ycmbuild ycm_core
+echo "Install Elixir LS"
+OLD_PWD=$(pwd)
+mkdir ~/.vim/elixir-ls
+git clone https://github.com/JakeBecker/elixir-ls.git ~/.vim/elixir-ls/
+cd ~/.vim/elixir-ls
+mix deps.get
+MIX_ENV=prod mix elixir_ls.release -o ./rel
+cd $OLD_PWD
 
 #
 # Fuzzy search deps
