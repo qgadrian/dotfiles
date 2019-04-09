@@ -34,3 +34,6 @@ cmd + shift - i : chunkc tiling::window --send-to-monitor next; chunkc tiling::m
 
 # toggle desktop offset
 shift + alt - r : chunkc tiling::desktop --toggle offset
+
+# toggle window fullscreen
+shift + alt - f : chunkc tiling::window --toggle fullscreen
