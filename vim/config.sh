@@ -19,7 +19,7 @@ mkdir ~/.vim/undo
 vim +PluginInstall +qall
 
 #
-# elixir ls
+# linters
 #
 
 echo "Install Elixir LS"

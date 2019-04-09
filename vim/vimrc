@@ -21,8 +21,6 @@ call vundle#begin()
 
   " Show trailing whitespace and spaces before a tab:
   Plugin 'ntpeters/vim-better-whitespace'
-  " Smooth scroll
-  Plugin 'yuttie/comfortable-motion.vim'
   " Enable syntax color
   Plugin 'sheerun/vim-polyglot'
   " Elixir
@@ -365,11 +363,6 @@ noremap <C-S-Up> <C-w>k
 noremap <C-S-Down> <C-w>j
 noremap <C-S-Left> <C-w>h
 noremap <C-S-Right> <C-w>l
-" Smooth scroll
-nnoremap <silent> <M-Down> :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <M-Up> :call comfortable_motion#flick(-100)<CR>
-nnoremap <silent> <M-S-Down> :call comfortable_motion#flick(200)<CR>
-nnoremap <silent> <M-S-Up> :call comfortable_motion#flick(-200)<CR>
 " Make splitted buffers open in right side
 set splitright
 
