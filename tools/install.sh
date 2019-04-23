@@ -1,11 +1,11 @@
 echo "Install tools"
 
 brew install \
-	watch \
-	htop \
-	gettext \
-	ack \
-	automake \
+  watch \
+  htop \
+  gettext \
+  ack \
+  automake \
   nmap \
   telnet \
   npm \
@@ -13,8 +13,8 @@ brew install \
   peco \
 
 brew cask install \
-	bettertouchtool \
-	dash \
+  bettertouchtool \
+  dash \
+  firefox \
 
 brew link --force gettext
-
