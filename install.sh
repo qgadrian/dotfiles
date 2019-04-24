@@ -12,9 +12,9 @@ source ./mac/config.sh
 
 source ./brew/install.sh
 
-source ./asdf/install.sh
-
 source ./zsh/install.sh
+
+source ./asdf/install.sh
 
 source ./git/config.sh
 
@@ -32,7 +32,7 @@ source ./ansible/install.sh
 
 source ./vim/config.sh
 
-source ./window_manager/install.sh
+source ./window_management/install.sh
 
 echo "\n########################\n"
 echo "########################\n"
