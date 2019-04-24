@@ -1,14 +1,20 @@
 echo "Install asdf"
 
 # install asdf
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.0
+if [ ! -d ~/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.0
+fi
 
 # setup zsh
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+echo '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
+echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+echo '\n. $HOME/.asdf/asdf.sh' >> ~/.bash_profile
+echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bash_profile
+
+source ~/.bash_profile
 
 # setup asdf deps
-brew coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc
+brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc
 
 echo "Install asdf plugins"
 
