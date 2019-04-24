@@ -10,7 +10,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # If python crashes at start: ./install.py --clang-completer
 
 mv ~/.vimrc ~/.vimrc.old.deleteme
-ln -s $(pwd)/vimrc ~/.vimrc
+ln -s $(pwd)/vim/vimrc ~/.vimrc
 
 mkdir ~/.vim/backup
 mkdir ~/.vim/swp
@@ -52,7 +52,7 @@ brew install grip
 echo "Install spell checks"
 #mv ~/.vim/spell/ ~/.vim/spell.deleteme
 mkdir ~/.vim/spell
-ln -s $(pwd)/spell ~/.vim/spell
+ln -s $(pwd)/vim/spell ~/.vim/spell
 
 # Neded by command-t
 # cd /Users/adrian/.vim/bundle/command-t && rake make

@@ -30,9 +30,12 @@ if [ -d ~/.zsh ]; then
   mv ~/.zsh ~/.zsh.old.deleteme
 fi
 
-ln -s $(pwd)/.zshrc ~/.zshrc
-mkdir ~/.zsh
-ln -s $(pwd)/profiles ~/.zsh/
+if [ ! -d ~/.zsh ]; then
+  mkdir ~/.zsh
+fi
+
+ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
+ln -sf $(pwd)/zsh/profiles ~/.zsh/
 
 # Temporary install prompt with node
 npm install -g spaceship-prompt
