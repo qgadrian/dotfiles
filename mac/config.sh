@@ -7,6 +7,4 @@ read -p "Configure the Keyboard? " -n 1 -r; echo
       defaults write -g KeyRepeat -int 1
 
   echo "Changes will be applied after restart"
-
-  exit 0
 fi

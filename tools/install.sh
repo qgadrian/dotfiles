@@ -9,11 +9,11 @@ brew install \
   nmap \
   telnet \
   npm \
-  slack \
   peco \
 
 brew cask install \
   bettertouchtool \
+  slack \
   dash \
   firefox \
 
