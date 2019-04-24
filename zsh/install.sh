@@ -37,4 +37,5 @@ ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/profiles ~/.zsh/
 
 # Temporary install prompt with node
+brew install npm
 npm install -g spaceship-prompt
