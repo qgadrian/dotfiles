@@ -4,8 +4,7 @@ brew install zsh
 
 echo "Setting zsh as default shell"
 
-chsh -s $(which zsh)
-
+# WARNING: The installation script will change the console and it will require to relaunch the installation script
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 #echo "Install zplug"

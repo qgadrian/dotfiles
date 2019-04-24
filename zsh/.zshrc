@@ -77,7 +77,6 @@ source ~/.zsh/profiles/zsh
 #source ~/.zsh/profiles/powerline
 source ~/.zsh/profiles/aliases
 source ~/.zsh/profiles/asdf
-source ~/.zsh/profiles/derivco
 source ~/.zsh/profiles/brew
 source ~/.zsh/profiles/git
 source ~/.zsh/profiles/entrypoint
