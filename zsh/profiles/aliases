@@ -5,7 +5,7 @@ alias ls=' ls -lah'
 alias cping='ping -c 3 www.google.com'
 
 # Generate random passwords
-generate_random_password="LC_ALL=C tr -dc 'A-Za-z0-9_!@#$%^&*()\-+=' < /dev/urandom | head -c24 | pbcopy"
+alias generate_random_password="LC_ALL=C tr -dc 'A-Za-z0-9_!@#$%^&*()\-+=' < /dev/urandom | head -c24 | pbcopy"
 
 # Docker
 alias dockercompose="docker-compose"
