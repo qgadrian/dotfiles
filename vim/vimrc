@@ -56,6 +56,9 @@ call vundle#begin()
   Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plugin 'junegunn/fzf.vim'
 
+  " Quick navigation
+  Plugin 'easymotion/vim-easymotion'
+
   "
   " Colors schemes
   "
@@ -384,5 +387,11 @@ let g:startify_lists = [
   \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
   \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
 \ ]
+
+" Easy motion
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
 syntax on
