@@ -34,6 +34,8 @@ source ./vim/config.sh
 
 source ./window_management/install.sh
 
+source ./karabiner/install.sh
+
 echo "\n########################\n"
 echo "########################\n"
 echo "Done setting up the system"
