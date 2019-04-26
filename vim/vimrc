@@ -346,7 +346,9 @@ noremap <leader>c :terminal<CR>
 noremap ct :tabnew<CR>:terminal<CR>
 noremap cb :new<CR>:terminal<CR>
 noremap cbv :vnew<CR>:terminal<CR>
-tnoremap <Esc> <C-\><C-n>
+" Comment this mapping to support nested vim's
+"tnoremap <Esc> <C-\><C-n>
+
 " Tabs
 noremap <silent> nt :tabnew<CR>
 "map <silent> <C-w> :q<CR>
