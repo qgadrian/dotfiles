@@ -209,6 +209,11 @@ nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
 " Enable highlight when searching
 set hlsearch
 
+" Shift to the next round tab stop.
+set shiftround
+" Set auto indent spacing.
+set shiftwidth=2
+
 " Empty lines without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
