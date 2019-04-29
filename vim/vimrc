@@ -27,10 +27,7 @@ call vundle#begin()
   Plugin 'elixir-editors/vim-elixir'
   " Comments
   Plugin 'scrooloose/nerdcommenter'
-  " NERDtree plugins
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'Xuyuanp/nerdtree-git-plugin'
-  " Lint and fixeds
+  " Lint and fixers
   Plugin 'w0rp/ale'
   " Status tab
   Plugin 'vim-airline/vim-airline'
@@ -58,6 +55,9 @@ call vundle#begin()
 
   " Quick navigation
   Plugin 'easymotion/vim-easymotion'
+
+  " Filetree
+  Plugin 'tpope/vim-vinegar'
 
   "
   " Colors schemes
@@ -103,22 +103,12 @@ autocmd BufWritePre * call TrimWhiteSpaces()
 
 " Custom plugins
 
-" nerdtree
-map <C-o> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeQuitOnOpen = 0
-map <leader>/ <plug>NERDCommenterToggle
-nmap <leader>rf :NERDTreeFind<CR>
-nmap <leader>o :NERDTreeFocus<CR>
-" Auto open NERDTree
-"autocmd vimenter * if !argc() | NERDTree | endif
-"Auto close NERDTree if the latest buffer is the file tree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" NERDTree file icons and color syntax
-"Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+" vinegar
+let g:netrw_banner = 1
+let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
 
 " Icons
 "Plugin 'ryanoasis/vim-devicons'
@@ -355,7 +345,7 @@ noremap ct :tabnew<CR>:terminal<CR>
 noremap cb :new<CR>:terminal<CR>
 noremap cbv :vnew<CR>:terminal<CR>
 " Comment this mapping to support nested vim's
-"tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 
 " Tabs
 noremap <silent> nt :tabnew<CR>
