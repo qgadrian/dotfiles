@@ -389,4 +389,7 @@ let g:EasyMotion_use_smartsign_us = 1
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
+" nerd commenter
+nmap <leader>/ <plug>NERDCommenterToggle
+
 syntax on
