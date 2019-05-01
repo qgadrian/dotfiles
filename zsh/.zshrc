@@ -63,4 +63,5 @@ source ~/.zsh/profiles/aliases
 source ~/.zsh/profiles/asdf
 source ~/.zsh/profiles/brew
 source ~/.zsh/profiles/git
+source ~/.zsh/profiles/elixir
 source ~/.zsh/profiles/entrypoint
