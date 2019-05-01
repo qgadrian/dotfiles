@@ -8,3 +8,5 @@ read -p "Configure the Keyboard? " -n 1 -r; echo
 
   echo "Changes will be applied after restart"
 fi
+
+source ./plugins/install.sh

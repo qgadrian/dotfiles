@@ -8,9 +8,9 @@ echo "Start configuring system"
 echo "########################\n"
 echo "########################\n"
 
-source ./mac/config.sh
-
 source ./brew/install.sh
+
+source ./mac/config.sh
 
 source ./zsh/install.sh
 
@@ -21,8 +21,6 @@ source ./git/config.sh
 source ./docker/install.sh
 
 source ./kitty/install.sh
-
-source ./plugins/install.sh
 
 source ./tools/install.sh
 
