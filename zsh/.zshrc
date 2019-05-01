@@ -58,10 +58,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # vim ycm workaround
 export DYLD_FORCE_FLAT_NAMESPACE=1
 
-source ~/.zsh/profiles/zsh
-source ~/.zsh/profiles/aliases
-source ~/.zsh/profiles/asdf
-source ~/.zsh/profiles/brew
-source ~/.zsh/profiles/git
-source ~/.zsh/profiles/elixir
-source ~/.zsh/profiles/entrypoint
+for file in ~/.zsh/profiles/*; do
+    source "$file"
+done
