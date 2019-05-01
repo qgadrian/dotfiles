@@ -40,18 +40,6 @@ export LANG=en_US.UTF-8
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Android SDK bins
-export ANDROID_HOME=~/workspace/lib/android-sdk-macosx
-#export PATH="$HOME/Library/Android/sdk/platform-tools/adb:$PATH"
 
 # Fastlane mobile builder
 export PATH="$HOME/.fastlane/bin:$PATH"
@@ -67,38 +55,12 @@ export GPG_TTY=$(tty)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Import custom zshrcs
-# Notice that the order will matter, and zsh should be the first one
-
 # vim ycm workaround
 export DYLD_FORCE_FLAT_NAMESPACE=1
 
 source ~/.zsh/profiles/zsh
-#source ~/.zsh/profiles/powerline
 source ~/.zsh/profiles/aliases
 source ~/.zsh/profiles/asdf
 source ~/.zsh/profiles/brew
 source ~/.zsh/profiles/git
 source ~/.zsh/profiles/entrypoint
-
-#export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-
-#if [ ! -e /tmp/nvimsocket ]; then
-  #NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
-  #export EDITOR="nvim"
-#else
-  #export EDITOR="nvr --remote"
-  ##alias nvim="nvr --remote"
-#fi
-
-#export GIT_EDITOR="$EDITOR"
-#export VISUAL="$EDITOR"
-
-#export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-#export EDITOR="nvim"
-#export VISUAL="nvim"
-
-#export EDITOR="nvr --remote"
-#alias nvim="nvr --remote"
-
-#alias nvr="nvr --remote ."
