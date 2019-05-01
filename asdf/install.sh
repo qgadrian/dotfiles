@@ -27,14 +27,16 @@ echo "\n#Disable jvm when installing asdf plugins\n\nexport KERL_CONFIGURE_OPTIO
 asdf plugin-add erlang
 asdf plugin-add elixir
 asdf plugin-add ruby
+asdf plugin-add terraform
 
 asdf install elixir 1.7
 asdf install elixir 1.7-otp-21
 asdf install erlang 20.3
 asdf install erlang 21.2
 asdf install ruby 2.3.7
+asdf install terraform 0.11.13
 
 asdf global erlang 21.2
 asdf global elixir 1.7-otp-21
 asdf global ruby 2.3.7
-
+asdf global terraform 0.11.13
