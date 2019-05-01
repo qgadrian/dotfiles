@@ -10,3 +10,5 @@ read -p "Configure the Keyboard? " -n 1 -r; echo
 fi
 
 source ./plugins/install.sh
+
+source ./window_management/install.sh
