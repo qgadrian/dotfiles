@@ -53,8 +53,6 @@ PYTHONPATH=/usr/local/lib/python2.7/site-packages
 # Export gpg tty
 export GPG_TTY=$(tty)
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # vim ycm workaround
 export DYLD_FORCE_FLAT_NAMESPACE=1
 
