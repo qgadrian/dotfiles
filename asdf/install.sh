@@ -28,15 +28,23 @@ asdf plugin-add erlang
 asdf plugin-add elixir
 asdf plugin-add ruby
 asdf plugin-add terraform
+asdf plugin-add haskell
+asdf plugin-add rust
 
-asdf install elixir 1.7
-asdf install elixir 1.7-otp-21
-asdf install erlang 20.3
-asdf install erlang 21.2
-asdf install ruby 2.3.7
-asdf install terraform 0.11.13
+ELIXIR_VERSION=1.8
+ERLANG_VERSION=21.3
+HASKELL_VERSION=8.6.5
+RUST_VERSION=1.34.1
+TERRAFORM_VERSION=0.11.13
 
-asdf global erlang 21.2
-asdf global elixir 1.7-otp-21
-asdf global ruby 2.3.7
-asdf global terraform 0.11.13
+asdf install elixir $ELIXIR_VERSION-otp-21
+asdf install erlang $ERLANG_VERSION
+asdf install terraform $TERRAFORM_VERSION
+asdf install haskell $HASKELL_VERSION
+asdf install rust $RUST_VERSION
+
+asdf global erlang $ERLANG_VERSION
+asdf global elixir $ELIXIR_VERSION-otp-21
+asdf global terraform $TERRAFORM_VERSION
+asdf global haskell $HASKELL_VERSION
+asdf global rust $RUST_VERSION
