@@ -36,3 +36,10 @@ alias dockerbash="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | s
 alias dockerstop="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker stop {}"
 alias dockerstopall="docker stop $(docker ps -a -q)"
 alias dockerclear="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
+
+## itunes
+alias itp=" itunes play"
+alias itps=" itunes pause"
+alias itn=" itunes next"
+alias itpr=" itunes previous"
+alias itpp=" itunes playlists | peco | xargs -I{} -to itunes play playlist {}"
