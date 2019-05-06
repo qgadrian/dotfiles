@@ -340,10 +340,10 @@ set splitright
 "noremap ct :tabnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 "noremap cb :new<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
 "noremap cbv :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
-noremap <leader>c :terminal<CR>
-noremap ct :tabnew<CR>:terminal<CR>
-noremap cb :new<CR>:terminal<CR>
-noremap cbv :vnew<CR>:terminal<CR>
+noremap <leader>t :terminal<CR>
+noremap <leader>tt :tabnew<CR>:terminal<CR>
+noremap <leader>tb :new<CR>:terminal<CR>
+noremap <leader>tvb :vnew<CR>:terminal<CR>
 " Comment this mapping to support nested vim's
 tnoremap <Esc> <C-\><C-n>
 
@@ -357,7 +357,7 @@ noremap <silent> <C-M-Left> :tabm -1<CR>
 noremap <silent> <C-M-Right> :tabm +1<CR>
 " Buffers
 map <silent> nb :new<CR>
-map <silent> nbv :vnew<CR>
+map <silent> nvb :vnew<CR>
 " Remap arrow keys to change between buffers
 noremap <C-S-Up> <C-w>k
 noremap <C-S-Down> <C-w>j
