@@ -130,10 +130,12 @@ let g:ale_elixir_elixir_ls_release = $HOME.'/.vim/elixir-ls/rel'
 let g:ale_linters = {
 \ 'elixir': ['elixir-ls'],
 \ 'json': ['prettier'],
+\ 'rust': ['rustc'],
 \}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'elixir': ['mix_format'],
+\ 'rust': ['rustfmt'],
 \ 'json': ['prettier'],
 \ }
 " Closes preview window

@@ -68,3 +68,6 @@ echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after\nlet &packpath = &runtim
 
 # neovim
 pip3 install neovim-remote
+
+#install rust fixer
+rustup component add rustfmt
