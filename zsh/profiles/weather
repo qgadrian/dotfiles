@@ -1,0 +1,8 @@
+DEFAULT_LOCATION="Barcelona"
+
+function show_weather() {
+  location=$@ || $DEFAULT_LOCATION
+  curl -s "wttr.in/${location}" | sed 's/Follow.*//'
+}
+
+alias weather=" show_weather"
