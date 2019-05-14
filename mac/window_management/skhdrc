@@ -29,6 +29,16 @@ cmd + shift - u : chunkc tiling::window --send-to-monitor prev; chunkc tiling::m
 cmd + shift - i : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
 
 #
+# Desktop
+#
+
+# Move desktop
+# Requires additional setup: `csrutil disable && sudo chunkwm --install-sa && csrutil enable`
+# more info: https://koekeishiya.github.io/chunkwm/docs/sa.html
+cmd + shift - h : chunkc tiling::desktop --move prev
+cmd + shift - l : chunkc tiling::desktop --move next
+
+#
 # Layout
 #
 
