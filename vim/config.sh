@@ -69,5 +69,19 @@ echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after\nlet &packpath = &runtim
 # neovim
 pip3 install neovim-remote
 
+# dasht
+
+git clone git@github.com:sunaku/dasht.git $(pwd)/vim
+
+# wget its a depdency to get the docsets
+# w3m its needed to display the results
+brew install wget w3m
+
+cp $(pwd)/vim/dasht/bin/* /usr/local/bin
+cp $(pwd)/vim/dasht/man/man1/* /usr/local/share/man/man1
+
+# install docsets
+dasht-docsets-install elixir
+
 #install rust fixer
 rustup component add rustfmt
