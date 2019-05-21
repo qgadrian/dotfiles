@@ -34,6 +34,7 @@ alias gitclear="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git br
 ## Docker
 alias dockerbash="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker exec -ti {} /bin/bash"
 alias dockerstop="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker stop {}"
+alias dockerkill="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker kill {}"
 alias dockerstopall="docker stop $(docker ps -a -q)"
 alias dockerclear="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
 
