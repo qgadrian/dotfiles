@@ -12,3 +12,5 @@ fi
 source ./plugins/install.sh
 
 source ./window_management/install.sh
+
+source ./fonts/install.sh
