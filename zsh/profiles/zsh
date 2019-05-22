@@ -16,9 +16,9 @@ export SPACESHIP_GIT_STATUS_DIVERGED="⇡⇣"
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-autoload -Uz promptinit
-promptinit
-prompt pure
+#autoload -Uz promptinit
+#promptinit
+#prompt pure
 
 # Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)

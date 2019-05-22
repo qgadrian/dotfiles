@@ -59,3 +59,6 @@ export DYLD_FORCE_FLAT_NAMESPACE=1
 for file in ~/.zsh/profiles/*; do
     source "$file"
 done
+
+export ZSH_THEME=powerlevel10k/powerlevel10k
+#export ZSH_THEME=lambda-zsh/cdimascio-lambda
