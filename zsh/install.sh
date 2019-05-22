@@ -36,6 +36,6 @@ fi
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/profiles ~/.zsh/
 
-# Temporary install prompt with node
+# Themes
 brew install npm
-npm install -g spaceship-prompt
+npm install -g spaceship-prompt pure-prompt

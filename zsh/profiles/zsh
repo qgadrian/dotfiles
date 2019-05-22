@@ -18,7 +18,7 @@ source $ZSH/oh-my-zsh.sh
 
 autoload -Uz promptinit
 promptinit
-prompt spaceship
+prompt pure
 
 # Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
