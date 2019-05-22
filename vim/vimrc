@@ -53,6 +53,10 @@ call vundle#begin()
   Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plugin 'junegunn/fzf.vim'
 
+  " NERDTree
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'ryanoasis/vim-devicons'
+
   " Quick navigation
   Plugin 'easymotion/vim-easymotion'
 
@@ -115,12 +119,13 @@ let g:netrw_winsize = 25
 " To fix wrong padding
 "let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 "let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-"set encoding=UTF-8
+set encoding=UTF-8
 
 "
 " Ale
 "
 
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 0
 let g:ale_close_preview_on_insert = 1
