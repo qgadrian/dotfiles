@@ -41,5 +41,8 @@ ln -sf $(pwd)/zsh/profiles ~/.zsh/
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/cdimascio/lambda-zsh-theme.git $ZSH_CUSTOM/themes/lambda-zsh/
 
+# Pure power theme for powerlevel10k
+ln -sf $(pwd)/zsh/.purepower ~/.zsh/.purepower
+
 #brew install npm
 #npm install -g spaceship-prompt pure-prompt
