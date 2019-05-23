@@ -114,10 +114,13 @@ let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
+" NERDTree
+let NERDTreeChDirMode = 0
+let NERDTreeShowHidden = 1
+
 " Icons
-"Plugin 'ryanoasis/vim-devicons'
 " To fix wrong padding
-"let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 "let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 set encoding=UTF-8
 
