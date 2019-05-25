@@ -41,24 +41,11 @@ export LANG=en_US.UTF-8
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-# Fastlane mobile builder
-export PATH="$HOME/.fastlane/bin:$PATH"
-
-# Python
-PYTHONPATH=/usr/local/lib/python2.7/site-packages
-
-# added by travis gem
-[ -f /Users/adrian/.travis/travis.sh ] && source /Users/adrian/.travis/travis.sh
-
 # Export gpg tty
 export GPG_TTY=$(tty)
 
-# vim ycm workaround
-export DYLD_FORCE_FLAT_NAMESPACE=1
-
 for file in ~/.zsh/profiles/*; do
-    source "$file"
+  source "$file"
 done
 
 export ZSH_THEME=powerlevel10k/powerlevel10k
-#export ZSH_THEME=lambda-zsh/cdimascio-lambda
