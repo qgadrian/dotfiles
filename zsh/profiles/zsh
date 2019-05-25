@@ -10,10 +10,6 @@ HISTCONTROL=ignoreboth
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-#autoload -Uz promptinit
-#promptinit
-#prompt pure
-
 # Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
 alias zshconfig="subl ~/.zshrc"
@@ -37,9 +33,30 @@ plugins=(
   brew
   osx
   zsh-syntax-highlighting
+  zsh-autosuggestions
   asdf
   docker
   yarn
   command-not-found
   mix
 )
+
+# =============================================================================
+#                                   Options
+# =============================================================================
+
+#autoload -Uz promptinit
+#promptinit
+#prompt pure
+
+setopt hist_expire_dups_first # Clear duplicates when trimming internal hist.
+setopt hist_find_no_dups # Dont display duplicates during searches.
+setopt hist_ignore_dups # Ignore consecutive duplicates.
+setopt hist_reduce_blanks # Remove superfluous blanks.
+setopt hist_save_no_dups # Omit older commands in favor of newer ones.
+setopt hist_ignore_space # Ignore commands that start with space.
+setopt share_history # Share history between multiple shells
+
+#setopt no_beep
+#setopt no_hist_beep
+#setopt no_list_beep
