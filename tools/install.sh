@@ -18,3 +18,9 @@ brew cask install \
   firefox \
 
 brew link --force gettext
+
+# enhancd
+# https://github.com/b4b4r07/enhancd#installation
+brew tap jhawthorn/fzy
+git clone https://github.com/b4b4r07/enhancd
+mv enhancd ~/.enhancd
