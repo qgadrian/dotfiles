@@ -199,7 +199,7 @@ set shiftwidth=2
 set autoindent
 set smartindent
 
-set autochdir
+"set autochdir
 
 " Search and replace word under cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
@@ -351,9 +351,9 @@ set splitright
 "noremap cb :new<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
 "noremap cbv :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
 noremap <leader>c :terminal<CR>
-noremap <leader>tc :tabnew<CR>:terminal<CR>
-noremap <leader>bc :new<CR>:terminal<CR>
-noremap <leader>vbc :vnew<CR>:terminal<CR>
+noremap <leader>ct :tabnew<CR>:terminal<CR>
+noremap <leader>cb :new<CR>:terminal<CR>
+noremap <leader>cvb :vnew<CR>:terminal<CR>
 " Comment this mapping to support nested vim's
 tnoremap <Esc> <C-\><C-n>
 
