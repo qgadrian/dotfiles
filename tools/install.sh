@@ -11,6 +11,7 @@ brew install \
   npm \
   peco \
   bat \
+  ripgrep \
 
 brew cask install \
   bettertouchtool \
