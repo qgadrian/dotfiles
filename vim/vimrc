@@ -94,10 +94,14 @@ set tabstop=2
 set backspace=indent,eol,start
 
 " Removes trailing spaces
-function TrimWhiteSpaces()
+function! TrimWhiteSpaces()
   %s/\s*$//
   ''
 endfunction
+
+" Add comma to lines if missing
+vnoremap <Leader>a, :g/.*[^,]$/ s/$/,/<CR>
+vnoremap <Leader>sa, :s<CR>:'<,'>sort<CR>:'<,'>g/.*[^,]$/ s/$/,/<CR>
 
 set list listchars=trail:.,extends:>
 autocmd FileWritePre * call TrimWhiteSpaces()
