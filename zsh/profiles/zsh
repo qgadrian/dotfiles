@@ -37,8 +37,6 @@ plugins=(
   python
   brew
   osx
-  zsh-syntax-highlighting
-  zsh-autosuggestions
   asdf
   docker
   yarn
