@@ -1,17 +1,14 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" Remap leader key
-let mapleader = ' '
+let mapleader = ' ' " Remap leader key
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
 call vundle#begin()
   " alternatively, pass a path where Vundle should install plugins
   "call vundle#begin('~/some/path/here')
 
-  " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
+  Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
   Plugin 'tpope/vim-fugitive'
   Plugin 'git://git.wincent.com/command-t.git'
@@ -19,36 +16,30 @@ call vundle#begin()
   " Pass the path to set the runtimepath properly.
   Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-  " Show trailing whitespace and spaces before a tab:
-  Plugin 'ntpeters/vim-better-whitespace'
-  " Enable syntax color
-  Plugin 'sheerun/vim-polyglot'
-  " Elixir
-  Plugin 'elixir-editors/vim-elixir'
-  " Comments
-  Plugin 'scrooloose/nerdcommenter'
-  " Lint and fixers
-  Plugin 'w0rp/ale'
+  Plugin 'ntpeters/vim-better-whitespace' " Show trailing whitespace and spaces before a tab:
+  Plugin 'sheerun/vim-polyglot' " Enable syntax color
+  Plugin 'elixir-editors/vim-elixir' " Elixir
+  Plugin 'scrooloose/nerdcommenter' " Comments
+  Plugin 'w0rp/ale' " Lint and fixers
+
   " Status tab
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
+
   " Markdown
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
   Plugin 'junegunn/vim-easy-align'
   Plugin 'JamshedVesuna/vim-markdown-preview'
-  " auto toc
-  Plugin 'mzlogin/vim-markdown-toc'
+  Plugin 'mzlogin/vim-markdown-toc' " auto toc
   Plugin 'terryma/vim-multiple-cursors'
   Plugin 'brooth/far.vim'
-  " Remove highlight when move the cursor after a search
-  Plugin 'romainl/vim-cool'
-  " Dash integration
-  Plugin 'rizzatti/dash.vim'
-  " Startup buffer
-  Plugin 'mhinz/vim-startify'
-  " Change to project root directory automatically
-  Plugin 'airblade/vim-rooter'
+
+  Plugin 'romainl/vim-cool' " Remove highlight when move the cursor after a search
+  Plugin 'rizzatti/dash.vim' " Dash integration
+  Plugin 'mhinz/vim-startify' " Startup buffer
+  Plugin 'airblade/vim-rooter' " Change to project root directory automatically
+
   " fzf
   Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plugin 'junegunn/fzf.vim'
@@ -56,12 +47,11 @@ call vundle#begin()
   " NERDTree
   Plugin 'scrooloose/nerdtree'
   Plugin 'ryanoasis/vim-devicons'
+  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " colors
+  Plugin 'mortonfox/nerdtree-clip'
 
-  " Quick navigation
-  Plugin 'easymotion/vim-easymotion'
-
-  " Filetree
-  Plugin 'tpope/vim-vinegar'
+  Plugin 'easymotion/vim-easymotion' " Quick navigation
+  Plugin 'tpope/vim-vinegar' " Filetree
 
   "
   " Colors schemes
@@ -90,8 +80,7 @@ set number
 set expandtab
 set tabstop=2
 
-" Fix backspace
-set backspace=indent,eol,start
+set backspace=indent,eol,start " Fix backspace
 
 " Removes trailing spaces
 function! TrimWhiteSpaces()
@@ -179,8 +168,8 @@ let g:ale_fixers = {
 \ 'rust': ['rustfmt'],
 \ 'json': ['prettier'],
 \ }
-" Closes preview window
-autocmd CompleteDone * pclos
+
+autocmd CompleteDone * pclos " Closes preview window
 
 imap <C-Space> <Plug>(ale_complete)
 noremap <Leader>gd :ALEGoToDefinition<CR>
@@ -197,8 +186,7 @@ set background=dark
 "colorscheme neodark
 "colorscheme idlefingers
 
-" https://github.com/dracula/vim/issues/81
-let g:dracula_italic = 0
+let g:dracula_italic = 0 " https://github.com/dracula/vim/issues/81
 colorscheme dracula
 
 highlight Normal ctermbg=NONE
@@ -221,8 +209,7 @@ nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 let vim_markdown_preview_github=1
 
-" Spell checking
-set spell spelllang=en_us,es_es
+set spell spelllang=en_us,es_es " Spell checking
 
 " Open HTML in browser
 nnoremap <C-p> :!open -a Safari %<CR><CR>
@@ -239,45 +226,14 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 nnoremap <Leader>BS :1,.s/\<<C-r><C-w>\>/
 nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
 
-" Enable highlight when searching
-set hlsearch
+set hlsearch " Enable highlight when searching
 
-" Shift to the next round tab stop.
-set shiftround
-" Set auto indent spacing.
-set shiftwidth=2
+set shiftround " Shift to the next round tab stop.
+set shiftwidth=2 " Set auto indent spacing.
 
 " Empty lines without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
-
-function! WrapSelect (front)
-    "puts characters around the selected text.
-    let l:front = a:front
-    if (a:front == '[')
-        let l:back = ']'
-    elseif (a:front == '(')
-        let l:back = ')'
-    elseif (a:front == '{')
-        let l:back = '}'
-    elseif (a:front == '<')
-        let l:back = '>'
-    elseif (a:front =~ " ")
-        let l:split = split(a:front)
-        let l:back = l:split[1]
-        let l:front = l:split[0]
-    else
-        let l:back = a:front
-    endif
-    "execute: concat all these strings. '.' means "concat without spaces"
-    "norm means "run in normal mode and also be able to use \<C-x> characters"
-    "gv means "get the previous visual selection back up"
-    "c means "cut visual selection and go to insert mode"
-    "\<C-R> means "insert the contents of a register. in this case, the
-    "default register"
-    execute 'norm! gvc' . l:front. "\<C-R>\""  . l:back
-endfunction
-vnoremap <C-l> :<C-u>call WrapSelect(input('Wrapping? Give both (space separated) or just the first one: '))<cr>
 
 "
 " GIT edit
@@ -406,11 +362,9 @@ noremap <C-S-Up> <C-w>k
 noremap <C-S-Down> <C-w>j
 noremap <C-S-Left> <C-w>h
 noremap <C-S-Right> <C-w>l
-" Make splitted buffers open in right side
-set splitright
+set splitright " Make splitted buffers open in right side
 
-" Auto project root cd
-let g:rooter_patterns = ['mix.exs', '.git/']
+let g:rooter_patterns = ['mix.exs', '.git/'] " Auto project root cd
 
 " Startify
 let g:startify_commands = [
@@ -426,13 +380,17 @@ let g:startify_lists = [
   \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
 \ ]
 
+"
 " Easy motion
+"
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
+"
 " nerd commenter
+"
 map <leader>/ <plug>NERDCommenterToggle
 
 syntax on
