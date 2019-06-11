@@ -52,6 +52,7 @@ call vundle#begin()
 
   Plugin 'easymotion/vim-easymotion' " Quick navigation
   Plugin 'tpope/vim-vinegar' " Filetree
+  Plugin 'gcmt/taboo.vim' " Tab rename
 
   "
   " Colors schemes
