@@ -10,7 +10,8 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # If python crashes at start: ./install.py --clang-completer
 
 mv ~/.vimrc ~/.vimrc.old.deleteme
-ln -s $(pwd)/vim/vimrc ~/.vimrc
+ln -sf $(pwd)/vim/vimrc ~/.vimrc
+ln -sf $(pwd)/vim/config/ ~/.vim/config
 
 mkdir ~/.vim/backup
 mkdir ~/.vim/swp

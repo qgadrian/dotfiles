@@ -63,10 +63,14 @@ call vundle#begin()
   "Plugin 'rakr/vim-one'
 call vundle#end()
 
-filetype plugin indent on    " required
+"
+" Import configs
+"
+for f in split(glob('~/.vim/config/*.vim'), '\n')
+    exe 'source' f
+endfor
 
-let g:mix_format_on_save = 1
-let g:mix_format_silent_errors = 1
+filetype plugin indent on " required
 
 " Set swp directories
 set backupdir=~/.vim/backup//
@@ -83,315 +87,24 @@ set tabstop=2
 
 set backspace=indent,eol,start " Fix backspace
 
-" Removes trailing spaces
-function! TrimWhiteSpaces()
-  %s/\s*$//
-  ''
-endfunction
-
-" Surround words
-function! WrapSelect (front)
-    "puts characters around the selected text.
-    let l:front = a:front
-    if (a:front == '[')
-        let l:back = ']'
-    elseif (a:front == '(')
-        let l:back = ')'
-    elseif (a:front == '{')
-        let l:back = '}'
-    elseif (a:front == '<')
-        let l:back = '>'
-    elseif (a:front =~ " ")
-        let l:split = split(a:front)
-        let l:back = l:split[1]
-        let l:front = l:split[0]
-    else
-        let l:back = a:front
-    endif
-    "execute: concat all these strings. '.' means "concat without spaces"
-    "norm means "run in normal mode and also be able to use \<C-x> characters"
-    "gv means "get the previous visual selection back up"
-    "c means "cut visual selection and go to insert mode"
-    "\<C-R> means "insert the contents of a register. in this case, the
-    "default register"
-    execute 'norm! gvc' . l:front. "\<C-R>\""  . l:back
-endfunction
-vnoremap <C-s> :<C-u>call WrapSelect(input('Wrapping? Give both (space separated) or just the first one: '))<cr>
-
-" Add comma to lines if missing
-vnoremap <Leader>a, :g/.*[^,]$/ s/$/,/<CR>
-vnoremap <Leader>sa, :s<CR>:'<,'>sort<CR>:'<,'>g/.*[^,]$/ s/$/,/<CR>
-
-set list listchars=trail:.,extends:>
-autocmd FileWritePre * call TrimWhiteSpaces()
-autocmd FileAppendPre * call TrimWhiteSpaces()
-autocmd FilterWritePre * call TrimWhiteSpaces()
-autocmd BufWritePre * call TrimWhiteSpaces()
-
-" Custom plugins
-
-" vinegar
-let g:netrw_banner = 1
-let g:netrw_liststyle = 3
-" let g:netrw_browse_split = 4 " set current buffer as open target always
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-
-" NERDTree
-let NERDTreeChDirMode = 0
-let NERDTreeShowHidden = 1
-
-" Icons
-" To fix wrong padding
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-"let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-set encoding=UTF-8
-
-"
-" Ale
-"
-
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_completion_enabled = 0
-let g:ale_close_preview_on_insert = 1
-let g:ale_c_parse_makefile = 1
-let g:ale_fix_on_save = 1
-let g:ale_elixir_elixir_ls_release = $HOME.'/.vim/elixir-ls/rel'
-let g:ale_linters = {
-\ 'elixir': ['elixir-ls'],
-\ 'json': ['prettier'],
-\ 'rust': ['rustc'],
-\}
-let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'elixir': ['mix_format'],
-\ 'rust': ['rustfmt'],
-\ 'json': ['prettier'],
-\ }
-
-autocmd CompleteDone * pclos " Closes preview window
-
-imap <C-Space> <Plug>(ale_complete)
-noremap <Leader>gd :ALEGoToDefinition<CR>
-noremap <Leader>gdt :ALEGoToDefinitionInTab<CR>
-
-"
-" Color schemes
-"
-
-set background=dark
-
-"colorscheme onedark
-"colorscheme one
-"colorscheme neodark
-"colorscheme idlefingers
-
-let g:dracula_italic = 0 " https://github.com/dracula/vim/issues/81
-colorscheme dracula
-
-highlight Normal ctermbg=NONE
-highlight nonText ctermbg=NONE
-
-" Column width indicator
-set colorcolumn=99
-autocmd ColorScheme * highlight ColorColumn ctermbg=red
-
-" Line number indicator
-autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
-
-if (has("termguicolors"))
- set termguicolors
-endif
-
-" Markdown
-let g:vim_markdown_folding_disabled = 1
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
-let vim_markdown_preview_github=1
-
 set spell spelllang=en_us,es_es " Spell checking
-
-" Open HTML in browser
-nnoremap <C-p> :!open -a Safari %<CR><CR>
 
 " Indentation
 set shiftwidth=2
 set autoindent
 set smartindent
 
-"set autochdir
-
-" Search and replace word under cursor
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-nnoremap <Leader>BS :1,.s/\<<C-r><C-w>\>/
-nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
-
 set hlsearch " Enable highlight when searching
 
 set shiftround " Shift to the next round tab stop.
 set shiftwidth=2 " Set auto indent spacing.
 
-" Empty lines without insert mode
-nnoremap o o<Esc>
-nnoremap O O<Esc>
-
-"
-" GIT edit
-"
-" Split buffer in git edit
-if has('nvim')
-  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-endif
-
-" Delete git buffer when hidden
-autocmd FileType gitcommit set bufhidden=delete
-autocmd FileType markdown setlocal spell wrap textwidth=80
-
-"
-" fzf
-"
-nnoremap <silent> <leader>. :Ag<CR>
-nnoremap <silent> <leader>; :Rg<CR>
-
-"
-" Resizes
-"
-nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 10/9)<CR>
-noremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 9/10)<CR>
-
-noremap <leader>v3 :vertical resize 30<CR>
-noremap <leader>v4 :vertical resize 40<CR>
-noremap <leader>v5 :vertical resize 50<CR>
-noremap <leader>v6 :vertical resize 60<CR>
-noremap <leader>v7 :vertical resize 70<CR>
-noremap <leader>v8 :vertical resize 80<CR>
-noremap <leader>v= <C-w>=
-
-"
-" Delete, yanking...
-"
-" Delete text without yank
-noremap <leader>D "_D
-vnoremap <leader>D "_D
-noremap <leader>dd "_dd
-vnoremap <leader>dd "_dd
-noremap <leader>y "*y
-vnoremap <leader>y "*y
-noremap <leader>yy "*yy
-vnoremap <leader>yy "*yy
-noremap <leader>Y "*Y
-vnoremap <leader>Y "*Y
-noremap <leader>p "*p
-vnoremap <leader>p "*p
-noremap <leader>P "*P
-vnoremap <leader>P "*P
-" delete without yanking
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
-nnoremap x "_x
-vnoremap x "_x
-
-" replace currently selected text with default register
-" without yanking it
-vnoremap p "_dP
-
-"
-" Open cursor in Dash
-"
-noremap <leader>da :Dash<CR>
-
-"
-" Window management
-"
-"autocmd BufEnter * silent! lcd %:p:h
-augroup terminal
-  autocmd TermOpen * setlocal nospell
-  autocmd TermOpen * setlocal nonumber
-  autocmd TermOpen * setlocal wrap
-  autocmd TermOpen * startinsert
-augroup END
-
 "autocmd FileType,BufLeave gitcommit :autocmd! TermOpen * startinsert
-autocmd FileType,BufLeave gitcommit :startinsert!
+"autocmd BufLeave gitcommit startinsert
+autocmd BufDelete gitcommit startinsert
 
 " enter and leave terminal mode (insert mode) when switching between buffers
 "autocmd BufWinEnter,WinEnter term://* startinsert
 "autocmd BufLeave term://* stopinsert
-
-" Skip sending escape characters for arrow keys in terminal mode
-tnoremap <C-S-Up> <Nop>
-tnoremap <C-S-Down> <Nop>
-tnoremap <C-S-Left> <Nop>
-tnoremap <C-S-Right> <Nop>
-tnoremap <M-S-Up> <Nop>
-tnoremap <M-S-Down> <Nop>
-tnoremap <M-S-Left> <Nop>
-tnoremap <M-S-Right> <Nop>
-tnoremap <S-Up> <Nop>
-tnoremap <S-Down> <Nop>
-tnoremap <silent> <S-Left> <Esc>b
-tnoremap <silent> <S-Right> <Esc>f
-
-set splitbelow
-set splitright
-
-"noremap <leader>c  :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
-"noremap ct :tabnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
-"noremap cb :new<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
-"noremap cbv :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
-noremap <leader>c :terminal<CR>
-noremap <leader>ct :tabnew<CR>:terminal<CR>
-noremap <leader>cb :new<CR>:terminal<CR>
-noremap <leader>cvb :vnew<CR>:terminal<CR>
-" Comment this mapping to support nested vim's
-tnoremap <Esc> <C-\><C-n>
-
-" Tabs
-noremap <leader>tab :tabnew<CR>
-"map <silent> <C-w> :q<CR>
-noremap <M-S-Left> gT
-noremap <M-S-Right> gt
-"move
-noremap <silent> <C-M-Left> :tabm -1<CR>
-noremap <silent> <C-M-Right> :tabm +1<CR>
-" Buffers
-map <leader>b :new<CR>
-map <leader>vb :vnew<CR>
-" Remap arrow keys to change between buffers
-noremap <C-S-Up> <C-w>k
-noremap <C-S-Down> <C-w>j
-noremap <C-S-Left> <C-w>h
-noremap <C-S-Right> <C-w>l
-set splitright " Make splitted buffers open in right side
-
-let g:rooter_patterns = ['mix.exs', '.git/'] " Auto project root cd
-
-" Startify
-let g:startify_commands = [
-  \ {'c': ['Terminal', ':terminal']},
-  \ {'t': ['New tab', ':tabnew']},
-\ ]
-
-let g:startify_lists = [
-  \ { 'type': 'commands',  'header': ['   Commands']       },
-  \ { 'type': 'sessions',  'header': ['   Sessions']       },
-  \ { 'type': 'files',     'header': ['   MRU']            },
-  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-\ ]
-
-"
-" Easy motion
-"
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_use_smartsign_us = 1
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-
-"
-" nerd commenter
-"
-map <leader>/ <plug>NERDCommenterToggle
 
 syntax on
