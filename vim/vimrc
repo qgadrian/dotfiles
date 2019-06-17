@@ -107,4 +107,4 @@ autocmd BufDelete gitcommit startinsert
 "autocmd BufWinEnter,WinEnter term://* startinsert
 "autocmd BufLeave term://* stopinsert
 
-syntax on
+"syntax on
