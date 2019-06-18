@@ -67,6 +67,7 @@ noremap <leader>cb :new<CR>:terminal<CR>
 noremap <leader>cvb :vnew<CR>:terminal<CR>
 " Comment this mapping to support nested vim's
 tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
 
 "
 " Skip sending escape characters for arrow keys in terminal mode
