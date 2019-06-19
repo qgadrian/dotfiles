@@ -20,6 +20,10 @@ alias envconfig="subl ~/Projects/config/env.sh"
 #                                  Plugins
 # =============================================================================
 
+# Syntax highlight
+# TODO brew install zsh-syntax-highlighting
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
