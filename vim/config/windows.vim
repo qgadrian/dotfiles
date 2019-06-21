@@ -55,7 +55,6 @@ augroup END
 "
 " Tabs
 "
-noremap <leader>tab :tabnew<CR>
 " Move tabs with arrow keys
 noremap <M-S-Left> gT
 noremap <M-S-Right> gt

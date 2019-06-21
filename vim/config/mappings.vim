@@ -61,8 +61,11 @@ vnoremap p "_dP
 "noremap ct :tabnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 "noremap cb :new<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
 "noremap cbv :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
-noremap <leader>c :terminal<CR>
-noremap <leader>ct :tabnew<CR>:terminal<CR>
+"noremap <leader>c :terminal<CR>
+"
+"tabs
+noremap <leader>tab :tabnew<CR>:terminal<CR>
+" buffers
 noremap <leader>cb :new<CR>:terminal<CR>
 noremap <leader>cvb :vnew<CR>:terminal<CR>
 " Comment this mapping to support nested vim's
