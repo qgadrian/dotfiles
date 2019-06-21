@@ -15,6 +15,12 @@ let g:WebDevIconsNerdTreeBeforeGlyphPadding = "" " To fix wrong padding
 set encoding=UTF-8
 
 "
+" airline
+"
+let g:airline_section_a = airline#section#create(['mode', 'crypt', 'paste', 'iminsert'])
+let g:airline_section_z = '%l:%c'
+
+"
 " Elixir
 "
 let g:mix_format_on_save = 1
