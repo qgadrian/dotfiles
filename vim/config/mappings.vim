@@ -87,3 +87,6 @@ tnoremap <S-Up> <Nop>
 tnoremap <S-Down> <Nop>
 tnoremap <silent> <S-Left> <Esc>b
 tnoremap <silent> <S-Right> <Esc>f
+
+" Avoid blowup
+nnoremap <c-z> <nop>
