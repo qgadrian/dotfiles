@@ -65,9 +65,10 @@ vnoremap p "_dP
 "
 "tabs
 noremap <leader>tab :tabnew<CR>:terminal<CR>
-" buffers
-noremap <leader>cb :new<CR>:terminal<CR>
-noremap <leader>cvb :vnew<CR>:terminal<CR>
+" buffers & terminal
+noremap <leader>term :terminal<CR>
+noremap <leader>tb :new<CR>:terminal<CR>
+noremap <leader>tvb :vnew<CR>:terminal<CR>
 " Comment this mapping to support nested vim's
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-v><Esc> <Esc>
