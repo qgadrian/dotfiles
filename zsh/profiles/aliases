@@ -39,6 +39,8 @@ alias dockerstop="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | s
 alias dockerkill="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker kill {}"
 alias dockerstopall="docker stop $(docker ps -a -q)"
 alias dockerclear="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
+alias dockerlogs="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs {}"
+alias dockerlogsf="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs -f {}"
 
 ## itunes
 alias itp=" itunes play"
