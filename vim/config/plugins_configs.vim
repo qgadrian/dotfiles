@@ -5,16 +5,6 @@
 "
 
 "
-" NERDTree
-"
-let NERDTreeChDirMode = 0
-let NERDTreeShowHidden = 1
-" Icons
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = "" " To fix wrong padding
-"let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-set encoding=UTF-8
-
-"
 " airline
 "
 let g:airline_section_a = airline#section#create(['mode', 'crypt', 'paste', 'iminsert'])
