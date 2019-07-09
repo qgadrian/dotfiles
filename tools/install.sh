@@ -12,6 +12,7 @@ brew install \
   peco \
   bat \
   ripgrep \
+  lsd \
 
 brew cask install \
   bettertouchtool \
