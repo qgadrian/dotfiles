@@ -10,6 +10,9 @@
 nnoremap o o<Esc>
 nnoremap O O<Esc>
 
+" annoying as fuck when wanted to save
+noremap :W :w
+
 "
 " Search and replace word from cursor
 "
