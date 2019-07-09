@@ -12,8 +12,6 @@ alias docker_rm_exited="docker rm -v $(docker ps -a -q -f status=exited)"
 
 # Whitespace to avoid history
 alias cd=' cd'
-alias ll=' ll'
-alias ls=' ls -lah'
 alias ps=' ps'
 alias vim=' nvim'
 alias nvim=' nvim'
