@@ -30,7 +30,7 @@ hi Directory ctermfg=141 ctermbg=NONE cterm=NONE guifg=#54ff9f guibg=NONE gui=NO
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 " Column width indicator
-set colorcolumn=99
+set colorcolumn=80
 autocmd ColorScheme * highlight ColorColumn ctermbg=red
 " Line number indicator
 autocmd ColorScheme * highlight LineNr ctermfg=lightgrey
