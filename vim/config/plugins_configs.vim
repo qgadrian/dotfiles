@@ -43,7 +43,7 @@ noremap <leader>da :Dash<CR>
 "
 " Vim rooter
 "
-let g:rooter_patterns = ['mix.exs', '.git/'] " Auto project root cd
+let g:rooter_patterns = ['mix.lock', '.git/'] " Auto project root cd
 
 "
 " Startify
