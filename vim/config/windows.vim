@@ -79,15 +79,6 @@ noremap <C-S-Right> <C-w>l
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 10/9)<CR>
 noremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 9/10)<CR>
 
-noremap <leader>v3 :vertical resize 30<CR>
-noremap <leader>v4 :vertical resize 40<CR>
-noremap <leader>v5 :vertical resize 50<CR>
-noremap <leader>v6 :vertical resize 60<CR>
-noremap <leader>v7 :vertical resize 70<CR>
-noremap <leader>v8 :vertical resize 80<CR>
-" Equally resize buffers
-noremap <leader>v= <C-w>=
-
 "
 " File type configs
 "
