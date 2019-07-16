@@ -21,6 +21,8 @@ let g:ale_fixers = {
 \ 'elixir': ['mix_format'],
 \ 'rust': ['rustfmt'],
 \ 'json': ['prettier'],
+\ 'javascript': ['prettier'],
+\ 'css': ['prettier'],
 \ }
 
 autocmd CompleteDone * pclos " Closes preview window

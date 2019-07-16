@@ -16,11 +16,13 @@ call vundle#begin()
   " Pass the path to set the runtimepath properly.
   Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
+  " Linters and stuff
   Plugin 'ntpeters/vim-better-whitespace' " Show trailing whitespace and spaces before a tab:
   Plugin 'sheerun/vim-polyglot' " Enable syntax color
   Plugin 'elixir-editors/vim-elixir' " Elixir
   Plugin 'scrooloose/nerdcommenter' " Comments
   Plugin 'w0rp/ale' " Lint and fixers
+  Plugin 'prettier/vim-prettier', { 'do': 'npm install' }
 
   " Status tab
   Plugin 'vim-airline/vim-airline'
