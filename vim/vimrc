@@ -90,6 +90,8 @@ set backupcopy=auto " use rename-and-write-new method whenever safe
 " Other stuff
 "
 
+set mouse=n
+
 " Set line numbers
 set ruler
 set number
