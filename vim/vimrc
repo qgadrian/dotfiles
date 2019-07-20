@@ -3,67 +3,66 @@ filetype off                  " required
 
 let mapleader = ' ' " Remap leader key
 
-set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
-call vundle#begin()
+call plug#begin('~/.local/share/nvim/plugged')
   " alternatively, pass a path where Vundle should install plugins
   "call vundle#begin('~/some/path/here')
 
-  Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
+  Plug 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'git://git.wincent.com/command-t.git'
+  Plug 'tpope/vim-fugitive'
+  Plug 'git://git.wincent.com/command-t.git'
   " The sparkup vim script is in a subdirectory of this repo called vim.
   " Pass the path to set the runtimepath properly.
-  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+  Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 
   " Linters and stuff
-  Plugin 'ntpeters/vim-better-whitespace' " Show trailing whitespace and spaces before a tab:
-  Plugin 'sheerun/vim-polyglot' " Enable syntax color
-  Plugin 'elixir-editors/vim-elixir' " Elixir
-  Plugin 'scrooloose/nerdcommenter' " Comments
-  Plugin 'w0rp/ale' " Lint and fixers
-  Plugin 'prettier/vim-prettier', { 'do': 'npm install' }
+  Plug 'ntpeters/vim-better-whitespace' " Show trailing whitespace and spaces before a tab:
+  Plug 'sheerun/vim-polyglot' " Enable syntax color
+  Plug 'elixir-editors/vim-elixir' " Elixir
+  Plug 'scrooloose/nerdcommenter' " Comments
+  Plug 'w0rp/ale' " Lint and fixers
+  Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
   " Status tab
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
   " Markdown
-  Plugin 'godlygeek/tabular'
-  Plugin 'plasticboy/vim-markdown'
-  Plugin 'junegunn/vim-easy-align'
-  Plugin 'JamshedVesuna/vim-markdown-preview'
-  Plugin 'mzlogin/vim-markdown-toc' " auto toc
-  Plugin 'terryma/vim-multiple-cursors'
-  Plugin 'brooth/far.vim'
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'JamshedVesuna/vim-markdown-preview'
+  Plug 'mzlogin/vim-markdown-toc' " auto toc
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'brooth/far.vim'
 
-  Plugin 'romainl/vim-cool' " Remove highlight when move the cursor after a search
-  Plugin 'rizzatti/dash.vim' " Dash integration
-  Plugin 'mhinz/vim-startify' " Startup buffer
-  Plugin 'airblade/vim-rooter' " Change to project root directory automatically
+  Plug 'romainl/vim-cool' " Remove highlight when move the cursor after a search
+  Plug 'rizzatti/dash.vim' " Dash integration
+  Plug 'mhinz/vim-startify' " Startup buffer
+  Plug 'airblade/vim-rooter' " Change to project root directory automatically
 
   " fzf
-  Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plugin 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 
   " NERDTree
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'ryanoasis/vim-devicons'
-  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " colors
-  Plugin 'mortonfox/nerdtree-clip'
+  Plug 'scrooloose/nerdtree'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " colors
+  Plug 'mortonfox/nerdtree-clip'
 
-  Plugin 'easymotion/vim-easymotion' " Quick navigation
-  Plugin 'tpope/vim-vinegar' " Filetree
-  Plugin 'gcmt/taboo.vim' " Tab rename
+  Plug 'easymotion/vim-easymotion' " Quick navigation
+  Plug 'tpope/vim-vinegar' " Filetree
+  Plug 'gcmt/taboo.vim' " Tab rename
 
   "
   " Colors schemes
   "
-  "Plugin 'KeitaNakamura/neodark.vim'
-  Plugin 'dracula/vim'
-  "Plugin 'joshdick/onedark.vim'
-  "Plugin 'rakr/vim-one'
-call vundle#end()
+  "Plug 'KeitaNakamura/neodark.vim'
+  Plug 'dracula/vim'
+  "Plug 'joshdick/onedark.vim'
+  "Plug 'rakr/vim-one'
+call plug#end()
 
 "
 " Import configs
