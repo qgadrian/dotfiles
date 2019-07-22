@@ -53,3 +53,15 @@ function! WrapSelect (front)
     execute 'norm! gvc' . l:front. "\<C-R>\""  . l:back
 endfunction
 vnoremap <C-s> :<C-u>call WrapSelect(input('Wrapping? Give both (space separated) or just the first one: '))<cr>
+
+"
+" Case
+"
+
+function! ToSnakeCase()
+  s#\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)#\l\1_\l\2#g
+endfunction
+
+function! ToCamelCase()
+  s#_*\(\u\)\(\u*\)#\1\L\2#g
+endfunction
