@@ -92,5 +92,11 @@ tnoremap <S-Down> <Nop>
 tnoremap <silent> <S-Left> <Esc>b
 tnoremap <silent> <S-Right> <Esc>f
 
+"
+" Other mappings
+"
+" allow the . to execute once for each line of a visual selection
+vnoremap . :normal .<CR>
+
 " Avoid blowup
 nnoremap <c-z> <nop>
