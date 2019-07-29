@@ -32,7 +32,7 @@ let vim_markdown_preview_github=1
 "
 " fzf
 "
-nnoremap <silent> <leader>. :Ag<CR>
+nnoremap <silent> <leader>. :Files .<CR>
 nnoremap <silent> <leader>; :Rg<CR>
 
 "
