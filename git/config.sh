@@ -28,3 +28,23 @@ git config --global push.followTags true
 echo "Add git gone script"
 
 ln -sf $(pwd)/scripts/git-gone.sh /usr/local/bin/git-gone
+
+echo "Configure better diff tool"
+
+brew install diff-so-fancy
+
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+git config --global color.ui true
+
+git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldHighlight "red bold 52"
+git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newHighlight "green bold 22"
+
+git config --global color.diff.meta       "11"
+git config --global color.diff.frag       "magenta"
+git config --global color.diff.commit     "yellow"
+git config --global color.diff.old        "red"
+git config --global color.diff.new        "green"
+git config --global color.diff.whitespace "red reverse"
