@@ -22,6 +22,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'scrooloose/nerdcommenter' " Comments
   Plug 'w0rp/ale' " Lint and fixers
   Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+  Plug 'brooth/far.vim' " find and replace
 
   " Status tab
   Plug 'vim-airline/vim-airline'
