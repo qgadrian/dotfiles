@@ -1,11 +1,12 @@
-echo "Install chunkwm"
+echo "Install yabai"
 
-# https://koekeishiya.github.io/chunkwm/docs/userguide.html
+# https://github.com/koekeishiya/yabai
 
 brew tap koekeishiya/formulae
-brew install chunkwm
-ln -sf $(pwd)/window_management/chunkwmrc ~/.chunkwmrc
-brew services start chunkwm
+brew install yabai
+ln -sf $(pwd)/window_management/yabairc ~/.yabairc
+#sudo yabai --install-sa
+brew services start yabai
 
 echo "Install skhd"
 

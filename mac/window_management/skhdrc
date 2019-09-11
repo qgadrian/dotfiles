@@ -1,32 +1,43 @@
+#
+# Examples:
+# https://github.com/koekeishiya/yabai/blob/master/examples/skhdrc
+#
+
 # open terminal
 cmd - return : /Applications/kitty.app/Contents/MacOS/kitty
 
 # close focused window
-alt - w : chunkc tiling::window --close
+#alt - w : yabai tiling::window --close
 
 #
 # Focus
 #
 
 # Focus Window
-alt + shift - j : chunkc tiling::window --focus prev
-alt + shift - k : chunkc tiling::window --focus next
+alt + shift - h : yabai -m window --focus west
+alt + shift- j : yabai -m window --focus south
+alt + shift- k : yabai -m window --focus north
+alt + shift - l : yabai -m window --focus east
 
 # Focus Monitor
-alt + shift - u : chunkc tiling::monitor -f prev
-alt + shift - i : chunkc tiling::monitor -f next
+alt + shift - u : yabai -m display --focus prev
+alt + shift - i : yabai -m display --focus next
+
+# fast focus desktop
+ctrl + shift - l : yabai -m space --focus prev
+ctrl + shift - h : yabai -m space --focus next
 
 #
 # Monitor
 #
 
 # Send Window to Desktop
-alt + ctrl - j : chunkc tiling::window --send-to-desktop prev
-alt + ctrl - k : chunkc tiling::window --send-to-desktop next
+alt + ctrl - j : yabai tiling::window --send-to-desktop prev
+alt + ctrl - k : yabai tiling::window --send-to-desktop next
 
 # Send Window to Monitor and Follow Focus
-cmd + shift - u : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
-cmd + shift - i : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+cmd + shift - u : yabai tiling::window --send-to-monitor prev; yabai tiling::monitor -f prev
+cmd + shift - i : yabai tiling::window --send-to-monitor next; yabai tiling::monitor -f next
 
 #
 # Desktop
@@ -35,15 +46,16 @@ cmd + shift - i : chunkc tiling::window --send-to-monitor next; chunkc tiling::m
 # Move desktop
 # Requires additional setup: `csrutil disable && sudo chunkwm --install-sa && csrutil enable`
 # more info: https://koekeishiya.github.io/chunkwm/docs/sa.html
-cmd + shift - h : chunkc tiling::desktop --move prev
-cmd + shift - l : chunkc tiling::desktop --move next
+cmd + shift - h : yabai tiling::desktop --move prev
+cmd + shift - l : yabai tiling::desktop --move next
 
 #
 # Layout
 #
 
 # toggle desktop offset
-shift + alt - r : chunkc tiling::desktop --toggle offset
+shift + alt - r : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # toggle window fullscreen
-shift + alt - f : chunkc tiling::window --toggle fullscreen
+#shift + alt - f : yabai -m window --toggle zoom-fullscreen
+shift + alt - f : yabai -m window --toggle native-fullscreen
