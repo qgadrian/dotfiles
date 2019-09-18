@@ -65,3 +65,14 @@ endfunction
 function! ToCamelCase()
   s#_*\(\u\)\(\u*\)#\1\L\2#g
 endfunction
+
+"
+" Emojis
+"
+set completefunc=emoji#complete
+
+function! ReplaceEmojis()
+  %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
+endfunction
+
+nnoremap <leader>re :call ReplaceEmojis()<CR>

@@ -55,6 +55,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'easymotion/vim-easymotion' " Quick navigation
   Plug 'tpope/vim-vinegar' " Filetree
   Plug 'gcmt/taboo.vim' " Tab rename
+  Plug 'junegunn/vim-emoji'
 
   "
   " Colors schemes
