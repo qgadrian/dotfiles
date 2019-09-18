@@ -49,3 +49,5 @@ for file in ~/.zsh/profiles/*; do
 done
 
 export ZSH_THEME=powerlevel10k/powerlevel10k
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
