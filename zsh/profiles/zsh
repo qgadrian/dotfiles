@@ -6,15 +6,13 @@ HISTCONTROL=ignoreboth
 # zplug
 #source ~/.zplug/init.zsh
 
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
 # Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
 alias zshconfig="subl ~/.zshrc"
 alias envconfig="subl ~/Projects/config/env.sh"
 
+#https://github.com/robbyrussell/oh-my-zsh/issues/6835#issuecomment-390216875
+ZSH_DISABLE_COMPFIX=true
 
 # =============================================================================
 #                                  Plugins
@@ -29,24 +27,29 @@ alias envconfig="subl ~/Projects/config/env.sh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  asdf
+  brew
+  colored-man-pages
+  colorize
+  command-not-found
+  docker
+  dotenv
   git
   git-extras
   git-flow
-  colored-man
-  colorize
   github
-  vagrant
-  virtualenv
+  mix
+  osx
   pip
   python
-  brew
-  osx
-  asdf
-  docker
+  vagrant
+  virtualenv
   yarn
-  command-not-found
-  mix
 )
+
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 # enhancd
 source ~/.enhancd/init.sh
