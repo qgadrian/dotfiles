@@ -3,7 +3,7 @@ echo "Install yabai"
 # https://github.com/koekeishiya/yabai
 
 brew tap koekeishiya/formulae
-brew install yabai
+brew install yabai jq
 ln -sf $(pwd)/window_management/yabairc ~/.yabairc
 #sudo yabai --install-sa
 brew services start yabai

@@ -49,13 +49,33 @@ cmd + shift - i : yabai tiling::window --send-to-monitor next; yabai tiling::mon
 cmd + shift - h : yabai tiling::desktop --move prev
 cmd + shift - l : yabai tiling::desktop --move next
 
+# destroy desktop
+cmd + alt - w : yabai -m space --destroy
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+shift + cmd - n : yabai -m space --create && \
+                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                  yabai -m window --space "${index}" && \
+                  yabai -m space --focus "${index}"
+
+# create desktop and follow focus - uses jq for parsing json (brew install jq)
+cmd + alt - n : yabai -m space --create && \
+                index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                yabai -m space --focus "${index}"
+
 #
 # Layout
 #
 
 # toggle desktop offset
 shift + alt - r : yabai -m space --toggle padding; yabai -m space --toggle gap
+# balance size of windows
+shift + alt - 0 : yabai -m space --balance
 
 # toggle window fullscreen
 #shift + alt - f : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# change layout of desktop
+ctrl + alt - a : yabai -m space --layout bsp
+ctrl + alt - d : yabai -m space --layout float
