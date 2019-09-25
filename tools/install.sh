@@ -13,6 +13,7 @@ brew install \
   bat \
   ripgrep \
   lsd \
+  denisidoro/tools/navi \
 
 brew cask install \
   bettertouchtool \
