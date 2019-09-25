@@ -48,6 +48,10 @@ cmd + shift - i : yabai tiling::window --send-to-monitor next; yabai tiling::mon
 # more info: https://koekeishiya.github.io/chunkwm/docs/sa.html
 cmd + shift - h : yabai tiling::desktop --move prev
 cmd + shift - l : yabai tiling::desktop --move next
+#
+# send window to desktop and follow focus
+shift + cmd - n : yabai -m window --space prev; yabai -m space --focus prev
+shift + cmd - m : yabai -m window --space next; yabai -m space --focus next
 
 # destroy desktop
 cmd + alt - w : yabai -m space --destroy
