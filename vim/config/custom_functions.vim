@@ -24,9 +24,21 @@ autocmd FilterWritePre * call TrimWhiteSpaces()
 autocmd BufWritePre * call TrimWhiteSpaces()
 
 "
+" Session
+"
+"
+function! SaveSession(name)
+  execute "mks ~/.vim/sessions/". a:name .".vim"
+endfunction
+
+function! LoadSession(name)
+  execute "source ~/.vim/sessions/". a:name .".vim"
+endfunction
+
+"
 " Surround words
 "
-function! WrapSelect (front)
+function! WrapSelect(front)
     "puts characters around the selected text.
     let l:front = a:front
     if (a:front == '[')

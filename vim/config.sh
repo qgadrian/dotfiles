@@ -16,6 +16,7 @@ ln -sf $(pwd)/vim/config/ ~/.vim/config
 mkdir ~/.vim/backup
 mkdir ~/.vim/swp
 mkdir ~/.vim/undo
+mkdir ~/.vim/sessions
 
 vim +PluginInstall +qall
 
