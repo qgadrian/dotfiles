@@ -28,7 +28,7 @@ autocmd BufWritePre * call TrimWhiteSpaces()
 "
 "
 function! SaveSession(name)
-  execute "mks ~/.vim/sessions/". a:name .".vim"
+  execute "mks! ~/.vim/sessions/". a:name .".vim"
 endfunction
 
 function! LoadSession(name)
