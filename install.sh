@@ -16,6 +16,8 @@ source ./zsh/install.sh
 
 source ./asdf/install.sh
 
+source ./lang/config.sh
+
 source ./git/config.sh
 
 source ./docker/install.sh
