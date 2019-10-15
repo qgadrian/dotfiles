@@ -32,6 +32,7 @@ asdf plugin-add haskell
 asdf plugin-add rust
 asdf plugin-add elm
 asdf plugin-add postgres
+asdf plugin-add nodejs
 
 ELIXIR_VERSION=1.9
 ERLANG_VERSION=22.1
@@ -40,6 +41,7 @@ RUST_VERSION=1.34.1
 TERRAFORM_VERSION=0.12.0
 ELM_VERSION=0.19.0
 POSTGRES_VERSION=11.5
+NODEJS_VERSION=12.12.0
 
 asdf install elixir $ELIXIR_VERSION-otp-22
 asdf install erlang $ERLANG_VERSION
@@ -48,6 +50,7 @@ asdf install haskell $HASKELL_VERSION
 asdf install rust $RUST_VERSION
 asdf install elm $ELM_VERSION
 asdf install postgres $POSTGRES_VERSION
+asdf install nodejs $NODEJS_VERSION
 
 asdf global erlang $ERLANG_VERSION
 asdf global elixir $ELIXIR_VERSION-otp-22
@@ -56,3 +59,4 @@ asdf global haskell $HASKELL_VERSION
 asdf global rust $RUST_VERSION
 asdf global elm $ELM_VERSION
 asdf global postgres $POSTGRES_VERSION
+asdf global nodejs $NODEJS_VERSION
