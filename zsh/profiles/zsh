@@ -33,7 +33,6 @@ plugins=(
   colorize
   command-not-found
   docker
-  dotenv
   git
   git-extras
   git-flow
