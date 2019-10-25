@@ -13,6 +13,9 @@ echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bash_profile
 
 source ~/.bash_profile
 
+# Support legacy files
+echo 'legacy_version_file = yes' >> ~/.asdfrc
+
 # setup asdf deps
 brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc
 
