@@ -21,7 +21,8 @@ alias exit=' exit'
 
 ## Git
 alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
-alias gitpo='git push -u origin --force-with-lease `git rev-parse --abbrev-ref HEAD`'
+alias gitpo='git push -u origin'
+alias gitpof='git push -u origin --force-with-lease `git rev-parse --abbrev-ref HEAD`'
 alias gitpr='git pr'
 alias gitci='git ci'
 alias gitadd="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add"
