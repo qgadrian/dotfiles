@@ -90,3 +90,6 @@ let g:netrw_liststyle = 3
 " let g:netrw_browse_split = 4 " set current buffer as open target always
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+
+" Markdown preview
+let vim_markdown_preview_browser='Firefox'
