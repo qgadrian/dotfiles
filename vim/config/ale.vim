@@ -19,16 +19,19 @@ let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 
 let g:ale_linters = {
 \ 'elixir': ['elixir-ls'],
+\ 'javascript': ['eslint'],
 \ 'json': ['prettier'],
 \ 'rust': ['cargo'],
+\ 'ruby': ['rubocop', 'ruby']
 \}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'elixir': ['mix_format'],
 \ 'rust': ['cargo'],
 \ 'json': ['prettier'],
-\ 'javascript': ['prettier'],
+\ 'javascript': ['eslint', 'prettier'],
 \ 'css': ['prettier'],
+\ 'ruby': ['rubocop']
 \ }
 
 autocmd CompleteDone * pclos " Closes preview window
