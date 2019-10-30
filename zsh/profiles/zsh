@@ -33,9 +33,9 @@ plugins=(
   colorize
   command-not-found
   docker
-  git
+  #git
   git-extras
-  git-flow
+  #git-flow
   github
   mix
   osx
