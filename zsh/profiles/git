@@ -5,3 +5,6 @@ alias gl="git log"
 alias glp="git log -p"
 alias gd="git diff"
 alias gdc="git diff --cached"
+
+# Peco aliases
+alias gss="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash show -p {}"
