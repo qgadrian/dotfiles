@@ -24,6 +24,6 @@ alias gittrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)
 
 # Stash
 alias gss="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash show -p {}"
-alias gsd="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash drop {}"
+alias gsdrop="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash drop {}"
 alias gsl="git stash list"
 alias gsl="git stash list"
