@@ -112,3 +112,10 @@ datadog
 versioned
 IaC
 terraform
+aws
+VPC
+EKS
+Autoscale
+userdata
+kubectl
+datasources
