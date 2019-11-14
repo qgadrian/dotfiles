@@ -1,0 +1,1 @@
+alias kubexec="kubectl get pods | peco | sed 's/ .*//g' | xargs -I{} -ot kubectl exec -ti {} bash"
