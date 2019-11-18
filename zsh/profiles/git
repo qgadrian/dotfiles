@@ -12,6 +12,7 @@ alias gitci='git ci'
 alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
 alias gitpo='git push -u origin'
 alias gitpof='git push -u origin --force-with-lease `git rev-parse --abbrev-ref HEAD`'
+alias grfcp="git reflog | peco | sed 's/ .*//g' | xargs -I{} -ot git cherry-pick {}"
 
 # Branches
 alias gitadd="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add"
