@@ -119,3 +119,4 @@ Autoscale
 userdata
 kubectl
 datasources
+kubeconfig
