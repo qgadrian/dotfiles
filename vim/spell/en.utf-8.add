@@ -120,3 +120,14 @@ userdata
 kubectl
 datasources
 kubeconfig
+globbing
+backends
+namespace
+subdomain
+k8s
+Route53
+CircleCI
+entrypoint
+Cron
+ConfigMaps
+args
