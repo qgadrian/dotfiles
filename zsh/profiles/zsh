@@ -31,11 +31,8 @@ plugins=(
   brew
   colored-man-pages
   colorize
-  command-not-found
   #docker
-  #git
   git-extras
-  #git-flow
   github
   mix
   osx
