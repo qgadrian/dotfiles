@@ -1,3 +1,5 @@
 echo "Import brew"
 
 export PATH="/usr/local/sbin:$PATH"
+
+alias buu="brew update && brew upgrade"

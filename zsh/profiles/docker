@@ -1,0 +1,11 @@
+alias dockercompose="docker-compose"
+alias docker_rm_exited="docker rm -v $(docker ps -a -q -f status=exited)"
+
+# Peco
+alias dockerbash="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker exec -ti {} /bin/bash"
+alias dockerstop="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker stop {}"
+alias dockerkill="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker kill {}"
+alias dockerstopall="docker stop $(docker ps -a -q)"
+alias dockerclear="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
+alias dockerlogs="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs {}"
+alias dockerlogsf="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs -f {}"

@@ -1,5 +1,3 @@
-echo "Import asdf"
-
 autoload -Uz compinit
 compinit
 
