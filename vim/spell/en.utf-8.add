@@ -131,3 +131,7 @@ entrypoint
 Cron
 ConfigMaps
 args
+autoscaling
+autoscaler
+autoscale
+RDS
