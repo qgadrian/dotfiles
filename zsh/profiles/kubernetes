@@ -1,3 +1,5 @@
-alias kubexec="kubectl get pods -A | tail -n +2 | peco | sed 's/ .*//g' | xargs -I{} -ot kubectl exec -ti {} bash"
-alias kubelogs="kubectl get pods -A | tail -n +2 | peco | sed 's/ .*//g' | xargs -I{} -ot kubectl logs {}"
-alias kubelogsf="kubectl get pods -A | tail -n +2 | peco | sed 's/ .*//g' | xargs -I{} -ot kubectl logs -f {}"
+alias kubexec="kubectl get pods -A | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl exec --namespace=%s -ti %s bash' | xargs -ot -I{} bash -c {}"
+
+alias kubelogs="kubectl get pods -A | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl logs --namespace=%s %s' | xargs -ot -I{} bash -c {}"
+
+alias kubelogsf="kubectl get pods -A | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl logs -f --namespace=%s %s' | xargs -ot -I{} bash -c {}"
