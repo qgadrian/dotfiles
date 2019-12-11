@@ -2,6 +2,7 @@ alias git_account_setup="git config user.name qgadrian && git config user.email 
 
 alias gap="git add -p"
 alias gbl="git branch -l"
+alias gco="git co"
 alias gcop="git co -p"
 alias gd="git diff"
 alias gdc="git diff --cached"
