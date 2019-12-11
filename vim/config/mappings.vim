@@ -100,3 +100,6 @@ vnoremap . :normal .<CR>
 
 " Avoid blowup
 nnoremap <c-z> <nop>
+
+" Copy file path to clipboard
+noremap <leader>ccp :let @+ = expand("%")<CR>
