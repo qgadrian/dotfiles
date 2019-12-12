@@ -93,3 +93,17 @@ let g:netrw_winsize = 25
 
 " Markdown preview
 let vim_markdown_preview_browser='Firefox'
+
+" Subtitution
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+nmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
+xmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
+nmap <leader>crr <plug>(SubversiveSubstituteWordRangeConfirm)
+
+nmap <leader>s <plug>(SubversiveSubstituteRange)
+xmap <leader>s <plug>(SubversiveSubstituteRange)
+
+nmap <leader>ss <plug>(SubversiveSubstituteWordRange)

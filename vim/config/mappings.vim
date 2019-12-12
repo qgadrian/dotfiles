@@ -14,18 +14,6 @@ nnoremap O O<Esc>
 noremap :W :w
 
 "
-" Search and replace word from cursor
-"
-" replace all words
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-vnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-" replace all words from cursor until the end the file
-nnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
-vnoremap <Leader>S :.,$s/\<<C-r><C-w>\>/
-" no fucking idea
-nnoremap <Leader>BS :1,.s/\<<C-r><C-w>\>/
-
-"
 " Sort and add comma to lines if missing
 "
 vnoremap <Leader>a, :g/.*[^,]$/ s/$/,/<CR>

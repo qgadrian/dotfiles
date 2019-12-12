@@ -43,6 +43,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'mhinz/vim-startify' " Startup buffer
   Plug 'airblade/vim-rooter' " Change to project root directory automatically
 
+  " Substitution
+  Plug 'svermeulen/vim-subversive'
+
   " fzf
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
