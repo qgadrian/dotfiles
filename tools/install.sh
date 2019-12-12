@@ -14,6 +14,7 @@ brew install \
   ripgrep \
   lsd \
   denisidoro/tools/navi \
+  dive \
 
 brew cask install \
   bettertouchtool \

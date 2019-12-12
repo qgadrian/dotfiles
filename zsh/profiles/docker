@@ -15,3 +15,6 @@ alias dockerkill="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | s
 alias dockerclear="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
 alias dockerlogs="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs {}"
 alias dockerlogsf="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs -f {}"
+
+# dive tool
+alias dockerdive="docker images | peco | sed 's/ .*//g' | xargs -I{} -ot dive {}"
