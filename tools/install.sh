@@ -15,6 +15,7 @@ brew install \
   lsd \
   denisidoro/tools/navi \
   dive \
+  prettier \
 
 brew cask install \
   bettertouchtool \
