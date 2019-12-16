@@ -120,6 +120,10 @@ set hlsearch " Enable highlight when searching
 set shiftround " Shift to the next round tab stop.
 set shiftwidth=2 " Set auto indent spacing.
 
+" folding
+set foldmethod=syntax
+set foldlevelstart=20
+
 "autocmd FileType,BufLeave gitcommit :autocmd! TermOpen * startinsert
 "autocmd BufLeave gitcommit startinsert
 autocmd BufDelete gitcommit startinsert
