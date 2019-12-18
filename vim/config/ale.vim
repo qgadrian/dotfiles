@@ -36,6 +36,9 @@ let g:ale_fixers = {
 \ 'terraform': ['terraform']
 \ }
 
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:syntastic_ignore_files = ['Gemfile']
+
 autocmd CompleteDone * pclos " Closes preview window
 
 imap <C-Space> <Plug>(ale_complete)
