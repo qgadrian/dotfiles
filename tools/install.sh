@@ -16,6 +16,7 @@ brew install \
   denisidoro/tools/navi \
   dive \
   prettier \
+  graphviz \
 
 brew cask install \
   bettertouchtool \
