@@ -22,7 +22,8 @@ let g:ale_linters = {
 \ 'javascript': ['eslint'],
 \ 'json': ['prettier'],
 \ 'rust': ['cargo'],
-\ 'ruby': ['rubocop', 'ruby']
+\ 'ruby': ['rubocop', 'ruby'],
+\ 'terraform': ['terraform']
 \}
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -31,7 +32,8 @@ let g:ale_fixers = {
 \ 'json': ['prettier'],
 \ 'javascript': ['eslint', 'prettier'],
 \ 'css': ['prettier'],
-\ 'ruby': ['rubocop']
+\ 'ruby': ['rubocop'],
+\ 'terraform': ['terraform']
 \ }
 
 autocmd CompleteDone * pclos " Closes preview window
