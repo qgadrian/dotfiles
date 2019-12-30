@@ -1,5 +1,7 @@
-alias kubexec="kubectl get pods -A --field-selector=status.phase=Running | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl exec --namespace=%s -ti %s bash' | xargs -ot -I{} bash -c {}"
+alias ke="kubectl get pods -A --field-selector=status.phase=Running | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl exec --namespace=%s -ti %s bash' | xargs -ot -I{} bash -c {}"
 
-alias kubelogs="kubectl get pods -A | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl logs --namespace=%s %s' | xargs -ot -I{} bash -c {}"
+alias kdp="kubectl get pods -A --field-selector=status.phase=Running | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl describe --namespace=%s pods/%s' | xargs -ot -I{} bash -c {}"
 
-alias kubelogsf="kubectl get pods -A --field-selector=status.phase=Running | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl logs -f --namespace=%s %s' | xargs -ot -I{} bash -c {}"
+alias kl="kubectl get pods -A | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl logs --namespace=%s %s' | xargs -ot -I{} bash -c {}"
+
+alias klf="kubectl get pods -A --field-selector=status.phase=Running | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl logs -f --namespace=%s %s' | xargs -ot -I{} bash -c {}"
