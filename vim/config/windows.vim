@@ -58,6 +58,8 @@ augroup END
 " Move tabs with arrow keys
 noremap <M-S-Left> gT
 noremap <M-S-Right> gt
+nnoremap <silent> <M-h> :tabprevious<CR>
+nnoremap <silent> <M-l> :tabnext<CR>
 " Reorganize tabs
 noremap <silent> <C-M-Left> :tabm -1<CR>
 noremap <silent> <C-M-Right> :tabm +1<CR>
@@ -68,6 +70,10 @@ noremap <silent> <C-M-Right> :tabm +1<CR>
 map <leader>b :new<CR>
 map <leader>vb :vnew<CR>
 " Remap arrow keys to change between buffers
+noremap <C-k> <C-w>k
+noremap <C-j> <C-w>j
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
 noremap <C-S-Up> <C-w>k
 noremap <C-S-Down> <C-w>j
 noremap <C-S-Left> <C-w>h
