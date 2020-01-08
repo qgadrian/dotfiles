@@ -7,6 +7,8 @@ alias gcop="git co -p"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gitci="git ci"
+alias gci="git ci"
+alias gcia="git cia"
 alias gitpr="git pr"
 alias gl="git log"
 alias glp="git log -p"
@@ -27,6 +29,7 @@ function gitpof() {
 
 # Branches
 alias gitadd="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add"
+alias ga="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add"
 alias gitreset="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git checkout"
 alias gitaddp="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add -p"
 alias gitmerge="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git merge"
