@@ -45,6 +45,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Substitution
   Plug 'svermeulen/vim-subversive'
+  Plug 'nishigori/increment-activator' " replace boolean values
 
   " fzf
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
