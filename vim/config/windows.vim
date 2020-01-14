@@ -95,3 +95,9 @@ autocmd FileType gitcommit set bufhidden=delete
 if has('nvim')
   let $GIT_EDITOR = 'nvr -cc split --remote-wait'
 endif
+
+" Fix cmd height size when sourcing files
+" See https://stackoverflow.com/a/15648665/1214625
+function FixHeight()
+  set cmdheight=2
+endfunction
