@@ -91,3 +91,6 @@ nnoremap <c-z> <nop>
 
 " Copy file path to clipboard
 noremap <leader>ccp :let @+ = expand("%")<CR>
+
+" buffer management
+nnoremap <leader>rf :e!<CR>
