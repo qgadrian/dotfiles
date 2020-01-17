@@ -17,6 +17,7 @@ brew install \
   dive \
   prettier \
   graphviz \
+  rename \
 
 brew cask install \
   bettertouchtool \
