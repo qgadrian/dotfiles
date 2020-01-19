@@ -15,7 +15,8 @@ set encoding=UTF-8
 " Highlight current cursor line
 augroup NerdCursor
   autocmd!
-  autocmd BufEnter NERD_tree_* hi CursorLine gui=underline
+  autocmd BufEnter NERD_tree_* setlocal cursorline
+  autocmd BufEnter NERD_tree_* highlight CursorLine gui=underline
   autocmd BufLeave NERD_tree_* highlight clear CursorLine
-  autocmd BufAdd * highlight clear CursorLine
+  "autocmd BufAdd * highlight clear CursorLine
 augroup END

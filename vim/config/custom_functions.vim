@@ -88,3 +88,17 @@ function! ReplaceEmojis()
 endfunction
 
 nnoremap <leader>re :call ReplaceEmojis()<CR>
+
+"
+" Highlight row/column shortcut
+"
+nnoremap <leader>hcl :call ToggleCursorLine()<CR>
+set cursorline
+function! ToggleCursorLine()
+  let l:current = synIDattr(synIDtrans(hlID("CursorLine")), "fg")
+  if (l:current == 'white')
+    highlight clear CursorLine
+  else
+    highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=#424450 guifg=white
+  endif
+endfunction

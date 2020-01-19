@@ -38,6 +38,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'terryma/vim-multiple-cursors'
   Plug 'brooth/far.vim'
 
+  " Various
   Plug 'romainl/vim-cool' " Remove highlight when move the cursor after a search
   Plug 'rizzatti/dash.vim' " Dash integration
   Plug 'mhinz/vim-startify' " Startup buffer
