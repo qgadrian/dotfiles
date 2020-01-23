@@ -94,3 +94,7 @@ noremap <leader>ccp :let @+ = expand("%")<CR>
 
 " buffer management
 nnoremap <leader>rf :e!<CR>
+
+" free move
+noremap <Up> g<Up>
+noremap <Down> g<Down>
