@@ -22,7 +22,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'scrooloose/nerdcommenter' " Comments
   Plug 'w0rp/ale' " Lint and fixers
   Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-  Plug 'brooth/far.vim' " find and replace
 
   " Status tab
   Plug 'vim-airline/vim-airline'
@@ -36,7 +35,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'JamshedVesuna/vim-markdown-preview'
   Plug 'mzlogin/vim-markdown-toc' " auto toc
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'brooth/far.vim'
 
   " Various
   Plug 'romainl/vim-cool' " Remove highlight when move the cursor after a search
@@ -45,7 +43,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'airblade/vim-rooter' " Change to project root directory automatically
 
   " Substitution
-  Plug 'svermeulen/vim-subversive'
+  Plug 'brooth/far.vim' " find and replace
+  Plug 'svermeulen/vim-subversive' " quick local substitution
   Plug 'nishigori/increment-activator' " replace boolean values
 
   " fzf
