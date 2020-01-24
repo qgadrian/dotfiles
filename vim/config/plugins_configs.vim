@@ -107,3 +107,18 @@ nmap <leader>s <plug>(SubversiveSubstituteRange)
 xmap <leader>s <plug>(SubversiveSubstituteRange)
 
 nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
+
+"
+" increment-activator
+"
+let g:increment_activator_filetype_candidates = {
+\   '_': [
+\     ['enable', 'disable'],
+\     ['enabled', 'disabled'],
+\     ['info', 'warning', 'notice', 'error'],
+\   ],
+\   'ruby': [
+\     ['module', 'class'],
+\     ['context', 'describe'],
+\   ]
+\ }
