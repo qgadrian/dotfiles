@@ -101,3 +101,9 @@ endif
 function FixHeight()
   set cmdheight=2
 endfunction
+
+"
+" performance tests
+"
+set lazyredraw
+set ttyfast

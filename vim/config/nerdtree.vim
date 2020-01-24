@@ -18,5 +18,6 @@ augroup NerdCursor
   autocmd BufEnter NERD_tree_* setlocal cursorline
   autocmd BufEnter NERD_tree_* highlight CursorLine gui=underline
   autocmd BufLeave NERD_tree_* highlight clear CursorLine
+  autocmd BufLeave NERD_tree_* setlocal nocursorline
   "autocmd BufAdd * highlight clear CursorLine
 augroup END
