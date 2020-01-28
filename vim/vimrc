@@ -44,7 +44,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Substitution
   Plug 'brooth/far.vim' " find and replace
-  Plug 'svermeulen/vim-subversive' " quick local substitution
   Plug 'nishigori/increment-activator' " replace boolean values
 
   " fzf

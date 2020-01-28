@@ -104,3 +104,12 @@ function! ToggleCursorLine()
     highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=#424450 guifg=white
   endif
 endfunction
+
+" Replace words
+function! ReplaceAllWord(replaceWith)
+  let wordUnderCursor = expand("<cword>")
+  let l:replaceWith = a:replaceWith
+  echo 'Replace `' . wordUnderCursor . "` with `" . a:replaceWith . "`"
+  execute '%s/' . wordUnderCursor . '/' . replaceWith . '/gc'
+endfunction
+nnoremap <leader>raw :<C-u>call ReplaceAllWord(input('Replace word with: '))<CR>
