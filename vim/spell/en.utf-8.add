@@ -152,3 +152,7 @@ precompiling
 eq
 Rubocop
 rubocop
+unprocessable
+rspec
+dialyzer
+resumer
