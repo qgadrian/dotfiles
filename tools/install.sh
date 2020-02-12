@@ -18,6 +18,7 @@ brew install \
   prettier \
   graphviz \
   rename \
+  github/gh/gh \
 
 brew cask install \
   bettertouchtool \
