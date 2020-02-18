@@ -116,6 +116,7 @@ let g:increment_activator_filetype_candidates = {
 \     ['enable', 'disable'],
 \     ['enabled', 'disabled'],
 \     ['info', 'warning', 'notice', 'error'],
+\     ['open', 'close'],
 \   ],
 \   'ruby': [
 \     ['module', 'class'],
