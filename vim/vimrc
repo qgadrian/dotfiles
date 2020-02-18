@@ -43,7 +43,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'airblade/vim-rooter' " Change to project root directory automatically
 
   " Substitution
-  Plug 'brooth/far.vim' " find and replace
   Plug 'nishigori/increment-activator' " replace boolean values
 
   " fzf
