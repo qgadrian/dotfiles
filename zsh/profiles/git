@@ -12,6 +12,7 @@ alias gcia="git cia"
 alias gitpr="git pr"
 alias gl="git log"
 alias glp="git log -p"
+alias gls="git log --stat"
 alias gs="git status"
 
 gpsu() {
@@ -23,6 +24,9 @@ alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | 
 alias gitpo="git push -u origin"
 alias gpo="git push -u origin"
 alias grfcp="git reflog | peco | sed 's/ .*//g' | xargs -I{} -ot git cherry-pick {}"
+grim() {
+  git rebase -i $(git rev-parse origin/master)
+}
 
 function gitpof() {
   git push -u origin --force-with-lease $(git rev-parse --abbrev-ref HEAD)
@@ -40,6 +44,8 @@ alias gitrebase="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//
 ## Misc aliases (clear, track...)
 alias gitclear="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
 alias gittrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
+alias grp="git rev-parse --abbrev-ref HEAD | pbcopy"
+alias gitprune="git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
 
 # Stash
 alias gss="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash show -p {}"

@@ -9,7 +9,9 @@ dockerstopall() {
 }
 
 # Peco
+alias drb="docker images --format '{{.Repository}}: {{.Tag}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker run -ti {} /bin/bash"
 alias dockerbash="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker exec -ti {} /bin/bash"
+alias db="dockerbash"
 alias dockerstop="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker stop {}"
 alias dockerkill="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker kill {}"
 alias dockerclear="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc"
