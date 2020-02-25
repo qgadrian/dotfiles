@@ -37,7 +37,7 @@ asdf plugin-add elm
 asdf plugin-add postgres
 asdf plugin-add nodejs
 
-ELIXIR_VERSION=1.9
+ELIXIR_VERSION=1.10
 ERLANG_VERSION=22.1
 HASKELL_VERSION=8.6.5
 RUST_VERSION=1.34.1
