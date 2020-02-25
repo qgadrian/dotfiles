@@ -157,3 +157,5 @@ rspec
 dialyzer
 resumer
 expect
+redeem
+validator
