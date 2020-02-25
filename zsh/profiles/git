@@ -11,8 +11,6 @@ alias gci="git ci"
 alias gcia="git cia"
 alias gitpr="git pr"
 alias gl="git log"
-alias glp="git log -p"
-alias gls="git log --stat"
 alias gs="git status"
 
 gpsu() {
@@ -32,6 +30,18 @@ function gitpof() {
   git push -u origin --force-with-lease $(git rev-parse --abbrev-ref HEAD)
 }
 alias gpof=gitpof
+
+# log
+glp() {
+  git log -p HEAD~$1..HEAD
+}
+
+gls() {
+  git log --stat HEAD~$1..HEAD
+}
+
+alias glpa="git log -p"
+alias glsa="git log --stat"
 
 # Branches
 alias gitadd="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add"
