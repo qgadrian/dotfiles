@@ -113,3 +113,7 @@ function! ReplaceAllWord(replaceWith)
   execute '%s/' . wordUnderCursor . '/' . replaceWith . '/gc'
 endfunction
 nnoremap <leader>raw :<C-u>call ReplaceAllWord(input('Replace word with: '))<CR>
+
+" Restore last deleted buffer
+autocmd BufDelete * let g:restore_deleted_buffer = expand("<afile>:p")
+nnoremap <leader>rdb :e <C-R>=fnameescape(g:restore_deleted_buffer)<CR><CR>
