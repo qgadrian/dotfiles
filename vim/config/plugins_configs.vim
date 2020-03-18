@@ -113,13 +113,28 @@ nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
 "
 let g:increment_activator_filetype_candidates = {
 \   '_': [
+\     ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'],
+\     ['right', 'left'],
 \     ['enable', 'disable'],
 \     ['enabled', 'disabled'],
-\     ['info', 'warning', 'notice', 'error'],
+\     ['debug', 'info', 'warning', 'error'],
+\     ['debug', 'info', 'warn', 'error'],
 \     ['open', 'close'],
+\     ['new', 'old'],
+\     ['before', 'after'],
+\     ['get', 'post', 'put', 'delete'],
 \   ],
 \   'ruby': [
+\     ['first', 'last'],
 \     ['module', 'class'],
 \     ['context', 'describe'],
-\   ]
+\   ],
+\   'javascript': [
+\     ['mount', 'shallow', 'render']
+\   ],
+\   'elixir': [
+\     ['def', 'defp'],
+\     ['ok', 'error'],
+\     ['is_atom', 'is_list', 'is_binary', 'is_map', 'is_number'],
+\   ],
 \ }
