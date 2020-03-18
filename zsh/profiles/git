@@ -25,6 +25,7 @@ alias grfcp="git reflog | peco | sed 's/ .*//g' | xargs -I{} -ot git cherry-pick
 grim() {
   git rebase -i $(git rev-parse origin/master)
 }
+alias grm="git rebase origin/master"
 
 function gitpof() {
   git push -u origin --force-with-lease $(git rev-parse --abbrev-ref HEAD)
