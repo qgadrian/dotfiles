@@ -98,3 +98,6 @@ nnoremap <leader>rf :e!<CR>
 " free move
 noremap <Up> g<Up>
 noremap <Down> g<Down>
+
+" highlight current word without moving
+:nnoremap <leader>hw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
