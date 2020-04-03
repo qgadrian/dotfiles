@@ -10,6 +10,7 @@ alias gitci="git ci"
 alias gci="git ci"
 alias gcia="git cia"
 alias gitpr="git pr"
+alias gpr="git pr"
 alias gl="git log"
 alias gs="git status"
 
@@ -22,10 +23,19 @@ alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | 
 alias gitpo="git push -u origin"
 alias gpo="git push -u origin"
 alias grfcp="git reflog | peco | sed 's/ .*//g' | xargs -I{} -ot git cherry-pick {}"
+
+alias gcm="git co master"
+
 grim() {
   git rebase -i $(git rev-parse origin/master)
 }
-alias grm="git rebase origin/master"
+
+function grm() {
+  git co master && \
+  git pr && \
+  git co - && \
+  git rebase origin/master
+}
 
 function gitpof() {
   git push -u origin --force-with-lease $(git rev-parse --abbrev-ref HEAD)
