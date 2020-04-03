@@ -4,7 +4,7 @@
 #
 
 # open terminal
-cmd - return : /Applications/kitty.app/Contents/MacOS/kitty
+cmd + shift - return : /Applications/kitty.app/Contents/MacOS/kitty
 
 # close focused window
 #alt - w : yabai tiling::window --close
