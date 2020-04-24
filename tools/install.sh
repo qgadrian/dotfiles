@@ -25,6 +25,7 @@ brew cask install \
   slack \
   dash \
   firefox \
+  activitywatch \
 
 brew link --force gettext
 
