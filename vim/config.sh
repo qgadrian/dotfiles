@@ -22,7 +22,7 @@ mkdir ~/.vim/sessions
 vim +PluginInstall +qall
 
 #
-# linters
+# CoC needs to install LanguageServer engines
 #
 
 echo "Install Elixir LS"
@@ -33,6 +33,9 @@ cd ~/.vim/elixir-ls
 mix deps.get
 MIX_ENV=prod mix elixir_ls.release -o ./rel
 cd $OLD_PWD
+
+# Install CoC example:
+# :CoCInstall coc-elixir
 
 #
 # Fuzzy search deps
