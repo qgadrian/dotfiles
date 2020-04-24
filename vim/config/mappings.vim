@@ -47,22 +47,19 @@ vnoremap p "_dP
 "
 " Terminal
 "
-
-"noremap <leader>c  :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
-"noremap ct :tabnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
-"noremap cb :new<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
-"noremap cbv :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>:startinsert<CR>cd $VIM_DIR<CR>
-"noremap <leader>c :terminal<CR>
 "
+
 "tabs
 noremap <leader>tab :tabnew<CR>:terminal<CR>
 " buffers & terminal
-noremap <leader>term :term!<CR>
-noremap <leader>tb :new<CR>:term<CR>
-noremap <leader>tvb :vnew<CR>:term<CR>
+noremap <leader>term :let $VIM_DIR=expand('%:p:h')<CR>:term!<CR>cd $VIM_DIR<CR>
+noremap <leader>tb :new<CR>:let $VIM_DIR=expand('FindRootDirectory()')<CR>:terminal<CR>cd $VIM_DIR<CR>
+noremap <leader>tvb :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 " Comment this mapping to support nested vim's
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-v><Esc> <Esc>
+
+"autocmd TerminalOpen * call :startintert<CR>cd expand(:pwd)<CR>
 
 "
 " Skip sending escape characters for arrow keys in terminal mode

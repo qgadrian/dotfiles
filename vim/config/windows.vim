@@ -50,6 +50,7 @@ augroup terminal
   autocmd TermOpen * setlocal nonumber
   autocmd TermOpen * setlocal wrap
   autocmd TermOpen * startinsert
+  "autocmd TermEnter * call timer_start(200, { tid -> startintert })
 augroup END
 
 "
