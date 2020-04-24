@@ -20,7 +20,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'sheerun/vim-polyglot' " Enable syntax color
   Plug 'elixir-editors/vim-elixir' " Elixir
   Plug 'scrooloose/nerdcommenter' " Comments
-  Plug 'w0rp/ale' " Lint and fixers
+  "Plug 'w0rp/ale' " Lint and fixers
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
   " Status tab
