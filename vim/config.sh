@@ -24,16 +24,6 @@ vim +PluginInstall +qall
 #
 # CoC needs to install LanguageServer engines
 #
-
-echo "Install Elixir LS"
-OLD_PWD=$(pwd)
-mkdir ~/.vim/elixir-ls
-git clone https://github.com/JakeBecker/elixir-ls.git ~/.vim/elixir-ls/
-cd ~/.vim/elixir-ls
-mix deps.get
-MIX_ENV=prod mix elixir_ls.release -o ./rel
-cd $OLD_PWD
-
 # Install CoC example:
 # :CoCInstall coc-elixir
 
