@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/adrian/workspace/safeboda/apps/promo_code_web'
+let g:netrw_dirhist_2='/Users/adrian/workspace/safeboda/apps/promo_code_web/config'
+let g:netrw_dirhist_3='/Users/adrian/workspace/safeboda/apps/promo_code_web'
+let g:netrw_dirhist_4='/Users/adrian/workspace/safeboda/apps'
+let g:netrw_dirhist_5='/Users/adrian/workspace/safeboda'
+let g:netrw_dirhist_6='/Users/adrian/workspace'
+let g:netrw_dirhist_7='/Users/adrian/workspace/safeboda'
+let g:netrw_dirhist_8='/Users/adrian/workspace/safeboda/apps'

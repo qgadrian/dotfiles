@@ -12,6 +12,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 mv ~/.vimrc ~/.vimrc.old.deleteme
 ln -sf $(pwd)/vim/vimrc ~/.vimrc
 ln -sf $(pwd)/vim/config/ ~/.vim/config
+ln -sf $(pwd)/vim/.config/ ~/.config/nvim
 
 mkdir ~/.vim/backup
 mkdir ~/.vim/swp
