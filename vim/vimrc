@@ -10,7 +10,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
   Plug 'tpope/vim-fugitive'
-  Plug 'git://git.wincent.com/command-t.git'
   " The sparkup vim script is in a subdirectory of this repo called vim.
   " Pass the path to set the runtimepath properly.
   Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
