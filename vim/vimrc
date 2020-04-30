@@ -54,7 +54,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'ryanoasis/vim-devicons'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " colors
-  Plug 'mortonfox/nerdtree-clip'
+  Plug 'mortonfox/nerdtree-clip' " copy file path from nerdtree
 
   Plug 'easymotion/vim-easymotion' " Quick navigation
   Plug 'tpope/vim-vinegar' " Filetree
