@@ -1,7 +1,18 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["ruby", "elixir", "javascript"],
+  "coc.preferences.formatOnSaveFiletypes": ["ruby", "elixir", "javascript", "go"],
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
-  "solargraph.hover": true
+  "solargraph.hover": true,
+  "eslint.autoFixOnSave": true,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    }
+  }
 }
