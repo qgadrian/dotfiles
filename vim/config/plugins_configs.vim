@@ -123,6 +123,7 @@ let g:increment_activator_filetype_candidates = {
 \     ['new', 'old'],
 \     ['before', 'after'],
 \     ['get', 'post', 'put', 'delete'],
+\     ['pick', 'reword', 'edit', 'squash', 'fixup', 'drop', 'reset', 'merge'],
 \     ['next', 'previous']
 \   ],
 \   'ruby': [
@@ -137,6 +138,7 @@ let g:increment_activator_filetype_candidates = {
 \     ['def', 'defp'],
 \     ['@defdoc', '@moduledoc'],
 \     ['ok', 'error'],
+\     ['assert', 'refute'],
 \     ['is_atom', 'is_list', 'is_binary', 'is_map', 'is_number'],
 \   ],
 \ }
