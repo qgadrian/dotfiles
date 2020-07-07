@@ -114,6 +114,11 @@ function! ReplaceAllWord(replaceWith)
 endfunction
 nnoremap <leader>raw :<C-u>call ReplaceAllWord(input('Replace word with: '))<CR>
 
+" JSON formatter
+function! FormatJSON()
+  %!python -m json.tool
+endfunction
+
 "
 " Documentation: http://vimdoc.sourceforge.net/htmldoc/autocmd.html
 "
