@@ -93,6 +93,7 @@ let g:netrw_winsize = 25
 
 " Markdown preview
 let vim_markdown_preview_browser='Firefox'
+let vim_markdown_preview_hotkey='<C-S-p>'
 
 " Subtitution
 nmap s <plug>(SubversiveSubstitute)
