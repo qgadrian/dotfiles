@@ -1,0 +1,13 @@
+password-source: keyring
+
+custom-commands:
+  - name: sprint
+    help: display issues for active sprint
+    script: |-
+      if [ -n "$JIRA_PROJECT" ]; then
+          # if `project: ...` configured just list the issues for current project
+          {{jira}} list --query "sprint in openSprints() and type != epic and resolution = unresolved and project=$JIRA_PROJECT ORDER BY rank asc, created"
+      else
+          # otherwise list issues for all project
+          {{jira}} list --query "sprint in openSprints() and type != epic and resolution = unresolved ORDER BY rank asc, created"
+      fi
