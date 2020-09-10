@@ -4,8 +4,8 @@
 #
 
 # open terminal
-#cmd + shift - return : /Applications/kitty.app/Contents/MacOS/kitty
-cmd + shift - return : alacritty -e zsh -c "source ~/.zshrc && nvim"
+cmd + shift - return : /Applications/kitty.app/Contents/MacOS/kitty
+#cmd + shift - return : alacritty -e zsh -c "source ~/.zshrc && nvim"
 
 # close focused window
 #alt - w : yabai tiling::window --close
