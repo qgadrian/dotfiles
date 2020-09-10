@@ -1,3 +1,13 @@
+"
+" coc.vim configuration
+"
+" Set the language servers at `coc-setting.json`
+"
+" Elixir:
+"
+"  "elixir.pathToElixirLS_": "~/.vim/elixir-ls/release/language_server.sh"
+"
+
 " TextEdit might fail if hidden is not set.
 set hidden
 

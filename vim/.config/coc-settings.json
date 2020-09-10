@@ -1,18 +1,9 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["ruby", "elixir", "javascript", "go"],
+  "coc.preferences.formatOnSaveFiletypes": ["ruby", "elixir", "javascript"],
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
   "eslint.autoFixOnSave": true,
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    }
-  }
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
 }
