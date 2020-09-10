@@ -17,3 +17,6 @@ alias itps=" itunes pause"
 alias itn=" itunes next"
 alias itpr=" itunes previous"
 alias itpp=" itunes playlists | peco | xargs -I{} -to itunes play playlist {}"
+
+## annoying yarn shortcut
+alias y=""

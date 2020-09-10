@@ -17,17 +17,22 @@ call plug#begin('~/.local/share/nvim/plugged')
   " The sparkup vim script is in a subdirectory of this repo called vim.
   " Pass the path to set the runtimepath properly.
   Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+  Plug 'Asheq/close-buffers.vim' " Clear buffers
 
   Plug 'amiorin/vim-project' " Projects path switcher
 
   " Linters and stuff
   Plug 'ntpeters/vim-better-whitespace' " Show trailing whitespace and spaces before a tab:
-  Plug 'sheerun/vim-polyglot' " Enable syntax color
-  Plug 'elixir-editors/vim-elixir' " Elixir
-  Plug 'scrooloose/nerdcommenter' " Comments
-  "Plug 'w0rp/ale' " Lint and fixers
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+  "Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+  Plug 'scrooloose/nerdcommenter' " Comments
+
+  " Syntax color
+  "Plug 'sheerun/vim-polyglot' " Enable syntax color
+  Plug 'elixir-editors/vim-elixir' " Elixir
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
 
   " Status tab
   Plug 'vim-airline/vim-airline'
@@ -37,14 +42,13 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Markdown
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
-  Plug 'junegunn/vim-easy-align'
+  "Plug 'junegunn/vim-easy-align'
   Plug 'JamshedVesuna/vim-markdown-preview'
   Plug 'mzlogin/vim-markdown-toc' " auto toc
   Plug 'terryma/vim-multiple-cursors'
 
   " Various
-  Plug 'romainl/vim-cool' " Remove highlight when move the cursor after a search
-  Plug 'rizzatti/dash.vim' " Dash integration
+  "Plug 'romainl/vim-cool' " Remove highlight when move the cursor after a search
   Plug 'mhinz/vim-startify' " Startup buffer
   Plug 'airblade/vim-rooter' " Change to project root directory automatically
   Plug 'lfv89/vim-interestingwords' " Highlight multiple words
@@ -65,7 +69,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'easymotion/vim-easymotion' " Quick navigation
   Plug 'tpope/vim-vinegar' " Filetree
   Plug 'gcmt/taboo.vim' " Tab rename
-  Plug 'junegunn/vim-emoji'
 
   " Snippets
   Plug 'SirVer/ultisnips' " engine

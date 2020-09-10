@@ -7,7 +7,7 @@
 "
 " Open HTML in browser
 "
-nnoremap <C-p> :!open -a Safari %<CR><CR>
+" nnoremap <C-S-p> :!open -a Safari %<CR><CR>
 
 "
 " Remove trailing spaces
