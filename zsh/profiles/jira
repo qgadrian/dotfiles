@@ -1,0 +1,6 @@
+alias jgn="jira sprint | peco | cut -d' ' -f1 | sed 's/.$//' | xargs -I{} -ot git-new {}"
+alias jvs="jira sprint | peco | cut -d' ' -f1 | sed 's/.$//' | xargs -I{} -ot jira view {}"
+alias jvtm="jira mine | peco | cut -d' ' -f1 | sed 's/.$//' | xargs -I{} -ot jira view {}"
+alias jvt="jira list --template list | peco | cut -d' ' -f1 | sed 's/.$//' | xargs -I{} -ot jira view {}"
+alias jmd="jira mine | peco | cut -d' ' -f1 | sed 's/.$//' | xargs -I{} -ot jira done {}"
+alias jmip="jira mine | peco | cut -d' ' -f1 | sed 's/.$//' | xargs -I{} -ot jira in-progress {}"

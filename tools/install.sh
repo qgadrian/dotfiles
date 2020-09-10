@@ -19,6 +19,7 @@ brew install \
   graphviz \
   rename \
   github/gh/gh \
+  go-jira \
 
 brew cask install \
   bettertouchtool \
