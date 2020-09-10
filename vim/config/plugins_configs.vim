@@ -54,22 +54,6 @@ noremap <leader>da :Dash<CR>
 "let g:rooter_patterns = ['mix.lock'] " Auto project root cd
 
 "
-" Startify
-"
-let g:startify_commands = [
-  \ {'c': ['Terminal', ':terminal']},
-  \ {'t': ['New tab', ':tabnew']},
-\ ]
-
-let g:startify_lists = [
-  \ { 'type': 'commands',  'header': ['   Commands']       },
-  \ { 'type': 'sessions',  'header': ['   Sessions']       },
-  \ { 'type': 'files',     'header': ['   MRU']            },
-  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-\ ]
-
-"
 " Easy motion
 "
 let g:EasyMotion_smartcase = 1
