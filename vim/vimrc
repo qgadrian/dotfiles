@@ -3,6 +3,10 @@ filetype off                  " required
 
 let mapleader = ' ' " Remap leader key
 
+" Project switcher
+set rtp+=~/.local/share/nvim/plugged/vim-project/
+"set rtp+=~/.vim/bundle/vim-project
+
 call plug#begin('~/.local/share/nvim/plugged')
   " alternatively, pass a path where Vundle should install plugins
   "call vundle#begin('~/some/path/here')
@@ -13,6 +17,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   " The sparkup vim script is in a subdirectory of this repo called vim.
   " Pass the path to set the runtimepath properly.
   Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+  Plug 'amiorin/vim-project' " Projects path switcher
 
   " Linters and stuff
   Plug 'ntpeters/vim-better-whitespace' " Show trailing whitespace and spaces before a tab:
