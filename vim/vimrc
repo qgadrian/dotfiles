@@ -158,3 +158,12 @@ autocmd BufDelete gitcommit startinsert
 "autocmd BufLeave term://* stopinsert
 
 "syntax on
+
+set synmaxcol=500
+set lazyredraw
+set ttyfast
+set nocursorcolumn
+set nocursorline
+set norelativenumber
+syntax sync minlines=256
+set regexpengine=1
