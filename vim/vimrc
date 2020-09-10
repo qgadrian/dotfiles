@@ -81,10 +81,19 @@ call plug#end()
 " Import configs
 "
 for f in split(glob('~/.vim/config/*.vim'), '\n')
-    exe 'source' f
+  exe 'source' f
 endfor
 
 filetype plugin indent on " required
+
+"
+" Set git editor
+"
+if has('nvim')
+  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+endif
+autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+
 
 "
 " Swap
