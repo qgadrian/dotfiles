@@ -3,3 +3,4 @@ echo "Import brew"
 export PATH="/usr/local/sbin:$PATH"
 
 alias buu="brew update && brew upgrade && brew cask upgrade"
+alias brewclean="brew bundle dump && brew bundle --force cleanup && rm Brewfile"
