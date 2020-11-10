@@ -33,11 +33,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-ruby/vim-ruby'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
+  Plug 'junegunn/limelight.vim' " Highlight parts of the buffer
 
   " Status tab
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'enricobacis/vim-airline-clock'
+  Plug 'itchyny/lightline.vim'
 
   " Markdown
   Plug 'godlygeek/tabular'

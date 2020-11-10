@@ -14,6 +14,67 @@ if (has("termguicolors"))
  set termguicolors
 endif
 
+
+"
+" Lightline configuration
+"
+"
+" To show the full absolute path use `absolutepath` instead of `filename`
+"
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cwd' ] ]
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'FugitiveHead'
+  \ },
+  \ 'component_expand': {
+  \   'cwd': '%{getcwd()}'
+  \ }
+\ }
+
+" To control the ouput of the git branch section add this:
+"
+" 'component': {
+"  'gitbranch': '%3l:%-2v%<',
+"  'fugitive': 'LightlineFugitive',
+" },
+"
+" `gitbranch` contains a shortener for the text
+" `fugitive` calls the LightlineFugitive function that can be used to edit the
+" text
+"
+
+" Add this to `component_function` to show the full relative path
+" \   'filename': 'LightlineFilename',
+
+" Only works for vim-fugitive
+" for `vim-gitbranch` replace `let root` with:
+"  let root = fnamemodify(get(b:, 'gitbranch_path'), ':h:h')
+"
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
+function! LightlineFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*FugitiveHead')
+      let mark = ''  " edit here for cool mark
+      let branch = FugitiveHead()
+      return branch !=# '' ? mark.branch : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
 "
 " Theme, colorscheme, etc...
 "
