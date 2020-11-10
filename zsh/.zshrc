@@ -52,5 +52,7 @@ done
 
 export ZSH_THEME=powerlevel10k/powerlevel10k
 
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
