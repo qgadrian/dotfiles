@@ -78,7 +78,17 @@ alias gsl="git stash list"
 alias gsa="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash apply {}"
 
 # github actions trigger
-gat() {
+gar() {
+  curl \
+    -s \
+    -X GET \
+    -H "Authorization: token $GITHUB_TOKEN" \
+    -H "Accept: application/vnd.github.nebula-preview+json" \
+    "https://api.github.com/user/repos?sort=created" \
+    | jq -r '.[].name'
+}
+
+function gat() {
   if [ -z $1 ]; then
     echo "Usage:"
     echo "\tgat [repo_name]"
@@ -92,4 +102,15 @@ gat() {
       https://api.github.com/repos/qgadrian/$1/dispatches \
       -d '{"event_type":"requested"}'
   fi
+}
+
+gart () {
+  gar | peco | xargs -I{} curl \
+      -X POST \
+      -H "Authorization: token $GITHUB_TOKEN" \
+      -H "Accept: application/vnd.github.v3+json" \
+      https://api.github.com/repos/$GITHUB_USER/{}/dispatches \
+      -d '{"event_type":"requested"}'
+
+  echo "Triggered action on GitHub"
 }
