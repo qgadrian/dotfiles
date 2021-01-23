@@ -50,7 +50,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   "Plug 'romainl/vim-cool' " Remove highlight when move the cursor after a search
   Plug 'mhinz/vim-startify' " Startup buffer
   Plug 'airblade/vim-rooter' " Change to project root directory automatically
-  Plug 'lfv89/vim-interestingwords' " Highlight multiple words
+  "Plug 'lfv89/vim-interestingwords' " Highlight multiple words
 
   " Substitution
   Plug 'nishigori/increment-activator' " replace boolean values
@@ -70,8 +70,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'gcmt/taboo.vim' " Tab rename
 
   " Snippets
-  Plug 'SirVer/ultisnips' " engine
-  Plug 'honza/vim-snippets' " templates
+  "Plug 'SirVer/ultisnips' " engine
+  "Plug 'honza/vim-snippets' " templates
 
   " micromanagement
   Plug 'ActivityWatch/aw-watcher-vim'

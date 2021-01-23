@@ -13,7 +13,7 @@ brew install \
   bat \
   ripgrep \
   lsd \
-  denisidoro/tools/navi \
+  navi \
   dive \
   prettier \
   graphviz \
