@@ -11,6 +11,7 @@ let g:increment_activator_filetype_candidates = {
 \     ['debug', 'info', 'warn', 'error'],
 \     ['open', 'close'],
 \     ['new', 'old'],
+\     ['start', 'stop'],
 \     ['before', 'after'],
 \     ['get', 'post', 'put', 'delete'],
 \     ['pick', 'reword', 'edit', 'squash', 'fixup', 'drop', 'reset', 'merge'],
