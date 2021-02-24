@@ -12,6 +12,7 @@ nnoremap O O<Esc>
 
 " annoying as fuck when wanted to save
 noremap :W :w
+noremap <leader>a <Nop>
 
 "
 " Sort and add comma to lines if missing
@@ -20,29 +21,20 @@ vnoremap <Leader>a, :g/.*[^,]$/ s/$/,/<CR>
 vnoremap <Leader>sa, :s<CR>:'<,'>sort<CR>:'<,'>g/.*[^,]$/ s/$/,/<CR>
 
 "
-" Delete, yanking...
+"" Shortcut to use blackhole register by default
 "
-noremap <leader>D "_D
-vnoremap <leader>D "_D
-noremap <leader>dd "_dd
-vnoremap <leader>dd "_dd
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
-noremap <leader>y "*y
-vnoremap <leader>y "*y
-noremap <leader>yy "*yy
-vnoremap <leader>yy "*yy
-noremap <leader>Y "*Y
-vnoremap <leader>Y "*Y
-noremap <leader>p "*p
-vnoremap <leader>p "*p
-noremap <leader>P "*P
-vnoremap <leader>P "*P
-nnoremap x "_x
-vnoremap x "_x
-" replace currently selected text with default register
-" without yanking it
-vnoremap p "_dP
+nnoremap <leader>D "_D
+vnoremap <leader>D "_D
+nnoremap <leader>c "_c
+vnoremap <leader>c "_c
+nnoremap <leader>C "_C
+vnoremap <leader>C "_C
+nnoremap <leader>x "_x
+vnoremap <leader>x "_x
+nnoremap <leader>X "_X
+vnoremap <leader>X "_X
 
 "
 " Terminal
