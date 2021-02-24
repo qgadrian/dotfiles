@@ -1,9 +1,9 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["ruby", "elixir", "javascript"],
+  "coc.preferences.formatOnSaveFiletypes": ["ruby", "elixir", "javascript", "typescript"],
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
   "eslint.autoFixOnSave": true,
-  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
+  "elixirLS.projectDir": "~/.elixir-ls/release/language_server.sh"
 }

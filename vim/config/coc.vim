@@ -5,7 +5,7 @@
 "
 " Elixir:
 "
-"  "elixir.pathToElixirLS_": "~/.vim/elixir-ls/release/language_server.sh"
+"  "elixirLS.projectDir": "~/.vim/elixir-ls/release/language_server.sh"
 "
 
 " TextEdit might fail if hidden is not set.
