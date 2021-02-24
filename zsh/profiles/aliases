@@ -7,9 +7,12 @@ alias generate_random_password="LC_ALL=C tr -dc 'A-Za-z0-9_!@#$%^&*()\-+=' < /de
 # Whitespace to avoid history
 alias cd=' cd'
 alias ps=' ps'
+
 #alias vim=' nvr -s'
 #alias nvim='NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim'
 #alias nvr='nvr -s'
+alias e=' nvr .'
+
 alias exit=' exit'
 
 ## itunes
