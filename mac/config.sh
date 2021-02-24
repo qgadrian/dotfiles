@@ -9,8 +9,8 @@ read -p "Configure the Keyboard? " -n 1 -r; echo
   echo "Changes will be applied after restart"
 fi
 
-source ./plugins/install.sh
+source $(pwd)/mac/plugins/install.sh
 
-source ./window_management/install.sh
+source $(pwd)/mac/window_management/install.sh
 
-source ./fonts/install.sh
+source $(pwd)/mac/fonts/install.sh

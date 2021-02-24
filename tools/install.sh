@@ -20,8 +20,6 @@ brew install \
   rename \
   github/gh/gh \
   go-jira \
-
-brew cask install \
   bettertouchtool \
   slack \
   dash \
