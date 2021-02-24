@@ -38,6 +38,7 @@ ln -sf $(pwd)/zsh/profiles ~/.zsh/
 
 # Themes
 
+export ZSH_CUSTOM="$ZSH/custom"
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/cdimascio/lambda-zsh-theme.git $ZSH_CUSTOM/themes/lambda-zsh/
 
