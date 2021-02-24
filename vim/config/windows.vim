@@ -25,10 +25,7 @@ let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cwd' ] ]
-  \ },
-  \ 'component_function': {
-  \   'gitbranch': 'FugitiveHead'
+  \             [ 'readonly', 'filename', 'modified', 'cwd' ] ]
   \ },
   \ 'component_expand': {
   \   'cwd': '%{getcwd()}'

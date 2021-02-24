@@ -33,7 +33,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-ruby/vim-ruby'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
-  Plug 'junegunn/limelight.vim' " Highlight parts of the buffer
+  Plug 'leafgarland/typescript-vim'
+  "Plug 'junegunn/limelight.vim' " Highlight parts of the buffer
+
+  "Plug 'nvim-lua/popup.nvim'
+  "Plug 'nvim-lua/plenary.nvim'
+  "Plug 'nvim-telescope/telescope.nvim'
+
+  " Docs
+  Plug 'rizzatti/dash.vim'
 
   " Status tab
   Plug 'itchyny/lightline.vim'
