@@ -10,11 +10,15 @@ echo "########################\n"
 
 source ./brew/install.sh
 
+source ./before_setup.sh
+
 source ./mac/config.sh
 
 source ./zsh/install.sh
 
 source ./asdf/install.sh
+
+source ./alfred/install.sh
 
 source ./lang/config.sh
 
