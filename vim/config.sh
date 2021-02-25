@@ -9,7 +9,10 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 # If python crashes at start: ./install.py --clang-completer
 
-mv ~/.vimrc ~/.vimrc.old.deleteme
+if [ -d ~/.vimrc ]; then
+  mv ~/.vimrc ~/.vimrc.old.$(date +%Y%m%d%H%M%S)
+fi
+
 ln -sf $(pwd)/vim/vimrc ~/.vimrc
 ln -sf $(pwd)/vim/config/ ~/.vim/config
 ln -sf $(pwd)/vim/.config/ ~/.config/nvim
