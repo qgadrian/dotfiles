@@ -1,6 +1,6 @@
 echo "Setting up an encrypted environment"
 
-brew install git-crypt
+brew install gpg git-crypt
 
 read -p "Is the GPG key imported? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
