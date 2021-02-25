@@ -7,7 +7,7 @@ echo "Setting zsh as default shell"
 # WARNING: The installation script will change the console and it will require to relaunch the installation script
 if [ -f ~/.oh-my-zsh ]; then
   echo "Install oh-my-zsh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 #echo "Install zplug"
