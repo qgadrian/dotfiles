@@ -1,3 +1,3 @@
 echo "Install fonts"
 
-find . -type f -exec cp '{}' ~/Library/Fonts/ \;
+find . -type f -exec sudo cp '{}' ~/Library/Fonts/ \;
