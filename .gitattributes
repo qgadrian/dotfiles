@@ -1,1 +1,2 @@
 ./alfred/preferences/** filter=git-crypt diff=git-crypt
+vim/spell/** filter=git-crypt diff=git-crypt
