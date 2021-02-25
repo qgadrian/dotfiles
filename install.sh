@@ -26,8 +26,6 @@ source ./kitty/install.sh
 
 source ./tools/install.sh
 
-source ./ansible/install.sh
-
 source ./vim/config.sh
 
 source ./karabiner/install.sh
