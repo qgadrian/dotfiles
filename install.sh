@@ -2,10 +2,10 @@
 
 set -e
 
-echo "\n########################\n"
-echo "########################\n"
-echo "Start configuring system"
-echo "########################\n"
+echo "\n########################"
+echo "########################"
+echo "Start setting up the system"
+echo "########################"
 echo "########################\n"
 
 source ./brew/install.sh
@@ -30,8 +30,8 @@ source ./vim/config.sh
 
 source ./karabiner/install.sh
 
-echo "\n########################\n"
-echo "########################\n"
-echo "Done setting up the system"
-echo "########################\n"
+echo "\n########################"
+echo "########################"
+echo "Done!"
+echo "########################"
 echo "########################\n"
