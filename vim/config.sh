@@ -17,10 +17,10 @@ ln -sf $(pwd)/vim/vimrc ~/.vimrc
 ln -sf $(pwd)/vim/config/ ~/.vim/config
 ln -sf $(pwd)/vim/.config/ ~/.config/nvim
 
-mkdir ~/.vim/backup
-mkdir ~/.vim/swp
-mkdir ~/.vim/undo
-mkdir ~/.vim/sessions
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/swp
+mkdir -p ~/.vim/undo
+mkdir -p ~/.vim/sessions
 
 vim +PluginInstall +qall
 
@@ -49,8 +49,7 @@ brew install the_silver_searcher
 brew install grip
 
 echo "Install spell checks"
-#mv ~/.vim/spell/ ~/.vim/spell.deleteme
-mkdir ~/.vim/spell
+rm -rf ~/.vim/spell
 ln -s $(pwd)/vim/spell ~/.vim/spell
 
 # Neded by command-t
@@ -70,14 +69,15 @@ pip3 install neovim-remote
 
 # dasht
 
-git clone git@github.com:sunaku/dasht.git $(pwd)/vim
+rm -rf $(pwd)/vim/dasht
+git clone git@github.com:sunaku/dasht.git $(pwd)/vim/dasht
 
 # wget its a depdency to get the docsets
 # w3m its needed to display the results
 brew install wget w3m
 
-cp $(pwd)/vim/dasht/bin/* /usr/local/bin
-cp $(pwd)/vim/dasht/man/man1/* /usr/local/share/man/man1
+sudo cp -r $(pwd)/vim/dasht/bin/ /usr/local/bin
+sudo cp -r $(pwd)/vim/dasht/man/man1/ /usr/local/share/man/man1
 
 # install docsets
 dasht-docsets-install elixir
