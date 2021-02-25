@@ -1,0 +1,61 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 4,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#D9D9D9FF",
+        "font" : "Helvetica Neue",
+        "color" : "#A6A6A6FF"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica Neue",
+        "color" : "#A6A6A6FF"
+      },
+      "backgroundSelected" : "#024EAB7A",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#FFFFF8FF",
+        "font" : "Helvetica Neue",
+        "color" : "#A6A6A6FF"
+      },
+      "iconPaddingHorizontal" : 5,
+      "paddingVertical" : 2,
+      "iconSize" : 40
+    },
+    "search" : {
+      "paddingVertical" : 2,
+      "background" : "#42484700",
+      "spacing" : 10,
+      "text" : {
+        "size" : 36,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica Neue",
+        "color" : "#E3E1E3FF"
+      },
+      "backgroundSelected" : "#667A8CFF"
+    },
+    "window" : {
+      "color" : "#404845B2",
+      "paddingHorizontal" : 10,
+      "width" : 620,
+      "borderPadding" : 10,
+      "borderColor" : "#C5C5C500",
+      "blur" : 0,
+      "roundness" : 12,
+      "paddingVertical" : 10
+    },
+    "credit" : "Rachit",
+    "separator" : {
+      "color" : "#45454566",
+      "thickness" : 1
+    },
+    "scrollbar" : {
+      "color" : "#BFBFBF66",
+      "thickness" : 2
+    },
+    "name" : "OS X Spotlight (v2)"
+  }
+}
