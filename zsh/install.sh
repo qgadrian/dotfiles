@@ -7,7 +7,7 @@ echo "Setting zsh as default shell"
 # WARNING: The installation script will change the console and it will require to relaunch the installation script
 if [ -f ~/.oh-my-zsh ]; then
   echo "Install oh-my-zsh"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 #echo "Install zplug"
@@ -50,11 +50,13 @@ echo "Install ZSH themes"
 
 export ZSH_CUSTOM="$ZSH/custom"
 
-rm -rf $ZSH_CUSTOM/themes/powerlevel10k
-rm -rf $ZSH_CUSTOM/themes/lambda-zsh/
+if [ ! -d $ZSH_CUSTOM/themes/powerlevel10k ]; then
+  git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+fi
 
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-git clone https://github.com/cdimascio/lambda-zsh-theme.git $ZSH_CUSTOM/themes/lambda-zsh/
+if [ ! -d $ZSH_CUSTOM/themes/lambda-zsh/ ]; then
+  git clone https://github.com/cdimascio/lambda-zsh-theme.git $ZSH_CUSTOM/themes/lambda-zsh/
+fi
 
 # Pure power theme for powerlevel10k
 ln -sf $(pwd)/zsh/.purepower ~/.zsh/.purepower
