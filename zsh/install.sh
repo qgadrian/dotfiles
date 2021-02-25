@@ -46,7 +46,13 @@ ln -sf $(pwd)/zsh/profiles ~/.zsh/
 
 # Themes
 
+echo "Install ZSH themes"
+
 export ZSH_CUSTOM="$ZSH/custom"
+
+rm -rf $ZSH_CUSTOM/themes/powerlevel10k
+rm -rf $ZSH_CUSTOM/themes/lambda-zsh/
+
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/cdimascio/lambda-zsh-theme.git $ZSH_CUSTOM/themes/lambda-zsh/
 
