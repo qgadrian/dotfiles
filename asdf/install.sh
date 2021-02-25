@@ -1,5 +1,9 @@
 echo "Install asdf"
 
+# asdf team had the wonderful idea of return non 0 exit codes when plugins exist or
+# are installed
+set +e
+
 # install asdf
 if [ ! -d ~/.asdf ]; then
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.0
@@ -66,3 +70,5 @@ asdf global elm $ELM_VERSION
 asdf global postgres $POSTGRES_VERSION
 asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
+
+set -e
