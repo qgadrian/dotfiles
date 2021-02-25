@@ -20,13 +20,18 @@ git clone https://github.com/powerline/fonts.git --depth=1
 ./fonts/install.sh
 rm -rf fonts
 
+echo "Cleaning old zsh data"
+OLD_MV_TIMESTAMP=$(date +%Y%m%d%H%M%S)
+
 #cp .zshrc ~/.zshrc
 if [ -f ~/.zshrc ]; then
-	mv ~/.zshrc ~/.zshrc.old.deleteme
+  echo "Moving old .zshrc to .zshrc.old.deleteme"
+  mv ~/.zshrc ~/.zshrc.old.$OLD_MV_TIMESTAMP
 fi
 
 if [ -d ~/.zsh ]; then
-  mv ~/.zsh ~/.zsh.old.deleteme
+  echo "Moving old .zsh/ to .zsh.old.deleteme/"
+  mv ~/.zsh ~/.zsh.old.$OLD_MV_TIMESTAMP
 fi
 
 if [ ! -d ~/.zsh ]; then
