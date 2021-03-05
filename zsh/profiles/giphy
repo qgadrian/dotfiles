@@ -1,0 +1,10 @@
+# See Giphy docs for more info
+# https://developers.giphy.com/docs/api/endpoint#search
+
+function gif() {
+    url="http://api.giphy.com/v1/gifs/search?limit=1&q=$1&api_key="
+    gif=$(curl -s $url | jq -r '.data[0].images.fixed_height.url')
+    gif=$gif/fullscreen
+
+    echo "![$1]($gif)" | pbcopy
+}
