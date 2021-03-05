@@ -9,6 +9,7 @@ brew install \
   nmap \
   telnet \
   npm \
+  gh\
   peco \
   bat \
   ripgrep \
