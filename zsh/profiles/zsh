@@ -1,5 +1,3 @@
-echo "Setup zsh"
-
 # Ignore duplicates and spacebar commands in history
 HISTCONTROL=ignoreboth
 
