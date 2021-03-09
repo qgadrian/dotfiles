@@ -44,6 +44,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Export gpg tty
 export GPG_TTY=$(tty)
 
+#echo "Import aliases"
 for file in ~/.zsh/profiles/*; do
   source "$file"
 done
