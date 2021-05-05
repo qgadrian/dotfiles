@@ -15,6 +15,10 @@ alias gl="git log"
 alias gs="git status"
 alias gst="git stash"
 alias gsp="git stash pop"
+alias gau="git add -u"
+alias gfe="git fetch"
+alias grc="git rebase --continue"
+alias gra="git rebase --abort"
 
 gpsu() {
   git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
