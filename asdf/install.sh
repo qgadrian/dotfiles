@@ -71,4 +71,6 @@ asdf global postgres $POSTGRES_VERSION
 asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
 
+npm -i -g yarn
+
 set -e
