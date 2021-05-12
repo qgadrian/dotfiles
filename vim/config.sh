@@ -1,6 +1,9 @@
 echo "Install vimrc"
 
 brew install neovim
+# for mac m1
+#brew install cmake luarocks luv
+#brew install -s --HEAD neovim
 
 # Vim-plug
 

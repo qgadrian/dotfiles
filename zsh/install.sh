@@ -41,8 +41,8 @@ if [ ! -d ~/.zsh ]; then
   mkdir ~/.zsh
 fi
 
-ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
-ln -sf $(pwd)/zsh/profiles ~/.zsh/
+ln -sf $(pwd)/zsh/.zshrc /Users/$(whoami)/.zshrc
+ln -sf $(pwd)/zsh/profiles /Users/$(whoami)/.zsh/
 
 # Themes
 

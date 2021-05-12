@@ -7,6 +7,10 @@
 " this needs to be first in order to make hightlight override of the colorscheme to work
 syntax on
 
+" widths
+set textwidth=80
+set numberwidth=2
+
 "
 " Enable true colors
 "

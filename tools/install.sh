@@ -25,6 +25,7 @@ brew install \
   dash \
   firefox \
   activitywatch \
+  smartmontools \
 
 brew link --force gettext
 
