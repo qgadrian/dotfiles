@@ -93,22 +93,25 @@ gar() {
     | jq -r '.[].name'
 }
 
+# Deploys selected branch. The current path needs to be a git project
+# See https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event
 function gat() {
-  if [ -z $1 ]; then
-    echo "Usage:"
-    echo "\tgat [repo_name]"
-  else
-    echo "Trigger action for repo $1"
+  CURRENT_PATH_PROJECT=$(git remote get-url origin | xargs basename -s .git)
 
-    curl \
+  echo "Trigger action for repo $PROJECT"
+
+  OWNER=${1:-qgadrian}
+  WORKFLOW_ID=${2:-manual_staging_deploy.yml}
+
+  git branch -l | peco | sed 's/\* //g' | xargs -I{} curl \
       -X POST \
       -H "Authorization: token $GITHUB_TOKEN" \
       -H "Accept: application/vnd.github.v3+json" \
-      https://api.github.com/repos/qgadrian/$1/dispatches \
-      -d '{"event_type":"requested"}'
-  fi
+      https://api.github.com/repos/$OWNER/$CURRENT_PATH_PROJECT/actions/workflows/$WORKFLOW_ID/dispatches \
+      -d '{"ref":"{}"}' \
 }
 
+# Deploys master branch on the selected project (slow)
 gart () {
   gar | peco | xargs -I{} curl \
       -X POST \
