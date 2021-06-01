@@ -1,0 +1,101 @@
+{
+  "def": {
+    "prefix": ["def"],
+    "body": [
+      "@spec $1 :: $2",
+      "def $1 do",
+      "\t$3",
+      "end"
+    ],
+    "description": "def function including @spec"
+  },
+  "defp": {
+    "prefix": ["defp"],
+    "body": [
+      "@spec $1 :: $2",
+      "defp $1 do",
+      "\t$3",
+      "end"
+    ],
+    "description": "defp function including @spec"
+  },
+  "defd": {
+    "prefix": ["defd"],
+    "body": [
+      "@doc \"\"\"",
+      "$1",
+      "\"\"\"",
+      "@spec $2 :: $3",
+      "def $2 do",
+      "\t$4",
+      "end"
+    ],
+    "description": "def function including @spec and @doc"
+  },
+  "defm": {
+    "prefix": ["defm"],
+    "body": [
+      "defmodule $1 do",
+      "@moduledoc \"\"\"",
+      "$2",
+      "\"\"\"",
+      "\t$3",
+      "end"
+    ],
+    "description": "def module"
+  },
+  "doc": {
+    "prefix": ["doc"],
+    "body": [
+      "@doc \"\"\"",
+      "$1",
+      "\"\"\""
+    ],
+    "description": "add @doc"
+  },
+  "mdoc": {
+    "prefix": ["mdoc"],
+    "body": [
+      "@moduledoc \"\"\"",
+      "$1",
+      "\"\"\""
+    ],
+    "description": "add @moduledoc"
+  },
+  "ins": {
+    "prefix": ["inspect"],
+    "body": [
+      "IO.inspect $1"
+    ],
+    "description": "IO.inspect"
+  },
+  "iex": {
+    "prefix": ["iex"],
+    "body": [
+      "require IEx",
+      "IEx.pry"
+    ],
+    "description": "IEx.pry for debuggin"
+  },
+  "desc": {
+    "prefix": ["desc"],
+    "body": [
+      "describe \"$1\" do",
+      "\ttest \"$2\" do",
+      "\t\t$3",
+      "\tend",
+      "end"
+    ],
+    "description": "describe function for testing"
+  },
+  "test": {
+    "prefix": ["test"],
+    "body": [
+      "test \"$1\" do",
+      "\t$2",
+      "end"
+    ],
+    "description": "test function for testing"
+  }
+}
+

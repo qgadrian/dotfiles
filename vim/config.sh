@@ -1,6 +1,8 @@
 echo "Install vimrc"
 
-brew install neovim
+brew tap jason0x43/homebrew-neovim-nightly
+brew cask install neovim-nightly
+
 # for mac m1
 #brew install cmake luarocks luv
 #brew install -s --HEAD neovim
@@ -57,15 +59,6 @@ ln -s $(pwd)/vim/spell ~/.vim/spell
 
 # Neded by command-t
 # cd /Users/adrian/.vim/bundle/command-t && rake make
-
-#
-# neovim
-#
-
-brew install neovim
-mkdir -p ~/.config/nvim
-touch ~/.config/nvim/init.vim
-echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after\nlet &packpath = &runtimepath\nsource ~/.vimrc" > ~/.config/nvim/init.vim
 
 # neovim
 pip3 install neovim-remote

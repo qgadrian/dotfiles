@@ -21,10 +21,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   Plug 'amiorin/vim-project' " Projects path switcher
 
+  " Nvim plugins
+  Plug 'neovim/nvim-lspconfig'
+  " auto install language servers
+  Plug 'kabouzeid/nvim-lspinstall'
+  Plug 'hrsh7th/nvim-compe'
+
   " Linters and stuff
   Plug 'ntpeters/vim-better-whitespace' " Show trailing whitespace and spaces before a tab:
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  "Plug 'prettier/vim-prettier', { 'do': 'npm install' }
   Plug 'scrooloose/nerdcommenter' " Comments
 
   " Syntax color
@@ -78,8 +82,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'gcmt/taboo.vim' " Tab rename
 
   " Snippets
-  "Plug 'SirVer/ultisnips' " engine
-  "Plug 'honza/vim-snippets' " templates
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
 
   " micromanagement
   Plug 'ActivityWatch/aw-watcher-vim'

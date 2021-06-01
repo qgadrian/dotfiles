@@ -89,7 +89,7 @@ noremap <Up> g<Up>
 noremap <Down> g<Down>
 
 " remove mappings that override jumps
-unmap <C-i>
+" unmap <C-i>
 
 " highlight current word without moving
 :nnoremap <leader>hw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
