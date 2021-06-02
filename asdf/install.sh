@@ -40,36 +40,37 @@ asdf plugin-add rust
 asdf plugin-add elm
 asdf plugin-add postgres
 asdf plugin-add nodejs
+asdf plugin-add golang
 
-ELIXIR_VERSION=1.11
-ERLANG_VERSION=23.2
+ELIXIR_VERSION=1.12
+ERLANG_VERSION=24.0
 HASKELL_VERSION=9.0.1
 RUST_VERSION=1.50.0
-TERRAFORM_VERSION=0.14.7
-ELM_VERSION=0.19.1
+TERRAFORM_VERSION=0.15.4
 POSTGRES_VERSION=13.2
-NODEJS_VERSION=15.10.0
+NODEJS_VERSION=16.2.0
 RUBY_VERSION=2.7.2
+GOLANG_VERSION=1.16.4
 
 asdf install elixir $ELIXIR_VERSION-otp-22
 asdf install erlang $ERLANG_VERSION
 asdf install terraform $TERRAFORM_VERSION
 asdf install haskell $HASKELL_VERSION
 asdf install rust $RUST_VERSION
-asdf install elm $ELM_VERSION
 asdf install postgres $POSTGRES_VERSION
 asdf install nodejs $NODEJS_VERSION
 asdf install ruby $RUBY_VERSION
+asdf install golang $GOLANG_VERSION
 
 asdf global erlang $ERLANG_VERSION
 asdf global elixir $ELIXIR_VERSION-otp-22
 asdf global terraform $TERRAFORM_VERSION
 asdf global haskell $HASKELL_VERSION
 asdf global rust $RUST_VERSION
-asdf global elm $ELM_VERSION
 asdf global postgres $POSTGRES_VERSION
 asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
+asdf global golang $GOLANG_VERSION
 
 npm -i -g yarn
 
