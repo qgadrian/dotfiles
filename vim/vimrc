@@ -41,9 +41,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   "Plug 'junegunn/limelight.vim' " Highlight parts of the buffer
   Plug 'chrisbra/Colorizer'
 
-  "Plug 'nvim-lua/popup.nvim'
-  "Plug 'nvim-lua/plenary.nvim'
-  "Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 
   " Docs
   Plug 'rizzatti/dash.vim'
