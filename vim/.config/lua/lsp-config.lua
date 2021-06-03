@@ -14,6 +14,9 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap=true, silent=true }
 
+  -- not sure how and if this is needed, keeping it for reference
+  --client.resolved_capabilities.document_formatting = true
+
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -34,13 +37,25 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local eslint = {
-  lintCommand = './node_modules/bin/eslint.js -f compact --stdin',
-  lintStdin = true,
-  lintFormats = {'%f: line %l, col %c, %trror - %m', '%f: line %l, col %c, %tarning - %m'},
-  lintIgnoreExitCode = true,
-  formatCommand = './node_modules/bin/eslint.js --stdin --fix',
-  formatStdin = true,
+--local eslint = {
+  --lintCommand = './node_modules/bin/eslint.js -f compact --stdin',
+  --lintStdin = true,
+  --lintFormats = {'%f: line %l, col %c, %trror - %m', '%f: line %l, col %c, %tarning - %m'},
+  --lintIgnoreExitCode = true,
+  --formatCommand = './node_modules/bin/eslint.js --stdin --fix',
+  --formatStdin = true,
+--}
+
+--local languages = require 'efm/languages'
+
+local eslint = require 'efm/eslint'
+local prettier = require 'efm/prettier'
+
+local languages = {
+  typescript = {prettier, eslint},
+  typescriptreact = {prettier, eslint},
+  javascript = {prettier, eslint},
+  javascriptreact = {prettier, eslint},
 }
 
 local function setup_servers()
@@ -50,16 +65,16 @@ local function setup_servers()
     if server == "efm" then
       nvim_lsp[server].setup({
         --cmd = {"efm-langserver", "-c", "~/.config/nvim/efm-langserver/config.yaml"},
-        init_options = { documentFormatting = true },
-        filetypes = {'javascript', 'javascriptreact'},
+        init_options = {
+          documentFormatting = true,
+          codeAction = true,
+        },
+        filetypes = vim.tbl_keys(languages),
         settings = {
           rootMarkers = {
             ".git/"
           },
-          languages = {
-            javascript = {eslint},
-            javascriptreact = {eslint},
-          }
+          languages = languages
         }
       })
     else
