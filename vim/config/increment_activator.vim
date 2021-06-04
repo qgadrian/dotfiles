@@ -24,7 +24,9 @@ let g:increment_activator_filetype_candidates = {
 \     ['context', 'describe', 'it'],
 \   ],
 \   'javascript': [
-\     ['mount', 'shallow', 'render']
+\     ['let', 'const'],
+\     ['mount', 'shallow', 'render'],
+\     ['console.log', 'console.warn', 'console.error'],
 \   ],
 \   'elixir': [
 \     ['def', 'defp'],
