@@ -72,6 +72,4 @@ asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
 asdf global golang $GOLANG_VERSION
 
-npm -i -g yarn
-
 set -e

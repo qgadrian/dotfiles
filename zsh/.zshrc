@@ -54,3 +54,6 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+
+# yarn global path
+export PATH="$HOME/.yarn/bin:$PATH"
