@@ -39,6 +39,8 @@ asdf plugin-add haskell
 asdf plugin-add rust
 asdf plugin-add elm
 asdf plugin-add postgres
+# To update GPG keys run:
+# ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf plugin-add nodejs
 asdf plugin-add golang
 
