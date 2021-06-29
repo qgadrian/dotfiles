@@ -1,4 +1,3 @@
-lua << EOF
 local nvim_lsp = require('lspconfig')
 require'lspinstall'.setup()
 
@@ -37,8 +36,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local eslint = require 'efm/eslint'
-local prettier = require 'efm/prettier'
+local eslint = require 'lsp/efm/eslint'
+local prettier = require 'lsp/efm/prettier'
 
 local languages = {
   typescript = {prettier, eslint},
@@ -82,4 +81,3 @@ end
 
 -- Map :Format to vim.lsp.buf.formatting()
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
-EOF
