@@ -307,3 +307,6 @@ MyModule
 env
 dataloaders
 iPhone
+TestFlight
+passphrase
+AppStore
