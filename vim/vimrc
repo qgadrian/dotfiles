@@ -43,7 +43,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'nvim-telescope/telescope.nvim'
 
   " Status tab
-  Plug 'itchyny/lightline.vim'
+  Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
   " Markdown
   Plug 'godlygeek/tabular'
@@ -65,6 +65,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " fzf
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+
+  " icons
+  Plug 'kyazdani42/nvim-web-devicons'
 
   " NERDTree
   Plug 'scrooloose/nerdtree'
