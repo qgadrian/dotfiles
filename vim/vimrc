@@ -32,21 +32,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'scrooloose/nerdcommenter' " Comments
 
   " Syntax color
-  "Plug 'sheerun/vim-polyglot' " Enable syntax color
   Plug 'elixir-editors/vim-elixir' " Elixir
   Plug 'vim-ruby/vim-ruby'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'leafgarland/typescript-vim'
-  "Plug 'junegunn/limelight.vim' " Highlight parts of the buffer
-  Plug 'chrisbra/Colorizer'
 
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
-
-  " Docs
-  Plug 'rizzatti/dash.vim'
 
   " Status tab
   Plug 'itchyny/lightline.vim'
@@ -63,7 +57,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   "Plug 'romainl/vim-cool' " Remove highlight when move the cursor after a search
   Plug 'mhinz/vim-startify' " Startup buffer
   Plug 'airblade/vim-rooter' " Change to project root directory automatically
-  "Plug 'lfv89/vim-interestingwords' " Highlight multiple words
   Plug 'onsails/lspkind-nvim' " Add pictogramas to LSP
 
   " Substitution
