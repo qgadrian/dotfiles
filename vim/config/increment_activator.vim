@@ -16,7 +16,8 @@ let g:increment_activator_filetype_candidates = {
 \     ['get', 'post', 'put', 'delete'],
 \     ['pick', 'reword', 'edit', 'squash', 'fixup', 'drop', 'reset', 'merge'],
 \     ['next', 'previous'],
-\     ['desc', 'asc']
+\     ['desc', 'asc'],
+\     ['male', 'female', 'non binary'],
 \   ],
 \   'ruby': [
 \     ['first', 'last'],
