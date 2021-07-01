@@ -1,3 +1,5 @@
+-- https://github.com/glepnir/galaxyline.nvim
+
 local gl = require("galaxyline")
 local gls = gl.section
 local condition = require("galaxyline.condition")
@@ -74,17 +76,17 @@ gls.left[4] = {
     }
 }
 
-gls.left[5] = {
-    current_dir = {
-        provider = function()
-            local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-            return "  " .. dir_name .. " "
-        end,
-        highlight = {colors.grey_fg2, colors.lightbg2},
-        separator = " ",
-        separator_highlight = {colors.lightbg2, colors.statusline_bg}
-    }
-}
+--gls.left[5] = {
+    --current_dir = {
+        --provider = function()
+            --local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+            --return "  " .. dir_name .. " "
+        --end,
+        --highlight = {colors.grey_fg2, colors.lightbg2},
+        --separator = " ",
+        --separator_highlight = {colors.lightbg2, colors.statusline_bg}
+    --}
+--}
 
 local checkwidth = function()
     local squeeze_width = vim.fn.winwidth(0) / 2
@@ -137,19 +139,19 @@ gls.left[10] = {
     }
 }
 
-gls.right[1] = {
-    lsp_status = {
-        provider = function()
-            local clients = vim.lsp.get_active_clients()
-            if next(clients) ~= nil then
-                return " " .. "  " .. " LSP "
-            else
-                return ""
-            end
-        end,
-        highlight = {colors.grey_fg2, colors.statusline_bg}
-    }
-}
+--gls.right[1] = {
+    --lsp_status = {
+        --provider = function()
+            --local clients = vim.lsp.get_active_clients()
+            --if next(clients) ~= nil then
+                --return " " .. "  " .. " LSP "
+            --else
+                --return ""
+            --end
+        --end,
+        --highlight = {colors.grey_fg2, colors.statusline_bg}
+    --}
+--}
 
 gls.right[2] = {
     GitIcon = {
@@ -206,31 +208,31 @@ gls.right[5] = {
     }
 }
 
-gls.right[6] = {
-    some_icon = {
-        provider = function()
-            return " "
-        end,
-        separator = "",
-        separator_highlight = {colors.green, colors.lightbg},
-        highlight = {colors.lightbg, colors.green}
-    }
-}
+--gls.right[6] = {
+    --some_icon = {
+        --provider = function()
+            --return " "
+        --end,
+        --separator = "",
+        --separator_highlight = {colors.green, colors.lightbg},
+        --highlight = {colors.lightbg, colors.green}
+    --}
+--}
 
-gls.right[7] = {
-    line_percentage = {
-        provider = function()
-            local current_line = vim.fn.line(".")
-            local total_line = vim.fn.line("$")
+--gls.right[7] = {
+    --line_percentage = {
+        --provider = function()
+            --local current_line = vim.fn.line(".")
+            --local total_line = vim.fn.line("$")
 
-            if current_line == 1 then
-                return "  Top "
-            elseif current_line == vim.fn.line("$") then
-                return "  Bot "
-            end
-            local result, _ = math.modf((current_line / total_line) * 100)
-            return "  " .. result .. "% "
-        end,
-        highlight = {colors.green, colors.lightbg}
-    }
-}
+            --if current_line == 1 then
+                --return "  Top "
+            --elseif current_line == vim.fn.line("$") then
+                --return "  Bot "
+            --end
+            --local result, _ = math.modf((current_line / total_line) * 100)
+            --return "  " .. result .. "% "
+        --end,
+        --highlight = {colors.green, colors.lightbg}
+    --}
+--}
