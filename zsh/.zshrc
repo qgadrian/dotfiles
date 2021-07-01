@@ -51,8 +51,6 @@ done
 
 export ZSH_THEME=powerlevel10k/powerlevel10k
 
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 
@@ -66,3 +64,8 @@ export PATH="$HOME/.yarn/bin:$PATH"
 #Disable jvm when installing asdf plugins
 
 export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+# NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim &
+# remote vim connections to this host. WIP
+# export NVIM_LISTEN_ADDRESS=127.0.0.1:6666
