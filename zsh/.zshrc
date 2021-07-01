@@ -57,3 +57,11 @@ export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 
 # yarn global path
 export PATH="$HOME/.yarn/bin:$PATH"
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+#Disable jvm when installing asdf plugins
+
+export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
