@@ -69,15 +69,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   " icons
   Plug 'kyazdani42/nvim-web-devicons'
 
-  " NERDTree
-  Plug 'scrooloose/nerdtree'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " colors
-  Plug 'mortonfox/nerdtree-clip' " copy file path from nerdtree
+  " tabs
+  "Plug 'akinsho/nvim-bufferline.lua'
+  Plug 'gcmt/taboo.vim' " Tab rename
+
+  " File tree
+  Plug 'kyazdani42/nvim-tree.lua'
 
   Plug 'easymotion/vim-easymotion' " Quick navigation
   Plug 'tpope/vim-vinegar' " Filetree
-  Plug 'gcmt/taboo.vim' " Tab rename
 
   " Snippets
   Plug 'hrsh7th/vim-vsnip'
