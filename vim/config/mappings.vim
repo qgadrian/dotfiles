@@ -4,6 +4,10 @@
 " ####################################################################
 "
 
+" Buffers management
+" Delete hidden buffers
+nnoremap <leader>bd :Bdelete! hidden<CR>
+
 "
 " Add empty lines without insert mode
 "
