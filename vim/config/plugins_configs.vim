@@ -30,11 +30,6 @@ nnoremap <silent> <leader>. :Files .<CR>
 nnoremap <silent> <leader>; :Rg<CR>
 
 "
-" Open cursor in Dash
-"
-noremap <leader>da :Dash<CR>
-
-"
 " Vim rooter
 "
 "let g:rooter_patterns = ['mix.lock'] " Auto project root cd

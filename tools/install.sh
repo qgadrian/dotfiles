@@ -22,7 +22,6 @@ brew install \
   go-jira \
   bettertouchtool \
   slack \
-  dash \
   firefox \
   activitywatch \
   smartmontools \

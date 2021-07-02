@@ -63,20 +63,9 @@ ln -s $(pwd)/vim/spell ~/.vim/spell
 # neovim
 pip3 install neovim-remote
 
-# dasht
-
-rm -rf $(pwd)/vim/dasht
-git clone git@github.com:sunaku/dasht.git $(pwd)/vim/dasht
-
 # wget its a depdency to get the docsets
 # w3m its needed to display the results
 brew install wget w3m
-
-sudo cp -r $(pwd)/vim/dasht/bin/ /usr/local/bin
-sudo cp -r $(pwd)/vim/dasht/man/man1/ /usr/local/share/man/man1
-
-# install docsets
-dasht-docsets-install elixir
 
 #install rust fixer
 rustup component add rustfmt
