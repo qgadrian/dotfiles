@@ -1,5 +1,6 @@
 if [[ $OSTYPE == darwin* && $CPUTYPE == arm64 ]]; then
   alias a64="arch -x86_64"
   alias brew64="arch -x86_64 brew"
+  alias yarn64="arch -x86_64 yarn"
 fi
 
