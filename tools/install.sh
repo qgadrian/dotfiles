@@ -25,6 +25,7 @@ brew install \
   firefox \
   activitywatch \
   smartmontools \
+  watchman \
 
 brew link --force gettext
 
