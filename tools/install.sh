@@ -43,3 +43,5 @@ brew install uptech/oss/alt
 
 # https://github.com/sharkdp/fd
 brew install fd
+
+source ./mas/install.sh

@@ -1,0 +1,3 @@
+function massi() {
+  mas search "$1" | peco | awk '{print $1;}' | xargs -I{} mas install {}
+}
