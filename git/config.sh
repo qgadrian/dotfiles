@@ -23,6 +23,8 @@ git config --global alias.p 'pull'
 git config --global alias.pr 'pull --rebase'
 git config --global alias.ap 'add -p'
 
+git config --global 'main'
+
 echo "Enable recursive cloning..."
 
 git config --global submodule.recurse true
