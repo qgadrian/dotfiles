@@ -9,6 +9,10 @@ read -p "Configure the Keyboard? " -n 1 -r; echo
   echo "Changes will be applied after restart"
 fi
 
+echo "Disable auto rearrange spaces based on most recent use"
+defaults write com.apple.dock mru-spaces -bool false
+# killall Dock
+
 source $(pwd)/mac/plugins/install.sh
 
 source $(pwd)/mac/window_management/install.sh
