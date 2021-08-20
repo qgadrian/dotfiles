@@ -99,3 +99,6 @@ noremap <Down> g<Down>
 :nnoremap <leader>hw :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " Remove search highlight
 nmap <esc><esc> :noh<return>
+
+" Telescope frecency
+noremap <silent> <leader><leader> <Cmd>lua require('telescope').extensions.frecency.frecency()<CR>
