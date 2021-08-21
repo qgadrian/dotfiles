@@ -65,6 +65,13 @@ local function setup_servers()
           languages = languages
         }
       })
+    elseif server == "typescript" then
+      nvim_lsp.tsserver.setup {
+        on_attach = function(client)
+          client.resolved_capabilities.document_formatting = false
+          on_attach(client)
+        end
+      }
     else
       nvim_lsp[server].setup({ on_attach = on_attach })
     end
