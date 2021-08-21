@@ -100,5 +100,6 @@ noremap <Down> g<Down>
 " Remove search highlight
 nmap <esc><esc> :noh<return>
 
-" Telescope frecency
-noremap <silent> <leader><leader> <Cmd>lua require('telescope').extensions.frecency.frecency()<CR>
+" Telescope plugins
+noremap <silent> <leader>fc <Cmd>lua require('telescope').extensions.frecency.frecency()<CR>
+noremap <silent> <leader>fp :lua require('telescope').extensions.projects.projects()<CR>
