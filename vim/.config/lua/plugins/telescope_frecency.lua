@@ -1,7 +1,7 @@
 --require"telescope".load_extension("frecency")
 --requires = {"tami5/sql.nvim"}
 
-local actions = require('telescope.actions')
+--local actions = require('telescope.actions')
 
 require('telescope').setup {
     defaults = {
@@ -23,7 +23,7 @@ require('telescope').setup {
         frecency = {
             show_scores = false,
             show_unindexed = true,
-            ignore_patterns = {"*.git/*", "*/tmp/*"},
+            ignore_patterns = {"*.git/*", "*/tmp/*", "*node_modules/*"},
         }
     }
 }

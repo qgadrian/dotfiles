@@ -44,6 +44,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-frecency.nvim'
   Plug 'tami5/sql.nvim' " for telescope-frecency
+  Plug 'ahmedkhalf/project.nvim' " for listing projects
 
   " Status tab
   Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
