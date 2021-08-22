@@ -38,13 +38,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'mxw/vim-jsx'
   Plug 'leafgarland/typescript-vim'
 
-  " telescope and file search
+  " Telescope
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-frecency.nvim'
   Plug 'tami5/sql.nvim' " for telescope-frecency
   Plug 'ahmedkhalf/project.nvim' " for listing projects
+  Plug 'nvim-telescope/telescope-github.nvim'
 
   " Status tab
   Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
