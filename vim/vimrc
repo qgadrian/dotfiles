@@ -94,9 +94,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Colors schemes
   "
   "Plug 'KeitaNakamura/neodark.vim'
-  Plug 'dracula/vim'
+  "Plug 'dracula/vim'
   "Plug 'joshdick/onedark.vim'
   "Plug 'rakr/vim-one'
+  Plug 'bluz71/vim-nightfly-guicolors'
 call plug#end()
 
 "
