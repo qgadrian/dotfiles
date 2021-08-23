@@ -1,4 +1,16 @@
-require 'plugins/telescope/telescope_frecency'
-require 'plugins/telescope/telescope_projects'
-require 'plugins/telescope/telescope_github'
-
+require('telescope').setup {
+  defaults = {
+    prompt_prefix = '🔍 ',
+    color_devicons = true
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
+      files = true
+    },
+    file_browser = {
+      hidden = true,
+      files = true
+    }
+  }
+}

@@ -7,10 +7,17 @@ brew cask install neovim-nightly
 #brew install cmake luarocks luv
 #brew install -s --HEAD neovim
 
-# Vim-plug
+######
+# Package manager
+#####
 
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+# Vim-plug
+#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# packer.nvim
+git clone https://github.com/wbthomason/packer.nvim \
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # If python crashes at start: ./install.py --clang-completer
 

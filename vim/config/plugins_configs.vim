@@ -16,14 +16,6 @@ let g:mix_format_silent_errors = 1
 map <leader>/ <plug>NERDCommenterToggle
 
 "
-" Markdown
-"
-let g:vim_markdown_folding_disabled = 1
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
-let vim_markdown_preview_github=1
-
-"
 " fzf
 "
 nnoremap <silent> <leader>. :Files .<CR>
@@ -55,10 +47,6 @@ let g:netrw_liststyle = 3
 " let g:netrw_browse_split = 4 " set current buffer as open target always
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-
-" Markdown preview
-let vim_markdown_preview_browser='Firefox'
-let vim_markdown_preview_hotkey='<C-S-p>'
 
 " Subtitution
 nmap s <plug>(SubversiveSubstitute)
