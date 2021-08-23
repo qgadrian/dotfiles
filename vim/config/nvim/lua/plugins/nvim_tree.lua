@@ -7,13 +7,13 @@ NVIM_TREE.config = function()
 
     --g.nvim_tree_side = "left"
     --g.nvim_tree_width = 45
-    g.nvim_tree_auto_resize = 1
-    g.nvim_tree_width_allow_resize = 1
+    --g.nvim_tree_auto_resize = 0
+    --g.nvim_tree_width_allow_resize = 0
     g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
     g.nvim_tree_gitignore = 1 -- 0 by default
     g.nvim_tree_auto_ignore_ft = {'startify'} -- don't open tree on specific filetypes.
     g.nvim_tree_auto_open = 0 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
-    g.nvim_tree_auto_close = 1 -- closes tree when it's the last window
+    g.nvim_tree_auto_close = 0 -- closes tree when it's the last window
     g.nvim_tree_quit_on_open = 1 -- closes tree when file's opened
     g.nvim_tree_follow = 1 -- 0 by default, this option allows the cursor to be updated when entering a buffer
     g.nvim_tree_indent_markers = 1 -- 0 by default, this option shows indent markers when folders are open
@@ -27,7 +27,9 @@ NVIM_TREE.config = function()
     g.nvim_tree_disable_netrw = 0 -- 1 by default, disables netrw
     g.nvim_tree_hijack_netrw = 1 -- 1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
     g.nvim_tree_update_cwd = 1 -- 0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
-    g.nvim_tree_disable_keybindings = 0
+    g.nvim_tree_group_empty = 1
+    g.nvim_tree_lsp_diagnostics = 1
+    g.nvim_tree_hijack_cursor = 1
 
     g.nvim_tree_show_icons = {
         git = 1,
@@ -96,6 +98,16 @@ NVIM_TREE.config = function()
         {key = "q", cb = tree_cb("close")},
         {key = "g?", cb = tree_cb("toggle_help")}
     }
+
+    vim.api.nvim_set_keymap('n', '-', ':NvimTreeToggle<CR>', {
+      noremap = true,
+      silent = true
+    })
+
+    vim.api.nvim_set_keymap('n', '<C-_>', ':NvimTreeToggle<CR>', {
+      noremap = true,
+      silent = true
+    })
 end
 
 return NVIM_TREE.config()

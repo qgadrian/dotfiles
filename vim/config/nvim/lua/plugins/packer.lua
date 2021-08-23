@@ -6,7 +6,7 @@ require('packer').startup(function()
   use 'Asheq/close-buffers.vim' -- Clear hidden buffers
   use 'mhinz/vim-startify' -- startup screen
   use 'nishigori/increment-activator' -- configs for incremented values
-  use 'easymotion/vim-easymotion' -- for quick navigation
+  use { 'easymotion/vim-easymotion', config = 'require("plugins/easymotion")' } -- for quick navigation
   use 'gcmt/taboo.vim' -- tab rename
   --use 'akinsho/nvim-bufferline.lua' -- tab plugin suppose to be better than taboo, didn't like it yet. TODO load config here
   use 'ActivityWatch/aw-watcher-vim' -- micromanagement
@@ -94,6 +94,6 @@ require('packer').startup(function()
   -- LSP
   use  { "neovim/nvim-lspconfig", config = 'require("lsp/config")' }
   use 'kabouzeid/nvim-lspinstall' -- auto install language servers
-  use 'hrsh7th/nvim-compe' -- completion
+  use { 'hrsh7th/nvim-compe', config = 'require("plugins/compe")' } -- completion
   use { 'onsails/lspkind-nvim', config = 'require("plugins/lspkind")' } -- add pictogramas to LSP
 end)
