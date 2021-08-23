@@ -32,7 +32,8 @@ require('packer').startup(function()
   -- Statusline
   use {
     'glepnir/galaxyline.nvim',
-    branch = 'main'
+    branch = 'main',
+    config = 'require("plugins/galaxyline")'
   }
 
   -- Snippets
@@ -57,34 +58,42 @@ require('packer').startup(function()
   }
 
   -- Causing problems at the time, interesting but disabled
-  --use {
-    --'nvim-telescope/telescope-frecency.nvim',
-    --config = 'require("plugins/telescope_extensions/frecency")',
-    --requires = {
-      --{'tami5/sql.nvim'}
-    --}
-  --}
+  use {
+    'nvim-telescope/telescope-frecency.nvim',
+    disable = true,
+    config = 'require("plugins/telescope_extensions/frecency")',
+    requires = {
+      {'tami5/sql.nvim'}
+    }
+  }
 
   use {
     "ahmedkhalf/project.nvim",
     config = 'require("plugins/telescope_extensions/projects")'
   }
 
+  -- File explorer
   use {
     'kyazdani42/nvim-tree.lua',
     --after="nvim-web-devicons",
+    disable = false,
     branch = "feat/open-on-dir",
-    config = function()
-      require "plugins/nvim_tree"
-    end
+    config = 'require("plugins/nvim_tree")'
+  }
+
+  use {
+    'scrooloose/nerdtree',
+    disable = true,
+    requires = {
+      {'tiagofumo/vim-nerdtree-syntax-highlight'},
+      {'mortonfox/nerdtree-clip'},
+      {'tpope/vim-vinegar'}
+    }
   }
 
   -- LSP
-  use  {
-    "neovim/nvim-lspconfig",
-    config = 'require("lsp/config")'
-  }
+  use  { "neovim/nvim-lspconfig", config = 'require("lsp/config")' }
   use 'kabouzeid/nvim-lspinstall' -- auto install language servers
   use 'hrsh7th/nvim-compe' -- completion
-  use 'onsails/lspkind-nvim' -- add pictogramas to LSP
+  use { 'onsails/lspkind-nvim', config = 'require("plugins/lspkind")' } -- add pictogramas to LSP
 end)

@@ -78,6 +78,7 @@ _G.packer_plugins = {
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/close-buffers.vim"
   },
   ["galaxyline.nvim"] = {
+    config = { 'require("plugins/galaxyline")' },
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
   },
@@ -86,14 +87,9 @@ _G.packer_plugins = {
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/increment-activator"
   },
   ["lspkind-nvim"] = {
+    config = { 'require("plugins/lspkind")' },
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
-  },
-  ["markdown-preview"] = {
-    config = { 'require("plugins/markdown_preview")' },
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/markdown-preview"
   },
   nerdcommenter = {
     loaded = true,
@@ -113,7 +109,7 @@ _G.packer_plugins = {
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-tree.lua"] = {
-    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins/nvim_tree\frequire\0" },
+    config = { 'require("plugins/nvim_tree")' },
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
@@ -183,6 +179,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/vim-markdown"
   },
+  ["vim-markdown-preview"] = {
+    config = { 'require("plugins/markdown_preview")' },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/vim-markdown-preview"
+  },
   ["vim-markdown-toc"] = {
     loaded = false,
     needs_bufread = true,
@@ -220,22 +222,30 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: project.nvim
-time([[Config for project.nvim]], true)
-require("plugins/telescope_extensions/projects")
-time([[Config for project.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require("lsp/config")
-time([[Config for nvim-lspconfig]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins/nvim_tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
+-- Config for: lspkind-nvim
+time([[Config for lspkind-nvim]], true)
+require("plugins/lspkind")
+time([[Config for lspkind-nvim]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require("plugins/telescope")
 time([[Config for telescope.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require("plugins/nvim_tree")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+require("plugins/telescope_extensions/projects")
+time([[Config for project.nvim]], false)
+-- Config for: galaxyline.nvim
+time([[Config for galaxyline.nvim]], true)
+require("plugins/galaxyline")
+time([[Config for galaxyline.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require("lsp/config")
+time([[Config for nvim-lspconfig]], false)
 -- Config for: vim-nightfly-guicolors
 time([[Config for vim-nightfly-guicolors]], true)
 require("config.colorscheme")
@@ -244,7 +254,7 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown-toc', 'markdown-preview'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown-preview', 'vim-markdown-toc'}, { ft = "markdown" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]

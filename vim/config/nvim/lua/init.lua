@@ -1,5 +1,1 @@
 require 'plugins/packer'
-require 'plugins/lspkind'
-require 'plugins/galaxyline'
---require 'plugins/bufferline'
-require 'plugins/nvim_tree'
