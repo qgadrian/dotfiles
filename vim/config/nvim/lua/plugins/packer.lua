@@ -11,7 +11,7 @@ require('packer').startup(function()
   --use 'akinsho/nvim-bufferline.lua' -- tab plugin suppose to be better than taboo, didn't like it yet. TODO load config here
   use 'ActivityWatch/aw-watcher-vim' -- micromanagement
   use 'mg979/vim-visual-multi' -- multiple cursors
-  use 'scrooloose/nerdcommenter' -- useful for toggle comments
+  use { 'scrooloose/nerdcommenter', config = 'require("plugins/nerdcommenter")' } -- useful for toggle comments
   use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces
   use 'tpope/vim-fugitive' -- git in vim
 
