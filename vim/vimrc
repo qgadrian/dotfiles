@@ -21,7 +21,7 @@ call plug#end()
 "
 " Import configs
 "
-for f in split(glob('~/.vim/config/*.vim'), '\n')
+for f in split(glob('~/.config/vim/*.vim'), '\n')
   exe 'source' f
 endfor
 

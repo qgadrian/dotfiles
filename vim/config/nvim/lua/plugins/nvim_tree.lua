@@ -5,8 +5,10 @@ NVIM_TREE.config = function()
 
     vim.o.termguicolors = true
 
-    g.nvim_tree_side = "left"
-    g.nvim_tree_width = 45
+    --g.nvim_tree_side = "left"
+    --g.nvim_tree_width = 45
+    g.nvim_tree_auto_resize = 1
+    g.nvim_tree_width_allow_resize = 1
     g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
     g.nvim_tree_gitignore = 1 -- 0 by default
     g.nvim_tree_auto_ignore_ft = {'startify'} -- don't open tree on specific filetypes.
@@ -19,12 +21,13 @@ NVIM_TREE.config = function()
     g.nvim_tree_git_hl = 0 -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
     g.nvim_tree_highlight_opened_files = 0 -- 0 by default, will enable folder and file icon highlight for opened files/directories.
     g.nvim_tree_root_folder_modifier = ":t" -- This is the default. See :help filename-modifiers for more options
-    g.nvim_tree_tab_open = 1 -- 0 by default, will open the tree when entering a new tab and the tree was previously open
+    g.nvim_tree_tab_open = 0 -- 0 by default, will open the tree when entering a new tab and the tree was previously open
     g.nvim_tree_allow_resize = 1 -- 1 by default, will resize the tree to its saved width when opening a file
     g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
-    g.nvim_tree_disable_netrw = 1 -- 1 by default, disables netrw
+    g.nvim_tree_disable_netrw = 0 -- 1 by default, disables netrw
     g.nvim_tree_hijack_netrw = 1 -- 1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
     g.nvim_tree_update_cwd = 1 -- 0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
+    g.nvim_tree_disable_keybindings = 0
 
     g.nvim_tree_show_icons = {
         git = 1,

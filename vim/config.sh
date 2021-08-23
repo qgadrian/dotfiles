@@ -26,8 +26,8 @@ if [ -d ~/.vimrc ]; then
 fi
 
 ln -sf $(pwd)/vim/vimrc ~/.vimrc
-ln -sf $(pwd)/vim/config/ ~/.vim/config
-ln -sf $(pwd)/vim/.config/ ~/.config/nvim
+ln -sf $(pwd)/vim/config/vim ~/.config/
+ln -sf $(pwd)/vim/config/nvim ~/.config/
 
 mkdir -p ~/.vim/backup
 mkdir -p ~/.vim/swp
