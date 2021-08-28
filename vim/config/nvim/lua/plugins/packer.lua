@@ -77,7 +77,6 @@ require('packer').startup(function()
     'kyazdani42/nvim-tree.lua',
     --after="nvim-web-devicons",
     disable = false,
-    branch = "feat/open-on-dir",
     config = 'require("plugins/nvim_tree")'
   }
 

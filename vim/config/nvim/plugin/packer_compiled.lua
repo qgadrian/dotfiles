@@ -225,14 +225,22 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: galaxyline.nvim
+time([[Config for galaxyline.nvim]], true)
+require("plugins/galaxyline")
+time([[Config for galaxyline.nvim]], false)
+-- Config for: vim-easymotion
+time([[Config for vim-easymotion]], true)
+require("plugins/easymotion")
+time([[Config for vim-easymotion]], false)
 -- Config for: vim-nightfly-guicolors
 time([[Config for vim-nightfly-guicolors]], true)
 require("config.colorscheme")
 time([[Config for vim-nightfly-guicolors]], false)
--- Config for: nerdcommenter
-time([[Config for nerdcommenter]], true)
-require("plugins/nerdcommenter")
-time([[Config for nerdcommenter]], false)
+-- Config for: lspkind-nvim
+time([[Config for lspkind-nvim]], true)
+require("plugins/lspkind")
+time([[Config for lspkind-nvim]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 require("plugins/telescope_extensions/projects")
@@ -245,6 +253,10 @@ time([[Config for nvim-compe]], false)
 time([[Config for nvim-lspconfig]], true)
 require("lsp/config")
 time([[Config for nvim-lspconfig]], false)
+-- Config for: nerdcommenter
+time([[Config for nerdcommenter]], true)
+require("plugins/nerdcommenter")
+time([[Config for nerdcommenter]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require("plugins/telescope")
@@ -253,23 +265,11 @@ time([[Config for telescope.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 require("plugins/nvim_tree")
 time([[Config for nvim-tree.lua]], false)
--- Config for: galaxyline.nvim
-time([[Config for galaxyline.nvim]], true)
-require("plugins/galaxyline")
-time([[Config for galaxyline.nvim]], false)
--- Config for: lspkind-nvim
-time([[Config for lspkind-nvim]], true)
-require("plugins/lspkind")
-time([[Config for lspkind-nvim]], false)
--- Config for: vim-easymotion
-time([[Config for vim-easymotion]], true)
-require("plugins/easymotion")
-time([[Config for vim-easymotion]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown-preview', 'vim-markdown-toc'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown-toc', 'vim-markdown-preview'}, { ft = "markdown" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
