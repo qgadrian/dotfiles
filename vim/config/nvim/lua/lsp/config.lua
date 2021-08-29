@@ -49,10 +49,16 @@ local languages = {
 local function setup_servers()
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
+
+  -- nvim-cmp capabilities
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
   for _, server in pairs(servers) do
     if server == "efm" then
       nvim_lsp[server].setup({
         --cmd = {"efm-langserver", "-c", "~/.config/nvim/efm-langserver/config.yaml"},
+        capabilities = capabilities,
         init_options = {
           documentFormatting = true,
           codeAction = true,
@@ -67,13 +73,17 @@ local function setup_servers()
       })
     elseif server == "typescript" then
       nvim_lsp.tsserver.setup {
+        capabilities = capabilities,
         on_attach = function(client)
           client.resolved_capabilities.document_formatting = false
           on_attach(client)
         end
       }
     else
-      nvim_lsp[server].setup({ on_attach = on_attach })
+      nvim_lsp[server].setup({
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
     end
   end
 end

@@ -91,8 +91,21 @@ require('packer').startup(function()
   }
 
   -- LSP
-  use  { "neovim/nvim-lspconfig", config = 'require("lsp/config")' }
+  use {
+    'neovim/nvim-lspconfig',
+    after = 'cmp-nvim-lsp',
+    config = 'require("lsp/config")'
+  }
   use 'kabouzeid/nvim-lspinstall' -- auto install language servers
-  use { 'hrsh7th/nvim-compe', config = 'require("plugins/compe")' } -- completion
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      {'hrsh7th/cmp-buffer', after = 'nvim-cmp'},
+      {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'},
+      {'hrsh7th/cmp-emoji', after = 'nvim-cmp'},
+      {'hrsh7th/cmp-path', after = 'nvim-cmp'}
+    },
+    config = 'require("plugins/nvim-cmp")'
+  } -- completion
   use { 'onsails/lspkind-nvim', config = 'require("plugins/lspkind")' } -- add pictogramas to LSP
 end)

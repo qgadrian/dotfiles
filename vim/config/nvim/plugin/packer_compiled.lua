@@ -77,6 +77,35 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/close-buffers.vim"
   },
+  ["cmp-buffer"] = {
+    after_files = { "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-buffer/after/plugin/cmp_buffer.lua" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-buffer"
+  },
+  ["cmp-emoji"] = {
+    after_files = { "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-emoji/after/plugin/cmp_emoji.lua" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-emoji"
+  },
+  ["cmp-nvim-lsp"] = {
+    after = { "nvim-lspconfig" },
+    after_files = { "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp"
+  },
+  ["cmp-path"] = {
+    after_files = { "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-path"
+  },
   ["galaxyline.nvim"] = {
     config = { 'require("plugins/galaxyline")' },
     loaded = true,
@@ -96,15 +125,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nerdcommenter"
   },
-  ["nvim-compe"] = {
-    config = { 'require("plugins/compe")' },
+  ["nvim-cmp"] = {
+    after = { "cmp-buffer", "cmp-emoji", "cmp-path", "cmp-nvim-lsp" },
     loaded = true,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    only_config = true
   },
   ["nvim-lspconfig"] = {
     config = { 'require("lsp/config")' },
+    load_after = {},
     loaded = true,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    needs_bufread = false,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
   },
   ["nvim-lspinstall"] = {
     loaded = true,
@@ -225,38 +256,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: galaxyline.nvim
-time([[Config for galaxyline.nvim]], true)
-require("plugins/galaxyline")
-time([[Config for galaxyline.nvim]], false)
--- Config for: vim-easymotion
-time([[Config for vim-easymotion]], true)
-require("plugins/easymotion")
-time([[Config for vim-easymotion]], false)
--- Config for: vim-nightfly-guicolors
-time([[Config for vim-nightfly-guicolors]], true)
-require("config.colorscheme")
-time([[Config for vim-nightfly-guicolors]], false)
--- Config for: lspkind-nvim
-time([[Config for lspkind-nvim]], true)
-require("plugins/lspkind")
-time([[Config for lspkind-nvim]], false)
--- Config for: project.nvim
-time([[Config for project.nvim]], true)
-require("plugins/telescope_extensions/projects")
-time([[Config for project.nvim]], false)
--- Config for: nvim-compe
-time([[Config for nvim-compe]], true)
-require("plugins/compe")
-time([[Config for nvim-compe]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require("lsp/config")
-time([[Config for nvim-lspconfig]], false)
--- Config for: nerdcommenter
-time([[Config for nerdcommenter]], true)
-require("plugins/nerdcommenter")
-time([[Config for nerdcommenter]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require("plugins/telescope")
@@ -265,11 +264,51 @@ time([[Config for telescope.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 require("plugins/nvim_tree")
 time([[Config for nvim-tree.lua]], false)
+-- Config for: galaxyline.nvim
+time([[Config for galaxyline.nvim]], true)
+require("plugins/galaxyline")
+time([[Config for galaxyline.nvim]], false)
+-- Config for: vim-easymotion
+time([[Config for vim-easymotion]], true)
+require("plugins/easymotion")
+time([[Config for vim-easymotion]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("plugins/nvim-cmp")
+time([[Config for nvim-cmp]], false)
+-- Config for: lspkind-nvim
+time([[Config for lspkind-nvim]], true)
+require("plugins/lspkind")
+time([[Config for lspkind-nvim]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+require("plugins/telescope_extensions/projects")
+time([[Config for project.nvim]], false)
+-- Config for: nerdcommenter
+time([[Config for nerdcommenter]], true)
+require("plugins/nerdcommenter")
+time([[Config for nerdcommenter]], false)
+-- Config for: vim-nightfly-guicolors
+time([[Config for vim-nightfly-guicolors]], true)
+require("config.colorscheme")
+time([[Config for vim-nightfly-guicolors]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd cmp-buffer ]]
+vim.cmd [[ packadd cmp-path ]]
+vim.cmd [[ packadd cmp-nvim-lsp ]]
+vim.cmd [[ packadd nvim-lspconfig ]]
+
+-- Config for: nvim-lspconfig
+require("lsp/config")
+
+vim.cmd [[ packadd cmp-emoji ]]
+time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown-toc', 'vim-markdown-preview'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown-preview', 'vim-markdown-toc'}, { ft = "markdown" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
