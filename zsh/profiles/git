@@ -27,6 +27,10 @@ gpsu() {
   git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
 }
 
+gfp() {
+  git format-patch -$1 HEAD
+}
+
 # Commits
 alias gitco="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git co"
 alias gitpo="git push -u origin"
