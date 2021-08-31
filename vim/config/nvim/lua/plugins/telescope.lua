@@ -1,7 +1,8 @@
 require('telescope').setup {
   defaults = {
     prompt_prefix = '🔍 ',
-    color_devicons = true
+    color_devicons = true,
+    file_ignore_patterns = {".git", "deps", "node_modules"}
   },
   pickers = {
     find_files = {
