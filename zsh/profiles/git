@@ -64,6 +64,10 @@ gls() {
   git log --stat HEAD~$1..HEAD
 }
 
+glag() {
+  git log --all --grep=$1
+}
+
 alias glpa="git log -p"
 alias glsa="git log --stat"
 
