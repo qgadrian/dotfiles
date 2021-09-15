@@ -30,6 +30,7 @@ NVIM_TREE.config = function()
     g.nvim_tree_group_empty = 1
     g.nvim_tree_lsp_diagnostics = 1
     g.nvim_tree_hijack_cursor = 1
+    g.nvim_tree_disable_window_picker = 0
 
     g.nvim_tree_show_icons = {
         git = 1,

@@ -75,7 +75,6 @@ require('packer').startup(function()
   -- File explorer
   use {
     'kyazdani42/nvim-tree.lua',
-    --after="nvim-web-devicons",
     disable = false,
     config = 'require("plugins/nvim_tree")'
   }
