@@ -98,3 +98,6 @@ endfunction
 "
 set lazyredraw
 set ttyfast
+
+" Automatically equalize splits when Vim is resized
+autocmd VimResized * wincmd =
