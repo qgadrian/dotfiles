@@ -125,16 +125,8 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nerdcommenter"
   },
-  nerdtree = {
-    loaded = true,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nerdtree"
-  },
-  ["nerdtree-clip"] = {
-    loaded = true,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nerdtree-clip"
-  },
   ["nvim-cmp"] = {
-    after = { "cmp-path", "cmp-emoji", "cmp-buffer", "cmp-nvim-lsp" },
+    after = { "cmp-emoji", "cmp-nvim-lsp", "cmp-buffer", "cmp-path" },
     loaded = true,
     only_config = true
   },
@@ -232,10 +224,6 @@ _G.packer_plugins = {
     needs_bufread = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/vim-markdown-toc"
   },
-  ["vim-nerdtree-syntax-highlight"] = {
-    loaded = true,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/vim-nerdtree-syntax-highlight"
-  },
   ["vim-nightfly-guicolors"] = {
     config = { 'require("config.colorscheme")' },
     loaded = true,
@@ -253,10 +241,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
-  ["vim-vinegar"] = {
-    loaded = true,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/vim-vinegar"
-  },
   ["vim-visual-multi"] = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/vim-visual-multi"
@@ -268,10 +252,22 @@ _G.packer_plugins = {
   ["vim-vsnip-integ"] = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
+  },
+  ["winshift.nvim"] = {
+    loaded = true,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/winshift.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require("plugins/telescope")
+time([[Config for telescope.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require("plugins/nvim_tree")
+time([[Config for nvim-tree.lua]], false)
 -- Config for: lspkind-nvim
 time([[Config for lspkind-nvim]], true)
 require("plugins/lspkind")
@@ -284,10 +280,10 @@ time([[Config for vim-easymotion]], false)
 time([[Config for nerdcommenter]], true)
 require("plugins/nerdcommenter")
 time([[Config for nerdcommenter]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require("plugins/nvim-cmp")
-time([[Config for nvim-cmp]], false)
+-- Config for: vim-nightfly-guicolors
+time([[Config for vim-nightfly-guicolors]], true)
+require("config.colorscheme")
+time([[Config for vim-nightfly-guicolors]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 require("plugins/telescope_extensions/projects")
@@ -296,27 +292,19 @@ time([[Config for project.nvim]], false)
 time([[Config for galaxyline.nvim]], true)
 require("plugins/galaxyline")
 time([[Config for galaxyline.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require("plugins/telescope")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require("plugins/nvim_tree")
-time([[Config for nvim-tree.lua]], false)
--- Config for: vim-nightfly-guicolors
-time([[Config for vim-nightfly-guicolors]], true)
-require("config.colorscheme")
-time([[Config for vim-nightfly-guicolors]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("plugins/nvim-cmp")
+time([[Config for nvim-cmp]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
+vim.cmd [[ packadd cmp-buffer ]]
 vim.cmd [[ packadd cmp-nvim-lsp ]]
 vim.cmd [[ packadd nvim-lspconfig ]]
 
 -- Config for: nvim-lspconfig
 require("lsp/config")
 
-vim.cmd [[ packadd cmp-buffer ]]
 vim.cmd [[ packadd cmp-emoji ]]
 vim.cmd [[ packadd cmp-path ]]
 time([[Sequenced loading]], false)
