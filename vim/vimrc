@@ -99,3 +99,6 @@ set nocursorline
 set norelativenumber
 syntax sync minlines=256
 set regexpengine=1
+
+" force decimal-based arithmetic increments
+set nrformats=
