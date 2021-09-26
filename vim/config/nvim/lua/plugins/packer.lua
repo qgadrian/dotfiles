@@ -28,6 +28,7 @@ require('packer').startup(function()
   -- use 'junegunn/vim-easy-align'
   use { 'JamshedVesuna/vim-markdown-preview', ft = 'markdown', config = 'require("plugins/markdown_preview")' }
   use { 'mzlogin/vim-markdown-toc', ft = 'markdown' } -- auto toc
+  use { 'sindrets/winshift.nvim', config = 'require("plugins/winshift")' } -- window move
 
   -- Statusline
   use {
