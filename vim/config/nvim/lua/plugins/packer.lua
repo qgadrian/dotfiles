@@ -14,6 +14,7 @@ require('packer').startup(function()
   use { 'scrooloose/nerdcommenter', config = 'require("plugins/nerdcommenter")' } -- useful for toggle comments
   use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces
   use 'tpope/vim-fugitive' -- git in vim
+  use 'tpope/vim-vinegar'
 
   -- Syntax color
   use 'elixir-editors/vim-elixir'
@@ -71,23 +72,6 @@ require('packer').startup(function()
   use {
     "ahmedkhalf/project.nvim",
     config = 'require("plugins/telescope_extensions/projects")'
-  }
-
-  -- File explorer
-  use {
-    'kyazdani42/nvim-tree.lua',
-    disable = false,
-    config = 'require("plugins/nvim_tree")'
-  }
-
-  use {
-    'scrooloose/nerdtree',
-    disable = true,
-    requires = {
-      {'tiagofumo/vim-nerdtree-syntax-highlight'},
-      {'mortonfox/nerdtree-clip'},
-      {'tpope/vim-vinegar'}
-    }
   }
 
   -- LSP
