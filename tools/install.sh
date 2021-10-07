@@ -26,6 +26,7 @@ brew install \
   activitywatch \
   smartmontools \
   watchman \
+  terminal-notifier \
 
 brew link --force gettext
 
