@@ -32,10 +32,15 @@ require('packer').startup(function()
   use { 'sindrets/winshift.nvim', config = 'require("plugins/winshift")' } -- window move
 
   -- Statusline
+  --use {
+    --'glepnir/galaxyline.nvim',
+    --branch = 'main',
+    --config = 'require("plugins/galaxyline")'
+  --}
   use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
-    config = 'require("plugins/galaxyline")'
+    'shadmansaleh/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = 'require("plugins/lualine")'
   }
 
   -- Snippets

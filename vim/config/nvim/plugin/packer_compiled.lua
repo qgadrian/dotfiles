@@ -106,11 +106,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/opt/cmp-path"
   },
-  ["galaxyline.nvim"] = {
-    config = { 'require("plugins/galaxyline")' },
-    loaded = true,
-    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
-  },
   ["increment-activator"] = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/increment-activator"
@@ -120,13 +115,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
+  ["lualine.nvim"] = {
+    config = { 'require("plugins/lualine")' },
+    loaded = true,
+    path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
   nerdcommenter = {
     config = { 'require("plugins/nerdcommenter")' },
     loaded = true,
     path = "/Users/adrian/.local/share/nvim/site/pack/packer/start/nerdcommenter"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-buffer", "cmp-emoji", "cmp-nvim-lsp", "cmp-path" },
+    after = { "cmp-emoji", "cmp-buffer", "cmp-path", "cmp-nvim-lsp" },
     loaded = true,
     only_config = true
   },
@@ -276,37 +276,37 @@ time([[Config for nerdcommenter]], false)
 time([[Config for telescope.nvim]], true)
 require("plugins/telescope")
 time([[Config for telescope.nvim]], false)
--- Config for: vim-nightfly-guicolors
-time([[Config for vim-nightfly-guicolors]], true)
-require("config.colorscheme")
-time([[Config for vim-nightfly-guicolors]], false)
--- Config for: winshift.nvim
-time([[Config for winshift.nvim]], true)
-require("plugins/winshift")
-time([[Config for winshift.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require("plugins/nvim-cmp")
 time([[Config for nvim-cmp]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require("plugins/lualine")
+time([[Config for lualine.nvim]], false)
 -- Config for: vim-easymotion
 time([[Config for vim-easymotion]], true)
 require("plugins/easymotion")
 time([[Config for vim-easymotion]], false)
--- Config for: galaxyline.nvim
-time([[Config for galaxyline.nvim]], true)
-require("plugins/galaxyline")
-time([[Config for galaxyline.nvim]], false)
+-- Config for: winshift.nvim
+time([[Config for winshift.nvim]], true)
+require("plugins/winshift")
+time([[Config for winshift.nvim]], false)
+-- Config for: vim-nightfly-guicolors
+time([[Config for vim-nightfly-guicolors]], true)
+require("config.colorscheme")
+time([[Config for vim-nightfly-guicolors]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd cmp-emoji ]]
-vim.cmd [[ packadd cmp-path ]]
-vim.cmd [[ packadd cmp-buffer ]]
 vim.cmd [[ packadd cmp-nvim-lsp ]]
 vim.cmd [[ packadd nvim-lspconfig ]]
 
 -- Config for: nvim-lspconfig
 require("lsp/config")
 
+vim.cmd [[ packadd cmp-buffer ]]
+vim.cmd [[ packadd cmp-emoji ]]
+vim.cmd [[ packadd cmp-path ]]
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
