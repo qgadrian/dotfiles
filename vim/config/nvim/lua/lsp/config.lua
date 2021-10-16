@@ -45,6 +45,9 @@ lsp_installer.on_server_ready(function(server)
     capabilities = capabilities,
   }
 
+  -- nvim-cmp capabilities
+  opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
   -- (optional) Customize the options passed to the server
   -- if server.name == "tsserver" then
   --     opts.root_dir = function() ... end
