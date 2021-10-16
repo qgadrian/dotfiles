@@ -85,7 +85,7 @@ require('packer').startup(function()
     after = 'cmp-nvim-lsp',
     config = 'require("lsp/config")'
   }
-  use 'kabouzeid/nvim-lspinstall' -- auto install language servers
+  use { 'williamboman/nvim-lsp-installer' }
   use {
     'hrsh7th/nvim-cmp',
     requires = {

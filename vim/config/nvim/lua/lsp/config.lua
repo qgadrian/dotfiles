@@ -1,5 +1,4 @@
 local nvim_lsp = require('lspconfig')
-require'lspinstall'.setup()
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -36,65 +35,25 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local eslint = require 'lsp/efm/eslint'
-local prettier = require 'lsp/efm/prettier'
+-- Advanced configuration docs:
+-- https://github.com/williamboman/nvim-lsp-installer/wiki/Advanced-Configuration
+local lsp_installer = require("nvim-lsp-installer")
 
-local languages = {
-  typescript = {prettier, eslint},
-  typescriptreact = {prettier, eslint},
-  javascript = {prettier, eslint},
-  javascriptreact = {prettier, eslint},
-}
+lsp_installer.on_server_ready(function(server)
+  local opts = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
+  -- (optional) Customize the options passed to the server
+  -- if server.name == "tsserver" then
+  --     opts.root_dir = function() ... end
+  -- end
 
-  -- nvim-cmp capabilities
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-  for _, server in pairs(servers) do
-    if server == "efm" then
-      nvim_lsp[server].setup({
-        --cmd = {"efm-langserver", "-c", "~/.config/nvim/efm-langserver/config.yaml"},
-        capabilities = capabilities,
-        init_options = {
-          documentFormatting = true,
-          codeAction = true,
-        },
-        filetypes = vim.tbl_keys(languages),
-        settings = {
-          rootMarkers = {
-            ".git/"
-          },
-          languages = languages
-        }
-      })
-    elseif server == "typescript" then
-      nvim_lsp.tsserver.setup {
-        capabilities = capabilities,
-        on_attach = function(client)
-          client.resolved_capabilities.document_formatting = false
-          on_attach(client)
-        end
-      }
-    else
-      nvim_lsp[server].setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-    end
-  end
-end
-
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+  -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+  server:setup(opts)
+  vim.cmd [[ do User LspAttachBuffers ]]
+end)
 
 -- Map :Format to vim.lsp.buf.formatting()
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
