@@ -8,10 +8,9 @@ require('packer').startup(function()
   use 'nishigori/increment-activator' -- configs for incremented values
   use { 'easymotion/vim-easymotion', config = 'require("plugins/easymotion")' } -- for quick navigation
   use 'gcmt/taboo.vim' -- tab rename
-  --use 'akinsho/nvim-bufferline.lua' -- tab plugin suppose to be better than taboo, didn't like it yet. TODO load config here
   use 'ActivityWatch/aw-watcher-vim' -- micromanagement
   use 'mg979/vim-visual-multi' -- multiple cursors
-  use { 'scrooloose/nerdcommenter', config = 'require("plugins/nerdcommenter")' } -- useful for toggle comments
+  use { 'numToStr/Comment.nvim', config = 'require("plugins/comment")' }
   use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces
   use 'tpope/vim-fugitive' -- git in vim
   use 'tpope/vim-vinegar'
