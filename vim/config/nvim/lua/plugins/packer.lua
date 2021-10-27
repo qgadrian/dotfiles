@@ -37,7 +37,7 @@ require('packer').startup(function()
     --config = 'require("plugins/galaxyline")'
   --}
   use {
-    'shadmansaleh/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = 'require("plugins/lualine")'
   }
