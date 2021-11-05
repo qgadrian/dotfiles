@@ -319,3 +319,5 @@ function
 whitelist
 whitelisted
 resolvers
+redis
+ChargeBee
