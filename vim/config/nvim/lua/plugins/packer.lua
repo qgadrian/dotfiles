@@ -23,6 +23,9 @@ require('packer').startup(function()
   use 'leafgarland/typescript-vim'
   use 'plasticboy/vim-markdown'
 
+  -- code comments
+  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = 'require("plugins/todo-comments")' }
+
   -- Markdown
   use 'godlygeek/tabular'
   -- use 'junegunn/vim-easy-align'
