@@ -33,12 +33,6 @@ require('packer').startup(function()
   use { 'mzlogin/vim-markdown-toc', ft = 'markdown' } -- auto toc
   use { 'sindrets/winshift.nvim', config = 'require("plugins/winshift")' } -- window move
 
-  -- Statusline
-  --use {
-    --'glepnir/galaxyline.nvim',
-    --branch = 'main',
-    --config = 'require("plugins/galaxyline")'
-  --}
   use {
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
