@@ -27,6 +27,7 @@ brew install \
   smartmontools \
   watchman \
   terminal-notifier \
+  speedtest-cli \
 
 brew link --force gettext
 
