@@ -92,9 +92,3 @@ alias gsd="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash sh
 alias gsdrop="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash drop {}"
 alias gsl="git stash list"
 alias gsa="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash apply {}"
-
-# GitHub
-
-alias ghrl="gh run list --limit 5"
-alias ghrlw="gh run watch -i1 && terminal-notifier -message 'GitHub run is
-done'"
