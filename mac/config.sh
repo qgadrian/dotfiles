@@ -16,8 +16,11 @@ defaults write com.apple.dock mru-spaces -bool false
 # Hide removable media on desktop
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
-sudo softwareupdate --install-rosetta
-echo "Install rosetta"
+read -p "Install rosetta? " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Install rosetta"
+    sudo softwareupdate --install-rosetta
+fi
 
 read -p "Install command line tools? (the install will fail if already installed) " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
