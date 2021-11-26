@@ -11,10 +11,6 @@ brew install neovim-nightly
 # Package manager
 #####
 
-# Vim-plug
-#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 # packer.nvim
 git clone https://github.com/wbthomason/packer.nvim \
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
@@ -35,12 +31,6 @@ mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/sessions
 
 vim +PluginInstall +qall
-
-#
-# CoC needs to install LanguageServer engines
-#
-# Install CoC example:
-# :CoCInstall coc-elixir
 
 #
 # Fuzzy search deps
@@ -73,6 +63,3 @@ pip3 install neovim-remote
 # wget its a depdency to get the docsets
 # w3m its needed to display the results
 brew install wget w3m
-
-#install rust fixer
-rustup component add rustfmt
