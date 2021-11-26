@@ -93,4 +93,16 @@ require('packer').startup(function()
     config = 'require("plugins/nvim-cmp")'
   } -- completion
   use { 'onsails/lspkind-nvim', config = 'require("plugins/lspkind")' } -- add pictogramas to LSP
+
+  -- diagnostics alerts & visuals
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = 'require("plugins/trouble")'
+  }
+
+  use({
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu'
+  })
 end)
