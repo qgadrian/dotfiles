@@ -74,4 +74,10 @@ asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
 asdf global golang $GOLANG_VERSION
 
+# If there is a permissions problem with asdf
+# sudo chown -R $(whoami) ~/.asdf
+
+# To make ruby work with ARM a host
+# /usr/local/Homebrew/bin/brew install libffi libyaml zlib readline
+
 set -e

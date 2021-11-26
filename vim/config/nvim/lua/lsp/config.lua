@@ -56,6 +56,13 @@ lsp_installer.on_server_ready(function(server)
     end
   end
 
+  if server.name == "stylelint_lsp" then
+    opts.on_attach = function (client, bufnr)
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+    end
+  end
+
   if server.name == "eslint" then
     opts.on_attach = function (client, bufnr)
       -- neovim's LSP client does not currently support dynamic capabilities registration, so we need to set
