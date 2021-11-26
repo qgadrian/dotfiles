@@ -29,7 +29,7 @@ echo "Install asdf plugins"
 brew install autoconf wxmac
 
 # exclude java deps with erlang installation
-echo "\n#Disable jvm when installing asdf plugins\n\nexport KERL_CONFIGURE_OPTIONS=\"--disable-debug --without-javac\"" >> ~/.zshrc
+# echo "\n#Disable jvm when installing asdf plugins\n\nexport KERL_CONFIGURE_OPTIONS=\"--disable-debug --without-javac\"" >> ~/.zshrc
 
 asdf plugin-add erlang
 asdf plugin-add elixir
