@@ -16,8 +16,14 @@ defaults write com.apple.dock mru-spaces -bool false
 # Hide removable media on desktop
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
-echo "Install command line tools"
-xcode-select --install
+sudo softwareupdate --install-rosetta
+echo "Install rosetta"
+
+read -p "Install command line tools? (the install will fail if already installed) " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Install command line tools"
+    xcode-select --install
+fi
 
 # Automatic Restart on System Freeze
 #sudo systemsetup -setrestartfreeze on
