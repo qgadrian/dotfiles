@@ -44,4 +44,8 @@ source $(pwd)/mac/plugins/install.sh
 
 source $(pwd)/mac/window_management/install.sh
 
-source $(pwd)/mac/fonts/install.sh
+read -p "Install fonts? " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    source $(pwd)/mac/fonts/install.sh
+fi
+
