@@ -5,18 +5,6 @@ let mapleader = ' ' " Remap leader key
 
 " Project switcher
 set rtp+=~/.local/share/nvim/plugged/vim-project/
-"set rtp+=~/.vim/bundle/vim-project
-
-call plug#begin('~/.local/share/nvim/plugged')
-  " alternatively, pass a path where Vundle should install plugins
-  "call vundle#begin('~/some/path/here')
-
-  Plug 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
-
-  " fzf
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-call plug#end()
 
 "
 " Import configs
