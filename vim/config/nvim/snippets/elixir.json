@@ -69,6 +69,13 @@
     ],
     "description": "IO.inspect"
   },
+  "insi": {
+    "prefix": ["inspect"],
+    "body": [
+      "IO.inspect($1, limit: :infinity)"
+    ],
+    "description": "IO.inspect"
+  },
   "iex": {
     "prefix": ["iex"],
     "body": [
