@@ -1,3 +1,8 @@
 alias be="bundle exec"
 alias ber="bundle exec rspec"
 alias bec="bundle exec rails c"
+
+if [[ $OSTYPE == darwin* && $CPUTYPE == arm64 ]]; then
+  export RUBY_CONFIGURE_OPTS="--with-zlib-dir=/opt/homebrew/opt/zlib --with-openssl-dir=/opt/homebrew/opt/openssl@1.1 --with-readline-dir=/opt/homebrew/opt/readline --with-libyaml-dir=/opt/homebrew/opt/libyaml"
+  export RUBY_CFLAGS="-Wno-error=implicit-function-declaration"
+fi
