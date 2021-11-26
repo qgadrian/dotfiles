@@ -41,6 +41,8 @@ echo "\n\nThings to do now:\n"
 echo "\n\t* Restart the computer"
 echo "\n\t* Start accepting the \"unverified developer madness\""
 echo "\n\t* Open KarabinerElements and complete the setup"
+echo "\n\t* Update Firefox to avoid exit full screen on escape (about:config ->
+browser.fullscreen.exit_on_escape)"
 echo "\n"
 echo "########################"
 echo "########################\n"
