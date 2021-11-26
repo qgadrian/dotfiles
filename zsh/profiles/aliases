@@ -22,9 +22,6 @@ alias itn=" itunes next"
 alias itpr=" itunes previous"
 alias itpp=" itunes playlists | peco | xargs -I{} -to itunes play playlist {}"
 
-## annoying yarn shortcut
-alias y=""
-
 function pk9() {
   kill -9 $(ps aux | peco --query "$LBUFFER" | awk '{ print $2 }')
 }

@@ -38,7 +38,7 @@ plugins=(
   python
   vagrant
   virtualenv
-  yarn
+  # yarn
 )
 
 # Path to your oh-my-zsh installation.
