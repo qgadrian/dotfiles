@@ -1,6 +1,9 @@
-endpoint: https://github.atlassian.net
-project: github
-login: adrian
+#!/bin/sh
+
+echo """
+endpoint: $JIRA_SERVER
+project: $JIRA_PROJECT
+login: $JIRA_USER
 password-source: keyring
 editor: nvr -s
 
@@ -13,12 +16,12 @@ custom-commands:
         type: STRING
         required: false
     script: |-
-      if [ -n "$JIRA_PROJECT" ]; then
+      if [ -n \"$JIRA_PROJECT\" ]; then
           # if `project: ...` configured just list the issues for current project
-          {{jira}} list --template {{args.TEMPLATE}} --query "sprint in openSprints() and type != epic and resolution = unresolved and project=$JIRA_PROJECT ORDER BY rank asc, created"
+          {{jira}} list --template {{args.TEMPLATE}} --query \"sprint in openSprints() and type != epic and resolution = unresolved and project=$JIRA_PROJECT ORDER BY rank asc, created\"
       else
           # otherwise list issues for all project
-          {{jira}} list --template {{args.TEMPLATE}} --query "sprint in openSprints() and type != epic and resolution = unresolved ORDER BY rank asc, created"
+          {{jira}} list --template {{args.TEMPLATE}} --query \"sprint in openSprints() and type != epic and resolution = unresolved ORDER BY rank asc, created\"
       fi
 
   - name: mine
@@ -29,10 +32,11 @@ custom-commands:
         type: STRING
         required: false
     script: |-
-      if [ -n "$JIRA_PROJECT" ]; then
+      if [ -n \"$JIRA_PROJECT\" ]; then
           # if `project: ...` configured just list the issues for current project
-          {{jira}} list --template {{args.TEMPLATE}} --query "sprint in openSprints() and resolution = unresolved and assignee=currentuser() and project = $JIRA_PROJECT ORDER BY priority asc, created"
+          {{jira}} list --template {{args.TEMPLATE}} --query \"sprint in openSprints() and resolution = unresolved and assignee=currentuser() and project = $JIRA_PROJECT ORDER BY priority asc, created\"
       else
           # otherwise list issues for all project
-          {{jira}} list --template {{args.TEMPLATE}} --query "sprint in openSprints() and resolution = unresolved and assignee=currentuser() ORDER BY priority asc, created"
+          {{jira}} list --template {{args.TEMPLATE}} --query \"sprint in openSprints() and resolution = unresolved and assignee=currentuser() ORDER BY priority asc, created\"
       fi
+"""
