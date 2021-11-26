@@ -10,10 +10,10 @@ if [ ! -d ~/.asdf ]; then
 fi
 
 # setup zsh
-echo '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
-echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
-echo '\n. $HOME/.asdf/asdf.sh' >> ~/.bash_profile
-echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bash_profile
+# echo '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
+# echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+# echo '\n. $HOME/.asdf/asdf.sh' >> ~/.bash_profile
+# echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bash_profile
 
 source ~/.bash_profile
 
