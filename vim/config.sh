@@ -1,11 +1,6 @@
 echo "Install vimrc"
 
-brew tap jason0x43/homebrew-neovim-nightly
-brew install neovim-nightly
-
-# for mac m1
-#brew install cmake luarocks luv
-#brew install -s --HEAD neovim
+brew install neovim
 
 ######
 # Package manager
