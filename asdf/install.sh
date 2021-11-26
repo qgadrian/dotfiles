@@ -37,7 +37,6 @@ asdf plugin-add ruby # if having any problem with ruby, try run `asdf reshim rub
 asdf plugin-add terraform
 asdf plugin-add haskell
 asdf plugin-add rust
-asdf plugin-add elm
 asdf plugin-add postgres
 # To update GPG keys run:
 # ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
@@ -48,9 +47,9 @@ ELIXIR_VERSION=1.12
 ERLANG_VERSION=24.0
 HASKELL_VERSION=9.0.1
 RUST_VERSION=1.50.0
-TERRAFORM_VERSION=0.15.4
+TERRAFORM_VERSION=1.0.9
 POSTGRES_VERSION=13.2
-NODEJS_VERSION=16.2.0
+NODEJS_VERSION=16.9.1
 RUBY_VERSION=2.7.2
 GOLANG_VERSION=1.16.4
 
