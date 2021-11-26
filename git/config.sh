@@ -23,7 +23,7 @@ git config --global alias.p 'pull'
 git config --global alias.pr 'pull --rebase'
 git config --global alias.ap 'add -p'
 
-git config --global 'main'
+git config --global init.defaultBranch main
 
 echo "Enable recursive cloning..."
 
