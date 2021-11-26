@@ -1,7 +1,7 @@
 echo "Install vimrc"
 
 brew tap jason0x43/homebrew-neovim-nightly
-brew cask install neovim-nightly
+brew install neovim-nightly
 
 # for mac m1
 #brew install cmake luarocks luv
@@ -55,7 +55,7 @@ brew install the_silver_searcher
 #echo "Install nerd fonts"
 
 #brew tap caskroom/fonts
-#brew cask install font-meslo-nerd-font
+#brew install font-meslo-nerd-font
 
 # Needed by markdown preview
 brew install grip
