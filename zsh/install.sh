@@ -48,6 +48,7 @@ ln -sf $(pwd)/zsh/profiles /Users/$(whoami)/.zsh/
 
 echo "Install ZSH themes"
 
+export ZSH=~/.oh-my-zsh
 export ZSH_CUSTOM="$ZSH/custom"
 
 if [ ! -d $ZSH_CUSTOM/themes/powerlevel10k ]; then
