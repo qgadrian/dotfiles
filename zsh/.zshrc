@@ -39,7 +39,7 @@ export LANG=en_US.UTF-8
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Export gpg tty
 export GPG_TTY=$(tty)
@@ -56,19 +56,7 @@ export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 
 # yarn global path
 export PATH="$HOME/.yarn/bin:$PATH"
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-#Disable jvm when installing asdf plugins
-
-export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
-
-#if [[ $OSTYPE == darwin* && $CPUTYPE == arm64 ]]; then
-export PATH=$HOME/.bin:/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/Users/adrian/.asdf/shims:/Users/adrian/.asdf/shims:/Users/adrian/.asdf/bin:/usr/local/opt/python@3.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/adrian/Library/Android/sdk/emulator:/Users/adrian/Library/Android/sdk/tools:/Users/adrian/Library/Android/sdk/tools/bin:/Users/adrian/Library/Android/sdk/platform-tools
-#fi
-
+export PATH="$HOME/.bin:$PATH"
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
 # NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim &

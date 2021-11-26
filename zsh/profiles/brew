@@ -1,4 +1,4 @@
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
 alias buu="brew update && brew upgrade && brew upgrade --cask"
 alias brewclean="brew bundle dump && brew bundle --force cleanup && rm Brewfile"

@@ -1,6 +1,10 @@
+export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
 # Disable jvm when installing asdf plugins
-
 export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
