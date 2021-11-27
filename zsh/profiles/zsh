@@ -53,8 +53,6 @@ export ENHANCD_FILTER=peco
 #                                   Options
 # =============================================================================
 
-#autoload -Uz promptinit
-#promptinit
 #prompt pure
 
 setopt hist_expire_dups_first # Clear duplicates when trimming internal hist.

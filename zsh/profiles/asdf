@@ -1,3 +1,6 @@
+autoload -U compaudit compinit
+compinit
+
 export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
 
 . $HOME/.asdf/asdf.sh
