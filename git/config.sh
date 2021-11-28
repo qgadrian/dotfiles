@@ -4,9 +4,12 @@ echo "\t\tCONFIGURING GIT"
 echo "###################################"
 echo "###################################"
 
-echo "Setting git default editor..."
+echo "Setting git configuration..."
 
 git config --global core.editor 'nvr --remote-wait-silent'
+
+ln -sf $(pwd)/.global_gitignore $HOME/
+git config --global core.excludesfile $HOME/.global_gitignore
 
 echo "Setting git aliases..."
 
@@ -35,8 +38,9 @@ git config --global push.followTags true
 
 echo "Add git gone script"
 
-mkdir -p ~/.bin
-sudo ln -sf $(pwd)/scripts/git-gone.sh ~/.bin/git-gone
+mkdir -p $HOME/.bin
+ln -sf $(pwd)/scripts/git-gone.sh $HOME/.bin/git-gone
+
 
 echo "Configure better diff tool"
 
