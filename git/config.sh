@@ -39,7 +39,7 @@ git config --global push.followTags true
 echo "Add git gone script"
 
 mkdir -p $HOME/.bin
-ln -sf $(pwd)/scripts/git-gone.sh $HOME/.bin/git-gone
+ln -sf $(pwd)/git/scripts/git-gone.sh $HOME/.bin/git-gone
 
 
 echo "Configure better diff tool"
