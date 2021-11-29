@@ -36,10 +36,12 @@ echo "Enable follow tags option"
 
 git config --global push.followTags true
 
-echo "Add git gone script"
+echo "Add git scripts"
 
 mkdir -p $HOME/.bin
+
 ln -sf $(pwd)/git/scripts/git-gone.sh $HOME/.bin/git-gone
+ln -sf $(pwd)/git/scripts/git-new.sh $HOME/.bin/git-new
 
 
 echo "Configure better diff tool"
