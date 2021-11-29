@@ -63,7 +63,3 @@ git config --global color.diff.commit     "yellow"
 git config --global color.diff.old        "red"
 git config --global color.diff.new        "green"
 git config --global color.diff.whitespace "red reverse"
-
-#echo "Install Github command line tool (hub)"
-
-#brew install hub
