@@ -38,6 +38,10 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults write -g com.apple.trackpad.scaling -float 1.5
 defaults write -g com.apple.mouse.scaling -float 1.5
 
+# Increasing sound quality for Bluetooth headphones/headsets
+# Maybe you want to check https://www.reddit.com/r/apple/comments/5rfdj6/pro_tip_significantly_improve_bluetooth_audio/
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
 read -p "Install rosetta? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Install rosetta"
