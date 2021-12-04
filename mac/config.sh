@@ -35,7 +35,8 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
 # Trackpad speed
-defaults write -g com.apple.trackpad.scaling -float 1
+defaults write -g com.apple.trackpad.scaling -float 1.5
+defaults write -g com.apple.mouse.scaling -float 1.5
 
 read -p "Install rosetta? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
