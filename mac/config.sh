@@ -1,5 +1,15 @@
 #!/bin/bash
 
+read -p "Set the hostname? " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Introduce the host name: "
+    read HOST_NAME
+    sudo scutil --set ComputerName $HOST_NAME
+    sudo scutil --set HostName $HOST_NAME
+    sudo scutil --set LocalHostName $HOST_NAME
+    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $HOST_NAME
+fi
+
 read -p "Configure the Keyboard? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
       defaults write -g ApplePressAndHoldEnabled -bool true
