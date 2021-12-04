@@ -9,12 +9,23 @@ read -p "Configure the Keyboard? " -n 1 -r; echo
   echo "Changes will be applied after restart"
 fi
 
-echo "Disable auto rearrange spaces based on most recent use"
+echo "Setting macOS configurations (restart required to apply some of them)"
+
+# Disable auto rearrange spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 # killall Dock
 
 # Hide removable media on desktop
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowPathbar -bool false
+
+# Enable tap to click preference (restart required)
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+# Trackpad speed
+defaults write -g com.apple.trackpad.scaling -float 1
 
 read -p "Install rosetta? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
