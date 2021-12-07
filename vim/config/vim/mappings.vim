@@ -40,6 +40,9 @@ vnoremap <leader>x "_x
 nnoremap <leader>X "_X
 vnoremap <leader>X "_X
 
+" Easy word yank to clipboard
+nnoremap <leader>yw "*yiw
+
 "
 " Terminal
 "
