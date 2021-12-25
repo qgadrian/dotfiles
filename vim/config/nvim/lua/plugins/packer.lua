@@ -8,7 +8,7 @@ require('packer').startup(function()
   use 'nishigori/increment-activator' -- configs for incremented values
   use { 'easymotion/vim-easymotion', config = 'require("plugins/easymotion")' } -- for quick navigation
   use 'gcmt/taboo.vim' -- tab rename
-  use 'ActivityWatch/aw-watcher-vim' -- micromanagement
+  -- use 'ActivityWatch/aw-watcher-vim' -- micromanagement
   use 'mg979/vim-visual-multi' -- multiple cursors
   use { 'numToStr/Comment.nvim', config = 'require("plugins/comment")' }
   use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces
