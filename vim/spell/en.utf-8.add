@@ -322,3 +322,5 @@ resolvers
 redis
 ChargeBee
 Trackpad
+CloudFront
+cheatsheets
