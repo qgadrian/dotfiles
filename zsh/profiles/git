@@ -37,17 +37,19 @@ alias gitpo="git push -u origin"
 alias gpo="git push -u origin"
 alias grfcp="git reflog | peco | sed 's/ .*//g' | xargs -I{} -ot git cherry-pick {}"
 
-alias gcm="git co master"
+function gcm() {
+  git co ${1:-master}
+}
 
 grim() {
-  git rebase -i $(git rev-parse origin/master)
+  git rebase -i $(git rev-parse origin/${1:-master})
 }
 
 function grm() {
-  git co master && \
+  git co ${1:-master} && \
   git pr && \
   git co - && \
-  git rebase origin/master
+  git rebase origin/${1:-master}
 }
 
 function gitpof() {
@@ -80,7 +82,7 @@ alias gaap="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o 
 alias gitmerge="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git merge"
 alias gitrebase="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git rebase"
 ## Misc aliases (clear, track...)
-alias gitclear="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
+alias gitclear="git branch --merged | egrep -v '(^\*|master|main|dev)' | xargs git branch -d"
 alias gittrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
 alias grp="git rev-parse --abbrev-ref HEAD | pbcopy"
 alias gitprune="git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
