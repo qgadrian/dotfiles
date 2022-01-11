@@ -9,6 +9,7 @@ cmp.setup({
   },
   completion = {completeopt = 'menu,menuone,noinsert'},
   sources = {
+    { name = 'vsnip' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'emoji' },

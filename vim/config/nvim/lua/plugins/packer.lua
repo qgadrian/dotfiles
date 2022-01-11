@@ -42,6 +42,7 @@ require('packer').startup(function()
   -- Snippets
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
+  use 'hrsh7th/cmp-vsnip'
 
   -- Themes
   use {
