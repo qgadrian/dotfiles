@@ -3,6 +3,10 @@
 " Custom functions
 " ####################################################################
 "
+"
+" TODO migrate this functions to the new nvim lua API
+" See: https://github.com/neovim/neovim/pull/16752
+"
 
 "
 " Open HTML in browser
