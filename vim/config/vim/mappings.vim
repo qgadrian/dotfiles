@@ -110,8 +110,5 @@ noremap <silent> <leader>fp :lua require('telescope').extensions.projects.projec
 " execute the q macro over just the selected lines
 xnoremap Q :'<,'>:normal @q<CR>
 
-" netrw
-nmap - :Explore<CR>
-
 " quick search and replace
 nmap <Leader>ss :%s///g<Left><Left><Left>
