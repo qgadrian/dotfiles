@@ -1,6 +1,8 @@
 {
   "def": {
-    "prefix": ["def"],
+    "prefix": [
+      "def"
+    ],
     "body": [
       "@spec $1 :: $2",
       "def $1 do",
@@ -10,7 +12,9 @@
     "description": "def function including @spec"
   },
   "defp": {
-    "prefix": ["defp"],
+    "prefix": [
+      "defp"
+    ],
     "body": [
       "@spec $1 :: $2",
       "defp $1 do",
@@ -20,7 +24,9 @@
     "description": "defp function including @spec"
   },
   "defd": {
-    "prefix": ["defd"],
+    "prefix": [
+      "defd"
+    ],
     "body": [
       "@doc \"\"\"",
       "$1",
@@ -33,7 +39,9 @@
     "description": "def function including @spec and @doc"
   },
   "defm": {
-    "prefix": ["defm"],
+    "prefix": [
+      "defm"
+    ],
     "body": [
       "defmodule $1 do",
       "@moduledoc \"\"\"",
@@ -45,7 +53,9 @@
     "description": "def module"
   },
   "doc": {
-    "prefix": ["doc"],
+    "prefix": [
+      "doc"
+    ],
     "body": [
       "@doc \"\"\"",
       "$1",
@@ -54,7 +64,9 @@
     "description": "add @doc"
   },
   "mdoc": {
-    "prefix": ["mdoc"],
+    "prefix": [
+      "mdoc"
+    ],
     "body": [
       "@moduledoc \"\"\"",
       "$1",
@@ -63,21 +75,27 @@
     "description": "add @moduledoc"
   },
   "ins": {
-    "prefix": ["inspect"],
+    "prefix": [
+      "inspect"
+    ],
     "body": [
       "IO.inspect $1"
     ],
     "description": "IO.inspect"
   },
   "insi": {
-    "prefix": ["inspect"],
+    "prefix": [
+      "inspect"
+    ],
     "body": [
       "IO.inspect($1, limit: :infinity)"
     ],
     "description": "IO.inspect"
   },
   "iex": {
-    "prefix": ["iex"],
+    "prefix": [
+      "iex"
+    ],
     "body": [
       "require IEx",
       "IEx.pry"
@@ -85,7 +103,9 @@
     "description": "IEx.pry for debuggin"
   },
   "desc": {
-    "prefix": ["desc"],
+    "prefix": [
+      "desc"
+    ],
     "body": [
       "describe \"$1\" do",
       "\ttest \"$2\" do",
@@ -96,13 +116,23 @@
     "description": "describe function for testing"
   },
   "test": {
-    "prefix": ["test"],
+    "prefix": [
+      "test"
+    ],
     "body": [
       "test \"$1\" do",
       "\t$2",
       "end"
     ],
     "description": "test function for testing"
+  },
+  "stacktrace": {
+    "prefix": [
+      "stacktrace"
+    ],
+    "body": [
+      "Process.info(self(), :current_stacktrace)"
+    ],
+    "description": "stacktrace for the current process, in a catch/rescue simply use __STACKTRACE__"
   }
 }
-
