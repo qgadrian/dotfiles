@@ -1,0 +1,30 @@
+% ip
+@ network, ip
+
+# Public ip to clipboard
+curl -s https://icanhazip.com/ | pbcopy
+
+% nmap
+@ nmap, network
+; https://hackertarget.com/nmap-cheatsheet-a-quick-reference-guide/
+
+# Scan all 65535 ports
+nmap -p- <ip>
+
+# Scan 100 most common ports (Fast)
+nmap -F <ip>
+
+# Scan a range of ports
+nmap -p <from-port>-<to-port> <ip>
+
+# Scan a single Port
+nmap -p <port> <ip>
+
+# Scan a subnet
+nmap <CIDR>
+
+# Scan all UDP ports
+sudo nmap -sU -p- <ip>
+
+# Scan a single UDP Port
+nmap -sU -p <port> <ip>

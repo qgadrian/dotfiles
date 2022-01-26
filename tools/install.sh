@@ -28,7 +28,6 @@ brew install \
   watchman \
   terminal-notifier \
   speedtest-cli \
-  navi \
 
 brew link --force gettext
 
@@ -48,3 +47,5 @@ brew install uptech/oss/alt
 brew install fd
 
 source $(pwd)/tools/mas/install.sh
+
+source $(pwd)/tools/navi/install.sh

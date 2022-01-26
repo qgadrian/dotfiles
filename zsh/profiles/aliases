@@ -25,3 +25,5 @@ alias itpp=" itunes playlists | peco | xargs -I{} -to itunes play playlist {}"
 function pk9() {
   kill -9 $(ps aux | peco --query "$LBUFFER" | awk '{ print $2 }')
 }
+
+alias navi=' navi'
