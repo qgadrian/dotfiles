@@ -27,3 +27,7 @@ function pk9() {
 }
 
 alias navi=' navi'
+
+# system update
+alias upd=" buu && masu"
+alias upd=" upd"
