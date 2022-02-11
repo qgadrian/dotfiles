@@ -29,7 +29,7 @@
   },
   "beforeEach": {
     "prefix": "befe",
-    "body": "beforeEach(async () => {\n\t${0}\n})"
+    "body": "beforeEach(() => {\n\t${0}\n})"
   },
   "after": {
     "prefix": "aft",
@@ -38,6 +38,9 @@
   "afterEach": {
     "prefix": "afte",
     "body": "afterEach(() => {\n\t${0}\n})"
+  },
+  "wrapper debug": {
+    "prefix": "wrapl",
+    "body": "console.log(wrapper.debug());\n"
   }
 }
-
