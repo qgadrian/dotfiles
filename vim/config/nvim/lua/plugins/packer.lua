@@ -14,6 +14,7 @@ require('packer').startup(function()
   use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces
   use 'tpope/vim-fugitive' -- git in vim
   use 'tpope/vim-vinegar'
+  use 'rhysd/conflict-marker.vim'
 
   -- Syntax color
   use 'elixir-editors/vim-elixir'
