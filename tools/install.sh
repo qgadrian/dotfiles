@@ -28,6 +28,7 @@ brew install \
   watchman \
   terminal-notifier \
   speedtest-cli \
+  rpl \
 
 brew link --force gettext
 
