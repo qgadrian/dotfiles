@@ -1,3 +1,6 @@
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 alias open_docs="open doc/index.html"
+alias mdg="mix deps.get"
+alias mps="mix phx.server"
+alias ism="iex -S mix"
