@@ -42,6 +42,7 @@ asdf plugin-add postgres
 # ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf plugin-add nodejs
 asdf plugin-add golang
+asdf plugin-add kubectl
 
 ELIXIR_VERSION=1.13.2-otp-24
 ERLANG_VERSION=24.2
@@ -52,6 +53,7 @@ POSTGRES_VERSION=14.1
 NODEJS_VERSION=17.4.0
 RUBY_VERSION=2.7.2
 GOLANG_VERSION=1.17.6
+KUBECTL_VERSION=1.23.4
 
 asdf install elixir $ELIXIR_VERSION-otp-22
 asdf install erlang $ERLANG_VERSION
@@ -62,6 +64,7 @@ asdf install postgres $POSTGRES_VERSION
 asdf install nodejs $NODEJS_VERSION
 asdf install ruby $RUBY_VERSION
 asdf install golang $GOLANG_VERSION
+asdf install kubectl $KUBECTL_VERSION
 
 asdf global erlang $ERLANG_VERSION
 asdf global elixir $ELIXIR_VERSION-otp-22
@@ -72,6 +75,7 @@ asdf global postgres $POSTGRES_VERSION
 asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
 asdf global golang $GOLANG_VERSION
+asdf global kubectl $KUBECTL_VERSION
 
 # If there is a permissions problem with asdf
 # sudo chown -R $(whoami) ~/.asdf
