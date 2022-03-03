@@ -30,6 +30,7 @@ plugins=(
   brew
   colored-man-pages
   colorize
+  dotenv
   git-extras
   github
   macos
