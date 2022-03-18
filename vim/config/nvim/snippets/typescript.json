@@ -42,5 +42,9 @@
   "wrapper debug": {
     "prefix": "wrapl",
     "body": "console.log(wrapper.debug());\n"
+  },
+  "console debug": {
+    "prefix": "consd",
+    "body": "console.log({ ${0} });\n"
   }
 }
