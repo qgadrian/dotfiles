@@ -76,16 +76,25 @@
   },
   "ins": {
     "prefix": [
-      "inspect"
+      "ins"
     ],
     "body": [
-      "IO.inspect $1"
+      "IO.inspect($1)"
+    ],
+    "description": "IO.inspect"
+  },
+  "insl": {
+    "prefix": [
+      "insl"
+    ],
+    "body": [
+      "IO.inspect($1, label: \"$2\")"
     ],
     "description": "IO.inspect"
   },
   "insi": {
     "prefix": [
-      "inspect"
+      "insi"
     ],
     "body": [
       "IO.inspect($1, limit: :infinity)"
