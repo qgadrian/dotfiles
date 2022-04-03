@@ -43,6 +43,7 @@ asdf plugin-add postgres
 asdf plugin-add nodejs
 asdf plugin-add golang
 asdf plugin-add kubectl
+asdf plugin-add python
 
 ELIXIR_VERSION=1.13.2-otp-24
 ERLANG_VERSION=24.2
@@ -54,6 +55,7 @@ NODEJS_VERSION=17.4.0
 RUBY_VERSION=2.7.2
 GOLANG_VERSION=1.17.6
 KUBECTL_VERSION=1.23.4
+PYTHON_VERSION=2.7.18
 
 asdf install elixir $ELIXIR_VERSION-otp-22
 asdf install erlang $ERLANG_VERSION
@@ -65,6 +67,7 @@ asdf install nodejs $NODEJS_VERSION
 asdf install ruby $RUBY_VERSION
 asdf install golang $GOLANG_VERSION
 asdf install kubectl $KUBECTL_VERSION
+asdf install python $PYTHON_VERSION
 
 asdf global erlang $ERLANG_VERSION
 asdf global elixir $ELIXIR_VERSION-otp-22
@@ -76,6 +79,7 @@ asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
 asdf global golang $GOLANG_VERSION
 asdf global kubectl $KUBECTL_VERSION
+asdf global python $PYTHON_VERSION
 
 # If there is a permissions problem with asdf
 # sudo chown -R $(whoami) ~/.asdf
