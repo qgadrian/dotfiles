@@ -118,6 +118,7 @@ require("neo-tree").setup({
   -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
   use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
   -- instead of relying on nvim autocmd events.
+  reveal_force_cwd = true, -- https://github.com/nvim-neo-tree/neo-tree.nvim#reveal_force_cwd
 },
 buffers = {
   show_unloaded = true,
