@@ -1,0 +1,14 @@
+{
+  "name": "slackfred-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qgadrian",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/web-api": "6.7.0"
+  }
+}
