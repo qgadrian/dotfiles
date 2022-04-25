@@ -71,6 +71,10 @@ glag() {
   git log --all --grep=$1
 }
 
+gbuo() {
+  git branch $(git rev-parse --abbrev-ref head) -u origin/$(git rev-parse --abbrev-ref head)
+}
+
 alias glpa="git log -p"
 alias glsa="git log --stat"
 
