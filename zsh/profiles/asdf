@@ -1,10 +1,6 @@
-autoload -U compaudit compinit
-compinit
-
 export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
 
 . $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
 
 fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
