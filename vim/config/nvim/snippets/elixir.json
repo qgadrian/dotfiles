@@ -143,5 +143,14 @@
       "Process.info(self(), :current_stacktrace)"
     ],
     "description": "stacktrace for the current process, in a catch/rescue simply use __STACKTRACE__"
+  },
+  "break": {
+    "prefix": [
+      "break"
+    ],
+    "body": [
+      "#iex:break"
+    ],
+    "description": "Break a IEx process"
   }
 }
