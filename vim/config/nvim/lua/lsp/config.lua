@@ -13,7 +13,7 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- not sure how and if this is needed, keeping it for reference
-  --client.resolved_capabilities.document_formatting = true
+  --client.server_capabilities.document_formatting = true
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -51,15 +51,15 @@ lsp_installer.on_server_ready(function(server)
 
   if server.name == "tsserver" then
     opts.on_attach = function (client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.document_formatting = false
+      client.server_capabilities.document_range_formatting = false
     end
   end
 
   if server.name == "stylelint_lsp" then
     opts.on_attach = function (client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.document_formatting = false
+      client.server_capabilities.document_range_formatting = false
     end
   end
 
@@ -67,8 +67,8 @@ lsp_installer.on_server_ready(function(server)
     opts.on_attach = function (client, bufnr)
       -- neovim's LSP client does not currently support dynamic capabilities registration, so we need to set
       -- the resolved capabilities of the eslint server ourselves!
-      client.resolved_capabilities.document_formatting = true
-      client.resolved_capabilities.document_range_formatting = true
+      client.server_capabilities.document_formatting = true
+      client.server_capabilities.document_range_formatting = true
       on_attach(client, bufnr)
     end
     opts.settings = {
