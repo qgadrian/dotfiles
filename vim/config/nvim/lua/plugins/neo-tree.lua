@@ -67,7 +67,7 @@ require("neo-tree").setup({
     position = "current",
     -- width = 40,
     mappings = {
-      ["<space>"] = "toggle_node",
+      -- ["<space>"] = "toggle_node",
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
       ["S"] = "open_split",
@@ -79,7 +79,7 @@ require("neo-tree").setup({
       ["H"] = "toggle_hidden",
       ["R"] = "refresh",
       ["/"] = "fuzzy_finder",
-      ["f"] = "filter_on_submit",
+      ["fnt"] = "filter_on_submit",
       ["<c-x>"] = "clear_filter",
       ["a"] = "add",
       ["A"] = "add_directory",
@@ -109,7 +109,7 @@ require("neo-tree").setup({
       --"thumbs.db"
     },
   },
-  follow_current_file = true, -- This will find and focus the file in the active buffer every
+  follow_current_file = false, -- This will find and focus the file in the active buffer every
   -- time the current file is changed while the tree is open.
   hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
   -- in whatever position is specified in window.position
