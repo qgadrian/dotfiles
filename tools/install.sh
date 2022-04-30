@@ -29,6 +29,7 @@ brew install \
   terminal-notifier \
   speedtest-cli \
   rpl \
+  viu \
 
 brew link --force gettext
 
