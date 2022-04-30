@@ -2,7 +2,8 @@
 # https://developers.giphy.com/docs/api/endpoint#search
 
 function gr() {
-    url="http://api.giphy.com/v1/gifs/random?tag=\"$1\"&rating=pg13&api_key=$GIPHY_TOKEN"
+    query=$(echo $* | sed 's/ /+/g')
+    url="https://api.giphy.com/v1/gifs/random?tag=${query}&rating=pg13&api_key=$GIPHY_TOKEN"
     gif=$(curl -s $url | jq -r '.data.images.fixed_height.url')
     gif=$gif/fullscreen
 
@@ -10,7 +11,8 @@ function gr() {
 }
 
 function gs() {
-    url="http://api.giphy.com/v1/gifs/search?limit=1&rating=pg13&q=\"$1\"&api_key=$GIPHY_TOKEN"
+    query=$(echo $* | sed 's/ /+/g')
+    url="https://api.giphy.com/v1/gifs/search?limit=1&rating=pg13&q=${query}&api_key=$GIPHY_TOKEN"
     gif=$(curl -s $url | jq -r '.data[0].images.fixed_height.url')
     gif=$gif/fullscreen
 
