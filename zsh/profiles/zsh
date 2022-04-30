@@ -66,3 +66,7 @@ setopt share_history # Share history between multiple shells
 #setopt no_beep
 #setopt no_hist_beep
 #setopt no_list_beep
+
+if [[ -n $VIM_DIR && ! $VIM_DIR =~ "term://" ]]; then
+  cd $VIM_DIR
+fi
