@@ -42,6 +42,10 @@ defaults write -g com.apple.mouse.scaling -float 1.5
 # Maybe you want to check https://www.reddit.com/r/apple/comments/5rfdj6/pro_tip_significantly_improve_bluetooth_audio/
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
+# enable anywhere click to move a window
+# click anywhere on a window with `ctrl` + `cmd` to move it
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
 read -p "Install rosetta? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Install rosetta"
