@@ -1,1 +1,4 @@
 alias yef=' yarn eslint --fix'
+alias yst=' yarn start'
+alias ysb=' yarn storybook'
+alias yt=' yarn test'
