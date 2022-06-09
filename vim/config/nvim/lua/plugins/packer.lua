@@ -63,17 +63,6 @@ require('packer').startup(function()
     }
   }
 
-  -- file tree
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-     requires = {
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons",
-      "MunifTanjim/nui.nvim"
-    },
-    config = 'require("plugins/neo-tree")'
-  }
-
   -- Causing problems at the time, interesting but disabled
   use {
     'nvim-telescope/telescope-frecency.nvim',
@@ -87,6 +76,23 @@ require('packer').startup(function()
   use {
     "ahmedkhalf/project.nvim",
     config = 'require("plugins/telescope_extensions/projects")'
+  }
+
+  use {
+    'nvim-telescope/telescope-live-grep-raw.nvim',
+    config = 'require("plugins/telescope_extensions/live_grep_args")',
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+  }
+
+  -- file tree
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+     requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons",
+      "MunifTanjim/nui.nvim"
+    },
+    config = 'require("plugins/neo-tree")'
   }
 
   -- LSP

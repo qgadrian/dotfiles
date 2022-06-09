@@ -103,10 +103,6 @@ noremap <Down> g<Down>
 " Remove search highlight
 nmap <esc><esc> :noh<return>
 
-" Telescope plugins
-noremap <silent> <leader>fc <Cmd>lua require('telescope').extensions.frecency.frecency()<CR>
-noremap <silent> <leader>fp :lua require('telescope').extensions.projects.projects()<CR>
-
 " execute the q macro over just the selected lines
 xnoremap Q :'<,'>:normal @q<CR>
 
