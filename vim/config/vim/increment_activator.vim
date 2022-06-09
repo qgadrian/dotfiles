@@ -22,6 +22,11 @@ let g:increment_activator_filetype_candidates = {
 \   ],
 \   'css': [
 \     ['top', 'right', 'bottom', 'left'],
+\     ['row', 'column'],
+\   ],
+\   'scss': [
+\     ['top', 'right', 'bottom', 'left'],
+\     ['row', 'column'],
 \   ],
 \   'ruby': [
 \     ['first', 'last'],
