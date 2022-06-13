@@ -10,12 +10,16 @@ require('packer').startup(function()
   use 'gcmt/taboo.vim' -- tab rename
   -- use 'ActivityWatch/aw-watcher-vim' -- micromanagement
   use 'mg979/vim-visual-multi' -- multiple cursors
-  use { 'numToStr/Comment.nvim', config = 'require("plugins/comment")' }
   use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces
   use 'tpope/vim-fugitive' -- git in vim
   use 'tpope/vim-vinegar'
   use 'rhysd/conflict-marker.vim'
   use 'jiangmiao/auto-pairs'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = 'require("plugins/treesitter")',
+    run = ':TSUpdate'
+  }
 
   -- Syntax color
   use 'elixir-editors/vim-elixir'
@@ -26,7 +30,8 @@ require('packer').startup(function()
   use 'plasticboy/vim-markdown'
 
   -- code comments
-  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = 'require("plugins/todo-comments")' }
+  use { 'numToStr/Comment.nvim', config = 'require("plugins/comment")' }
+  -- use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = 'require("plugins/todo-comments")' }
 
   -- Markdown
   use 'godlygeek/tabular'
