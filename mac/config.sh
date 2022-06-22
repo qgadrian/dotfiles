@@ -79,3 +79,7 @@ read -p "Install fonts? " -n 1 -r; echo
     source $(pwd)/mac/fonts/install.sh
 fi
 
+echo "Install PAM plugins"
+# The one below can be replaced by the official pam plugin from Apple
+# source $(pwd)/mac/pam.d/pam_apple_watch.sh
+source $(pwd)/mac/pam.d/pam_touch_id.sh
