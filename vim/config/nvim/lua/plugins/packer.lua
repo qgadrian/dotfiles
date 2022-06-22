@@ -15,11 +15,6 @@ require('packer').startup(function()
   use 'tpope/vim-vinegar'
   use 'rhysd/conflict-marker.vim'
   use 'jiangmiao/auto-pairs'
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    config = 'require("plugins/treesitter")',
-    run = ':TSUpdate'
-  }
 
   -- Syntax color
   use 'elixir-editors/vim-elixir'
