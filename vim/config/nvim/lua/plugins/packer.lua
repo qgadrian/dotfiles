@@ -74,7 +74,7 @@ require('packer').startup(function()
   }
 
   use {
-    "ahmedkhalf/project.nvim",
+    "nvim-telescope/telescope-project.nvim",
     config = 'require("plugins/telescope_extensions/projects")'
   }
 

@@ -17,6 +17,18 @@ require('telescope').setup {
     live_grep = {
       -- only_sort_text = true,
     }
+  },
+  extensions = {
+    project = {
+      base_dirs = {
+        {
+          path = '~/workspace',
+          max_depth = 2
+        },
+      },
+      hidden_files = true,
+      theme = "dropdown"
+    }
   }
 }
 
@@ -27,7 +39,7 @@ vim.api.nvim_set_keymap('n', '<leader>fgr', '<cmd>lua require("telescope").exten
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fr', '<cmd>Telescope resume<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>fp', "<cmd>lua require('telescope').extensions.projects.projects()<cr>", {})
+vim.api.nvim_set_keymap('n', '<leader>fp', "<cmd>lua require('telescope').extensions.project.project{}<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>fcr', "<cmd>lua require('telescope').extensions.frecency.frecency()<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>ca', "<cmd>lua require('telescope.builtin').lsp_code_actions()<cr>", {})
 
