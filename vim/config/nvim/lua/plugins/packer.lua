@@ -14,7 +14,7 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive' -- git in vim
   use 'tpope/vim-vinegar'
   use 'rhysd/conflict-marker.vim'
-  use 'jiangmiao/auto-pairs'
+  use 'machakann/vim-sandwich'
 
   -- Syntax color
   use 'elixir-editors/vim-elixir'
