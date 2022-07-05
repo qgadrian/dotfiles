@@ -94,6 +94,10 @@ require('packer').startup(function()
     },
     config = 'require("plugins/neo-tree")'
   }
+  use {
+    "nvim-telescope/telescope-file-browser.nvim" ,
+    config = 'require("plugins/telescope_extensions/telescope-file-browser")'
+  }
 
   -- LSP
   use {
