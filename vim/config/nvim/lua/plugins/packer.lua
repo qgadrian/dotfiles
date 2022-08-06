@@ -17,12 +17,11 @@ require('packer').startup(function()
   use 'machakann/vim-sandwich'
 
   -- Syntax color
-  use 'elixir-editors/vim-elixir'
-  use 'vim-ruby/vim-ruby'
-  use 'pangloss/vim-javascript'
-  use 'mxw/vim-jsx'
-  use 'leafgarland/typescript-vim'
-  use 'plasticboy/vim-markdown'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = 'require("plugins/_nvim-treesitter")',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  }
 
   -- code comments
   use { 'numToStr/Comment.nvim', config = 'require("plugins/comment")' }
@@ -31,13 +30,13 @@ require('packer').startup(function()
   -- Markdown
   use 'godlygeek/tabular'
   -- use 'junegunn/vim-easy-align'
-  use { 'JamshedVesuna/vim-markdown-preview', ft = 'markdown', config = 'require("plugins/markdown_preview")' }
+  use { 'JamshedVesuna/vim-markdown-preview', ft = 'markdown', config = require("plugins/markdown_preview") }
   use { 'mzlogin/vim-markdown-toc', ft = 'markdown' } -- auto toc
   use { 'sindrets/winshift.nvim', config = 'require("plugins/winshift")' } -- window move
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = 'require("plugins/lualine")'
   }
 
@@ -63,16 +62,6 @@ require('packer').startup(function()
     }
   }
 
-  -- Causing problems at the time, interesting but disabled
-  use {
-    'nvim-telescope/telescope-frecency.nvim',
-    disable = true,
-    config = 'require("plugins/telescope_extensions/frecency")',
-    requires = {
-      {'tami5/sql.nvim'}
-    }
-  }
-
   use {
     "nvim-telescope/telescope-project.nvim",
     config = 'require("plugins/telescope_extensions/projects")'
@@ -95,7 +84,7 @@ require('packer').startup(function()
     config = 'require("plugins/neo-tree")'
   }
   use {
-    "nvim-telescope/telescope-file-browser.nvim" ,
+    "nvim-telescope/telescope-file-browser.nvim",
     config = 'require("plugins/telescope_extensions/telescope-file-browser")'
   }
 
