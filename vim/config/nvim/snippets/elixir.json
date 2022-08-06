@@ -152,5 +152,14 @@
       "#iex:break"
     ],
     "description": "Break a IEx process"
+  },
+  "private functions": {
+    "prefix": [
+      "privf"
+    ],
+    "body": [
+      "#\n# Private functions\n#\n\n"
+    ],
+    "description": "Break a IEx process"
   }
 }
