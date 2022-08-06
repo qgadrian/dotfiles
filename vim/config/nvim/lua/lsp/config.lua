@@ -36,97 +36,21 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
--- neovim's LSP client does not currently support dynamic capabilities registration, so we need to set
--- the server capabilities of the eslint server ourselves!
---
--- @param #boolean allow_formatting whether to enable formating
--- @param #boolean format_on_save   whether to enable format on save
---
-local function toggle_formatting(allow_formatting, format_on_save)
-  return function(client, bufnr)
-    -- default_on_attach(client)
-
-    client.server_capabilities.document_formatting = allow_formatting
-    client.server_capabilities.document_range_formatting = allow_formatting
-
-    -- format on save
-    if format_on_save then
-      vim.cmd([[
-      augroup LspFormatting
-      autocmd! * <buffer>
-      autocmd BufWritePre * sleep 50m
-      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-      augroup END
-      ]])
-    end
-  end
-end
-
--- Advanced configuration docs:
--- https://github.com/williamboman/nvim-lsp-installer/wiki/Advanced-Configuration
-local lsp_installer = require("nvim-lsp-installer")
-
--- See LSP server configurations documentation:
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-lsp_installer.on_server_ready(function(server)
-  local opts = {
-    on_attach = on_attach,
-  }
-
-  -- nvim-cmp capabilities
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  opts.capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-  if server.name == "tsserver" then
-    on_attach = toggle_formatting(false, false)
-
-    opts.settings = {
-      format = { enable = false },
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+      "elixirls",
+      "tsserver",
+      "eslint",
+      "stylelint_lsp",
     }
-  end
+})
 
-  if server.name == "stylelint_lsp" then
-    on_attach = toggle_formatting(true, true)
-
-    opts.filetypes = {
-      'css',
-      'less',
-      'scss',
-      'sass',
-    }
-
-    opts.settings = {
-      stylelintplus = {
-        cssInJs = false,
-      },
-    }
-  end
-
-  if server.name == "eslint" then
-    on_attach = toggle_formatting(true, true)
-
-    opts.settings = {
-      enable = true,
-      autoFixOnSave = true,
-      format = { enable = true }, -- this will enable formatting
-      codeActionsOnSave = {
-        mode = "all",
-        rules = { "!debugger", "!no-only-tests/*" },
-      },
-      lintTask = {
-        enable = true,
-      },
-    }
-  end
-
-  if server.name == "elixirls" then
-    on_attach = toggle_formatting(true, true)
-  end
-
-  -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-  server:setup(opts)
-  vim.cmd [[ do User LspAttachBuffers ]]
-end)
+require("mason-lspconfig").setup_handlers({
+  function (server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup {}
+  end,
+})
 
 -- Map :Format to vim.lsp.buf.formatting()
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
