@@ -19,6 +19,14 @@ require('packer').startup(function()
   -- Syntax color
   use {
     'nvim-treesitter/nvim-treesitter',
+    requires = {
+      {
+        'lewis6991/spellsitter.nvim',
+        config = function()
+          require('spellsitter').setup()
+        end
+      }
+    },
     config = 'require("plugins/_nvim-treesitter")',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
