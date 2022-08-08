@@ -52,7 +52,7 @@
     ],
     "description": "def module"
   },
-  "doc": {
+  "docc": {
     "prefix": [
       "doc"
     ],
