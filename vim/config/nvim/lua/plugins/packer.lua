@@ -64,9 +64,9 @@ require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     config = 'require("plugins/telescope")',
     requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-lua/popup.nvim'},
-      {'kyazdani42/nvim-web-devicons'},
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-lua/popup.nvim' },
+      { 'kyazdani42/nvim-web-devicons' },
     }
   }
 
@@ -84,7 +84,7 @@ require('packer').startup(function()
   -- file tree
   use {
     "nvim-neo-tree/neo-tree.nvim",
-     requires = {
+    requires = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons",
       "MunifTanjim/nui.nvim"
@@ -98,21 +98,19 @@ require('packer').startup(function()
 
   -- LSP
   use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     'neovim/nvim-lspconfig',
     after = 'cmp-nvim-lsp',
     config = 'require("lsp/config")'
   }
   use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim"
-  }
-  use {
     'hrsh7th/nvim-cmp',
     requires = {
-      {'hrsh7th/cmp-buffer', after = 'nvim-cmp'},
-      {'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'},
-      {'hrsh7th/cmp-emoji', after = 'nvim-cmp'},
-      {'hrsh7th/cmp-path', after = 'nvim-cmp'}
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
     },
     config = 'require("plugins/nvim-cmp")'
   } -- completion

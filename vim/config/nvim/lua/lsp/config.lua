@@ -33,19 +33,66 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = {
-      "elixirls",
-      "tsserver",
-      "eslint",
-      "stylelint_lsp",
-    }
+  ensure_installed = {
+    "elixirls",
+    "tsserver",
+    "eslint",
+    -- "stylelint_lsp",
+  }
 })
 
+-- See configuration docs:
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 require("mason-lspconfig").setup_handlers({
-  function (server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup {
-      on_attach = on_attach
+  function(server_name) -- default handler (optional)
+    local opts = {
+      on_attach = on_attach,
     }
+
+    -- nvim-cmp capabilities
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    opts.capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+    if server_name == "sumneko_lua" then
+      opts.settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim', 'use' }
+          }
+        }
+      }
+    end
+
+    if server_name == "stylelint_lsp" then
+      opts.settings = {
+        stylelintplus = {
+          filetypes = {
+            'css',
+            'less',
+            'scss',
+            'sass',
+          },
+          cssInJs = false,
+        }
+      }
+    end
+
+    if server_name == "eslint" then
+      opts.settings = {
+        enable = true,
+        autoFixOnSave = true,
+        format = { enable = true }, -- this will enable formatting
+        codeActionsOnSave = {
+          mode = "all",
+          rules = { "!debugger", "!no-only-tests/*" },
+        },
+        lintTask = {
+          enable = true,
+        }
+      }
+    end
+
+    require("lspconfig")[server_name].setup(opts)
   end,
 })
 
