@@ -102,7 +102,7 @@ require('packer').startup(function()
     "williamboman/mason-lspconfig.nvim",
     'neovim/nvim-lspconfig',
     after = 'cmp-nvim-lsp',
-    config = 'require("lsp/config")'
+    config = 'require("plugins/lsp-config")'
   }
   use {
     'hrsh7th/nvim-cmp',

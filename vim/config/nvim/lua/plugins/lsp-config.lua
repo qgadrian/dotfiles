@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
   --vim.keymap.set('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   vim.keymap.set('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.keymap.set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.keymap.set('n', '<space>ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.keymap.set('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.keymap.set('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
   vim.keymap.set('n', 'gca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -37,7 +37,7 @@ require("mason-lspconfig").setup({
     "elixirls",
     "tsserver",
     "eslint",
-    -- "stylelint_lsp",
+    "stylelint_lsp",
   }
 })
 
@@ -48,6 +48,12 @@ require("mason-lspconfig").setup_handlers({
     local opts = {
       on_attach = on_attach,
     }
+
+    local on_attach_disable_formatting = function(client, bufnr)
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+      return on_attach(client, bufnr)
+    end
 
     -- nvim-cmp capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -64,6 +70,7 @@ require("mason-lspconfig").setup_handlers({
     end
 
     if server_name == "stylelint_lsp" then
+      opts.on_attach = on_attach_disable_formatting
       opts.settings = {
         stylelintplus = {
           filetypes = {
@@ -75,6 +82,10 @@ require("mason-lspconfig").setup_handlers({
           cssInJs = false,
         }
       }
+    end
+
+    if server_name == "tsserver" then
+      opts.on_attach = on_attach_disable_formatting
     end
 
     if server_name == "eslint" then
@@ -90,6 +101,23 @@ require("mason-lspconfig").setup_handlers({
           enable = true,
         }
       }
+      opts.flags = { debounce_text_changes = 500 }
+      opts.on_attach = function(client, bufnr)
+        -- resolved_capabilities will change to server_capabilities
+        -- document_formatting will change to documentFormattingProvider
+        -- formatting_sync will change to vim.lsp.buf.format({ async = true })
+        client.resolved_capabilities.document_formatting = true
+        if client.resolved_capabilities.document_formatting then
+          local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = "*",
+            callback = function()
+              vim.lsp.buf.formatting_sync()
+            end,
+            group = au_lsp,
+          })
+        end
+      end
     end
 
     require("lspconfig")[server_name].setup(opts)
