@@ -1,1 +1,5 @@
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude _build --exclude node_modules --exclude deps'
+export FZF_DEFAULT_OPTS='--ignore-case --no-ignore --hidden --follow --exclude _build --exclude node_modules --exclude deps'
+export FZF_DEFAULT_COMMAND='fd --ignore-case --no-ignore --hidden --follow --exclude _build --exclude node_modules --exclude deps'
+
+# exclude git (does not work exclusively, for example .github will be excluded):
+# --exclude '^.git$'

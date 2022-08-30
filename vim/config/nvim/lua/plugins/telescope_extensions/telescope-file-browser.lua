@@ -7,6 +7,8 @@ require("telescope").setup {
     file_browser = {
       theme = "dropdown",
       layout_strategy = 'horizontal',
+      hidden = true,
+      respect_gitignore = false,
       layout_config = {
         horizontal = { width = 0.8, height = 0.8 }
       },
@@ -31,3 +33,4 @@ require("telescope").setup {
 -- To get telescope-file-browser loaded and working with telescope,
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension('fzf')

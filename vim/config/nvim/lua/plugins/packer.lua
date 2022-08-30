@@ -25,6 +25,12 @@ require('packer').startup(function()
         config = function()
           require('spellsitter').setup()
         end
+      },
+      {
+        'nvim-treesitter/nvim-treesitter-context',
+        config = function()
+          require'treesitter-context'.setup()
+        end
       }
     },
     config = 'require("plugins/_nvim-treesitter")',
@@ -69,6 +75,7 @@ require('packer').startup(function()
       { 'kyazdani42/nvim-web-devicons' },
     }
   }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
   use {
     "nvim-telescope/telescope-project.nvim",
@@ -90,10 +97,12 @@ require('packer').startup(function()
   -- LSP
   use {
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    'neovim/nvim-lspconfig',
-    after = 'cmp-nvim-lsp',
-    config = 'require("plugins/lsp-config")'
+    requires = {
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
+    },
+    config = 'require("plugins/lsp-config")',
+    after = 'cmp-nvim-lsp'
   }
   use {
     'hrsh7th/nvim-cmp',

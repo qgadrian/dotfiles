@@ -3,18 +3,20 @@ require('telescope').setup {
   defaults = {
     prompt_prefix = '🔍 ',
     color_devicons = true,
-    file_ignore_patterns = {".git", "deps", "node_modules"},
+    file_ignore_patterns = { "^./.git/", "^node_modules/", "^vendor/", "^deps/" },
     theme = "dropdown",
     layout_strategy = 'horizontal',
   },
   pickers = {
     find_files = {
       hidden = true,
-      files = true
+      files = true,
+      find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
     },
     file_browser = {
       hidden = true,
-      files = true
+      files = true,
+      find_command = {'rg', '--files', '--hidden', '-g', '!.git'}
     },
     live_grep = {
       -- only_sort_text = true,
