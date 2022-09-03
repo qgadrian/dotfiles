@@ -64,6 +64,10 @@ require('packer').startup(function()
     'bluz71/vim-nightfly-guicolors',
     config = 'require("config.colorscheme")'
   }
+  use {
+    'sunjon/shade.nvim',
+    config = 'require("plugins/shade")'
+  }
 
   -- Telescope
   use {
