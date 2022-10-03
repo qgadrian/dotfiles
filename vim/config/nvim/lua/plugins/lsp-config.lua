@@ -8,7 +8,7 @@ local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
   -- not sure how and if this is needed, keeping it for reference
-  --client.server_capabilities.document_formatting = true
+  --client.server_capabilities.documentFormattingProvider = true
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   vim.keymap.set('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -52,8 +52,8 @@ require("mason-lspconfig").setup_handlers({
     }
 
     local on_attach_disable_formatting = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.document_range_formatting = false
       return on_attach(client, bufnr)
     end
 
@@ -105,16 +105,13 @@ require("mason-lspconfig").setup_handlers({
       }
       opts.flags = { debounce_text_changes = 500 }
       opts.on_attach = function(client, bufnr)
-        -- resolved_capabilities will change to server_capabilities
-        -- document_formatting will change to documentFormattingProvider
-        -- formatting_sync will change to vim.lsp.buf.format({ async = true })
-        client.resolved_capabilities.document_formatting = true
-        if client.resolved_capabilities.document_formatting then
+        client.server_capabilities.documentFormattingProvider = true
+        if client.server_capabilities.documentFormattingProvider then
           local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
           vim.api.nvim_create_autocmd("BufWritePre", {
             pattern = "*",
             callback = function()
-              vim.lsp.buf.formatting_sync()
+              vim.lsp.buf.format({ async = true })
             end,
             group = au_lsp,
           })
