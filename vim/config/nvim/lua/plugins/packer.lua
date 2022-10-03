@@ -65,8 +65,8 @@ require('packer').startup(function()
     config = 'require("config.colorscheme")'
   }
   use {
-    'sunjon/shade.nvim',
-    config = 'require("plugins/shade")'
+    'levouh/tint.nvim',
+    config = 'require("plugins/tint")'
   }
 
   -- Telescope
