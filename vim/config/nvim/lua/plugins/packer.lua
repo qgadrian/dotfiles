@@ -10,7 +10,7 @@ require('packer').startup(function()
   use 'gcmt/taboo.vim' -- tab rename
   -- use 'ActivityWatch/aw-watcher-vim' -- micromanagement
   use 'mg979/vim-visual-multi' -- multiple cursors
-  use 'ntpeters/vim-better-whitespace' -- show trailing whitespaces
+  use { 'cappyzawa/trim.nvim', config = 'require("plugins/trim")' } -- trim trailing whitespaces
   use 'tpope/vim-fugitive' -- git in vim
   use 'tpope/vim-vinegar'
   use 'rhysd/conflict-marker.vim'
