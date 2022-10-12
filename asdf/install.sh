@@ -45,8 +45,8 @@ asdf plugin-add golang
 asdf plugin-add kubectl
 asdf plugin-add python
 
-ELIXIR_VERSION=1.13.2-otp-24
-ERLANG_VERSION=24.2
+ELIXIR_VERSION=1.14.1-otp-23
+ERLANG_VERSION=25.1
 HASKELL_VERSION=9.2.1
 RUST_VERSION=1.58.1
 TERRAFORM_VERSION=1.1.4
