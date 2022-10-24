@@ -58,8 +58,7 @@ require("mason-lspconfig").setup_handlers({
     end
 
     -- nvim-cmp capabilities
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    opts.capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     if server_name == "sumneko_lua" then
       opts.settings = {
