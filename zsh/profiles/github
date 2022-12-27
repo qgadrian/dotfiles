@@ -10,7 +10,7 @@ function gat() {
   echo "Trigger action for repo $PROJECT"
   echo $URL
 
-  git branch -l | peco | sed 's/\* //g' | xargs -I{} curl \
+  git branch --sort=-committerdate -l | peco | sed 's/\* //g' | xargs -I{} curl \
       -X POST \
       -H "Authorization: token $GITHUB_TOKEN" \
       -H "Accept: application/vnd.github.v3+json" \
