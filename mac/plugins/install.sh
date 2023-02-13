@@ -10,3 +10,4 @@ brew install \
   suspicious-package \
   quicklookase \
   qlvideo \
+  lsusb \
