@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   vim.keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  vim.keymap.set("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  vim.keymap.set('n', '<S-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 require("mason").setup()
@@ -40,6 +40,7 @@ require("mason-lspconfig").setup({
     "tsserver",
     "eslint",
     "stylelint_lsp",
+    "jsonls"
   }
 })
 
@@ -87,6 +88,10 @@ require("mason-lspconfig").setup_handlers({
 
     if server_name == "tsserver" then
       opts.on_attach = on_attach_disable_formatting
+    end
+
+    if server_name == "jsonls" then
+      opts.on_attach = on_attach
     end
 
     if server_name == "eslint" then
