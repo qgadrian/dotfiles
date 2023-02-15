@@ -72,6 +72,8 @@ fi
 
 source $(pwd)/mac/plugins/install.sh
 
+source $(pwd)/mac/utm/install.sh
+
 source $(pwd)/mac/window_management/install.sh
 
 read -p "Install fonts? " -n 1 -r; echo
