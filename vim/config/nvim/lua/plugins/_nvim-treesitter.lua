@@ -1,6 +1,14 @@
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "elixir", "lua", "typescript", "javascript" },
+  ensure_installed = {
+    "git_rebase",
+    "gitcommit",
+    "gitignore",
+    "elixir",
+    "lua",
+    "typescript",
+    "javascript"
+  },
   -- Automatically install missing parsers when entering buffer
   auto_install = true,
   highlight = {
@@ -12,7 +20,7 @@ require('nvim-treesitter.configs').setup {
     -- Instead of true it can also be a list of languages
     -- additional_vim_regex_highlighting = false
   },
-  incremental_selection = { enable = true },
+  incremental_selection = { enable = false },
   textobjects = { enable = true },
   indent = { enable = true },
   endwise = { enable = true },
