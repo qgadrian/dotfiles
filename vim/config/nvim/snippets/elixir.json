@@ -161,5 +161,15 @@
       "#\n# Private functions\n#\n\n"
     ],
     "description": "Break a IEx process"
+  },
+  "create table": {
+    "prefix": [ "createtable" ],
+    "body": [
+      "create table(:$1) do",
+      "add :user_id, references(:users)",
+      "add :value, :string, null: false",
+      "# timestamps(inserted_at: :created_at)",
+      "end"
+    ]
   }
 }

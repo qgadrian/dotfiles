@@ -46,5 +46,9 @@
   "console debug": {
     "prefix": "consd",
     "body": "console.log({ ${0} });\n"
+  },
+  "use_effect": {
+    "prefix": "useE",
+    "body": "useEffect(() => { \n${0}\n });\n"
   }
 }
