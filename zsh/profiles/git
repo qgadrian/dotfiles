@@ -39,18 +39,24 @@ alias gpo="git push -u origin"
 alias grfcp="git reflog | peco | sed 's/ .*//g' | xargs -I{} -ot git cherry-pick {}"
 
 function gcm() {
-  git co ${1:-master}
+  DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+  git co ${DEFAULT_BRANCH}
 }
 
 grim() {
-  git rebase -i $(git rev-parse origin/${1:-master})
+  DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+  git rebase -i $(git rev-parse origin/${DEFAULT_BRANCH})
 }
 
 function grm() {
-  git co ${1:-master} && \
+  DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+  git co ${DEFAULT_BRANCH} && \
   git pr && \
   git co - && \
-  git rebase origin/${1:-master}
+  git rebase origin/${DEFAULT_BRANCH}
 }
 
 function gitpof() {
