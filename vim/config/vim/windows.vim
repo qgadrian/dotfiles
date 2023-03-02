@@ -58,7 +58,7 @@ noremap <silent> <C-M-Right> :tabm +1<CR>
 "
 " Buffers
 "
-map <leader>b :new<CR>
+map <leader>hb :new<CR>
 map <leader>vb :vnew<CR>
 " Remap arrow keys to change between buffers
 noremap <C-k> <C-w>k
