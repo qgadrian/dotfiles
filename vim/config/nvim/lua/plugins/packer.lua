@@ -2,7 +2,11 @@ require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'airblade/vim-rooter' -- Automatically cd into projects, needed for the moment
+  -- use 'airblade/vim-rooter' -- Automatically cd into projects, needed for the moment
+  use {
+    'notjedi/nvim-rooter.lua',
+    config = 'require("plugins/nvim-rooter")'
+  } -- Automatically cd into projects, needed for the moment
   use 'Asheq/close-buffers.vim' -- Clear hidden buffers
   use 'mhinz/vim-startify' -- startup screen
   use 'nishigori/increment-activator' -- configs for incremented values
@@ -93,10 +97,27 @@ require('packer').startup(function()
   }
 
   -- file tree
+  -- use {
+  --   "nvim-telescope/telescope-file-browser.nvim",
+  --   config = 'require("plugins/telescope_extensions/telescope-file-browser")'
+  -- }
   use {
-    "nvim-telescope/telescope-file-browser.nvim",
-    config = 'require("plugins/telescope_extensions/telescope-file-browser")'
+    "nvim-tree/nvim-tree.lua",
+    config = 'require("plugins/nvim-tree")',
   }
+
+  -- monkey code
+  -- use {
+  --   'Exafunction/codeium.vim',
+  --   config = function ()
+  --     -- Change '<C-g>' here to any keycode you like.
+  --     vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+  --     vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+  --     vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+  --     vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+  --   end
+  -- }
+  use { 'github/copilot.vim', config = 'require("plugins/copilot")' }
 
   -- LSP
   use {
