@@ -9,11 +9,13 @@ cmp.setup({
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  completion = {completeopt = 'menu,menuone,noinsert'},
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
   sources = {
     { name = 'vsnip' },
     { name = 'nvim_lsp' },
-    { name = 'buffer' },
+    -- { name = 'buffer' },
     { name = 'emoji' },
     { name = 'path' }
   },
