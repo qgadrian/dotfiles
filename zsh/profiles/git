@@ -98,6 +98,7 @@ alias gittrack="git for-each-ref --format='%(refname:short) <- %(upstream:short)
 alias grp="git rev-parse --abbrev-ref HEAD | pbcopy"
 alias gitprune="git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
 alias gu="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git unstage"
+alias gua="git unstage ."
 
 # Stash
 alias gss="git stash list | peco | sed 's/: .*//g' | xargs -I{} -ot git stash show -p {}"
