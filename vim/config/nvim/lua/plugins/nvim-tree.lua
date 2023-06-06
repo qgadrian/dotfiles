@@ -10,6 +10,7 @@ require("nvim-tree").setup()
 -- OR setup with some options
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
+  sync_root_with_cwd = true,
   hijack_unnamed_buffer_when_opening = true,
   renderer = {
     group_empty = true,
