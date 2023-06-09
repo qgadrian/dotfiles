@@ -9,3 +9,8 @@ alias kl="kubectl get pods -A | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 
 alias klf="kubectl get pods -A --field-selector=status.phase=Running | tail -n +2 | peco | tr -s ' ' | cut -d' ' -f1,2 | xargs printf 'kubectl logs -f --namespace=%s %s' | xargs -ot -I{} bash -c {}"
 
 alias kap="kubectl auth-proxy -n kubernetes-dashboard https://kubernetes-dashboard.svc"
+
+# kubectl completion
+source <(kubectl completion zsh)
+# Set the kubectl completion code for zsh[1] to autoload on startup
+kubectl completion zsh > "${fpath[1]}/_kubectl"
