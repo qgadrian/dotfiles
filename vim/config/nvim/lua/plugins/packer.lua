@@ -19,6 +19,8 @@ require('packer').startup(function()
   use 'tpope/vim-vinegar'
   use 'rhysd/conflict-marker.vim'
   use 'machakann/vim-sandwich'
+  use { "chrisgrieser/nvim-early-retirement", config = 'require("plugins/early-retirement")' } -- close inactive buffers after X time
+  use 'rcarriga/nvim-notify'
 
   -- Syntax color
   use {
