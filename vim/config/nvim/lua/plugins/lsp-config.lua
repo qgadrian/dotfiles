@@ -11,9 +11,9 @@ local on_attach = function(client, bufnr)
   --client.server_capabilities.documentFormattingProvider = true
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.keymap.set('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.keymap.set('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.keymap.set('n', '<C-s>', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -22,15 +22,16 @@ local on_attach = function(client, bufnr)
   --vim.keymap.set('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   vim.keymap.set('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.keymap.set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.keymap.set('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- vim.keymap.set('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.keymap.set('n', '<space>ca', '<cmd>:CodeActionMenu<CR>', opts)
+  vim.keymap.set('n', '<space>cf', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+  vim.keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   vim.keymap.set('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
-  vim.keymap.set('n', 'gca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- vim.keymap.set('n', 'gca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.keymap.set('n', '[e', '<cmd>lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>', opts)
   vim.keymap.set('n', ']e', '<cmd>lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>', opts)
   vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  vim.keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  vim.keymap.set('n', '<S-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 require("mason").setup()
@@ -86,10 +87,6 @@ require("mason-lspconfig").setup_handlers({
       }
     end
 
-    if server_name == "tsserver" then
-      opts.on_attach = on_attach_disable_formatting
-    end
-
     if server_name == "jsonls" then
       opts.on_attach = on_attach
     end
@@ -128,4 +125,4 @@ require("mason-lspconfig").setup_handlers({
 })
 
 -- Map :Format to vim.lsp.buf.formatting()
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])

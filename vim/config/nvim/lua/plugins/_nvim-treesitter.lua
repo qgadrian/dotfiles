@@ -1,13 +1,23 @@
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
   ensure_installed = {
+    "bash",
+    "elixir",
     "git_rebase",
     "gitcommit",
     "gitignore",
-    "elixir",
+    "javascript",
+    "json",
     "lua",
+    "markdown",
+    "markdown_inline",
+    "query",
+    "regex",
+    "tsx",
     "typescript",
-    "javascript"
+    "vim",
+    "vimdoc",
+    "yaml"
   },
   -- Automatically install missing parsers when entering buffer
   auto_install = true,
@@ -20,7 +30,15 @@ require('nvim-treesitter.configs').setup {
     -- Instead of true it can also be a list of languages
     -- additional_vim_regex_highlighting = false
   },
-  incremental_selection = { enable = false },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<C-space>",
+      node_incremental = "<C-space>",
+      scope_incremental = false,
+      node_decremental = "<bs>",
+    },
+  },
   textobjects = { enable = true },
   indent = { enable = true },
   endwise = { enable = true },
