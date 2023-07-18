@@ -15,3 +15,8 @@ vim.api.nvim_set_keymap('n', '<C-W><C-M>', ':WinShift<CR>', {
   noremap = true,
   silent = false
 })
+
+vim.api.nvim_set_keymap('n', '<leader>mw', ':WinShift<CR>', {
+  noremap = true,
+  silent = false
+})
