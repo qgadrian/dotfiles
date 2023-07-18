@@ -41,7 +41,7 @@
   },
   "wrapper debug": {
     "prefix": "wrapl",
-    "body": "console.log(wrapper.debug());\n"
+    "body": "console.log(screen.debug());\n"
   },
   "console debug": {
     "prefix": "consd",
