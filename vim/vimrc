@@ -79,7 +79,8 @@ autocmd BufDelete gitcommit startinsert
 "syntax on
 
 set synmaxcol=500
-set lazyredraw
+" set lazyredraw
+set nolazyredraw
 set ttyfast
 set nocursorcolumn
 set nocursorline
