@@ -30,6 +30,8 @@ brew install \
   speedtest-cli \
   rpl \
   viu \
+  lsusb \
+  gsed \
 
 brew link --force gettext
 
