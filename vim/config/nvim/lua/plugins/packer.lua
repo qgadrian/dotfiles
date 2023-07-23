@@ -1,5 +1,4 @@
 require('packer').startup({
-*.test
   function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -14,7 +13,6 @@ require('packer').startup({
     use 'nishigori/increment-activator' -- configs for incremented values
     use { 'easymotion/vim-easymotion', config = 'require("plugins/easymotion")' } -- for quick navigation
     use 'gcmt/taboo.vim' -- tab rename
-    -- use 'ActivityWatch/aw-watcher-vim' -- micromanagement
     use 'mg979/vim-visual-multi' -- multiple cursors
     use { 'cappyzawa/trim.nvim', config = 'require("plugins/trim")' } -- trim trailing whitespaces
     use 'tpope/vim-fugitive' -- git in vim
