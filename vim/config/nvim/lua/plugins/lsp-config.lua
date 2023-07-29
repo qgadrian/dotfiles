@@ -38,10 +38,11 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "elixirls",
-    "tsserver",
     "eslint",
+    "jsonls",
+    "lua-language-server",
     "stylelint_lsp",
-    "jsonls"
+    "tsserver",
   }
 })
 
