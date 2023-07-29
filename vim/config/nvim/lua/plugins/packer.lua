@@ -7,15 +7,15 @@ require('packer').startup({
     use {
       'notjedi/nvim-rooter.lua',
       config = 'require("plugins/nvim-rooter")'
-    } -- Automatically cd into projects, needed for the moment
-    use 'Asheq/close-buffers.vim' -- Clear hidden buffers
-    use 'mhinz/vim-startify' -- startup screen
-    use 'nishigori/increment-activator' -- configs for incremented values
+    }                                                                             -- Automatically cd into projects, needed for the moment
+    use 'Asheq/close-buffers.vim'                                                 -- Clear hidden buffers
+    use 'mhinz/vim-startify'                                                      -- startup screen
+    use 'nishigori/increment-activator'                                           -- configs for incremented values
     use { 'easymotion/vim-easymotion', config = 'require("plugins/easymotion")' } -- for quick navigation
-    use 'gcmt/taboo.vim' -- tab rename
-    use 'mg979/vim-visual-multi' -- multiple cursors
-    use { 'cappyzawa/trim.nvim', config = 'require("plugins/trim")' } -- trim trailing whitespaces
-    use 'tpope/vim-fugitive' -- git in vim
+    use 'gcmt/taboo.vim'                                                          -- tab rename
+    use 'mg979/vim-visual-multi'                                                  -- multiple cursors
+    use { 'cappyzawa/trim.nvim', config = 'require("plugins/trim")' }             -- trim trailing whitespaces
+    use 'tpope/vim-fugitive'                                                      -- git in vim
     use 'tpope/vim-vinegar'
     use 'rhysd/conflict-marker.vim'
     use 'machakann/vim-sandwich'
@@ -61,7 +61,7 @@ require('packer').startup({
     use 'godlygeek/tabular'
     -- use 'junegunn/vim-easy-align'
     use { 'JamshedVesuna/vim-markdown-preview', ft = 'markdown', config = require("plugins/markdown_preview") }
-    use { 'mzlogin/vim-markdown-toc', ft = 'markdown' } -- auto toc
+    use { 'mzlogin/vim-markdown-toc', ft = 'markdown' }                      -- auto toc
     use { 'sindrets/winshift.nvim', config = 'require("plugins/winshift")' } -- window move
 
     use {
@@ -95,7 +95,8 @@ require('packer').startup({
         { 'nvim-tree/nvim-web-devicons' },
       }
     }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run =
+    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
     use {
       "nvim-telescope/telescope-project.nvim",
@@ -105,7 +106,8 @@ require('packer').startup({
     use {
       'nvim-telescope/telescope-live-grep-args.nvim',
       config = 'require("plugins/telescope_extensions/live_grep_args")',
-      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+      run =
+      'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
     }
 
     -- file tree
@@ -144,13 +146,13 @@ require('packer').startup({
     use {
       'hrsh7th/nvim-cmp',
       requires = {
-        { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+        { 'hrsh7th/cmp-buffer',   after = 'nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-emoji', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+        { 'hrsh7th/cmp-emoji',    after = 'nvim-cmp' },
+        { 'hrsh7th/cmp-path',     after = 'nvim-cmp' }
       },
       config = 'require("plugins/nvim-cmp")'
-    } -- completion
+    }                                                                     -- completion
     use { 'onsails/lspkind-nvim', config = 'require("plugins/lspkind")' } -- add pictogramas to LSP
 
     -- diagnostics alerts & visuals
