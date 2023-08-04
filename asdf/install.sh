@@ -45,22 +45,20 @@ asdf plugin-add golang
 asdf plugin-add kubectl
 asdf plugin-add python
 
-ELIXIR_VERSION=1.14.1-otp-23
-ERLANG_VERSION=25.1
-HASKELL_VERSION=9.2.1
-RUST_VERSION=1.58.1
-TERRAFORM_VERSION=1.1.4
-POSTGRES_VERSION=14.1
-NODEJS_VERSION=17.4.0
-RUBY_VERSION=2.7.2
-GOLANG_VERSION=1.17.6
-KUBECTL_VERSION=1.23.4
-PYTHON_VERSION=2.7.18
+ELIXIR_VERSION=latest
+ERLANG_VERSION=latest
+RUST_VERSION=latest
+TERRAFORM_VERSION=latest
+POSTGRES_VERSION=latest
+NODEJS_VERSION=latest
+RUBY_VERSION=latest
+GOLANG_VERSION=latest
+KUBECTL_VERSION=latest
+PYTHON_VERSION=latest
 
 asdf install elixir $ELIXIR_VERSION-otp-22
 asdf install erlang $ERLANG_VERSION
 asdf install terraform $TERRAFORM_VERSION
-asdf install haskell $HASKELL_VERSION
 asdf install rust $RUST_VERSION
 asdf install postgres $POSTGRES_VERSION
 asdf install nodejs $NODEJS_VERSION
@@ -72,7 +70,6 @@ asdf install python $PYTHON_VERSION
 asdf global erlang $ERLANG_VERSION
 asdf global elixir $ELIXIR_VERSION-otp-22
 asdf global terraform $TERRAFORM_VERSION
-asdf global haskell $HASKELL_VERSION
 asdf global rust $RUST_VERSION
 asdf global postgres $POSTGRES_VERSION
 asdf global nodejs $NODEJS_VERSION
