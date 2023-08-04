@@ -85,3 +85,7 @@ echo "Install PAM plugins"
 # The one below can be replaced by the official pam plugin from Apple
 # source $(pwd)/mac/pam.d/pam_apple_watch.sh
 source $(pwd)/mac/pam.d/pam_touch_id.sh
+
+echo "Install bin files"
+# for FILE in $(pwd)/bin/github_actions.sh; do ln -s "$FILE" "$HOME/.bin/$FILE"; done
+ln -sf $(pwd)/bin/github_actions.sh $HOME/.bin/
