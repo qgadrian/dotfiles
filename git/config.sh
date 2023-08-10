@@ -26,6 +26,8 @@ git config --global alias.p 'pull'
 git config --global alias.pr 'pull --rebase'
 git config --global alias.ap 'add -p'
 
+git config --global log.follow true
+
 git config --global init.defaultBranch main
 
 echo "Enable recursive cloning..."
@@ -42,7 +44,6 @@ mkdir -p $HOME/.bin
 
 ln -sf $(pwd)/git/scripts/git-gone.sh $HOME/.bin/git-gone
 ln -sf $(pwd)/git/scripts/git-new.sh $HOME/.bin/git-new
-
 
 echo "Configure better diff tool"
 
