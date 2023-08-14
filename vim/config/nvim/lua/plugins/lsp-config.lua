@@ -40,7 +40,7 @@ require("mason-lspconfig").setup({
     "elixirls",
     "eslint",
     "jsonls",
-    "lua-language-server",
+    "lua_ls",
     "stylelint_lsp",
     "tsserver",
   }
