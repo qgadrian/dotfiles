@@ -3,19 +3,14 @@ require('packer').startup({
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    -- use 'airblade/vim-rooter' -- Automatically cd into projects, needed for the moment
-    use {
-      'notjedi/nvim-rooter.lua',
-      config = 'require("plugins/nvim-rooter")'
-    }                                                                             -- Automatically cd into projects, needed for the moment
-    use 'Asheq/close-buffers.vim'                                                 -- Clear hidden buffers
-    use 'mhinz/vim-startify'                                                      -- startup screen
-    use 'nishigori/increment-activator'                                           -- configs for incremented values
-    use { 'easymotion/vim-easymotion', config = 'require("plugins/easymotion")' } -- for quick navigation
-    use 'gcmt/taboo.vim'                                                          -- tab rename
-    use 'mg979/vim-visual-multi'                                                  -- multiple cursors
-    use { 'cappyzawa/trim.nvim', config = 'require("plugins/trim")' }             -- trim trailing whitespaces
-    use 'tpope/vim-fugitive'                                                      -- git in vim
+    use 'Asheq/close-buffers.vim'                                     -- Clear hidden buffers
+    use 'mhinz/vim-startify'                                          -- startup screen
+    use 'nishigori/increment-activator'                               -- configs for incremented values
+    use { "folke/flash.nvim", config = 'require("plugins/flash")' }   -- for quick navigation
+    use 'gcmt/taboo.vim'                                              -- tab rename
+    use 'mg979/vim-visual-multi'                                      -- multiple cursors
+    use { 'cappyzawa/trim.nvim', config = 'require("plugins/trim")' } -- trim trailing whitespaces
+    use 'tpope/vim-fugitive'                                          -- git in vim
     use 'tpope/vim-vinegar'
     use 'rhysd/conflict-marker.vim'
     use 'machakann/vim-sandwich'
@@ -43,10 +38,7 @@ require('packer').startup({
       'nvim-treesitter/nvim-treesitter',
       requires = {
         {
-          'nvim-treesitter/nvim-treesitter-context',
-          config = function()
-            require 'treesitter-context'.setup()
-          end
+          'nvim-treesitter/nvim-treesitter-textobjects',
         }
       },
       config = 'require("plugins/_nvim-treesitter")',
