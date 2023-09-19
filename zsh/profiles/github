@@ -3,6 +3,7 @@
 function gat() {
   OWNER=${1:-qgadrian}
   WORKFLOW_ID=${2:-manual_staging_deploy.yml}
+  RELEASE_NAME=${3:-$(branchname)}
 
   CURRENT_PATH_PROJECT=$(git remote get-url origin | xargs basename -s .git)
   URL=https://api.github.com/repos/$OWNER/$CURRENT_PATH_PROJECT/actions/workflows/$WORKFLOW_ID/dispatches
@@ -15,7 +16,7 @@ function gat() {
       -H "Authorization: token $GITHUB_ACTIONS_TOKEN" \
       -H "Accept: application/vnd.github.v3+json" \
       $URL \
-      -d '{"ref":"{}"}' \
+      -d '{"ref":"{}","inputs":{"release_name":$RELEASE_NAME}}' \
 }
 
 function branchname() {
