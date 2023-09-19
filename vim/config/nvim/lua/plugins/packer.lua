@@ -103,14 +103,14 @@ require('packer').startup({
     }
 
     -- file tree
-    -- use {
-    --   "nvim-telescope/telescope-file-browser.nvim",
-    --   config = 'require("plugins/telescope_extensions/telescope-file-browser")'
-    -- }
     use {
-      "nvim-tree/nvim-tree.lua",
-      config = 'require("plugins/nvim-tree")',
+      "nvim-telescope/telescope-file-browser.nvim",
+      config = 'require("plugins/telescope_extensions/telescope-file-browser")'
     }
+    -- use {
+    --   "nvim-tree/nvim-tree.lua",
+    --   config = 'require("plugins/nvim-tree")',
+    -- }
 
     -- monkey code
     -- use {

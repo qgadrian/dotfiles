@@ -4,7 +4,7 @@ require("telescope").setup {
       base_dirs = {
         {
           path = "~/workspace",
-          max_depth = 2
+          max_depth = 3
         },
       },
       hidden_files = true,
@@ -14,3 +14,5 @@ require("telescope").setup {
 }
 
 require("telescope").load_extension("project")
+
+vim.api.nvim_set_keymap('n', '<leader>fp', "<cmd>lua require('telescope').extensions.project.project{}<cr>", {})

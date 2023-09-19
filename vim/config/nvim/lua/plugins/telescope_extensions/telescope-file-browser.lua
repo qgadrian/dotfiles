@@ -14,18 +14,6 @@ require("telescope").setup {
       },
       -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
-      mappings = {
-        ["i"] = {
-          ["<C-a>"] = fb_actions.create,
-          ["<C-r>"] = fb_actions.rename,
-          ["<C-m>"] = fb_actions.move,
-          ["<C-y>"] = fb_actions.copy,
-          ["<C-d>"] = fb_actions.remove
-        },
-        ["n"] = {
-          -- your custom normal mode mappings
-        },
-      },
     },
   },
 }
@@ -34,3 +22,6 @@ require("telescope").setup {
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension('fzf')
+
+vim.api.nvim_set_keymap('n', '<leader>ft', ':Telescope file_browser<cr>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fct', ':Telescope file_browser path=%:p:h<cr>', { noremap = true })
