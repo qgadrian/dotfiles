@@ -11,3 +11,4 @@ brew install \
   quicklookase \
   qlvideo \
   lsusb \
+  datweatherdoe \
