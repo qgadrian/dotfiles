@@ -127,3 +127,4 @@ require("mason-lspconfig").setup_handlers({
 
 -- Map :Format to vim.lsp.buf.formatting()
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
+vim.keymap.set('n', 'F', '<cmd>Format<CR>')
