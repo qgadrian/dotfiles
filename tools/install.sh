@@ -54,3 +54,5 @@ brew install fd
 source $(pwd)/tools/mas/install.sh
 
 source $(pwd)/tools/navi/install.sh
+
+source $(pwd)/tools/slack/install.sh
