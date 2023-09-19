@@ -32,6 +32,7 @@ brew install \
   viu \
   lsusb \
   gsed \
+  fx \
 
 brew link --force gettext
 
