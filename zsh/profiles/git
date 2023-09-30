@@ -20,6 +20,7 @@ alias gau="git add -u"
 alias gf="git fetch"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
+alias glg="git log --graph"
 
 alias gsle="git shortlog --email --summary --numbered"
 alias gtop="git shortlog --email --summary --numbered"
@@ -66,7 +67,7 @@ alias gpof=gitpof
 
 # log
 glp() {
-  git log -p HEAD~$1..HEAD
+  git log -p HEAD~$1..HEAD~$(expr $1 - 1)
 }
 
 gls() {
@@ -90,6 +91,7 @@ alias ga="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t
 alias gitreset="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git checkout"
 alias gitaddp="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add -p"
 alias gaap="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git add -p"
+alias gcoop="git st --porcelain --short --untracked | cut -c4- | peco | xargs -o -t git co -p"
 alias gitmerge="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git merge"
 alias gitrebase="git branch -a | peco | sed 's/remotes\/origin\///' | sed 's/*//' | xargs git rebase"
 ## Misc aliases (clear, track...)
