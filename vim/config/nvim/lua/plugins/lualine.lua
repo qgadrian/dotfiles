@@ -7,24 +7,41 @@ require('lualine').setup({
       { 'mode', padding = { left = 1, right = 1 } },
     },
     lualine_b = {
-      'filename',
-      {'diagnostics', sources={'nvim_diagnostic'}},
-      'branch'
+      {
+        'filename',
+        path = 1
+      },
+      {
+        'diagnostics',
+        sources = { 'nvim_diagnostic' }
+      },
+      -- 'branch'
     },
     lualine_c = {},
-    lualine_x = {},
-    lualine_y = { 'filetype' },
-    lualine_z = {
-      { 'location', padding = { left = 2 } }
-    }
+    lualine_x = {
+      {
+        "copilot",
+        show_running = true,
+        symbols = {
+          running = "🧠",
+        }
+      },
+    },
+    lualine_y = {},
+    lualine_z = {}
   },
   inactive_sections = {
-    lualine_a = { 'filename' },
+    lualine_a = {
+      {
+        'filename',
+        path = 1
+      }
+    },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = { 'location' }
+    lualine_z = {}
   },
   tabline = {},
   extensions = {}

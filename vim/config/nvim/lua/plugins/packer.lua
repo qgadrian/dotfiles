@@ -123,7 +123,11 @@ require('packer').startup({
     --     vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     --   end
     -- }
-    use { 'github/copilot.vim', config = 'require("plugins/copilot")' }
+    use {
+      'github/copilot.vim',
+      requires = { 'ofseed/lualine-copilot' },
+      config = 'require("plugins/copilot")'
+    }
 
     -- LSP
     use {
