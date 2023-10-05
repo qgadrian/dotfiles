@@ -30,5 +30,11 @@ function pk9() {
 
 alias navi=' navi'
 
-# system update
+# SYSTEM UPDATE
+#
+# packer update
+alias npu=" nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' && echo 'Packer update done'"
+# neovim update
+alias nmu=" nvim --headless -c 'MasonUpdate' - c 'quitall' && echo 'Mason update done'"
+# system apps update (brew, mac)
 alias upd=" buu && masu"
