@@ -38,11 +38,13 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "elixirls",
+    "nextls",
     "eslint",
     "jsonls",
     "lua_ls",
     "stylelint_lsp",
     "tsserver",
+    "marksman",
   }
 })
 
@@ -103,6 +105,9 @@ require("mason-lspconfig").setup_handlers({
         },
         lintTask = {
           enable = true,
+        },
+        workingDirectory = {
+          mode = 'auto'
         }
       }
       opts.flags = { debounce_text_changes = 500 }
