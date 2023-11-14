@@ -33,6 +33,7 @@ brew install \
   lsusb \
   gsed \
   fx \
+  battery \
 
 brew link --force gettext
 
