@@ -55,6 +55,7 @@ require('packer').startup({
     use { 'JamshedVesuna/vim-markdown-preview', ft = 'markdown', config = require("plugins/markdown_preview") }
     use { 'mzlogin/vim-markdown-toc', ft = 'markdown' }                      -- auto toc
     use { 'sindrets/winshift.nvim', config = 'require("plugins/winshift")' } -- window move
+    use { "ellisonleao/glow.nvim", config = function() require("glow").setup() end }
 
     use {
       'nvim-lualine/lualine.nvim',
