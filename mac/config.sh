@@ -81,7 +81,6 @@ read -p "Install fonts? " -n 1 -r; echo
     source $(pwd)/mac/fonts/install.sh
 fi
 
-echo "Install PAM plugins"
 read -p "Install PAM plugins (they need to be reinstalled on every macos update)? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     # The one below can be replaced by the official pam plugin from Apple
