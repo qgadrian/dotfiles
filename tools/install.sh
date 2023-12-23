@@ -14,6 +14,7 @@ brew install \
   peco \
   bat \
   ripgrep \
+  fzf \
   lsd \
   dive \
   prettier \
