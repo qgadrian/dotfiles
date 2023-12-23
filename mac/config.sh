@@ -90,5 +90,5 @@ fi
 
 echo "Install bin files in the user folder"
 # for FILE in $(pwd)/bin/github_actions.sh; do ln -s "$FILE" "$HOME/.bin/$FILE"; done
-mkdir $HOME/.bin/
+mkdir -p $HOME/.bin/
 ln -sf $(pwd)/bin/github_actions.sh $HOME/.bin/
