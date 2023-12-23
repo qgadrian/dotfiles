@@ -12,7 +12,7 @@ brew install gpg
 # sec   rsa4096/$key_id
 
 # Export key
-# gpg --armor --export
+# gpg --armor --export $key_id
 
 # Set key to sign git commits
 # git config --global user.signingkey $key_id
@@ -20,7 +20,7 @@ brew install gpg
 # Set global signed commits
 # git config --global commit.gpgsign true
 
-# Set the gpg command (might not be neccesary)
+# Set the gpg command (might not be necessary)
 # git config --global gpg.program gpg
 
 # Set gpg tty
