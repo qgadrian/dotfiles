@@ -2,6 +2,7 @@ echo "Install tools"
 
 brew install \
   watch \
+  wget \
   htop \
   gettext \
   ack \
