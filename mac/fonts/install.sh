@@ -1,7 +1,5 @@
 echo "Install fonts"
 
-brew install wget 
-
 find . -type f -exec sudo cp '{}' ~/Library/Fonts/ \;
 
 # monaspace: https://github.com/githubnext/monaspace#macos

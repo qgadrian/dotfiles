@@ -58,6 +58,6 @@ ln -s $(pwd)/vim/spell ~/.vim/spell
 # neovim
 pip3 install neovim-remote
 
-# wget its a depdency to get the docsets
+# wget its a dependency to get the docsets
 # w3m its needed to display the results
 brew install wget w3m
