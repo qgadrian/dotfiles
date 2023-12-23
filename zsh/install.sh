@@ -5,9 +5,9 @@ brew install zsh
 echo "Setting zsh as default shell"
 
 echo "WARNING: oh-my-zsh will be installed now. Once installed, type `exit` on the new terminal session to continue with the installation"
-read -p "Type (c)ontinue now to proceed with the oh-my-zsh installation: " -n 1 -r; echo
+read -p "Type (c)ontinue now to proceed with the oh-my-zsh installation or other key to skip this step: " -n 1 -r; echo
   if [[ $REPLY =~ ^[Cc]$ ]]; then
-    rm -rf $HOME/oh-my-zsh
+    rm -rf $HOME/.oh-my-zsh
     echo "Install oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
