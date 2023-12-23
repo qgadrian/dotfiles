@@ -12,23 +12,9 @@ read -p "Type (c)ontinue now to proceed with the oh-my-zsh installation or other
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-#echo "Install zplug"
-
-#curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
-echo "Install powerline"
-
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/powerline/fonts/master/install.sh)"
-
-# Install powerline fonts
-git clone https://github.com/powerline/fonts.git --depth=1
-./fonts/install.sh
-rm -rf fonts
-
 echo "Cleaning old zsh data"
 OLD_MV_TIMESTAMP=$(date +%Y%m%d%H%M%S)
 
-#cp .zshrc ~/.zshrc
 if [ -f ~/.zshrc ]; then
   echo "Moving old .zshrc to .zshrc.old.deleteme"
   mv ~/.zshrc ~/.zshrc.old.$OLD_MV_TIMESTAMP
@@ -63,6 +49,3 @@ fi
 
 # Pure power theme for powerlevel10k
 ln -sf $(pwd)/zsh/.purepower ~/.zsh/.purepower
-
-#brew install npm
-#npm install -g spaceship-prompt pure-prompt
