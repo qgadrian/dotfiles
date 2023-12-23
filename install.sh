@@ -35,8 +35,6 @@ source ./vim/config.sh
 
 source ./karabiner/install.sh
 
-source ./adguard/install.sh
-
 echo "\n########################"
 echo "########################"
 echo "Done!"
