@@ -2,4 +2,3 @@
 echo "Config lang"
 
 $(pwd)/lang/yarn/config.sh
-$(pwd)/lang/rust/config.sh
