@@ -3,6 +3,7 @@ echo "Setup navi"
 
 brew install navi
 
+mkdir -p ~/Library/Application\ Support/navi/
 ln -sf $(pwd)/tools/navi/config.yaml ~/Library/Application\ Support/navi/config.yaml
 
 mkdir -p ~/.navi/
