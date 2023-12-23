@@ -92,3 +92,8 @@ echo "Install bin files in the user folder"
 # for FILE in $(pwd)/bin/github_actions.sh; do ln -s "$FILE" "$HOME/.bin/$FILE"; done
 mkdir -p $HOME/.bin/
 ln -sf $(pwd)/bin/github_actions.sh $HOME/.bin/
+
+read -p "Limit charging to 80% to preserve battery health? " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    source $(pwd)/mac/battery/install.sh
+fi

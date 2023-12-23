@@ -33,7 +33,6 @@ brew install \
   lsusb \
   gsed \
   fx \
-  battery \
 
 brew install --cask bettertouchtool
 brew install --cask openvpn-connect
