@@ -1,4 +1,4 @@
-read -p "Install window manager? " -n 1 -r; echo
+read -p "Install window manager (yabai and skhdrc)? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Install yabai"
 
