@@ -10,7 +10,8 @@ echo "########################\n"
 
 source ./brew/install.sh
 
-source ./before_setup.sh
+# git-crypt is not fully ready yet
+# source ./before_setup.sh
 
 source ./mac/config.sh
 
