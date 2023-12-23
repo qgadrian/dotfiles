@@ -19,12 +19,10 @@ brew install \
   prettier \
   graphviz \
   rename \
-  github/gh/gh \
+  gh \
   go-jira \
-  bettertouchtool \
   slack \
   firefox \
-  activitywatch \
   smartmontools \
   watchman \
   terminal-notifier \
@@ -35,6 +33,9 @@ brew install \
   gsed \
   fx \
   battery \
+
+brew install --cask bettertouchtool
+brew install --cask openvpn-connect
 
 brew link --force gettext
 
