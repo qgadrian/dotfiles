@@ -4,11 +4,13 @@ brew install zsh
 
 echo "Setting zsh as default shell"
 
-# WARNING: The installation script will change the console and it will require to relaunch the installation script or exit the current process
-echo "WARNING: The console will be change, you can type `exit` to continue with the installation"
-rm -rf $HOME/oh-my-zsh
-echo "Install oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "WARNING: oh-my-zsh will be installed now. Once installed, type `exit` on the new terminal session to continue with the installation"
+read -p "Type (c)ontinue now to proceed with the oh-my-zsh installation: " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Cc]$ ]]; then
+    rm -rf $HOME/oh-my-zsh
+    echo "Install oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 #echo "Install zplug"
 
