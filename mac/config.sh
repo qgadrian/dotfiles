@@ -82,10 +82,14 @@ read -p "Install fonts? " -n 1 -r; echo
 fi
 
 echo "Install PAM plugins"
-# The one below can be replaced by the official pam plugin from Apple
-# source $(pwd)/mac/pam.d/pam_apple_watch.sh
-source $(pwd)/mac/pam.d/pam_touch_id.sh
+read -p "Install PAM plugins (they need to be reinstalled on every macos update)? " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # The one below can be replaced by the official pam plugin from Apple
+    # source $(pwd)/mac/pam.d/pam_apple_watch.sh
+    source $(pwd)/mac/pam.d/pam_touch_id.sh
+fi
 
-echo "Install bin files"
+echo "Install bin files in the user folder"
 # for FILE in $(pwd)/bin/github_actions.sh; do ln -s "$FILE" "$HOME/.bin/$FILE"; done
+mkdir $HOME/.bin/
 ln -sf $(pwd)/bin/github_actions.sh $HOME/.bin/
