@@ -4,18 +4,17 @@ echo "Install asdf"
 # are installed
 set +e
 
+# install asdf dependencies
+brew install coreutils curl git openssl
+# install ruby dependencies
+brew install openssl
+
 # install asdf
-if [ ! -d ~/.asdf ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.6.0
-fi
+brew install asdf
 
-# setup zsh
-# echo '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
-# echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
-# echo '\n. $HOME/.asdf/asdf.sh' >> ~/.bash_profile
-# echo '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bash_profile
-
-source ~/.bash_profile
+# asdf is automatically configured via the `oh-my-zsh` plugin
+# check the ZSH manual configuration here: https://asdf-vm.com/guide/getting-started.html
+echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
 
 # Support legacy files
 echo 'legacy_version_file = yes' >> ~/.asdfrc
@@ -31,13 +30,16 @@ brew install autoconf wxmac
 # exclude java deps with erlang installation
 # echo "\n#Disable jvm when installing asdf plugins\n\nexport KERL_CONFIGURE_OPTIONS=\"--disable-debug --without-javac\"" >> ~/.zshrc
 
+# options needed for ruby to install
+export RUBY_CONFIGURE_OPTS="--disable-install-doc --with-openssl-dir=$(brew --prefix openssl)"
+
 asdf plugin-add erlang
 asdf plugin-add elixir
 asdf plugin-add ruby # if having any problem with ruby, try run `asdf reshim ruby`
 asdf plugin-add terraform
 asdf plugin-add haskell
 asdf plugin-add rust
-asdf plugin-add postgres
+# asdf plugin-add postgres
 # To update GPG keys run:
 # ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf plugin-add nodejs
@@ -56,7 +58,7 @@ GOLANG_VERSION=latest
 KUBECTL_VERSION=latest
 PYTHON_VERSION=latest
 
-asdf install elixir $ELIXIR_VERSION-otp-22
+asdf install elixir $ELIXIR_VERSION
 asdf install erlang $ERLANG_VERSION
 asdf install terraform $TERRAFORM_VERSION
 asdf install rust $RUST_VERSION
@@ -68,10 +70,10 @@ asdf install kubectl $KUBECTL_VERSION
 asdf install python $PYTHON_VERSION
 
 asdf global erlang $ERLANG_VERSION
-asdf global elixir $ELIXIR_VERSION-otp-22
+asdf global elixir $ELIXIR_VERSION
 asdf global terraform $TERRAFORM_VERSION
 asdf global rust $RUST_VERSION
-asdf global postgres $POSTGRES_VERSION
+# asdf global postgres $POSTGRES_VERSION
 asdf global nodejs $NODEJS_VERSION
 asdf global ruby $RUBY_VERSION
 asdf global golang $GOLANG_VERSION
