@@ -4,6 +4,11 @@
 
 Collection of scripts that will automate the setup of a fresh workstation.
 
+## Prerequisites
+
+* Install git with `xcode-select --install`
+* Setup git [following these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
 ## Usage
 
 > You can either comment/uncomment the tools to be installed in the entrypoint
