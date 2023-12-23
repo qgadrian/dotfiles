@@ -5,7 +5,5 @@ echo "Install brew"
 echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$(whoami)/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
 
-# Needed for M1 chips
+# Needed for ARM chips
 # echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zshrc
-
-brew tap homebrew/cask
