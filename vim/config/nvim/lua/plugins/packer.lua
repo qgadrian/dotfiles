@@ -88,8 +88,13 @@ require('packer').startup({
         { 'nvim-tree/nvim-web-devicons' },
       }
     }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run =
-    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+    use { 
+      'nvim-telescope/telescope-fzf-native.nvim', 
+      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+      config = function()
+        require("telescope").load_extension("fzf")
+      end
+    }
 
     use {
       "nvim-telescope/telescope-project.nvim",
