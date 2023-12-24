@@ -14,7 +14,8 @@ brew install asdf
 
 # asdf is automatically configured via the `oh-my-zsh` plugin
 # check the ZSH manual configuration here: https://asdf-vm.com/guide/getting-started.html
-echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+# if you are not using `oh-my-zsh` you can add the following line to your `.zshrc` file
+# echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
 
 # Support legacy files
 echo 'legacy_version_file = yes' >> ~/.asdfrc
