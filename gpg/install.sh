@@ -2,6 +2,16 @@ echo "Install GPG"
 
 brew install gpg
 
+# Use macos keychain for gpg
+# https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e
+read -p "Use macos keychain to unlock the GPG key? " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    brew install pinentry-mac
+    echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+    echo "use-agent" >> ~/.gnupg/gpg.conf
+    chmod 700 ~/.gnupg
+fi
+
 # Gen GPG key
 # gpg --full-gen-key
 
