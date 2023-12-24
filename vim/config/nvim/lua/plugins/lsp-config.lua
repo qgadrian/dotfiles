@@ -42,7 +42,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "elixirls",
-    "nextls",
+    -- "nextls",
     "eslint",
     "jsonls",
     "lua_ls",
