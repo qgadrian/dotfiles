@@ -85,7 +85,7 @@ read -p "Install PAM plugins (they need to be reinstalled on every macos update)
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     # The one below can be replaced by the official pam plugin from Apple
     # source $(pwd)/mac/pam.d/pam_apple_watch.sh
-    source $(pwd)/mac/pam.d/pam_touch_id.sh
+    source $(pwd)/mac/pam.d/config.sh
 fi
 
 echo "Install bin files in the user folder"
