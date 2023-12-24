@@ -12,4 +12,6 @@ read -p "Did you sign in in the AppStore? " -n 1 -r; echo
     mas install $(mas search "pixelmator pro" | head -n 1 | awk '{print $1}')
     mas install $(mas search "photomator" | head -n 1 | awk '{print $1}')
     mas install $(mas search "Slack for Desktop" | head -n 1 | awk '{print $1}')
+    mas install $(mas search "Telegram" | head -n 1 | awk '{print $1}')
+    mas install $(mas search "Infuse Video Player" | head -n 1 | awk '{print $1}')
 fi

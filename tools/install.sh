@@ -33,8 +33,10 @@ brew install \
   gsed \
   fx \
 
-brew install --cask bettertouchtool
-brew install --cask openvpn-connect
+brew install --cask \
+  bettertouchtool \
+  openvpn-connect \
+  appcleaner \
 
 brew link --force gettext
 
