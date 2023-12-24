@@ -55,7 +55,10 @@ brew install uptech/oss/alt
 # https://github.com/sharkdp/fd
 brew install fd
 
-source $(pwd)/tools/mas/install.sh
+read -p "Install apps from the AppStore? " -n 1 -r; echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    source $(pwd)/tools/mas/install.sh
+fi
 
 source $(pwd)/tools/navi/install.sh
 
