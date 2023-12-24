@@ -22,7 +22,6 @@ brew install \
   rename \
   gh \
   go-jira \
-  slack \
   firefox \
   smartmontools \
   watchman \
