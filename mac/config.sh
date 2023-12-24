@@ -28,7 +28,7 @@ defaults write com.apple.dock mru-spaces -bool false
 # Hide removable media on desktop
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
-defaults write com.apple.finder ShowPathbar -bool false
+defaults write com.apple.finder ShowPathbar -bool true
 
 # Enable tap to click preference (restart required)
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
