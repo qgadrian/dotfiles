@@ -17,7 +17,6 @@ brew install \
   fzf \
   lsd \
   dive \
-  prettier \
   graphviz \
   rename \
   gh \
@@ -31,7 +30,6 @@ brew install \
   viu \
   lsusb \
   gsed \
-  fx \
 
 brew install --cask \
   bettertouchtool \
