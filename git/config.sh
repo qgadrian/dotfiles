@@ -8,7 +8,7 @@ echo "Setting git configuration..."
 
 git config --global core.editor 'nvr --remote-wait-silent'
 
-ln -sf $(pwd)/.global_gitignore $HOME/
+ln -sf $(pwd)/git/.global_gitignore $HOME/
 git config --global core.excludesfile $HOME/.global_gitignore
 
 git config --global user.email "qgadrian@users.noreply.github.com"

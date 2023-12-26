@@ -1,2 +1,17 @@
-.DS_Store
+########## IDE files
+.vscode
+.idea
+.iml
+*.sublime-workspace
+
+########## LSP relates files
 .elixir_ls
+
+########## OS generated files
+.DS_Store
+**/.DS_Store
+*.DS_Store
+Desktop.ini
+Thumbs.db
+.Spotlight-V100
+.Trashes
