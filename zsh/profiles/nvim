@@ -1,0 +1,4 @@
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+# NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim &
+# remote vim connections to this host. WIP
+# export NVIM_LISTEN_ADDRESS=127.0.0.1:6666

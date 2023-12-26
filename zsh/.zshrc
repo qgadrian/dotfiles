@@ -40,6 +40,9 @@ export LANG=en_US.UTF-8
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/.bin:$PATH"
+
+export PATH=/System/Cryptexes/App/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:$PATH
 
 # Export gpg tty
 export GPG_TTY=$(tty)
@@ -48,21 +51,3 @@ export GPG_TTY=$(tty)
 for file in ~/.zsh/profiles/*; do
   source "$file"
 done
-
-export ZSH_THEME=powerlevel10k/powerlevel10k
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-
-# yarn global path
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/.bin:$PATH"
-
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
-# NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim &
-# remote vim connections to this host. WIP
-# export NVIM_LISTEN_ADDRESS=127.0.0.1:6666
-
-export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
-
-export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/adrian/.asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin

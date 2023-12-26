@@ -1,4 +1,4 @@
-export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
+export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:/opt/homebrew/opt/asdf/libexec/bin:$PATH"
 
 . $HOME/.asdf/asdf.sh
 

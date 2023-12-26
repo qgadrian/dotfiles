@@ -3,3 +3,6 @@ export FZF_DEFAULT_COMMAND='fd --ignore-case --no-ignore --hidden --follow --exc
 
 # exclude git (does not work exclusively, for example .github will be excluded):
 # --exclude '^.git$'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/python@3.7/bin:$PATH"
