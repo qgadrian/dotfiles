@@ -1,8 +1,8 @@
 local signs = {
-  Error = " ",
-  Warning = " ",
-  Hint = " ",
-  Information = " "
+  Error = "🔴",
+  Warning = "⚠️",
+  Hint = "💡",
+  Information = "ℹ️"
 }
 
 for type, icon in pairs(signs) do
