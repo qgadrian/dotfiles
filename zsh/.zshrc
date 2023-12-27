@@ -47,7 +47,10 @@ export PATH=/System/Cryptexes/App/usr/bin:/var/run/com.apple.security.cryptexd/c
 # Export gpg tty
 export GPG_TTY=$(tty)
 
-#echo "Import aliases"
 for file in ~/.zsh/profiles/*; do
+  source "$file"
+done
+
+for file in ~/.zsh/local/*; do
   source "$file"
 done

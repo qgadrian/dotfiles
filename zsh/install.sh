@@ -31,6 +31,7 @@ fi
 
 ln -sf $(pwd)/zsh/.zshrc /Users/$(whoami)/.zshrc
 ln -sf $(pwd)/zsh/profiles /Users/$(whoami)/.zsh/
+ln -sf $(pwd)/zsh/local /Users/$(whoami)/.zsh/
 
 # Themes
 
