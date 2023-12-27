@@ -23,4 +23,5 @@ read -p "Did you sign in in the AppStore? " -n 1 -r; echo
     search_and_install "Infuse Video Player"
     search_and_install "WhatsApp Desktop"
     search_and_install "Telegram"
+    search_and_install "MetaImage Unlimited"
 fi
