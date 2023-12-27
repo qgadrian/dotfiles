@@ -19,11 +19,13 @@ require('lualine').setup({
     },
     lualine_c = {},
     lualine_x = {
+      -- https://github.com/ofseed/copilot-status.nvim
       {
         "copilot",
         show_running = true,
         symbols = {
           running = "🧠",
+          enabled = "󰊤"
         }
       },
     },
