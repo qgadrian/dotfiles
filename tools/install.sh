@@ -30,6 +30,7 @@ brew install \
   viu \
   lsusb \
   gsed \
+  mcfly \
 
 brew install --cask \
   bettertouchtool \
