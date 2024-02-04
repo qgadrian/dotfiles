@@ -13,6 +13,8 @@ alias ps=' ps'
 #alias nvr='nvr -s'
 alias e=' nvr .'
 
+alias lsc="ls -lisah"
+
 alias rm='rm -i'
 
 alias exit=' exit'
