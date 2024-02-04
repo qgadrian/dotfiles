@@ -67,7 +67,7 @@ alias gpof=gitpof
 
 # log
 glp() {
-  git log -p HEAD~$1..HEAD~$(expr $1 - 1)
+  git log -p HEAD~${1:-1}..HEAD~$(expr ${1:-1} - 1)
 }
 
 gls() {
