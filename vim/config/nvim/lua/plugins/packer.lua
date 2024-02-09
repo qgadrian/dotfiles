@@ -15,6 +15,17 @@ require('packer').startup({
     use 'rhysd/conflict-marker.vim'
     use 'machakann/vim-sandwich'
     use { "chrisgrieser/nvim-early-retirement", config = 'require("plugins/early-retirement")' } -- close inactive buffers after X time
+    use {
+      'notjedi/nvim-rooter.lua',
+      config = function()
+        require 'nvim-rooter'.setup {
+          rooter_patterns = { '.git' },
+          trigger_patterns = { '*' },
+          manual = false,
+          fallback_to_parent = false,
+        }
+      end
+    }
 
     -- Notifications
     use {
@@ -53,7 +64,9 @@ require('packer').startup({
     use 'godlygeek/tabular'
     -- use 'junegunn/vim-easy-align'
     use { 'JamshedVesuna/vim-markdown-preview', ft = 'markdown', config = require("plugins/markdown_preview") }
-    use { 'mzlogin/vim-markdown-toc', ft = 'markdown' }                      -- auto toc
+    use { 'richardbizik/nvim-toc', ft = 'markdown', config = function()
+      require("nvim-toc").setup({ toc_header = "Table of Contents" })
+    end }                                                                    -- auto toc
     use { 'sindrets/winshift.nvim', config = 'require("plugins/winshift")' } -- window move
     use { "ellisonleao/glow.nvim", config = function() require("glow").setup() end }
 
