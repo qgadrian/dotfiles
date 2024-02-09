@@ -68,20 +68,27 @@ const process_expiration_timestamp = (expirationIsInDays) => {
     console.log("Successfully set presence to active");
   } else {
     try {
-      // Post a message to the channel, and await the result.
-      // Find more arguments and details of the response: https://api.slack.com/methods/chat.postMessage
-      await web.users.profile.set({
-        profile: {
-          status_text: status_text,
-          status_emoji: status_emoji,
-          status_expiration: status_expiration
-        }
-      });
-
-      if (status_text === "" && status_emoji === "") {
-        console.log("Successfully cleared status");
+      if (process.env.message) {
+        await web.chat.postMessage({
+          channel: process.env.channel,
+          text: process.env.message
+        });
       } else {
-        console.log(`Successfully changed status to ${status_text} ${status_emoji}`);
+        // Post a message to the channel, and await the result.
+        // Find more arguments and details of the response: https://api.slack.com/methods/chat.postMessage
+        await web.users.profile.set({
+          profile: {
+            status_text: status_text,
+            status_emoji: status_emoji,
+            status_expiration: status_expiration
+          }
+        });
+
+        if (status_text === "" && status_emoji === "") {
+          console.log("Successfully cleared status");
+        } else {
+          console.log(`Successfully changed status to ${status_text} ${status_emoji}`);
+        }
       }
     } catch (error) {
       // Check the code property, and when its a PlatformError, log the whole response.
