@@ -1,11 +1,12 @@
+// Documentation: https://github.com/johnste/finicky/wiki/Configuration
 module.exports = {
   defaultBrowser: "Firefox",
   rewrite: [
-    // {
-    // Redirect all urls to use https
-    // match: ({ url }) => url.protocol === "http",
-    // url: { protocol: "https" }
-    // }
+    {
+      // Append notion:// to all notion.so urls
+      match: /notion.so/,
+      url: ({ url }) => ({ ...url, protocol: "notion" })
+    }
   ],
   handlers: [
     {
@@ -24,9 +25,14 @@ module.exports = {
         "*meet.google.com/*",
       ],
       browser: "Google Chrome"
-    }
+    },
+    {
+      // Open notion:// urls in Notion
+      match: /notion:/,
+      browser: "Notion"
+    },
   ],
   options: {
-    hideIcon: true,
+    hideIcon: false,
   }
 };
