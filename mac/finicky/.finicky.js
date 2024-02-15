@@ -4,7 +4,7 @@ module.exports = {
   rewrite: [
     {
       // Append notion:// to all notion.so urls
-      match: /notion.so/,
+      match: /notion.so.*pvs.*/,
       url: ({ url }) => ({ ...url, protocol: "notion" })
     }
   ],
