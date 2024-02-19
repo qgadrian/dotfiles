@@ -87,7 +87,7 @@ require('nvim-treesitter.configs').setup {
       'jsx', 'javascriptreact',
       'md', 'markdown',
       'svelte',
-      'ts','typescript',
+      'ts', 'typescript',
       'tsx', 'typescriptreact',
       'vue'
     }
