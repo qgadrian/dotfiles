@@ -11,7 +11,6 @@ brew install \
   telnet \
   npm \
   gh\
-  peco \
   bat \
   ripgrep \
   fzf \
@@ -60,5 +59,5 @@ read -p "Install apps from the AppStore? " -n 1 -r; echo
 fi
 
 source $(pwd)/tools/navi/install.sh
-
 source $(pwd)/tools/slack/install.sh
+source $(pwd)/tools/peco/install.sh
