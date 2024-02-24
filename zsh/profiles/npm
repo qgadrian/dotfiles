@@ -1,0 +1,2 @@
+alias nr="npm run"
+alias nrt="npm run test"
