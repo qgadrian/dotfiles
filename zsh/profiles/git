@@ -82,6 +82,10 @@ gbuo() {
   git branch $(git rev-parse --abbrev-ref head) -u origin/$(git rev-parse --abbrev-ref head)
 }
 
+grhi() {
+  git rebase -i HEAD~${1-1}
+}
+
 alias glpa="git log -p"
 alias glsa="git log --stat"
 
