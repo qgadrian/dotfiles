@@ -10,6 +10,8 @@ alias klf="kubectl get pods -A --field-selector=status.phase=Running | tail -n +
 
 alias kap="kubectl auth-proxy -n kubernetes-dashboard https://kubernetes-dashboard.svc"
 
+alias kcc="kubectl config get-contexts -o name | peco | xargs -ot -I{} kubectl config use-context {}"
+
 # kubectl completion
 source <(kubectl completion zsh)
 # Set the kubectl completion code for zsh[1] to autoload on startup
