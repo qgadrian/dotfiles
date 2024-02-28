@@ -1,1 +1,4 @@
-eval "$(mcfly init zsh)"
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_INTERFACE_VIEW=TOP
+export MCFLY_LIGHT=FALSE
+export MCFLY_RESULTS=50
