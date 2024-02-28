@@ -50,5 +50,9 @@
   "use_effect": {
     "prefix": "useE",
     "body": "useEffect(() => { \n${0}\n });\n"
+  },
+  "screenDisplayInfinite": {
+    "prefix": "sdi",
+    "body": "screen.debug(undefined, Infinity)"
   }
 }

@@ -7,10 +7,6 @@
     "prefix": "desc",
     "body": "describe('${1:description}', () => {\n\t${0}\n})"
   },
-  "context": {
-    "prefix": "cont",
-    "body": "context('${1:context}', () => {\n\t${0}\n})"
-  },
   "it synchronous": {
     "prefix": "it",
     "body": "it('${1:description}', () => {\n\t${0}\n})"
@@ -29,7 +25,7 @@
   },
   "beforeEach": {
     "prefix": "befe",
-    "body": "beforeEach(async () => {\n\t${0}\n})"
+    "body": "beforeEach(() => {\n\t${0}\n})"
   },
   "after": {
     "prefix": "aft",
@@ -38,5 +34,21 @@
   "afterEach": {
     "prefix": "afte",
     "body": "afterEach(() => {\n\t${0}\n})"
+  },
+  "wrapper debug": {
+    "prefix": "wrapl",
+    "body": "console.log(screen.debug());\n"
+  },
+  "console debug": {
+    "prefix": "consd",
+    "body": "console.log({ ${0} });\n"
+  },
+  "use_effect": {
+    "prefix": "useE",
+    "body": "useEffect(() => { \n${0}\n });\n"
+  },
+  "screenDisplayInfinite": {
+    "prefix": "sdi",
+    "body": "screen.debug(undefined, Infinity)"
   }
 }
