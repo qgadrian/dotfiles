@@ -97,3 +97,7 @@ read -p "Limit charging to 80% to preserve battery health? " -n 1 -r; echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     source $(pwd)/mac/battery/install.sh
 fi
+
+read -p "Disable the shortcuts in the Input Sources, from the keyboard settings, to be able to use ^Space in apps. Have you done that? " -n 1 -r; echo
+  echo "Nice! Let's continue..."
+fi
