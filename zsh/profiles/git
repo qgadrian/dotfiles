@@ -51,6 +51,12 @@ grim() {
   git rebase -i $(git rev-parse origin/${DEFAULT_BRANCH})
 }
 
+grev() {
+  DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+  git log --oneline $DEFAULT_BRANCH..HEAD | peco | awk '{print $1}' | xargs -I {} git revert {}
+}
+
 function grm() {
   DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
