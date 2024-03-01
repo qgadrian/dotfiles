@@ -32,7 +32,6 @@ brew install \
   mcfly \
 
 brew install --cask \
-  bettertouchtool \
   openvpn-connect \
   appcleaner \
 
