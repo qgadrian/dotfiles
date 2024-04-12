@@ -37,6 +37,9 @@ brew install --cask \
 
 brew link --force gettext
 
+# mqtt cli
+brew install emqx/mqttx/mqttx-cli
+
 # enhancd
 # https://github.com/b4b4r07/enhancd#installation
 brew tap jhawthorn/fzy
