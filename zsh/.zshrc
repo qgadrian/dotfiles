@@ -47,6 +47,8 @@ export PATH=/System/Cryptexes/App/usr/bin:/var/run/com.apple.security.cryptexd/c
 # Export gpg tty
 export GPG_TTY=$(tty)
 
+autoload -Uz compinit && compinit
+
 for file in ~/.zsh/profiles/*; do
   source "$file"
 done
