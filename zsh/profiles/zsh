@@ -1,9 +1,6 @@
 # Ignore duplicates and spacebar commands in history
 HISTCONTROL=ignoreboth
 
-# zplug
-#source ~/.zplug/init.zsh
-
 # Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
 alias zshconfig="subl ~/.zshrc"
@@ -38,6 +35,7 @@ plugins=(
   python
   vagrant
   virtualenv
+  zoxide
   # yarn
 )
 
@@ -48,6 +46,10 @@ source $ZSH/oh-my-zsh.sh
 # enhancd
 source ~/.enhancd/init.sh
 export ENHANCD_FILTER=peco
+# list folders in ~/workspace and ~/workspace/xxxx
+# export ENHANCD_COMMAND='rg --hidden --follow --glob "!.git" --glob "!node_modules" --glob "!vendor" --glob "!tmp" --glob "!log" --glob "!coverage" --glob "!dist" --glob "!build" --glob "!public" --glob "!target"'
+
+eval "$(zoxide init zsh)"
 
 # =============================================================================
 #                                   Options
