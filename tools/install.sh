@@ -30,6 +30,7 @@ brew install \
   lsusb \
   gsed \
   mcfly \
+  zoxide \
 
 brew install --cask \
   openvpn-connect \
