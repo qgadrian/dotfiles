@@ -28,6 +28,7 @@ git config --global alias.ciar 'commit --amend --reset-author'
 git config --global alias.p 'pull'
 git config --global alias.pr 'pull --rebase'
 git config --global alias.ap 'add -p'
+git config --global alias.lt 'log --graph --oneline --all --decorate'
 
 git config --global log.follow true
 
