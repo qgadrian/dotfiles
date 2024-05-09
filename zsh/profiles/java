@@ -1,1 +1,3 @@
-. ~/.asdf/plugins/java/set-java-home.zsh
+if ! [ -x "$(command -v java)" ]; then
+  . ~/.asdf/plugins/java/set-java-home.zsh
+fi
