@@ -6,7 +6,27 @@ module.exports = {
       // Append notion:// to all notion.so urls
       match: /notion.so.*pvs.*/,
       url: ({ url }) => ({ ...url, protocol: "notion" })
-    }
+    },
+    // Rewrite Slack URLs to open in the Slack app
+    // Example:
+    // slack://channel?team=T9HEVULAW&id=CCRQY0W8J&thread_ts=p1708514465810739
+    // {
+    //   match: /slack.com\/archives/,
+    //   url: ({ url }) => {
+    //     const channelId = url.pathname.split("/")[2];
+    //     return {
+    //       ...url,
+    //       protocol: "slack",
+    //       host: "channel",
+    //       pathname: channelId
+    //     };
+    //   }
+    // },
+    // {
+    //   // Append notion:// to all notion.so urls
+    //   match: /notion.so\/mysite\/.*/,
+    //   url: ({ url }) => ({ ...url, protocol: "notion" })
+    // }
   ],
   handlers: [
     {
@@ -33,6 +53,6 @@ module.exports = {
     },
   ],
   options: {
-    hideIcon: false,
+    hideIcon: true,
   }
 };
