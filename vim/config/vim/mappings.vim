@@ -54,9 +54,10 @@ noremap <leader>tab :tabnew<CR>:terminal<CR>
 noremap <leader>term :let $VIM_DIR=expand('%:p:h')<CR>:term!<CR>
 noremap <leader>tb :new<CR>:let $VIM_DIR=expand('FindRootDirectory()')<CR>:terminal<CR>
 noremap <leader>tvb :vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>
-" Comment this mapping to support nested vim's
+" Support nested vim's sessions
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-v><Esc> <Esc>
+tnoremap <C-[> <Esc>
 
 "autocmd TerminalOpen * call :startintert<CR>cd expand(:pwd)<CR>
 
