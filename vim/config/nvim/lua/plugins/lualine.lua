@@ -1,6 +1,8 @@
 require('lualine').setup({
   options = {
-    theme = 'dracula'
+    icons_enabled = true,
+    theme = 'dracula',
+    disabled_filetypes = {},
   },
   sections = {
     lualine_a = {
@@ -19,17 +21,40 @@ require('lualine').setup({
     },
     lualine_c = {},
     lualine_x = {
+      'branch',
+      'diagnostics',
+      {
+        'diff',
+        colored = true,
+        symbols = { added = ' ', modified = ' ', removed = ' ' },
+        diff_color = {
+          added = { fg = '#a9b665' },
+          modified = { fg = '#ebcb8b' },
+          removed = { fg = '#bf616a' }
+        }
+      },
+      -- https://github.com/folke/noice.nvim/wiki/Configuration-Recipes#show-recording-messages
+      -- {
+      --   -- only show when recording
+      --   require("noice").api.statusline.mode.get,
+      --   cond = require("noice").api.statusline.mode.has,
+      --   color = { fg = "#ff9e64" },
+      -- },
       -- https://github.com/ofseed/copilot-status.nvim
       {
         "copilot",
         show_running = true,
         symbols = {
-          running = "🧠",
-          enabled = "󰊤"
+          status = {
+            running = "🧠",
+            enabled = "󰊤"
+          },
+          spinners = require("copilot-status.spinners").dots,
         }
       },
     },
-    lualine_y = {},
+    lualine_y = {
+    },
     lualine_z = {}
   },
   inactive_sections = {
