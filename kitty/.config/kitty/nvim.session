@@ -1,0 +1,5 @@
+layout tall
+
+title Kitty
+
+launch zsh -c "source ~/.zshrc && nvim --server $NVIM_LISTEN_ADDRESS"

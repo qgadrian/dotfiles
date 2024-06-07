@@ -1,5 +1,0 @@
-layout tall
-
-title Kitty
-
-launch zsh -c "source ~/.zshrc && nvr -s"
