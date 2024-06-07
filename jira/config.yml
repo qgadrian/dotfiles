@@ -4,7 +4,7 @@ echo "endpoint: $JIRA_SERVER
 project: $JIRA_PROJECT
 login: $JIRA_USER
 password-source: keyring
-editor: nvr -s
+editor: nvim
 
 custom-commands:
   - name: sprint

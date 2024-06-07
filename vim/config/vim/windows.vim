@@ -82,10 +82,6 @@ noremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 9/10)<CR>
 autocmd FileType markdown setlocal spell wrap textwidth=80
 " Delete git buffer when hidden
 autocmd FileType gitcommit set bufhidden=delete
-" Split buffer in git edit
-if has('nvim')
-  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-endif
 
 " Fix cmd height size when sourcing files
 " See https://stackoverflow.com/a/15648665/1214625

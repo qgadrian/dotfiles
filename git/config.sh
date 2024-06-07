@@ -6,7 +6,8 @@ echo "###################################"
 
 echo "Setting git configuration..."
 
-git config --global core.editor 'nvr --remote-wait-silent'
+# git config --global core.editor 'nvim --server $NVIM_LISTEN_ADDRESS --remote'
+git config --global core.editor "nvim --cmd 'let g:unception_block_while_host_edits=1'"
 
 ln -sf $(pwd)/git/.global_gitignore $HOME/
 git config --global core.excludesfile $HOME/.global_gitignore

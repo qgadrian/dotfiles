@@ -16,11 +16,8 @@ endfor
 filetype plugin indent on " required
 
 "
-" Set git editor
+" Clear git editor buffers
 "
-if has('nvim')
-  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-endif
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 
 "

@@ -114,7 +114,7 @@ require("mason-lspconfig").setup_handlers({
         },
         workingDirectory = {
           mode = 'auto'
-        }
+        },
       }
       opts.flags = { debounce_text_changes = 500 }
       opts.on_attach = function(client, bufnr)
