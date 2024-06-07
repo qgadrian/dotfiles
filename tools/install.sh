@@ -18,7 +18,6 @@ brew install \
   dive \
   graphviz \
   rename \
-  gh \
   go-jira \
   firefox \
   smartmontools \
