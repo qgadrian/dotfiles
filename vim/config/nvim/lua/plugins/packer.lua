@@ -156,7 +156,7 @@ require('packer').startup({
       config = 'require("plugins/copilot")'
     }
 
-    -- LSP
+    -- LSP, formatters...
     use {
       "williamboman/mason.nvim",
       requires = {
@@ -177,6 +177,10 @@ require('packer').startup({
       config = 'require("plugins/nvim-cmp")'
     }                                                                     -- completion
     use { 'onsails/lspkind-nvim', config = 'require("plugins/lspkind")' } -- add pictogramas to LSP
+    use { 'nvimtools/none-ls.nvim', 
+      requires = { "nvimtools/none-ls-extras.nvim" },
+      config = 'require("plugins/none-ls")'
+    }
 
     -- diagnostics alerts & visuals
     use {
