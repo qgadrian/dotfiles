@@ -41,17 +41,17 @@ require('lualine').setup({
       --   color = { fg = "#ff9e64" },
       -- },
       -- https://github.com/ofseed/copilot-status.nvim
-      {
-        "copilot",
-        show_running = true,
-        symbols = {
-          status = {
-            running = "🧠",
-            enabled = "󰊤"
-          },
-          spinners = require("copilot-status.spinners").dots,
-        }
-      },
+      -- {
+      --   "copilot",
+      --   show_running = true,
+      --   symbols = {
+      --     status = {
+      --       running = "🧠",
+      --       enabled = "󰊤"
+      --     },
+      --     spinners = require("copilot-status.spinners").dots,
+      --   }
+      -- },
     },
     lualine_y = {
     },
