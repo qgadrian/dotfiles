@@ -1,3 +1,4 @@
 return {
-  { "Asheq/close-buffers.vim" },
+  "Asheq/close-buffers.vim",
+  event = "VeryLazy",
 }

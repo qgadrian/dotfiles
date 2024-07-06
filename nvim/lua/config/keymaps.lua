@@ -11,6 +11,10 @@ vim.keymap.set("n", "<leader>term", ":let $VIM_DIR=expand('%:p:h')<CR>:term<CR>"
 vim.keymap.set("n", "<leader>tb", ":new<CR>:let $VIM_DIR=expand('FindRootDirectory()')<CR>:terminal<CR>")
 vim.keymap.set("n", "<leader>tvb", ":vnew<CR>:let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>")
 
+-- Increase window size
+vim.keymap.set("n", "<C-S-9>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+vim.keymap.set("n", "<C-S-0>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+
 -- Support nested vim's sessions
 -- tnoremap <Esc> <C-\><C-n>
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })

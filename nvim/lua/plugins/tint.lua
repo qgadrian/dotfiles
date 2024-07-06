@@ -1,5 +1,6 @@
 return {
   "levouh/tint.nvim",
+  event = "VeryLazy",
   opts = {
     tint_background_colors = false, -- Tint background portions of highlight groups
     tint = -45, -- Darken colors, use a positive value to brighten
