@@ -117,19 +117,19 @@ require("mason-lspconfig").setup_handlers({
         },
       }
       opts.flags = { debounce_text_changes = 500 }
-      opts.on_attach = function(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = true
-        if client.server_capabilities.documentFormattingProvider then
-          local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = "*",
-            callback = function()
-              vim.lsp.buf.format({ async = false })
-            end,
-            group = au_lsp,
-          })
-        end
-      end
+      -- opts.on_attach = function(client, bufnr)
+      --   client.server_capabilities.documentFormattingProvider = true
+      --   if client.server_capabilities.documentFormattingProvider then
+      --     local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+      --     vim.api.nvim_create_autocmd("BufWritePre", {
+      --       pattern = "*",
+      --       callback = function()
+      --         vim.lsp.buf.format({ async = false })
+      --       end,
+      --       group = au_lsp,
+      --     })
+      --   end
+      -- end
     end
 
     require("lspconfig")[server_name].setup(opts)
