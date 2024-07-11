@@ -8,9 +8,21 @@ end
 
 -- Delete git buffer when hidden
 vim.api.nvim_create_autocmd("FileType", {
-  command = "set bufhidden=delete",
   group = augroup("gitcommit"),
   pattern = "gitcommit",
+  callback = function()
+    vim.opt.bufhidden = "delete"
+  end,
+})
+
+-- Auto insert mode after closing a gitcommit buffer
+vim.api.nvim_create_autocmd("BufDelete", {
+  group = augroup("delete_gitcommit"),
+  pattern = { "gitcommit", "COMMIT_EDITMSG" },
+  desc = "Start insert mode after closing gitcommit buffer",
+  callback = function()
+    vim.cmd("startinsert")
+  end,
 })
 
 -- Automatically equalize splits when Vim is resized
@@ -34,5 +46,34 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
     -- Automatically go to insert mode on terminal windows
     vim.cmd("startinsert")
+  end,
+})
+
+-- Enable quick exit on certain filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("easy_quit"),
+  pattern = {
+    "help",
+    "man",
+    "lspinfo",
+    "checkhealth",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { buffer = true, silent = true })
+  end,
+})
+
+-- Check for spelling in text filetypes and enable wrapping
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("set_wrap"),
+  pattern = {
+    "gitcommit",
+    "markdown",
+    "text",
+  },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.wrap = true
   end,
 })
