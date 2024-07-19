@@ -44,6 +44,7 @@ asdf plugin-add rust
 # To update GPG keys run:
 # ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf plugin-add nodejs
+asdf plugin-add pnpm
 asdf plugin-add golang
 asdf plugin-add kubectl
 asdf plugin-add python
@@ -58,6 +59,7 @@ RUBY_VERSION=latest
 GOLANG_VERSION=latest
 KUBECTL_VERSION=latest
 PYTHON_VERSION=latest
+PNPM_VERSION=latest
 
 asdf install elixir $ELIXIR_VERSION
 asdf install erlang $ERLANG_VERSION
@@ -76,6 +78,7 @@ asdf global terraform $TERRAFORM_VERSION
 asdf global rust $RUST_VERSION
 # asdf global postgres $POSTGRES_VERSION
 asdf global nodejs $NODEJS_VERSION
+asdf global pnpm $PNPM_VERSION
 asdf global ruby $RUBY_VERSION
 asdf global golang $GOLANG_VERSION
 asdf global kubectl $KUBECTL_VERSION
