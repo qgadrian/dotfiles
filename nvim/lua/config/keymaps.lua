@@ -80,6 +80,9 @@ vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>", {})
 
 -- LSP
 -- see diagnostics
-vim.keymap.set("n", "<C-s>", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+vim.keymap.set("n", "<C-s>", "<cmd>lua vim.diagnostic.open_float()<CR>")
 -- format shortcut
 vim.keymap.set("n", "F", "<cmd>lua vim.lsp.buf.format()<CR>")
+
+-- Word replace
+vim.keymap.set("n", "<leader>wr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gc<Left><Left><Left>")
