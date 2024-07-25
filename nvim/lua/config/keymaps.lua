@@ -30,8 +30,8 @@ vim.keymap.set("n", "<leader>hw", ":let @/='\\<<C-R>=expand(\"<cword>\")<CR>\\>'
 vim.keymap.set("n", "<leader>rf", "<cmd>e!<cr>", { noremap = true })
 
 -- Delete hidden buffers
--- nnoremap <leader>bd :Bdelete! hidden<CR>
-vim.keymap.set("n", "<leader>bd", "<cmd>Bdelete hidden<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>bD", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- Copy file path to clipboard
 vim.keymap.set("n", "<leader>ccp", "<cmd>let @+=expand('%')<cr>", { noremap = true })
