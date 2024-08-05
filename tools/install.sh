@@ -1,39 +1,38 @@
 echo "Install tools"
 
 brew install \
-  watch \
-  wget \
-  htop \
-  gettext \
   ack \
   automake \
-  nmap \
-  telnet \
-  npm \
-  gh\
   bat \
-  ripgrep \
-  fzf \
-  lsd \
   dive \
-  graphviz \
-  rename \
-  go-jira \
   firefox \
-  smartmontools \
-  watchman \
-  terminal-notifier \
-  speedtest-cli \
-  rpl \
-  viu \
-  lsusb \
+  fzf \
+  gettext \
+  gh go-jira \
+  graphviz \
   gsed \
+  htop \
+  lsd \
+  lsusb \
   mcfly \
-  zoxide \
+  nmap \
+  npm \
+  rename \
+  ripgrep \
+  rpl \
+  smartmontools \
+  speedtest-cli \
+  telnet \
+  terminal-notifier \
+  trash \
+  viu \
+  watch \
+  watchman \
+  wget
 
 brew install --cask \
   openvpn-connect \
-  appcleaner \
+  appcleaner
 
 brew link --force gettext
 
@@ -55,9 +54,10 @@ brew install uptech/oss/alt
 # https://github.com/sharkdp/fd
 brew install fd
 
-read -p "Install apps from the AppStore? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    source $(pwd)/tools/mas/install.sh
+read -p "Install apps from the AppStore? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  source $(pwd)/tools/mas/install.sh
 fi
 
 source $(pwd)/tools/navi/install.sh
