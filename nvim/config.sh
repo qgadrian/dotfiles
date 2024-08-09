@@ -3,7 +3,7 @@ echo "Install nvim"
 brew install neovim
 
 # dependencies for some plugins
-brew install make cmake
+brew install make cmake luarocks
 
 ######
 # Package manager
