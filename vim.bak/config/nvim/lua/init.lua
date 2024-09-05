@@ -1,5 +1,0 @@
-require 'plugins/packer'
-require 'config/config'
-require 'config/diagnostic-signs'
-require 'config/mappings'
-require 'config/autocommands'
