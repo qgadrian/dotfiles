@@ -4,7 +4,6 @@
 
 local vim = vim
 local opt = vim.opt
-local g = vim.g
 
 vim.g.markdown_fenced_languages = {
   "html",
