@@ -77,3 +77,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.wrap = true
   end,
 })
+
+-- Silent write, file load, lines delete
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = augroup("silent_write"),
+  pattern = "*",
+  command = [[silent! w]],
+})
+
+vim.api.nvim_create_autocmd("BufRead", {
+  group = augroup("silent_read"),
+  pattern = "*",
+  command = [[noautocmd silent!]],
+})
