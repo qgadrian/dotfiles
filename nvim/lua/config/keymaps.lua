@@ -57,7 +57,8 @@ vim.keymap.set("n", "<leader>hb", "<cmd>new<cr>", { noremap = true, silent = tru
 vim.keymap.set("n", "<leader>vb", "<cmd>vnew<cr>", { noremap = true, silent = true })
 
 -- Create new tab shortcut
-vim.keymap.set("n", "<leader>tab", "<cmd>tabnew<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>te", "<cmd>tabnew<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<cr>:terminal<cr>", { noremap = true, silent = true })
 
 -- Move tabs with arrow keys
 -- noremap <M-S-Left> gT
