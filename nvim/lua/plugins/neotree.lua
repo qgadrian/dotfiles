@@ -1,7 +1,8 @@
-vim.keymap.set("n", "-", ":Neotree toggle reveal<CR>", { noremap = true })
+-- vim.keymap.set("n", "-", ":Neotree toggle reveal<CR>", { noremap = true })
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   opts = {
     open_files_do_not_replace_types = { "trouble", "qf" },
     window = {
