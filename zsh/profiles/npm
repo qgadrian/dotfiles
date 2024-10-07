@@ -1,3 +1,4 @@
 alias nr="npm run"
 alias nrt="npm run test"
+alias nrtw="npm run test:watch"
 alias nrtc="npm run test --coverage"
