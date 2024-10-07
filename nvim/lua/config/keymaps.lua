@@ -86,7 +86,7 @@ vim.keymap.set("n", "<C-s>", "<cmd>lua vim.diagnostic.open_float()<CR>")
 vim.keymap.set("n", "F", "<cmd>lua vim.lsp.buf.format()<CR>")
 
 -- Word replace
-vim.keymap.set("n", "<leader>wr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gc<Left><Left><Left>")
+vim.keymap.set("n", "<leader>rr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gc<Left><Left><Left>")
 
 -- create new lines without entering in insert mode
 vim.keymap.set("n", "o", "o<esc>")
