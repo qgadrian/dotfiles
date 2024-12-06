@@ -113,3 +113,10 @@ vim.keymap.set("i", "<M-w>", "ü", { noremap = true, silent = true })
 vim.keymap.set("i", "<M-W>", "Ü", { noremap = true, silent = true })
 vim.keymap.set("i", "<S-M-/>", "¿", { noremap = true, silent = true })
 vim.keymap.set("i", "<S-M-1>", "¡", { noremap = true, silent = true })
+
+-- Duplicate a line and comment out the first line
+vim.keymap.set("n", "<C-c>", "ciw")
+
+-- Move selected lines with shift+j or shift+k
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
