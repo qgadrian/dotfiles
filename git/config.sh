@@ -31,6 +31,9 @@ git config --global alias.pr 'pull --rebase'
 git config --global alias.ap 'add -p'
 git config --global alias.lt 'log --graph --oneline --all --decorate'
 
+# Prompt for autocorrect instead of waiting 0.1 seconds
+git config --global help.autocorrect prompt
+
 git config --global log.follow true
 
 git config --global init.defaultBranch main
@@ -58,14 +61,14 @@ git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 git config --global color.ui true
 
-git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldNormal "red bold"
 git config --global color.diff-highlight.oldHighlight "red bold 52"
-git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newNormal "green bold"
 git config --global color.diff-highlight.newHighlight "green bold 22"
 
-git config --global color.diff.meta       "11"
-git config --global color.diff.frag       "magenta"
-git config --global color.diff.commit     "yellow"
-git config --global color.diff.old        "red"
-git config --global color.diff.new        "green"
+git config --global color.diff.meta "11"
+git config --global color.diff.frag "magenta"
+git config --global color.diff.commit "yellow"
+git config --global color.diff.old "red"
+git config --global color.diff.new "green"
 git config --global color.diff.whitespace "red reverse"
