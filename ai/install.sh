@@ -1,10 +1,12 @@
-read -p "Install ai LLM related tools (ollama)? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    brew install ollama
+read -p "Install ai LLM related tools (ollama)? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  brew install --cask ollamac
+  brew install ollama
 
-    # ollama serve
-    # ollama run llama2
-    # ollama run llama2-uncensored
+  # ollama serve
+  # ollama run llama2
+  # ollama run llama2-uncensored
 fi
 
 # ai diffusion related tools (automatic1111)?
