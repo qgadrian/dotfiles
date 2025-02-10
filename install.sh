@@ -27,9 +27,9 @@ source ./git/config.sh
 
 source ./docker/install.sh
 
-source ./kitty/install.sh
-
 source ./tools/install.sh
+
+source ./kitty/install.sh
 
 source ./vim/config.sh
 
