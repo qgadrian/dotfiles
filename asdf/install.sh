@@ -72,17 +72,17 @@ asdf install golang $GOLANG_VERSION
 asdf install kubectl $KUBECTL_VERSION
 asdf install python $PYTHON_VERSION
 
-asdf set erlang $ERLANG_VERSION
-asdf set elixir $ELIXIR_VERSION
-asdf set terraform $TERRAFORM_VERSION
-asdf set rust $RUST_VERSION
+asdf set -u erlang $ERLANG_VERSION
+asdf set -u elixir $ELIXIR_VERSION
+asdf set -u terraform $TERRAFORM_VERSION
+asdf set -u rust $RUST_VERSION
 # asdf set postgres $POSTGRES_VERSION
-asdf set nodejs $NODEJS_VERSION
-asdf set pnpm $PNPM_VERSION
-asdf set ruby $RUBY_VERSION
-asdf set golang $GOLANG_VERSION
-asdf set kubectl $KUBECTL_VERSION
-asdf set python $PYTHON_VERSION
+asdf set -u nodejs $NODEJS_VERSION
+asdf set -u pnpm $PNPM_VERSION
+asdf set -u ruby $RUBY_VERSION
+asdf set -u golang $GOLANG_VERSION
+asdf set -u kubectl $KUBECTL_VERSION
+asdf set -u python $PYTHON_VERSION
 
 # If there is a permissions problem with asdf
 # sudo chown -R $(whoami) ~/.asdf
