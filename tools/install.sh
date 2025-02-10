@@ -7,11 +7,13 @@ brew install \
   dive \
   firefox \
   fzf \
+  ffmpeg \
   gettext \
   gh go-jira \
   graphviz \
   gsed \
   htop \
+  launchcontrol \
   lsd \
   lsusb \
   mcfly \
