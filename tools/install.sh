@@ -17,6 +17,7 @@ brew install \
   mcfly \
   nmap \
   npm \
+  peco \
   rename \
   ripgrep \
   rpl \
