@@ -18,7 +18,7 @@ brew install asdf
 # echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
 
 # Support legacy files
-echo 'legacy_version_file = yes' >> ~/.asdfrc
+echo 'legacy_version_file = yes' >>~/.asdfrc
 
 # setup asdf deps
 brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc
@@ -34,20 +34,20 @@ brew install autoconf wxmac
 # options needed for ruby to install
 export RUBY_CONFIGURE_OPTS="--disable-install-doc --with-openssl-dir=$(brew --prefix openssl)"
 
-asdf plugin-add erlang
-asdf plugin-add elixir
-asdf plugin-add ruby # if having any problem with ruby, try run `asdf reshim ruby`
-asdf plugin-add terraform
-asdf plugin-add haskell
-asdf plugin-add rust
+asdf plugin add erlang
+asdf plugin add elixir
+asdf plugin add ruby # if having any problem with ruby, try run `asdf reshim ruby`
+asdf plugin add terraform
+asdf plugin add haskell
+asdf plugin add rust
 # asdf plugin-add postgres
 # To update GPG keys run:
 # ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-asdf plugin-add nodejs
-asdf plugin-add pnpm
-asdf plugin-add golang
-asdf plugin-add kubectl
-asdf plugin-add python
+asdf plugin add nodejs
+asdf plugin add pnpm
+asdf plugin add golang
+asdf plugin add kubectl
+asdf plugin add python
 
 ELIXIR_VERSION=latest
 ERLANG_VERSION=latest
@@ -72,17 +72,17 @@ asdf install golang $GOLANG_VERSION
 asdf install kubectl $KUBECTL_VERSION
 asdf install python $PYTHON_VERSION
 
-asdf global erlang $ERLANG_VERSION
-asdf global elixir $ELIXIR_VERSION
-asdf global terraform $TERRAFORM_VERSION
-asdf global rust $RUST_VERSION
-# asdf global postgres $POSTGRES_VERSION
-asdf global nodejs $NODEJS_VERSION
-asdf global pnpm $PNPM_VERSION
-asdf global ruby $RUBY_VERSION
-asdf global golang $GOLANG_VERSION
-asdf global kubectl $KUBECTL_VERSION
-asdf global python $PYTHON_VERSION
+asdf set erlang $ERLANG_VERSION
+asdf set elixir $ELIXIR_VERSION
+asdf set terraform $TERRAFORM_VERSION
+asdf set rust $RUST_VERSION
+# asdf set postgres $POSTGRES_VERSION
+asdf set nodejs $NODEJS_VERSION
+asdf set pnpm $PNPM_VERSION
+asdf set ruby $RUBY_VERSION
+asdf set golang $GOLANG_VERSION
+asdf set kubectl $KUBECTL_VERSION
+asdf set python $PYTHON_VERSION
 
 # If there is a permissions problem with asdf
 # sudo chown -R $(whoami) ~/.asdf
