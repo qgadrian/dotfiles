@@ -35,6 +35,8 @@ source ./nvim/config.sh
 
 source ./karabiner/install.sh
 
+source ./ai/install.sh
+
 echo "\n########################"
 echo "########################"
 echo "Done!"
