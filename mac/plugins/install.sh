@@ -5,10 +5,9 @@ brew install \
   qlstephen \
   qlmarkdown \
   quicklook-json \
-  qlimagesize \
   webpquicklook \
   suspicious-package \
   quicklookase \
   qlvideo \
   lsusb \
-  datweatherdoe \
+  datweatherdoe
