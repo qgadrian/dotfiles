@@ -1,20 +1,22 @@
 #!/bin/bash
 
-read -p "Set the hostname? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Introduce the host name: "
-    read HOST_NAME
-    sudo scutil --set ComputerName $HOST_NAME
-    sudo scutil --set HostName $HOST_NAME
-    sudo scutil --set LocalHostName $HOST_NAME
-    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $HOST_NAME
+read -p "Set the hostname? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "Introduce the host name: "
+  read HOST_NAME
+  sudo scutil --set ComputerName $HOST_NAME
+  sudo scutil --set HostName $HOST_NAME
+  sudo scutil --set LocalHostName $HOST_NAME
+  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $HOST_NAME
 fi
 
-read -p "Configure the Keyboard? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-      defaults write -g ApplePressAndHoldEnabled -bool true
-      defaults write -g InitialKeyRepeat -int 10
-      defaults write -g KeyRepeat -int 1
+read -p "Configure the Keyboard? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  defaults write -g ApplePressAndHoldEnabled -bool true
+  defaults write -g InitialKeyRepeat -int 10
+  defaults write -g KeyRepeat -int 1
 
   echo "Changes will be applied after restart"
 fi
@@ -46,16 +48,18 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # click anywhere on a window with `ctrl` + `cmd` to move it
 defaults write -g NSWindowShouldDragOnGesture -bool true
 
-read -p "Install rosetta? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Install rosetta"
-    sudo softwareupdate --install-rosetta --agree-to-license
+read -p "Install rosetta? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "Install rosetta"
+  sudo softwareupdate --install-rosetta --agree-to-license
 fi
 
-read -p "Install command line tools? (the install will fail if already installed) " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Install command line tools"
-    xcode-select --install
+read -p "Install command line tools? (the install will fail if already installed) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "Install command line tools"
+  xcode-select --install
 fi
 
 # Automatic Restart on System Freeze
@@ -76,16 +80,18 @@ source $(pwd)/mac/utm/install.sh
 
 source $(pwd)/mac/window_management/install.sh
 
-read -p "Install fonts? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    source $(pwd)/mac/fonts/install.sh
+read -p "Install fonts? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  source $(pwd)/mac/fonts/install.sh
 fi
 
-read -p "Install PAM plugins (they need to be reinstalled on every macos update)? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    # The one below can be replaced by the official pam plugin from Apple
-    # source $(pwd)/mac/pam.d/pam_apple_watch.sh
-    source $(pwd)/mac/pam.d/config.sh
+read -p "Install PAM plugins (they need to be reinstalled on every macos update)? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  # The one below can be replaced by the official pam plugin from Apple
+  # source $(pwd)/mac/pam.d/pam_apple_watch.sh
+  source $(pwd)/mac/pam.d/config.sh
 fi
 
 echo "Install bin files in the user folder"
@@ -93,11 +99,14 @@ echo "Install bin files in the user folder"
 mkdir -p $HOME/.bin/
 ln -sf $(pwd)/bin/github_actions.sh $HOME/.bin/
 
-read -p "Limit charging to 80% to preserve battery health? " -n 1 -r; echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    source $(pwd)/mac/battery/install.sh
+read -p "Limit charging to 80% to preserve battery health? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  source $(pwd)/mac/battery/install.sh
 fi
 
-read -p "Disable the shortcuts in the Input Sources, from the keyboard settings, to be able to use ^Space in apps. Have you done that? " -n 1 -r; echo
+read -p "Disable the shortcuts in the Input Sources, from the keyboard settings, to be able to use ^Space in apps. Have you done that? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "Nice! Let's continue..."
 fi
