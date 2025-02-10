@@ -1,7 +1,5 @@
 export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:/opt/homebrew/opt/asdf/libexec/bin:$PATH"
 
-. $HOME/.asdf/asdf.sh
-
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # Disable jvm when installing asdf plugins
