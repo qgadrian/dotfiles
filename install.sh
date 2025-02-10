@@ -31,7 +31,7 @@ source ./tools/install.sh
 
 source ./kitty/install.sh
 
-source ./vim/config.sh
+source ./nvim/config.sh
 
 source ./karabiner/install.sh
 
@@ -43,7 +43,7 @@ echo "\n\t* Restart the computer"
 echo "\n\t* Start accepting the \"unverified developer madness\""
 echo "\n\t* Setup signed commits with GPG"
 echo "\n\t* Open KarabinerElements and complete the setup"
-echo "\n\t* Update Firefox to avoid exit full screen on escape (about:config -> change `browser.fullscreen.exit_on_escape` to `false`)"
+echo "\n\t* Update Firefox to avoid exit full screen on escape (about:config -> change $(browser.fullscreen.exit_on_escape) to $(false))"
 echo "\n"
 echo "########################"
 echo "########################\n"
