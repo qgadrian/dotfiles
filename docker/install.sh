@@ -1,6 +1,10 @@
-echo "Install Docker"
+echo "Install VM container runtime"
 
-brew install docker
+brew install docker docker-compose
+brew install colima
+
+# enable autostart
+brew services start colima
 
 # docker alias to remove stopped containers
 # docker rm -v $(docker ps -a -q -f status=exited)
