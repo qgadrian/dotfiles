@@ -18,7 +18,11 @@ alias dockerkill="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | s
 alias dockerclear="docker system prune"
 alias dockerlogs="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs {}"
 alias dockerlogsf="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs -f {}"
+
+# docker compose w/ peco
 alias dcupdate='svc=$(dockercompose config --services | peco) && [ -n "$svc" ] && dockercompose stop "$svc" && dockercompose pull "$svc" && dockercompose up -d "$svc"'
+alias dcexec='container=$(docker ps --format "{{.Names}}" | peco) && [ -n "$container" ] && docker exec -it "$container" ${SHELL:-/bin/sh}'
+alias dcrestart='containers=$(docker ps --format "{{.Names}}" | peco -m | tr "\n" " ") && [ -n "$containers" ] && docker restart $containers'
 
 # dive tool
 alias dockerdive="docker images | peco | sed 's/ .*//g' | xargs -I{} -ot dive {}"
