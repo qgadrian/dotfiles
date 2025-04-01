@@ -120,3 +120,7 @@ vim.keymap.set("n", "<C-c>", "ciw")
 -- Move selected lines with shift+j or shift+k
 -- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "<leader>sg", function()
+  require("telescope").extensions.live_grep_args.live_grep_args()
+end, { desc = "Grep (args)" })
