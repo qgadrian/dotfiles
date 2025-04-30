@@ -17,6 +17,7 @@ alias dockerstop="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | s
 alias dockerkill="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker kill {}"
 alias dockerclear="docker system prune"
 alias dockerlogs="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs {}"
+alias dockerlogsa="docker ps -a --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs {}"
 alias dockerlogsf="docker ps --format '{{.ID}}: {{.Image}} {{.Names}}' | peco | sed 's/: .*//g' | xargs -I{} -ot docker logs -f {}"
 
 # docker compose
