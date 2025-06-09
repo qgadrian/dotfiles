@@ -33,7 +33,7 @@ ln -sf $(pwd)/zsh/.zshrc /Users/$(whoami)/.zshrc
 ln -sf $(pwd)/zsh/profiles /Users/$(whoami)/.zsh/
 ln -sf $(pwd)/zsh/local /Users/$(whoami)/.zsh/
 
-mkdir /Users/$(whoami)/.zsh/local
+mkdir -p /Users/$(whoami)/.zsh/local
 touch /Users/$(whoami)/.zsh/local/example
 
 # Themes
