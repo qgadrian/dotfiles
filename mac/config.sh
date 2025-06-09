@@ -74,9 +74,17 @@ fi
 # Show Full Path in Finder Title
 #defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
-source $(pwd)/mac/plugins/install.sh
+read -p "Install macOS plugins (preview, toolbar apps, etc)? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  source $(pwd)/mac/plugins/install.sh
+fi
 
-source $(pwd)/mac/utm/install.sh
+read -p "Install UTM? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  source $(pwd)/mac/utm/install.sh
+fi
 
 source $(pwd)/mac/window_management/install.sh
 
