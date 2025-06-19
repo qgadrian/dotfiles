@@ -21,7 +21,6 @@ brew install \
   npm \
   peco \
   rename \
-  ripgrep \
   rpl \
   smartmontools \
   speedtest-cli \

@@ -1,0 +1,18 @@
+# core settings
+--smart-case
+--hidden
+
+# exclusions
+--glob=!.git/
+--glob=!**/node_modules/
+--glob=!_build/
+--glob=!deps/
+--glob=!dist/
+--glob=!**/coverage/
+--glob=!*.beam
+--glob=!*.log
+
+# custom file types
+# example usage -> :Telescope live_grep type=elixir
+--type-add 'elixir:*.{ex,exs,heex}' 
+--type-add 'styles:*.{css,scss,sass,less}'
