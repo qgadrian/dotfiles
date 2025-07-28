@@ -84,6 +84,11 @@ asdf set -u golang $GOLANG_VERSION
 asdf set -u kubectl $KUBECTL_VERSION
 asdf set -u python $PYTHON_VERSION
 
+# for refefence, if ever want to install java (e.g. android development)
+# asdf plugin add java
+# asdf install java temurin-17.0.11+9
+# asdf global java temurin-17.0.11+9
+
 # If there is a permissions problem with asdf
 # sudo chown -R $(whoami) ~/.asdf
 
