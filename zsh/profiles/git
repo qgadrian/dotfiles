@@ -25,7 +25,10 @@ alias glg="git log --graph"
 # git copy latest commit
 alias gclc='git rev-parse --short HEAD | pbcopy'
 
-# git diff peco commit
+# git list commit diff/peco
+alias glcd='git log --oneline --decorate --graph --color=always | peco | cut -d" " -f1 | xargs git show --color'
+alias glcp='git log --oneline --decorate --graph --color=always | peco | cut -d" " -f1 | xargs git show --color'
+alias gdcp='git log --oneline --decorate --graph --color=always | peco | cut -d" " -f1 | xargs git show --color'
 alias gdpc='git log --oneline --decorate --graph --color=always | peco | cut -d" " -f1 | xargs git show --color'
 
 alias gsle="git shortlog --email --summary --numbered"
