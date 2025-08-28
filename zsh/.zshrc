@@ -55,5 +55,6 @@ for file in ~/.zsh/local/*; do
   source "$file"
 done
 
-# Initialize mcfly, needs to be placed at the end of this file
+# Initializations need to be placed at the end of this file
 eval "$(mcfly init zsh)"
+eval "$(mise activate zsh)"
