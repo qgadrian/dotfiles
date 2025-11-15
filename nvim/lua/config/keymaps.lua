@@ -84,6 +84,11 @@ vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>", {})
 vim.keymap.set("n", "<C-s>", "<cmd>lua vim.diagnostic.open_float()<CR>")
 -- format shortcut
 vim.keymap.set("n", "F", "<cmd>lua vim.lsp.buf.format()<CR>")
+-- go to definition in split window
+vim.keymap.set("n", "gv", function()
+  vim.cmd("vsplit")
+  vim.lsp.buf.definition()
+end, { desc = "Go to definition in vertical split" })
 
 -- Word replace
 vim.keymap.set("n", "<leader>rr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gc<Left><Left><Left>")
