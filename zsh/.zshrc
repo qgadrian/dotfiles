@@ -43,9 +43,12 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 
 export PATH=/System/Cryptexes/App/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 
 # Export gpg tty
 export GPG_TTY=$(tty)
+
+autoload -Uz compinit && compinit
 
 for file in ~/.zsh/profiles/*; do
   source "$file"
@@ -57,4 +60,10 @@ done
 
 # Initializations need to be placed at the end of this file
 eval "$(mcfly init zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/adrian/.lmstudio/bin"
+
+# mise
 eval "$(mise activate zsh)"
+export MISE_SHELL=zsh
