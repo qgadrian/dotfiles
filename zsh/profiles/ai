@@ -1,0 +1,20 @@
+task-prompt-template() {
+    echo "TASK
+<One single phrase here>
+
+SCOPE
+- Allowed:
+- Not allowed:
+
+CONSTRAINTS
+- Types:
+- Output format:
+- Testing:
+
+CONTEXT
+- What changed / what you want:
+- How to reproduce:
+
+OUTPUT
+<diff-only or files>"
+}
