@@ -16,3 +16,8 @@ fi
 # asdf local python 3.10.9
 # pip3 install virtualenv
 # ./webui.sh
+
+########
+# vibe code
+brew install pipx
+pipx install files-to-prompt
