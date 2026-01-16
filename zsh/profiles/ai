@@ -1,6 +1,6 @@
 task-prompt-template() {
     echo "TASK
-<One single phrase here>
+<One single sentence describing the task>
 
 SCOPE
 - Allowed:
@@ -10,11 +10,21 @@ CONSTRAINTS
 - Types:
 - Output format:
 - Testing:
+- No explanations, no summaries, no commentary.
 
 CONTEXT
 - What changed / what you want:
 - How to reproduce:
 
 OUTPUT
-<diff-only or files>"
+Return ONLY the result described above.
+
+--- GIT DIFF --- 
+<paste here>
+
+--- JEST OUTPUT ---
+<paste here>
+
+--- FILES --- 
+<paste here>
 }
