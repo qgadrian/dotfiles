@@ -40,7 +40,7 @@ export LANG=en_US.UTF-8
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 
 export PATH=/System/Cryptexes/App/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:$PATH
 
