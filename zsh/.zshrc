@@ -67,3 +67,6 @@ export PATH="$PATH:/Users/adrian/.lmstudio/bin"
 # mise
 eval "$(mise activate zsh)"
 export MISE_SHELL=zsh
+
+# opencode
+export PATH=/Users/adrian/.opencode/bin:$PATH
