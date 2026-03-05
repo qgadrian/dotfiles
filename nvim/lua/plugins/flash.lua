@@ -1,5 +1,6 @@
-vim.api.nvim_set_hl(0, "FlashLabel", { foreground = "#000000", background = "#ed7e9f" })
-vim.api.nvim_set_hl(0, "FlashCurrent", { foreground = "#000000", background = "#7eed82" })
+vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#000000", bg = "#ed7e9f" })
+vim.api.nvim_set_hl(0, "FlashCurrent", { fg = "#000000", bg = "#7eed82" })
+vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#82d7ee" })
 
 return {
   {
@@ -15,9 +16,9 @@ return {
             backdrop = true,
             matches = true,
             groups = {
-              match = "#82d7ee",
-              current = "#7eed82",
-              label = "#ed7e9f",
+              match = "FlashMatch",
+              current = "FlashCurrent",
+              label = "FlashLabel",
             },
           },
         },
