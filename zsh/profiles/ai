@@ -8,23 +8,26 @@ SCOPE
 
 CONSTRAINTS
 - Types:
-- Output format:
 - Testing:
+- Do not overengineer the solution
 - No explanations, no summaries, no commentary.
 
 CONTEXT
+- The relevant code changes are provided in the diff below.
 - What changed / what you want:
 - How to reproduce:
 
 OUTPUT
-Return ONLY the result described above.
+Return ONLY a unified code block applicable with copy and paste.
 
---- GIT DIFF --- 
-<paste here>
+OUTPUT EXAMPLE
+path/to/new.test.ts
 
---- JEST OUTPUT ---
-<paste here>
+\`\`\`ts
+// FILE: path/to/new.test.ts
+...file contents...
+\`\`\`
 
 --- FILES --- 
-<paste here>
+<paste here>" | pbcopy
 }

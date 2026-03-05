@@ -22,6 +22,7 @@ alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias glg="git log --graph"
 
+
 # git copy latest commit
 alias gclc='git rev-parse --short HEAD | pbcopy'
 
