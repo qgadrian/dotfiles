@@ -102,6 +102,11 @@ grhi() {
   git rebase -i HEAD~${1-1}
 }
 
+# add only deleted files to stage
+function glsdelad() {
+  git ls-files --deleted | xargs git add
+}
+
 alias glpa="git log -p"
 alias glsa="git log --stat"
 
