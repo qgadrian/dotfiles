@@ -1,4 +1,4 @@
-task-prompt-template() {
+ai-template-prompt-task() {
     echo "TASK
 <One single sentence describing the task>
 
