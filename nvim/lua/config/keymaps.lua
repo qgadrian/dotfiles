@@ -34,7 +34,18 @@ vim.keymap.set("n", "<leader>rf", "<cmd>e!<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>bd", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- Copy file path to clipboard
-vim.keymap.set("n", "<leader>ccp", "<cmd>let @+=expand('%')<cr>", { noremap = true })
+-- vim.keymap.set("n", "<leader>ccp", "<cmd>let @+=expand('%')<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>ccp", function()
+  local filepath = vim.fn.expand("%:p")
+  local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+
+  if git_root and git_root ~= "" then
+    local relative = vim.fn.fnamemodify(filepath, ":." .. git_root)
+    vim.fn.setreg("+", relative)
+  else
+    vim.fn.setreg("+", vim.fn.expand("%:."))
+  end
+end, { noremap = true })
 
 -- Avoid blowup (does not happen anymore, kept for reference)
 -- vim.keymap.set("n", "<C-z>", "<NOP>", { noremap = true })
