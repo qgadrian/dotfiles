@@ -62,6 +62,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   xcode-select --install
 fi
 
+# crash reports as notifications and not a screen hijack popup
+defaults write com.apple.CrashReporter UseUNC 1
+
 # Automatic Restart on System Freeze
 #sudo systemsetup -setrestartfreeze on
 
