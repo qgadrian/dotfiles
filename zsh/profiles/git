@@ -107,6 +107,30 @@ function glsdelad() {
   git ls-files --deleted | xargs git add
 }
 
+# rebase --onto master, picking which commits to keep via peco
+gronto() {
+  DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  git fetch origin ${DEFAULT_BRANCH} --quiet
+
+  COMMITS=$(git log --oneline origin/${DEFAULT_BRANCH}..HEAD | peco --prompt="Select commits to keep >")
+
+  if [ -z "$COMMITS" ]; then
+    echo "No commits selected, aborting."
+    return 1
+  fi
+
+  # oldest first for cherry-pick order
+  SHAS=$(echo "$COMMITS" | awk '{print $1}' | tac)
+
+  git checkout origin/${DEFAULT_BRANCH} --detach --quiet && \
+  echo "$SHAS" | xargs -I {} git cherry-pick {} && \
+  REBASED_HEAD=$(git rev-parse HEAD) && \
+  git checkout - --quiet && \
+  git reset --hard $REBASED_HEAD
+
+  echo "✓ Rebased $(echo "$SHAS" | wc -l | tr -d ' ') commits onto origin/${DEFAULT_BRANCH}"
+}
+
 alias glpa="git log -p"
 alias glsa="git log --stat"
 
