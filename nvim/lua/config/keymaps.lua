@@ -70,6 +70,37 @@ vim.keymap.set("n", "<leader>vb", "<cmd>vnew<cr>", { noremap = true, silent = tr
 -- Create new tab shortcut
 vim.keymap.set("n", "<leader>te", "<cmd>tabnew<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<cr>:terminal<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tr", function()
+  local current = ""
+  local tab = vim.api.nvim_get_current_tabpage()
+  local ok, name = pcall(vim.api.nvim_tabpage_get_var, tab, "name")
+  if ok and type(name) == "string" then
+    current = name
+  end
+
+  local new_name = vim.trim(vim.fn.input("Tab name: ", current))
+  if new_name == "" then
+    pcall(vim.api.nvim_tabpage_del_var, tab, "name")
+  else
+    vim.api.nvim_tabpage_set_var(tab, "name", new_name)
+  end
+
+  local ok_refresh, ui = pcall(require, "bufferline.ui")
+  if ok_refresh then
+    ui.refresh()
+  end
+  vim.cmd.redrawtabline()
+end, { noremap = true, silent = true, desc = "Rename Tab" })
+vim.keymap.set("n", "<leader>tR", function()
+  local tab = vim.api.nvim_get_current_tabpage()
+  pcall(vim.api.nvim_tabpage_del_var, tab, "name")
+
+  local ok_refresh, ui = pcall(require, "bufferline.ui")
+  if ok_refresh then
+    ui.refresh()
+  end
+  vim.cmd.redrawtabline()
+end, { noremap = true, silent = true, desc = "Reset Tab Name" })
 
 -- Move tabs with arrow keys
 -- noremap <M-S-Left> gT
