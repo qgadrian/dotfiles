@@ -70,3 +70,7 @@ export MISE_SHELL=zsh
 
 # opencode
 export PATH=/Users/adrian/.opencode/bin:$PATH
+
+# peon-ping quick controls
+alias peon="bash /Users/adrian/.claude/hooks/peon-ping/peon.sh"
+[ -f /Users/adrian/.claude/hooks/peon-ping/completions.bash ] && source /Users/adrian/.claude/hooks/peon-ping/completions.bash
