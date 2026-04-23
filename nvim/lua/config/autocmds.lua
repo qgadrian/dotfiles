@@ -90,3 +90,49 @@ vim.api.nvim_create_autocmd("BufRead", {
   pattern = "*",
   command = [[noautocmd silent!]],
 })
+
+local _attention_suffixes = { ": done", ": needs approval", ": question", ": error" }
+
+local function scan_claude_attention()
+  local changed = false
+  for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+    local needs_attention = false
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      if vim.bo[buf].buftype == "terminal" then
+        local alive = pcall(vim.fn.jobpid, vim.bo[buf].channel)
+        if alive then
+          local ok, title = pcall(vim.api.nvim_buf_get_var, buf, "term_title")
+          if ok and type(title) == "string" and title:sub(1, 3) == "●" then
+            for _, suffix in ipairs(_attention_suffixes) do
+              if title:sub(-#suffix) == suffix then
+                needs_attention = true
+                break
+              end
+            end
+          end
+        end
+      end
+      if needs_attention then break end
+    end
+    local had = pcall(vim.api.nvim_tabpage_get_var, tab, "peon_attention")
+    if needs_attention ~= had then
+      changed = true
+      if needs_attention then
+        vim.api.nvim_tabpage_set_var(tab, "peon_attention", "1")
+      else
+        pcall(vim.api.nvim_tabpage_del_var, tab, "peon_attention")
+      end
+    end
+  end
+  if changed then
+    vim.cmd.redrawtabline()
+  end
+end
+
+if _G._claude_attention_timer then
+  _G._claude_attention_timer:stop()
+  _G._claude_attention_timer:close()
+end
+_G._claude_attention_timer = vim.uv.new_timer()
+_G._claude_attention_timer:start(2000, 2000, vim.schedule_wrap(scan_claude_attention))

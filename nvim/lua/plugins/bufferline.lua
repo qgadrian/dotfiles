@@ -4,16 +4,23 @@ return {
     options = {
       mode = "tabs",
       name_formatter = function(item)
-        -- bufferline passes the tabpage handle here (not the 1-indexed tab
-        -- number), so we must resolve it via the handle-based API — otherwise
-        -- names drift to the wrong tab after any tab is closed.
-        if item.tabnr and vim.api.nvim_tabpage_is_valid(item.tabnr) then
-          local ok, name = pcall(vim.api.nvim_tabpage_get_var, item.tabnr, "name")
-          if ok and type(name) == "string" and name ~= "" then
-            return name
-          end
+        local tabnr = item.tabnr
+        if not tabnr or not vim.api.nvim_tabpage_is_valid(tabnr) then
+          return item.name
         end
-        return item.name
+
+        local display = item.name
+        local ok_name, name = pcall(vim.api.nvim_tabpage_get_var, tabnr, "name")
+        if ok_name and type(name) == "string" and name ~= "" then
+          display = name
+        end
+
+        local ok_attn, _ = pcall(vim.api.nvim_tabpage_get_var, tabnr, "peon_attention")
+        if ok_attn then
+          return "[*] " .. display
+        end
+
+        return display
       end,
     },
   },
