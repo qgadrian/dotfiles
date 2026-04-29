@@ -1,0 +1,42 @@
+# Worktrees
+# Pick a worktree via peco and show its unpushed commits (gl-style: plain git log).
+# Fetches origin/<base> first so the range isn't stale.
+gwt() {
+  local line wpath branch base
+  line=$(git worktree list | peco --prompt="Worktree >") || return
+  wpath=$(echo "$line" | awk '{print $1}')
+  branch=$(echo "$line" | sed -E 's/.*\[(.+)\]$/\1/')
+  base=$(git -C "$wpath" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+
+  git -C "$wpath" fetch origin "$base" --quiet
+  echo "→ $wpath  [$branch]  (base: origin/$base)"
+  git -C "$wpath" log "origin/${base}..${branch}"
+}
+
+# Pick a worktree and cd into it — then use gl / glp / gs normally.
+gwtc() {
+  local wpath
+  wpath=$(git worktree list | peco --prompt="Worktree >" | awk '{print $1}') || return
+  cd "$wpath"
+}
+
+# Pick a worktree and show full diff vs origin's default branch (git auto-pages).
+gwtd() {
+  local line wpath branch base
+  line=$(git worktree list | peco --prompt="Worktree >") || return
+  wpath=$(echo "$line" | awk '{print $1}')
+  branch=$(echo "$line" | sed -E 's/.*\[(.+)\]$/\1/')
+  base=$(git -C "$wpath" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+  git -C "$wpath" fetch origin "$base" --quiet
+  git -C "$wpath" diff "origin/${base}...${branch}"
+}
+
+# Pick a worktree, then peco-pick a single commit from it and show it (mirrors gronto's pattern).
+gwtl() {
+  local line wpath branch
+  line=$(git worktree list | peco --prompt="Worktree >") || return
+  wpath=$(echo "$line" | awk '{print $1}')
+  branch=$(echo "$line" | sed -E 's/.*\[(.+)\]$/\1/')
+  git -C "$wpath" log --oneline "$branch" \
+    | peco | awk '{print $1}' | xargs -I{} git -C "$wpath" show --color {}
+}
