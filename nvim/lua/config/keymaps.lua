@@ -69,7 +69,17 @@ vim.keymap.set("n", "<leader>vb", "<cmd>vnew<cr>", { noremap = true, silent = tr
 
 -- Create new tab shortcut
 vim.keymap.set("n", "<leader>te", "<cmd>tabnew<cr>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<cr>:terminal<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tt", function()
+  vim.cmd("tabnew")
+  -- Disable gutter columns BEFORE :terminal so the PTY is allocated at the
+  -- same width as the visible window. The TermOpen autocmd would clear
+  -- these too, but it fires after the PTY size is already fixed.
+  vim.wo.number = false
+  vim.wo.relativenumber = false
+  vim.wo.signcolumn = "no"
+  vim.wo.foldcolumn = "0"
+  vim.cmd("terminal")
+end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tr", function()
   local current = ""
   local tab = vim.api.nvim_get_current_tabpage()

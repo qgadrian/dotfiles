@@ -40,9 +40,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = false
-    -- Don't show line numbers in terminal windows
+    -- Clear all gutter columns so the terminal renders flush at column 1.
+    -- Without this, residual signcolumn/foldcolumn shifts the prompt right
+    -- on terminals opened immediately after :tabnew / :new / :vnew.
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = "no"
+    vim.opt_local.foldcolumn = "0"
 
     -- Automatically go to insert mode on terminal windows
     vim.cmd("startinsert")
