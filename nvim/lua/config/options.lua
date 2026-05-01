@@ -23,3 +23,8 @@ vim.diagnostic.config({
 if vim.fn.has("nvim-0.10") == 1 then
   opt.smoothscroll = true
 end
+
+-- Sync nvim tab name with Claude Code session name (set via /rename in Claude).
+-- Manual <leader>tr always wins; <leader>tR clears the override and reveals
+-- the synced name. Disable with :lua vim.g.claude_sync_tab_names = false
+vim.g.claude_sync_tab_names = true

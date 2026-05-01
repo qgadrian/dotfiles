@@ -13,6 +13,11 @@ return {
         local ok_name, name = pcall(vim.api.nvim_tabpage_get_var, tabnr, "name")
         if ok_name and type(name) == "string" and name ~= "" then
           display = name
+        else
+          local ok_cs, cs = pcall(vim.api.nvim_tabpage_get_var, tabnr, "claude_session_name")
+          if ok_cs and type(cs) == "string" and cs ~= "" then
+            display = cs
+          end
         end
 
         local ok_attn, _ = pcall(vim.api.nvim_tabpage_get_var, tabnr, "peon_attention")
