@@ -21,3 +21,7 @@ fi
 # vibe code
 brew install pipx
 pipx install files-to-prompt
+
+########
+# Claude Code: status line
+source ./ai/claude/install.sh
