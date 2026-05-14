@@ -95,9 +95,14 @@ vim.api.nvim_create_autocmd("BufRead", {
   command = [[noautocmd silent!]],
 })
 
--- Subset of peon-ping title suffixes that actually need user interaction.
--- `done`/`error`/`working` are status, not a prompt — they don't trigger [*].
-local _attention_suffixes = { ": needs approval", ": question" }
+-- Source of truth: ~/.claude/sessions/<pid>.json, written by Claude Code itself.
+-- For kind="interactive" sessions, status flips between "busy"/"working" (Claude
+-- is doing work) and "idle" (Claude finished its turn — your move). We treat
+-- "idle" as "needs attention" and surface it on the tabline as [*].
+-- (Previously this matched a "● … : needs approval" terminal title set by older
+-- Claude Code builds. 2.1.x sets ⠐/⠂ spinner + session name instead, so the
+-- title-parsing path is dead. session.json is more stable anyway.)
+local _attention_statuses = { idle = true }
 local _max_session_len = 64
 local _sessions_dir = vim.fn.expand("~/.claude/sessions")
 
@@ -138,7 +143,7 @@ local function find_claude_session_file(root_pid)
   return nil
 end
 
-local function read_claude_session_name(path)
+local function read_claude_session_info(path)
   local fd = io.open(path, "r")
   if not fd then return nil end
   local content = fd:read("*a")
@@ -147,11 +152,16 @@ local function read_claude_session_name(path)
   local ok, decoded = pcall(vim.json.decode, content)
   if not ok or type(decoded) ~= "table" then return nil end
   local name = decoded.name
-  if type(name) ~= "string" then return nil end
-  name = vim.trim(name)
-  if name == "" then return nil end
-  if #name > _max_session_len then name = name:sub(1, _max_session_len) end
-  return name
+  if type(name) == "string" then
+    name = vim.trim(name)
+    if name == "" then name = nil end
+    if name and #name > _max_session_len then name = name:sub(1, _max_session_len) end
+  else
+    name = nil
+  end
+  local status = decoded.status
+  if type(status) ~= "string" then status = nil end
+  return { name = name, status = status }
 end
 
 local function scan_claude_terminals()
@@ -175,32 +185,29 @@ local function scan_claude_terminals()
       if vim.bo[buf].buftype == "terminal" then
         local ok_pid, shell_pid = pcall(vim.fn.jobpid, vim.bo[buf].channel)
         if ok_pid and shell_pid then
-          -- Attention from peon-ping title (only matches when peon-ping is active).
-          local ok_t, title = pcall(vim.api.nvim_buf_get_var, buf, "term_title")
-          if ok_t and type(title) == "string" and title:sub(1, 3) == "●" then
-            for _, suffix in ipairs(_attention_suffixes) do
-              if title:sub(-#suffix) == suffix then
+          local sf = find_claude_session_file(shell_pid)
+          if sf then
+            local info = read_claude_session_info(sf)
+            if info then
+              if info.status and _attention_statuses[info.status] then
                 needs_attention = true
-                break
+              end
+              if sync_enabled and session_name == nil and info.name then
+                session_name = info.name
               end
             end
-          end
-          -- Session name from Claude's own state file (independent of peon-ping).
-          if sync_enabled and session_name == nil then
-            local sf = find_claude_session_file(shell_pid)
-            if sf then session_name = read_claude_session_name(sf) end
           end
         end
       end
     end
 
-    local had = pcall(vim.api.nvim_tabpage_get_var, tab, "peon_attention")
+    local had = pcall(vim.api.nvim_tabpage_get_var, tab, "claude_attention")
     if needs_attention ~= had then
       changed = true
       if needs_attention then
-        vim.api.nvim_tabpage_set_var(tab, "peon_attention", "1")
+        vim.api.nvim_tabpage_set_var(tab, "claude_attention", "1")
       else
-        pcall(vim.api.nvim_tabpage_del_var, tab, "peon_attention")
+        pcall(vim.api.nvim_tabpage_del_var, tab, "claude_attention")
       end
     end
 

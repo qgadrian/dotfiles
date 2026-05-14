@@ -20,7 +20,7 @@ return {
           end
         end
 
-        local ok_attn, _ = pcall(vim.api.nvim_tabpage_get_var, tabnr, "peon_attention")
+        local ok_attn, _ = pcall(vim.api.nvim_tabpage_get_var, tabnr, "claude_attention")
         if ok_attn then
           return "[*] " .. display
         end
