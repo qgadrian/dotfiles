@@ -1,3 +1,17 @@
+-- Tab name formatter for Claude Code sessions.
+-- Reads two tabpage vars set by lua/config/autocmds.lua:
+--   t:claude_session_name → name from ~/.claude/sessions/<pid>.json (.name)
+--   t:claude_status       → one of: action_needed | notify | error | idle | working
+-- and prepends a status emoji. Falls back to the bufferline default name for
+-- plain shells (no Claude detected in any window of the tab).
+local _emoji = {
+  action_needed = "⚠️ ",
+  notify        = "🔔 ",
+  error         = "❌ ",
+  idle          = "💬 ",
+  working       = "🟢 ",
+}
+
 return {
   "akinsho/bufferline.nvim",
   opts = {
@@ -20,9 +34,10 @@ return {
           end
         end
 
-        local ok_attn, _ = pcall(vim.api.nvim_tabpage_get_var, tabnr, "claude_attention")
-        if ok_attn then
-          return "[*] " .. display
+        local ok_st, status = pcall(vim.api.nvim_tabpage_get_var, tabnr, "claude_status")
+        if ok_st and type(status) == "string" then
+          local glyph = _emoji[status]
+          if glyph then return glyph .. display end
         end
 
         return display

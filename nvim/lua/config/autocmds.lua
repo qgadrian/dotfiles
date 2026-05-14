@@ -96,13 +96,26 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 -- Source of truth: ~/.claude/sessions/<pid>.json, written by Claude Code itself.
--- For kind="interactive" sessions, status flips between "busy"/"working" (Claude
--- is doing work) and "idle" (Claude finished its turn — your move). We treat
--- "idle" as "needs attention" and surface it on the tabline as [*].
--- (Previously this matched a "● … : needs approval" terminal title set by older
--- Claude Code builds. 2.1.x sets ⠐/⠂ spinner + session name instead, so the
--- title-parsing path is dead. session.json is more stable anyway.)
-local _attention_statuses = { idle = true }
+-- For kind="interactive" sessions, the relevant statuses are:
+--   "busy" / "working" / "in_progress" → Claude is actively running
+--   "idle"                              → Claude finished its turn (your move)
+--   "done" / "completed"                → treated same as idle
+--   "error"                             → last turn errored
+-- We also read a sibling flag file ~/.claude/sessions/<pid>.flag written by the
+-- Claude attention hook (PermissionRequest / Notification). Its contents are
+-- "action_needed" or "notify" — signals that don't appear in status itself.
+-- Priority (highest urgency first): action_needed > notify > error > idle > working
+local _status_map = {
+  -- session.json status → normalized status
+  busy        = "working",
+  working     = "working",
+  in_progress = "working",
+  idle        = "idle",
+  done        = "idle",
+  completed   = "idle",
+  error       = "error",
+}
+local _priority = { action_needed = 5, notify = 4, error = 3, idle = 2, working = 1 }
 local _max_session_len = 64
 local _sessions_dir = vim.fn.expand("~/.claude/sessions")
 
@@ -143,6 +156,21 @@ local function find_claude_session_file(root_pid)
   return nil
 end
 
+-- Read the sibling .flag file written by the attention hook. Returns one of
+-- "action_needed", "notify", or nil. Anything else is treated as nil so a
+-- future hook payload can't smuggle arbitrary strings into the tab name.
+local function read_claude_session_flag(session_path)
+  local flag_path = session_path:gsub("%.json$", ".flag")
+  local fd = io.open(flag_path, "r")
+  if not fd then return nil end
+  local content = fd:read("*a")
+  fd:close()
+  if not content then return nil end
+  content = vim.trim(content)
+  if content == "action_needed" or content == "notify" then return content end
+  return nil
+end
+
 local function read_claude_session_info(path)
   local fd = io.open(path, "r")
   if not fd then return nil end
@@ -159,9 +187,12 @@ local function read_claude_session_info(path)
   else
     name = nil
   end
-  local status = decoded.status
-  if type(status) ~= "string" then status = nil end
-  return { name = name, status = status }
+  local raw = decoded.status
+  local status = (type(raw) == "string") and _status_map[raw] or nil
+  local flag = read_claude_session_flag(path)
+  -- Flag takes precedence over status (it's a more specific signal).
+  local effective = flag or status
+  return { name = name, status = effective }
 end
 
 local function scan_claude_terminals()
@@ -177,7 +208,8 @@ local function scan_claude_terminals()
       end
     end
 
-    local needs_attention = false
+    local tab_status = nil
+    local tab_status_prio = 0
     local session_name = nil
 
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
@@ -189,8 +221,10 @@ local function scan_claude_terminals()
           if sf then
             local info = read_claude_session_info(sf)
             if info then
-              if info.status and _attention_statuses[info.status] then
-                needs_attention = true
+              local prio = _priority[info.status] or 0
+              if prio > tab_status_prio then
+                tab_status_prio = prio
+                tab_status = info.status
               end
               if sync_enabled and session_name == nil and info.name then
                 session_name = info.name
@@ -201,13 +235,14 @@ local function scan_claude_terminals()
       end
     end
 
-    local had = pcall(vim.api.nvim_tabpage_get_var, tab, "claude_attention")
-    if needs_attention ~= had then
+    local ok_prev_s, prev_status = pcall(vim.api.nvim_tabpage_get_var, tab, "claude_status")
+    local prev = ok_prev_s and prev_status or nil
+    if tab_status ~= prev then
       changed = true
-      if needs_attention then
-        vim.api.nvim_tabpage_set_var(tab, "claude_attention", "1")
+      if tab_status then
+        vim.api.nvim_tabpage_set_var(tab, "claude_status", tab_status)
       else
-        pcall(vim.api.nvim_tabpage_del_var, tab, "claude_attention")
+        pcall(vim.api.nvim_tabpage_del_var, tab, "claude_status")
       end
     end
 
