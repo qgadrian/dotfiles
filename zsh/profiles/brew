@@ -2,3 +2,8 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
 alias buu="brew update && brew upgrade"
 alias brewclean="brew bundle dump && brew bundle --force cleanup && rm Brewfile"
+
+# Keep old neovim kegs on upgrade so running sessions don't break (v:progpath
+# resolves to a now-deleted Cellar path). Run `brew cleanup neovim` manually
+# after restarting nvim.
+export HOMEBREW_NO_CLEANUP_FORMULAE=neovim
