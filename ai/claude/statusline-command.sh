@@ -161,7 +161,7 @@ fi
 if [ -n "$five_hour_used" ]; then
   seg="$(fmt_pct "5h" "$five_hour_used" "$(color_usage "$five_hour_used")")"
   n=$(printf "%.0f" "$five_hour_used")
-  if [ "$n" -gt 50 ] && [ -n "$five_hour_resets" ]; then
+  if [ "$n" -gt 20 ] && [ -n "$five_hour_resets" ]; then
     seg="${seg} (↻$(fmt_until "$five_hour_resets"))"
   fi
   parts+=("$seg")
@@ -170,7 +170,7 @@ fi
 if [ -n "$seven_day_used" ]; then
   seg="$(fmt_pct "total" "$seven_day_used" "$(color_usage "$seven_day_used")")"
   n=$(printf "%.0f" "$seven_day_used")
-  if [ "$n" -gt 50 ] && [ -n "$seven_day_resets" ]; then
+  if [ "$n" -gt 20 ] && [ -n "$seven_day_resets" ]; then
     seg="${seg} (↻$(fmt_until "$seven_day_resets"))"
   fi
   parts+=("$seg")
