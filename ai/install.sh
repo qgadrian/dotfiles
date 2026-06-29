@@ -23,5 +23,11 @@ brew install pipx
 pipx install files-to-prompt
 
 ########
+# Claude Code with DeepSeek
+mkdir -p "$HOME/.local/bin"
+chmod +x "$(pwd)/ai/deepseekcode"
+ln -sf "$(pwd)/ai/deepseekcode" "$HOME/.local/bin/deepseekcode"
+
+########
 # Claude Code: status line
 source ./ai/claude/install.sh

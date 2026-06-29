@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+if [[ -z "${DEEPSEEK_API_KEY:-}" ]]; then
+  print -u2 "deepseekcode: DEEPSEEK_API_KEY is not set."
+  print -u2 "Set DEEPSEEK_API_KEY in your shell environment, then run deepseekcode again."
+  exit 1
+fi
+
+claude_bin="${CLAUDE_CODE_BIN:-claude}"
+
+if ! command -v "${claude_bin}" >/dev/null 2>&1; then
+  print -u2 "deepseekcode: Claude Code command not found: ${claude_bin}"
+  exit 127
+fi
+
+export ANTHROPIC_BASE_URL="${DEEPSEEK_ANTHROPIC_BASE_URL:-https://api.deepseek.com/anthropic}"
+export ANTHROPIC_AUTH_TOKEN="${DEEPSEEK_API_KEY}"
+export ANTHROPIC_MODEL="${DEEPSEEK_CLAUDE_MODEL:-deepseek-v4-pro[1m]}"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="${DEEPSEEK_CLAUDE_OPUS_MODEL:-${ANTHROPIC_MODEL}}"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="${DEEPSEEK_CLAUDE_SONNET_MODEL:-${ANTHROPIC_MODEL}}"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="${DEEPSEEK_CLAUDE_HAIKU_MODEL:-deepseek-v4-flash}"
+export CLAUDE_CODE_SUBAGENT_MODEL="${DEEPSEEK_CLAUDE_SUBAGENT_MODEL:-${ANTHROPIC_DEFAULT_HAIKU_MODEL}}"
+export CLAUDE_CODE_EFFORT_LEVEL="${DEEPSEEK_CLAUDE_EFFORT_LEVEL:-max}"
+
+exec "${claude_bin}" "$@"
