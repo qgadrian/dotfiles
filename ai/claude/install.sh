@@ -17,8 +17,21 @@ fi
 
 CLAUDE_DIR="$HOME/.claude"
 SETTINGS="$CLAUDE_DIR/settings.json"
-SRC_SCRIPT="$(pwd)/ai/claude/statusline-command.sh"
+
+# Resolve the source script from THIS installer's own location, not $(pwd),
+# so linking is correct no matter which directory the installer is run from.
+# (Using $(pwd) previously created a dangling symlink whenever the installer
+# ran from anywhere other than the dotfiles root.)
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)
+SRC_SCRIPT="$SCRIPT_DIR/statusline-command.sh"
 DST_SCRIPT="$CLAUDE_DIR/statusline-command.sh"
+
+# Never create a dangling link: fail loudly if the source is missing.
+if [ ! -f "$SRC_SCRIPT" ]; then
+  echo "ERROR: status line source not found at $SRC_SCRIPT" >&2
+  echo "       run this from a complete dotfiles checkout." >&2
+  return 1 2>/dev/null || exit 1
+fi
 
 mkdir -p "$CLAUDE_DIR"
 
