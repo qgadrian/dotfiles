@@ -180,15 +180,17 @@ printf '%s' "$input" | jq -rc \
   --arg smodel "$session_model" --arg seffort "$session_effort" \
   --argjson winoverride "$ctx_window_override" '
   # ANSI helpers. The agent panel renders content "as-is, including ANSI colors
-  # and OSC 8 hyperlinks" (statusline docs), same as the main status line. We
-  # write ESC as ; jq emits it JSON-escaped and Claude Code renders it.
-  def blue:   "[34m"      + . + "[0m";
-  def cyan:   "[36m"      + . + "[0m";
-  def green:  "[32m"      + . + "[0m";
-  def yellow: "[33m"      + . + "[0m";
-  def orange: "[38;5;208m"+ . + "[0m";
-  def red:    "[31m"      + . + "[0m";
-  def dim:    "[2m"       + . + "[0m";
+  # and OSC 8 hyperlinks" (statusline docs), same as the main status line. ESC
+  # is written as the jq escape \u001b (NOT a raw 0x1b byte — raw ESC bytes in
+  # this file have been silently stripped by editors before, breaking colors).
+  def esc:    "\u001b";
+  def blue:   esc + "[34m"       + . + esc + "[0m";
+  def cyan:   esc + "[36m"       + . + esc + "[0m";
+  def green:  esc + "[32m"       + . + esc + "[0m";
+  def yellow: esc + "[33m"       + . + esc + "[0m";
+  def orange: esc + "[38;5;208m" + . + esc + "[0m";
+  def red:    esc + "[31m"       + . + esc + "[0m";
+  def dim:    esc + "[2m"        + . + esc + "[0m";
 
   def compact($n):
     if   $n >= 1000000 then (((($n / 100000) | floor) / 10) | tostring) + "M"
