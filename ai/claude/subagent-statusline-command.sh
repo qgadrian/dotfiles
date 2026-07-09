@@ -20,16 +20,27 @@
 #                     foreground subagents resolvable — their tool_result, which
 #                     carries the agentId, doesn't exist until they finish.)
 #                     Resolved via streaming grep, cached per task id.
-#     - model      -> inherited session model, from ~/.claude/settings.json .model
-#                     (override: $CLAUDE_SUBAGENT_MODEL)
-#     - effort     -> inherited session effort, from settings.json .effortLevel
-#                     (override: $CLAUDE_SUBAGENT_EFFORT)
-#     - ctx %      -> tokenCount / window; window sized from the model
-#                     ("[1m]" -> 1,000,000 else 200,000).
-#                     (override: $CLAUDE_SUBAGENT_CTX_WINDOW)
-#   model/effort/type reflect the session defaults a subagent inherits; a per-
-#   agent `model:`/effort override in an agent file isn't exposed to this hook
-#   (except the type, which we resolve from the transcript).
+#     - model      -> resolved per-subagent, highest precedence first:
+#                       1. $CLAUDE_SUBAGENT_MODEL (hard debug override)
+#                       2. the spawn tool_use's input.model (explicit dispatch
+#                          override passed to the Agent/Task tool)
+#                       3. the agent file's frontmatter `model:` — read from
+#                          <task cwd>/.claude/agents/<type>.md, then <session
+#                          cwd>/.claude/agents/<type>.md, then
+#                          ~/.claude/agents/<type>.md
+#                       4. the inherited session model (~/.claude/settings.json
+#                          .model)
+#                     `model: inherit` in an agent file is treated as "unset" so
+#                     it falls through to the session model.
+#     - effort     -> same precedence: $CLAUDE_SUBAGENT_EFFORT, input.effort,
+#                     frontmatter `effort:`, else session .effortLevel.
+#     - ctx %      -> tokenCount / window; window sized from the RESOLVED model
+#                     ("[1m]"/"1m" -> 1,000,000 else 200,000). This is why a
+#                     plain-`sonnet` subagent under a fable-5[1m] session now
+#                     reports its true ~200k-window %, not the session's 1M %.
+#                     (hard override: $CLAUDE_SUBAGENT_CTX_WINDOW)
+#   agent type, model, effort, and window are all resolved per-subagent; only the
+#   session model/effort remain as last-resort fallbacks.
 #
 # OUTPUT CONTRACT: one JSON line per row -> {"id":"<task id>","content":"<row body>"}.
 
@@ -37,46 +48,59 @@ input=$(cat)
 
 settings="$HOME/.claude/settings.json"
 
-# --- Inherited session model ------------------------------------------------
-model="${CLAUDE_SUBAGENT_MODEL:-}"
-if [ -z "$model" ] && [ -f "$settings" ]; then
-  model=$(jq -r '.model // empty' "$settings" 2>/dev/null)
-fi
-[ -z "$model" ] && model="?"
+# --- Debug hard-overrides (win over per-agent resolution when set) -----------
+force_model="${CLAUDE_SUBAGENT_MODEL:-}"
+force_effort="${CLAUDE_SUBAGENT_EFFORT:-}"
+ctx_window_override="${CLAUDE_SUBAGENT_CTX_WINDOW:-0}"
 
-# --- Context window, sized from the model -----------------------------------
-ctx_window="${CLAUDE_SUBAGENT_CTX_WINDOW:-}"
-if [ -z "$ctx_window" ]; then
-  case "$(printf '%s' "$model" | tr 'A-Z' 'a-z')" in
-    *1m*) ctx_window=1000000 ;;
-    *)    ctx_window=200000  ;;
-  esac
+# --- Session-level fallbacks (last resort when nothing else resolves) --------
+session_model="$force_model"
+if [ -z "$session_model" ] && [ -f "$settings" ]; then
+  session_model=$(jq -r '.model // empty' "$settings" 2>/dev/null)
 fi
+[ -z "$session_model" ] && session_model="?"
 
-# --- Inherited session thinking effort --------------------------------------
-effort="${CLAUDE_SUBAGENT_EFFORT:-}"
-if [ -z "$effort" ] && [ -f "$settings" ]; then
-  effort=$(jq -r '.effortLevel // empty' "$settings" 2>/dev/null)
+session_effort="$force_effort"
+if [ -z "$session_effort" ] && [ -f "$settings" ]; then
+  session_effort=$(jq -r '.effortLevel // empty' "$settings" 2>/dev/null)
 fi
 
-# --- Per-subagent agent type (resolved from the parent transcript, cached) --
+# --- Payload-level context ---------------------------------------------------
 transcript_path=$(printf '%s' "$input" | jq -r '.transcript_path // empty')
+session_cwd=$(printf '%s' "$input" | jq -r '.cwd // empty')
 cache_dir="${TMPDIR:-/tmp}/claude-statusline"
 mkdir -p "$cache_dir" 2>/dev/null
 _now=$(date +%s)
 
-# Echo the resolved subagent_type for a task, or "" if not (yet) known.
-# Matches the task's label/description against a Task/Agent spawn tool_use in the
-# transcript and reads its input.subagent_type (last match wins, so a re-dispatch
-# resolves to the current one). Positive results cache permanently (types never
-# change); failed lookups are throttled to one attempt per 12s to bound cost.
-resolve_type() {
-  local id="$1" name="$2" cf v mtime t
-  cf="$cache_dir/atype_$(printf '%s' "$id" | tr -c 'A-Za-z0-9' '_')"
+# Read a scalar frontmatter field (model:/effort:) from an agent .md file.
+# Only scans the first --- ... --- block so body prose can't shadow it.
+frontmatter_field() {
+  local file="$1" key="$2" v
+  [ -f "$file" ] || { printf ''; return; }
+  v=$(awk '
+        /^---[[:space:]]*$/ { n++; if (n>=2) exit; next }
+        n==1 { print }
+      ' "$file" 2>/dev/null \
+      | sed -n -E "s/^${key}:[[:space:]]*//p" \
+      | head -n1 \
+      | sed -E "s/[[:space:]]*#.*$//; s/^[\"']//; s/[\"'][[:space:]]*$//; s/[[:space:]]*$//")
+  printf '%s' "$v"
+}
+
+# Resolve {type, model, effort} for a task, cached per task id.
+#   type   <- spawn tool_use input.subagent_type (parent transcript)
+#   model  <- force_model | input.model | frontmatter model | session_model
+#   effort <- force_effort | input.effort | frontmatter effort | session_effort
+# Matching a spawn tool_use (not a tool_result) keeps RUNNING foreground
+# subagents resolvable. Positive results cache permanently; failed lookups are
+# throttled to one attempt per 12s to bound cost.
+resolve_meta() {
+  local id="$1" name="$2" task_cwd="$3" cf raw spawn type mdl eff af mtime cand
+  cf="$cache_dir/ameta_$(printf '%s' "$id" | tr -c 'A-Za-z0-9' '_')"
 
   if [ -s "$cf" ]; then
-    v=$(cat "$cf" 2>/dev/null)
-    if [ -n "$v" ] && [ "$v" != "?" ]; then printf '%s' "$v"; return; fi
+    raw=$(cat "$cf" 2>/dev/null)
+    if [ -n "$raw" ] && [ "$raw" != "?" ]; then printf '%s' "$raw"; return; fi
   fi
 
   if [ -z "$name" ] || [ -z "$transcript_path" ] || [ ! -f "$transcript_path" ]; then printf ''; return; fi
@@ -86,51 +110,85 @@ resolve_type() {
   if [ -f "$cf" ] && [ "$(( _now - mtime ))" -lt 12 ]; then printf ''; return; fi
   printf '?' > "$cf" 2>/dev/null   # lease/throttle marker
 
-  # label/description -> subagent_type, via the spawn tool_use (last match wins).
-  t=$(grep -F "$name" "$transcript_path" 2>/dev/null | jq -rs --arg n "$name" '
+  # type + dispatch-time model/effort override from the spawn tool_use (last wins).
+  spawn=$(grep -F "$name" "$transcript_path" 2>/dev/null | jq -rs --arg n "$name" '
     [ .[].message.content[]?
       | select(type=="object" and .type=="tool_use"
                and (.input.subagent_type != null)
                and (.input.description == $n))
-      | .input.subagent_type ] | last // empty' 2>/dev/null)
+      | {type: .input.subagent_type,
+         model: (.input.model // ""),
+         effort: (.input.effort // "")} ] | last // empty' 2>/dev/null)
 
-  if [ -n "$t" ] && [ "$t" != "null" ]; then
-    printf '%s' "$t" > "$cf" 2>/dev/null
-    printf '%s' "$t"
-  else
-    printf ''
+  type=$(printf '%s' "$spawn" | jq -r '.type // empty' 2>/dev/null)
+  if [ -z "$type" ] || [ "$type" = "null" ]; then printf ''; return; fi
+
+  mdl=$(printf '%s' "$spawn" | jq -r '.model // empty' 2>/dev/null)
+  eff=$(printf '%s' "$spawn" | jq -r '.effort // empty' 2>/dev/null)
+
+  # Debug hard-override beats everything.
+  [ -n "$force_model" ]  && mdl="$force_model"
+  [ -n "$force_effort" ] && eff="$force_effort"
+
+  # Fill from the agent file frontmatter when still unset.
+  if [ -z "$mdl" ] || [ -z "$eff" ]; then
+    af=""
+    for cand in "$task_cwd/.claude/agents/$type.md" \
+                "$session_cwd/.claude/agents/$type.md" \
+                "$HOME/.claude/agents/$type.md"; do
+      case "$cand" in /.claude/*) continue ;; esac   # skip empty-base joins
+      if [ -f "$cand" ]; then af="$cand"; break; fi
+    done
+    if [ -n "$af" ]; then
+      [ -z "$mdl" ] && mdl=$(frontmatter_field "$af" model)
+      [ -z "$eff" ] && eff=$(frontmatter_field "$af" effort)
+    fi
   fi
+
+  # `model: inherit` -> fall through to the session model.
+  [ "$mdl" = "inherit" ] && mdl=""
+
+  # Session fallbacks.
+  [ -z "$mdl" ] && mdl="$session_model"
+  [ -z "$eff" ] && eff="$session_effort"
+
+  raw=$(jq -cn --arg t "$type" --arg m "$mdl" --arg e "$eff" \
+        '{type:$t, model:$m, effort:$e}')
+  printf '%s' "$raw" > "$cf" 2>/dev/null
+  printf '%s' "$raw"
 }
 
-# Build an {id: type} map for the renderer.
-types_json="{}"
+# Build an {id: {type,model,effort}} map for the renderer.
+meta_json="{}"
 _ntasks=$(printf '%s' "$input" | jq '.tasks | length // 0' 2>/dev/null)
 [ -z "$_ntasks" ] && _ntasks=0
 _i=0
 while [ "$_i" -lt "$_ntasks" ]; do
   id=$(printf '%s' "$input" | jq -r ".tasks[$_i].id // empty" 2>/dev/null)
   name=$(printf '%s' "$input" | jq -r ".tasks[$_i].label // .tasks[$_i].description // empty" 2>/dev/null)
+  tcwd=$(printf '%s' "$input" | jq -r ".tasks[$_i].cwd // empty" 2>/dev/null)
   _i=$(( _i + 1 ))
   [ -z "$id" ] && continue
-  t=$(resolve_type "$id" "$name")
-  [ -z "$t" ] && continue
-  types_json=$(printf '%s' "$types_json" | jq -c --arg id "$id" --arg t "$t" '. + {($id): $t}')
+  m=$(resolve_meta "$id" "$name" "$tcwd")
+  [ -z "$m" ] && continue
+  meta_json=$(printf '%s' "$meta_json" | jq -c --arg id "$id" --argjson m "$m" '. + {($id): $m}')
 done
 
 # --- Render -----------------------------------------------------------------
 printf '%s' "$input" | jq -rc \
-  --arg model "$model" --argjson win "$ctx_window" --arg effort "$effort" \
-  --argjson types "$types_json" '
+  --argjson meta "$meta_json" \
+  --arg smodel "$session_model" --arg seffort "$session_effort" \
+  --argjson winoverride "$ctx_window_override" '
   # ANSI helpers. The agent panel renders content "as-is, including ANSI colors
   # and OSC 8 hyperlinks" (statusline docs), same as the main status line. We
-  # write ESC as ; jq emits it JSON-escaped and Claude Code renders it.
-  def blue:   "[34m"      + . + "[0m";
-  def cyan:   "[36m"      + . + "[0m";
-  def green:  "[32m"      + . + "[0m";
-  def yellow: "[33m"      + . + "[0m";
-  def orange: "[38;5;208m"+ . + "[0m";
-  def red:    "[31m"      + . + "[0m";
-  def dim:    "[2m"       + . + "[0m";
+  # write ESC as ; jq emits it JSON-escaped and Claude Code renders it.
+  def blue:   "[34m"      + . + "[0m";
+  def cyan:   "[36m"      + . + "[0m";
+  def green:  "[32m"      + . + "[0m";
+  def yellow: "[33m"      + . + "[0m";
+  def orange: "[38;5;208m"+ . + "[0m";
+  def red:    "[31m"      + . + "[0m";
+  def dim:    "[2m"       + . + "[0m";
 
   def compact($n):
     if   $n >= 1000000 then (((($n / 100000) | floor) / 10) | tostring) + "M"
@@ -145,9 +203,19 @@ printf '%s' "$input" | jq -rc \
     elif $p >= 25 then ($s | yellow)
     else $s end;
 
+  # Context window sized from the resolved model string.
+  def winsize($m):
+    if ($m | type) == "string" and ($m | ascii_downcase | test("1m"))
+    then 1000000 else 200000 end;
+
   .tasks[]?
   | .id as $id
-  | ($types[$id] // "")                    as $atype
+  | ($meta[$id] // {})                      as $mm
+  | ($mm.type // "")                        as $atype
+  | (($mm.model // $smodel)
+       | if (type == "string" and length > 0) then . else "?" end) as $model
+  | ($mm.effort // $seffort // "")           as $effort
+  | (if $winoverride > 0 then $winoverride else winsize($model) end) as $win
   | (.label // .description // "subagent")  as $rawname
   | (.status // "")                         as $status
   | (.tokenCount // 0)                      as $tok
