@@ -31,3 +31,9 @@ ln -sf "$(pwd)/ai/deepseekcode" "$HOME/.local/bin/deepseekcode"
 ########
 # Claude Code: status line
 source ./ai/claude/install.sh
+
+########
+# Claude Code: claudio (interactive agent/model/effort picker)
+mkdir -p "$HOME/.local/bin"
+chmod +x "$(pwd)/ai/claudio.sh"
+ln -sf "$(pwd)/ai/claudio.sh" "$HOME/.local/bin/claudio"
