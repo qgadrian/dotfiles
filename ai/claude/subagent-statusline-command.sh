@@ -2,7 +2,7 @@
 # Claude Code subagentStatusLine command
 # Renders one custom row body per subagent in the agent panel below the prompt.
 #
-# Row: [agent-type] name   ctx% (tokens) · model (effort)
+# Row: [agent-type] name   ctx% (tokens) · 🪐 model effort
 #
 # WHAT THE HOOK GIVES US (captured empirically — the docs' schema was wrong):
 #   Top-level: session_id, transcript_path, cwd, prompt_id, agent_type, columns,
@@ -183,14 +183,15 @@ printf '%s' "$input" | jq -rc \
   # and OSC 8 hyperlinks" (statusline docs), same as the main status line. ESC
   # is written as the jq escape \u001b (NOT a raw 0x1b byte — raw ESC bytes in
   # this file have been silently stripped by editors before, breaking colors).
-  def esc:    "\u001b";
-  def blue:   esc + "[34m"       + . + esc + "[0m";
-  def cyan:   esc + "[36m"       + . + esc + "[0m";
-  def green:  esc + "[32m"       + . + esc + "[0m";
-  def yellow: esc + "[33m"       + . + esc + "[0m";
-  def orange: esc + "[38;5;208m" + . + esc + "[0m";
-  def red:    esc + "[31m"       + . + esc + "[0m";
-  def dim:    esc + "[2m"        + . + esc + "[0m";
+  def esc:      "\u001b";
+  def cyan:     esc + "[36m"       + . + esc + "[0m";
+  def green:    esc + "[32m"       + . + esc + "[0m";
+  def yellow:   esc + "[33m"       + . + esc + "[0m";
+  def orange:   esc + "[38;5;208m" + . + esc + "[0m";
+  def red:      esc + "[31m"       + . + esc + "[0m";
+  def grey:     esc + "[38;5;245m" + . + esc + "[0m";
+  def dim:      esc + "[2m"        + . + esc + "[0m";
+  def boldfg($c): esc + "[1;38;5;" + $c + "m" + . + esc + "[0m";
 
   def compact($n):
     if   $n >= 1000000 then (((($n / 100000) | floor) / 10) | tostring) + "M"
@@ -204,6 +205,32 @@ printf '%s' "$input" | jq -rc \
     elif $p >= 50 then ($s | orange)
     elif $p >= 25 then ($s | yellow)
     else $s end;
+
+  # Model segment: emoji + bold name + effort, matching the main status line.
+  # Emoji and color are matched on a substring so they survive version bumps;
+  # each color is the dominant hue of its own emoji glyph, kept clear of the
+  # effort ramp. Bold name / plain effort separates close hues. NOTE: no
+  # apostrophes in this jq program — it is single-quoted in the shell.
+  def modelstyle($m):
+    ($m | ascii_downcase) as $l
+    | if   ($l | test("fable"))  then ["🦄","177"]   # orchid — the mane
+      elif ($l | test("opus"))   then ["🪐","220"]   # gold   — the planet
+      elif ($l | test("sonnet")) then ["🪶","230"]   # ivory  — the feather
+      elif ($l | test("haiku"))  then ["🍃","114"]   # green  — the leaf
+      else ["✨","252"] end;                         # unknown model: neutral
+
+  def effortcolor($e):
+    if   $e == "low"    then ($e | grey)
+    elif $e == "medium" then ($e | cyan)
+    elif $e == "high"   then ($e | yellow)
+    elif $e == "xhigh"  then ($e | orange)
+    elif $e == "max"    then ($e | red)
+    else ($e | yellow) end;
+
+  def modelseg($m; $e):
+    modelstyle($m) as $st
+    | $st[0] + " " + ($m | boldfg($st[1]))
+      + (if $e != "" then " " + effortcolor($e) else "" end);
 
   # Context window sized from the resolved model string.
   def winsize($m):
@@ -229,7 +256,7 @@ printf '%s' "$input" | jq -rc \
         + (clip($rawname; 48) | cyan)
         + "  " + heat($pct; ($pct | tostring) + "%")
         + " " + (("(" + compact($tok) + " tok)") | dim)
-        + " · " + (($model + (if $effort != "" then " (" + $effort + ")" else "" end)) | blue)
+        + " · " + modelseg($model; $effort)
         + (if $status != "" and $status != "running" and $status != "in_progress"
              then " " + (("[" + $status + "]") | dim) else "" end)
       )

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Claude Code statusLine command
-# Segments: [worktree|branch] | issue | PR | model (effort) | ctx% | 5h% | total%
+# Segments: [worktree|branch] | issue | PR | 🪐 model effort | ctx% | 5h% | total%
 
 input=$(cat)
 
@@ -115,8 +115,9 @@ fi
 YELLOW=$'\033[33m'
 ORANGE=$'\033[38;5;208m'
 RED=$'\033[31m'
-BLUE=$'\033[34m'
 CYAN=$'\033[36m'
+GREY=$'\033[38;5;245m'
+ESC=$'\033'
 RESET=$'\033[0m'
 
 # ---------------------------------------------------------------------------
@@ -146,6 +147,32 @@ color_usage() {
   fi
 }
 
+
+# Effort level: grey -> cyan -> yellow -> orange -> red as the spend climbs.
+color_effort() {
+  case "$1" in
+    low)    printf '%s' "$GREY"   ;;
+    medium) printf '%s' "$CYAN"   ;;
+    high)   printf '%s' "$YELLOW" ;;
+    xhigh)  printf '%s' "$ORANGE" ;;
+    max)    printf '%s' "$RED"    ;;
+    *)      printf '%s' "$YELLOW" ;;
+  esac
+}
+
+# Emoji + name color per model family, matched on a substring of the display
+# name so it survives version bumps ("Opus 5" -> "Opus 6" keeps its planet).
+# Each color is the dominant hue of its own emoji glyph, picked to stay clear
+# of the effort ramp above so the two adjacent words never blur together.
+model_style() {   # -> "<emoji> <xterm-256 color>"
+  case "$(printf '%s' "$1" | tr 'A-Z' 'a-z')" in
+    *fable*)  printf '🦄 177' ;;   # orchid — the mane
+    *opus*)   printf '🪐 220' ;;   # gold   — the planet
+    *sonnet*) printf '🪶 230' ;;   # ivory  — the feather
+    *haiku*)  printf '🍃 114' ;;   # green  — the leaf
+    *)        printf '✨ 252' ;;   # unknown model: neutral
+  esac
+}
 
 # Compact human duration from now until a Unix epoch seconds value.
 # Examples: "45m", "2h15m", "3d4h", "<1m".
@@ -211,11 +238,14 @@ if [ -n "$pr_number" ]; then
 fi
 
 if [ -n "$model" ]; then
+  # Bold on the name, plain on the effort: the weight difference keeps the two
+  # readable side by side even when their hues sit close (gold Opus / amber high).
+  read -r m_emoji m_color <<< "$(model_style "$model")"
+  model_seg="${m_emoji} ${ESC}[1;38;5;${m_color}m${model}${RESET}"
   if [ -n "$effort_level" ]; then
-    parts+=("${BLUE}${model} (${effort_level})${RESET}")
-  else
-    parts+=("${BLUE}${model}${RESET}")
+    model_seg="${model_seg} $(color_effort "$effort_level")${effort_level}${RESET}"
   fi
+  parts+=("$model_seg")
 fi
 
 if [ -n "$ctx_used" ]; then
