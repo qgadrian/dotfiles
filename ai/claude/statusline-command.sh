@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Claude Code statusLine command
-# Segments: [worktree|branch] | issue | PR | 🪐 model effort | ctx% | 5h% | total%
+# Segments: [worktree|branch] | issue | PR | 🪐 model effort | 🧠 ctx% | ⏳ 5h% | 📅 total%
 
 input=$(cat)
 
@@ -202,6 +202,8 @@ fmt_until() {
   fi
 }
 
+# The label is emitted verbatim, so callers own their emoji and separator
+# ("🧠 ctx:"); only the percentage and its color are formatted here.
 fmt_pct() {
   local label="$1"
   local value="$2"
@@ -209,9 +211,9 @@ fmt_pct() {
   local n
   n=$(printf '%.0f' "$value")
   if [ -n "$color" ]; then
-    printf '%s: %s%s%%%s' "$label" "$color" "$n" "$RESET"
+    printf '%s %s%s%%%s' "$label" "$color" "$n" "$RESET"
   else
-    printf '%s: %s%%' "$label" "$n"
+    printf '%s %s%%' "$label" "$n"
   fi
 }
 
@@ -249,7 +251,7 @@ if [ -n "$model" ]; then
 fi
 
 if [ -n "$ctx_used" ]; then
-  ctx_seg="$(fmt_pct "ctx" "$ctx_used" "$(color_ctx "$ctx_used")")"
+  ctx_seg="$(fmt_pct "🧠 ctx:" "$ctx_used" "$(color_ctx "$ctx_used")")"
   if [ "$ctx_size" = "1000000" ]; then
     if [ "$exceeds_200k" = "true" ]; then
       ctx_seg="${ctx_seg} ${RED}[1M]${RESET}"
@@ -261,7 +263,7 @@ if [ -n "$ctx_used" ]; then
 fi
 
 if [ -n "$five_hour_used" ]; then
-  seg="$(fmt_pct "5h" "$five_hour_used" "$(color_usage "$five_hour_used")")"
+  seg="$(fmt_pct "⏳ 5h:" "$five_hour_used" "$(color_usage "$five_hour_used")")"
   if [ -n "$five_hour_resets" ]; then
     seg="${seg} (↻$(fmt_until "$five_hour_resets"))"
   fi
@@ -269,7 +271,7 @@ if [ -n "$five_hour_used" ]; then
 fi
 
 if [ -n "$seven_day_used" ]; then
-  seg="$(fmt_pct "total" "$seven_day_used" "$(color_usage "$seven_day_used")")"
+  seg="$(fmt_pct "📅 total:" "$seven_day_used" "$(color_usage "$seven_day_used")")"
   if [ -n "$seven_day_resets" ]; then
     seg="${seg} (↻$(fmt_until "$seven_day_resets"))"
   fi
