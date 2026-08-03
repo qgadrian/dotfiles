@@ -71,9 +71,10 @@ NEW_BLOCK='{
   "refreshInterval": 60
 }'
 
-# subagentStatusLine renders a custom row body per subagent in the agent panel.
-# Its payload is task metadata only (no per-subagent model/context), so the
-# script shows agent type/name + live token usage as the honest proxy.
+# subagentStatusLine renders a custom row body per subagent in the agent panel:
+# assigned name + agent role + context % + model/effort. The payload carries
+# per-subagent model/effort/contextWindowSize, so those are real values, not
+# session-level guesses.
 SUB_BLOCK='{
   "type": "command",
   "command": "bash $HOME/.claude/subagent-statusline-command.sh"
