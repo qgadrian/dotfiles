@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Claude Code statusLine command
-# Segments: [worktree|branch] | issue | PR | 🪐 model effort | 🧠 ctx% | ⏳ 5h% | 📅 total%
+# Segments: [worktree|branch] | issue | PR | 🪐 model effort | 🧠 ctx% | ♨️ cache | ⏳ 5h% | 📅 total%
 
 input=$(cat)
 
@@ -14,6 +14,7 @@ seven_day_used=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage /
 five_hour_resets=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 seven_day_resets=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
 effort_level=$(echo "$input" | jq -r '.effort.level // empty')
+transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
 
 # ---------------------------------------------------------------------------
 # Git context: worktree vs branch name, real branch, and dirty flag
@@ -260,6 +261,42 @@ if [ -n "$ctx_used" ]; then
     fi
   fi
   parts+=("$ctx_seg")
+fi
+
+# ---------------------------------------------------------------------------
+# Prompt-cache freshness. Concept credit: KatsuJinCode/claude-cache-countdown
+# (MIT); this is an original implementation — no hooks, no ticker process, no
+# sounds. The transcript file is appended on every API request, which is also
+# when Anthropic's prompt cache is re-warmed, so its mtime IS the cache clock:
+#   remaining = TTL - (now - mtime(transcript))
+# The statusline's own refreshInterval keeps the countdown ticking while idle.
+# TTL defaults to this account's 1-hour cache window; export
+# CLAUDE_CACHE_TTL_SECONDS=300 if a session falls back to the 5-minute TTL.
+# ---------------------------------------------------------------------------
+cache_ttl="${CLAUDE_CACHE_TTL_SECONDS:-3600}"
+if [ -n "$transcript_path" ] && [ -f "$transcript_path" ] && [ "$cache_ttl" -gt 0 ] 2>/dev/null; then
+  t_mtime=$(stat -f %m "$transcript_path" 2>/dev/null || stat -c %Y "$transcript_path" 2>/dev/null || echo 0)
+  if [ "$t_mtime" -gt 0 ] 2>/dev/null; then
+    cache_left=$(( cache_ttl - ( $(date +%s) - t_mtime ) ))
+    if [ "$cache_left" -le 0 ]; then
+      parts+=("❄️ cache: ${GREY}cold${RESET}")
+    else
+      # Ceil to whole minutes so a warm cache never reads "0m".
+      cache_min=$(( (cache_left + 59) / 60 ))
+      cache_pct=$(( cache_left * 100 / cache_ttl ))
+      # Ramp on share of TTL left, so it scales to any TTL (1h or 5m alike).
+      if   [ "$cache_pct" -le 10 ]; then cache_color="$RED"
+      elif [ "$cache_pct" -le 25 ]; then cache_color="$ORANGE"
+      elif [ "$cache_pct" -le 50 ]; then cache_color="$YELLOW"
+      else cache_color=""
+      fi
+      if [ -n "$cache_color" ]; then
+        parts+=("♨️ cache: ${cache_color}${cache_min}m${RESET}")
+      else
+        parts+=("♨️ cache: ${cache_min}m")
+      fi
+    fi
+  fi
 fi
 
 if [ -n "$five_hour_used" ]; then
