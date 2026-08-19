@@ -18,3 +18,5 @@ Thumbs.db
 
 ########## well-known ignorable folders
 node_modules
+
+**/.claude/settings.local.json
