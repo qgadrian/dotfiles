@@ -69,3 +69,26 @@ setopt share_history # Share history between multiple shells
 if [[ -n $VIM_DIR && ! $VIM_DIR =~ "term://" ]]; then
   cd $VIM_DIR
 fi
+
+# enhancd: only keep ~/workspace paths in the cd-history log.
+# enhancd has no include/exclude option of its own: on cd into an unknown dir it
+# runs `find -maxdepth 1` over every parent level and appends everything it sees,
+# which floods the log with temp dirs, / and $HOME siblings, node_modules, etc.
+# This after-cd hook (ENHANCD_HOOK_AFTER_CD) rewrites the log to an allowlist.
+ENHANCD_INCLUDE_PATTERN="^${HOME}/workspace(/|$)"
+ENHANCD_EXCLUDE_PATTERN='/(\.claude/worktrees|\.agents/skills|node_modules|\.git|\.next|\.venv|vendor|tmp|log|logs|coverage|dist|build|target)(/|$)'
+__enhancd_prune_log() {
+  local log="${ENHANCD_DIR:-$HOME/.enhancd}/enhancd.log"
+  [[ -f $log ]] || return 0
+  command grep -E "$ENHANCD_INCLUDE_PATTERN" "$log" \
+    | command grep -Ev "$ENHANCD_EXCLUDE_PATTERN" > "$log.pruned"
+  if [[ -s $log.pruned ]]; then
+    command mv -f "$log.pruned" "$log"
+  else
+    # never leave the log empty: enhancd falls back to plain `cd` if it is
+    command rm -f "$log.pruned"
+    print -r -- "$HOME/workspace" >| "$log"
+  fi
+  return 0
+}
+ENHANCD_HOOK_AFTER_CD='__enhancd_prune_log'
