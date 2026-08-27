@@ -251,6 +251,29 @@ if [ -n "$ctx_used" ]; then
 fi
 
 # ---------------------------------------------------------------------------
+# Session lifecycle: main-agent loops (⏺ steps) + live cached-prefix size,
+# with budget level and handoff break-even once tripped ("⟳107 · 162k · L1↩24"
+# = a handoff amortizes within ~24 calls; under that, finishing in place is
+# cheaper). Repo-provided: renders only when the current repo ships
+# scripts/statusline-lifecycle-segment.mjs (Tablesit harness). Zero model
+# tokens — the statusline never enters model context. The node parse is
+# bounded (64KB tail scan) and fail-open (empty output on any error).
+# ---------------------------------------------------------------------------
+if [ -n "$transcript_path" ] && [ -f "$transcript_path" ] && [ -d "$abs_cwd" ]; then
+  _lc_root=$(git -C "$abs_cwd" rev-parse --show-toplevel 2>/dev/null)
+  if [ -n "$_lc_root" ] && [ -f "$_lc_root/scripts/statusline-lifecycle-segment.mjs" ]; then
+    _lc_seg=$(node "$_lc_root/scripts/statusline-lifecycle-segment.mjs" "$transcript_path" 2>/dev/null)
+    if [ -n "$_lc_seg" ]; then
+      # Amber once a budget level is showing, so a tripped session reads at a glance.
+      case "$_lc_seg" in
+        *L[0-9]*) parts+=("${ORANGE}${_lc_seg}${RESET}") ;;
+        *)        parts+=("$_lc_seg") ;;
+      esac
+    fi
+  fi
+fi
+
+# ---------------------------------------------------------------------------
 # Prompt-cache freshness. Concept credit: KatsuJinCode/claude-cache-countdown
 # (MIT); this is an original implementation — no hooks, no ticker process, no
 # sounds.
