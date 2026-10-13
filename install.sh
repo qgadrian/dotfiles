@@ -21,6 +21,8 @@ source ./asdf/install.sh
 
 source ./alfred/install.sh
 
+source ./vicinae/install.sh
+
 source ./lang/config.sh
 
 source ./git/config.sh

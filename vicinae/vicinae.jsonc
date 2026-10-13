@@ -1,0 +1,14 @@
+// Shared Vicinae config, imported from ~/.config/vicinae/settings.json (see install.sh).
+// settings.json stays local because Vicinae rewrites it (temp file + rename) on GUI changes.
+// Personal data (shortcuts, snippets, scripts) lives outside this repo.
+{
+	"$schema": "https://vicinae.com/schemas/config.json",
+	"global_shortcuts": {
+		"toggle": "control+shift+SPACE"
+	},
+	"theme": {
+		"dark": {
+			"name": "dracula"
+		}
+	}
+}
