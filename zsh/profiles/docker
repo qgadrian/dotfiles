@@ -33,3 +33,28 @@ alias dcrestart='containers=$(docker ps --format "{{.Names}}" | peco | tr "\n" "
 
 # dive tool
 alias dockerdive="docker images | peco | sed 's/ .*//g' | xargs -I{} -ot dive {}"
+
+# per-folder context: a .docker-context file (here or in a parent dir) sets DOCKER_CONTEXT
+_docker_context_from_dir() {
+  local dir=$PWD
+  while [[ $dir != / ]]; do
+    if [[ -f $dir/.docker-context ]]; then
+      export DOCKER_CONTEXT=$(<$dir/.docker-context)
+      _docker_context_auto=1
+      return
+    fi
+    dir=${dir:h}
+  done
+  # only unset what we set, so a manual `export DOCKER_CONTEXT=...` survives
+  [[ -n $_docker_context_auto ]] && unset DOCKER_CONTEXT _docker_context_auto
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _docker_context_from_dir
+_docker_context_from_dir
+
+# update
+dcu() {
+  echo "Using context: $(docker context show)"
+  docker compose down && docker compose pull && docker compose up -d
+}
+
