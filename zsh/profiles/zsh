@@ -28,7 +28,7 @@ plugins=(
   # colored-man-pages
   colorize
   git-extras
-  github
+  gh
   macos
   mix
   pip
