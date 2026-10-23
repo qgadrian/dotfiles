@@ -17,6 +17,7 @@ brew install \
   lsd \
   lsusb \
   mcfly \
+  mole \
   nmap \
   npm \
   peco \
