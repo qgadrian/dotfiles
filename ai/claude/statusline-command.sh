@@ -252,9 +252,11 @@ fi
 
 # ---------------------------------------------------------------------------
 # Session lifecycle: main-agent loops (⏺ steps) + live cached-prefix size,
-# with budget level and handoff break-even once tripped ("⟳107 · 162k · L1↩24"
-# = a handoff amortizes within ~24 calls; under that, finishing in place is
-# cheaper). Repo-provided: renders only when the current repo ships
+# with a verbal handoff verdict once a budget level trips:
+#   "⟳107 · 162k · handoff if >24⟳ left"  pays off if more than ~24 loops remain
+#   "⟳260 · 80k · optional handoff" no token payback; session quality decides
+#   "⟳480 · 310k · handoff now"     top budget, unconditional
+# Repo-provided: renders only when the current repo ships
 # scripts/statusline-lifecycle-segment.mjs (Tablesit harness). Zero model
 # tokens — the statusline never enters model context. The node parse is
 # bounded (64KB tail scan) and fail-open (empty output on any error).
@@ -264,10 +266,10 @@ if [ -n "$transcript_path" ] && [ -f "$transcript_path" ] && [ -d "$abs_cwd" ]; 
   if [ -n "$_lc_root" ] && [ -f "$_lc_root/scripts/statusline-lifecycle-segment.mjs" ]; then
     _lc_seg=$(node "$_lc_root/scripts/statusline-lifecycle-segment.mjs" "$transcript_path" 2>/dev/null)
     if [ -n "$_lc_seg" ]; then
-      # Amber once a budget level is showing, so a tripped session reads at a glance.
+      # Amber once a handoff verdict is showing, so a tripped session reads at a glance.
       case "$_lc_seg" in
-        *L[0-9]*) parts+=("${ORANGE}${_lc_seg}${RESET}") ;;
-        *)        parts+=("$_lc_seg") ;;
+        *handoff*) parts+=("${ORANGE}${_lc_seg}${RESET}") ;;
+        *)         parts+=("$_lc_seg") ;;
       esac
     fi
   fi
