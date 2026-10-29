@@ -1,3 +1,8 @@
+# p10k instant prompt (must stay at the top)
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Lang
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -47,8 +52,6 @@ export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 
 # Export gpg tty
 export GPG_TTY=$(tty)
-
-autoload -Uz compinit && compinit
 
 for file in ~/.zsh/profiles/*; do
   source "$file"
