@@ -54,7 +54,8 @@ for file in ~/.zsh/profiles/*; do
   source "$file"
 done
 
-for file in ~/.zsh/local/*; do
+for file in ~/.zsh/local/*(N.); do
+  [[ $file == *.json ]] && continue
   source "$file"
 done
 
