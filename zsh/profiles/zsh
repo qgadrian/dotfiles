@@ -79,15 +79,17 @@ ENHANCD_EXCLUDE_PATTERN='/(\.claude/worktrees|\.agents/skills|node_modules|\.git
 __enhancd_prune_log() {
   local log="${ENHANCD_DIR:-$HOME/.enhancd}/enhancd.log"
   [[ -f $log ]] || return 0
-  command grep -E "$ENHANCD_INCLUDE_PATTERN" "$log" \
-    | command grep -Ev "$ENHANCD_EXCLUDE_PATTERN" > "$log.pruned"
-  if [[ -s $log.pruned ]]; then
-    command mv -f "$log.pruned" "$log"
-  else
-    # never leave the log empty: enhancd falls back to plain `cd` if it is
-    command rm -f "$log.pruned"
-    print -r -- "$HOME/workspace" >| "$log"
-  fi
+  # Filter in-process (no grep/mv forks on every cd).
+  local -a lines kept
+  local line
+  lines=(${(f)"$(<$log)"})
+  for line in $lines; do
+    [[ $line =~ $ENHANCD_INCLUDE_PATTERN && ! $line =~ $ENHANCD_EXCLUDE_PATTERN ]] && kept+=$line
+  done
+  # never leave the log empty: enhancd falls back to plain `cd` if it is
+  (( $#kept )) || kept=("$HOME/workspace")
+  # skip the write when nothing was pruned
+  [[ ${(pj:\n:)kept} == ${(pj:\n:)lines} ]] || print -rl -- $kept >| "$log"
   return 0
 }
 ENHANCD_HOOK_AFTER_CD='__enhancd_prune_log'
