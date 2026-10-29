@@ -13,6 +13,9 @@ alias kap="kubectl auth-proxy -n kubernetes-dashboard https://kubernetes-dashboa
 alias kcc="kubectl config get-contexts -o name | peco | xargs -ot -I{} kubectl config use-context {}"
 
 # kubectl completion
-source <(kubectl completion zsh)
-# Set the kubectl completion code for zsh[1] to autoload on startup
-kubectl completion zsh > "${fpath[1]}/_kubectl"
+# Generated once; delete ~/.zsh/completions/_kubectl to regenerate.
+# Must run before compinit (oh-my-zsh in profiles/zsh).
+if (( $+commands[kubectl] )); then
+  [[ -s ~/.zsh/completions/_kubectl ]] || { mkdir -p ~/.zsh/completions && kubectl completion zsh > ~/.zsh/completions/_kubectl }
+  fpath=(~/.zsh/completions $fpath)
+fi
