@@ -27,7 +27,7 @@ source ./lang/config.sh
 
 source ./git/config.sh
 
-source ./docker/install.sh
+source ./containers/install.sh
 
 source ./tools/install.sh
 
