@@ -66,3 +66,4 @@ fi
 source $(pwd)/tools/navi/install.sh
 source $(pwd)/tools/slack/install.sh
 source $(pwd)/tools/peco/install.sh
+source $(pwd)/tools/mise/install.sh
