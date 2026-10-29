@@ -9,7 +9,7 @@ brew install \
   fzf \
   ffmpeg \
   gettext \
-  gh go-jira \
+  gh \
   graphviz \
   gsed \
   htop \
