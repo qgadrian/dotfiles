@@ -73,8 +73,10 @@ fi
 # runs `find -maxdepth 1` over every parent level and appends everything it sees,
 # which floods the log with temp dirs, / and $HOME siblings, node_modules, etc.
 # This after-cd hook (ENHANCD_HOOK_AFTER_CD) rewrites the log to an allowlist.
-ENHANCD_INCLUDE_PATTERN="^${HOME}/workspace(/|$)"
-ENHANCD_EXCLUDE_PATTERN='/(\.claude/worktrees|\.agents/skills|node_modules|\.git|\.next|\.venv|vendor|tmp|log|logs|coverage|dist|build|target)(/|$)'
+# Exported so agent shells (Claude Code/Codex snapshot functions but not plain
+# vars) still prune; without it they flood the log with temp dirs and every cd stalls.
+export ENHANCD_INCLUDE_PATTERN="^${HOME}/workspace(/|$)"
+export ENHANCD_EXCLUDE_PATTERN='/(\.claude/worktrees|\.agents/skills|node_modules|\.git|\.next|\.venv|vendor|tmp|log|logs|coverage|dist|build|target)(/|$)'
 __enhancd_prune_log() {
   local log="${ENHANCD_DIR:-$HOME/.enhancd}/enhancd.log"
   [[ -f $log ]] || return 0
@@ -91,4 +93,4 @@ __enhancd_prune_log() {
   [[ ${(pj:\n:)kept} == ${(pj:\n:)lines} ]] || print -rl -- $kept >| "$log"
   return 0
 }
-ENHANCD_HOOK_AFTER_CD='__enhancd_prune_log'
+export ENHANCD_HOOK_AFTER_CD='__enhancd_prune_log'
