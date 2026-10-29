@@ -82,3 +82,18 @@ alias peon="bash /Users/adrian/.claude/hooks/peon-ping/peon.sh"
 
 # kimi-code
 export PATH="/Users/adrian/.kimi-code/bin:$PATH"
+
+# Autosuggestions + syntax highlighting (brew install zsh-autosuggestions zsh-syntax-highlighting).
+# Kept last so syntax highlighting wraps every widget (mcfly, etc.).
+if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  ZSH_AUTOSUGGEST_USE_ASYNC=1           # fetch suggestions without blocking typing
+  ZSH_AUTOSUGGEST_MANUAL_REBIND=1       # don't rebind widgets on every prompt
+  ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40    # skip suggestions for long/pasted commands
+  ZSH_AUTOSUGGEST_STRATEGY=(history)
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+if [[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+  ZSH_HIGHLIGHT_MAXLENGTH=300           # don't highlight huge pastes
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi

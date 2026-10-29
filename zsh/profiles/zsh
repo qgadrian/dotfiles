@@ -14,8 +14,7 @@ ZSH_DISABLE_COMPFIX=true
 # =============================================================================
 
 # Syntax highlight
-# TODO brew install zsh-syntax-highlighting
-#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh-autosuggestions + zsh-syntax-highlighting are sourced at the end of ~/.zshrc
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
