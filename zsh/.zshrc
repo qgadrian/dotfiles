@@ -52,7 +52,7 @@ export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 typeset -U path
 
 # Export gpg tty
-export GPG_TTY=$(tty)
+export GPG_TTY=$TTY
 
 for file in ~/.zsh/profiles/*; do
   source "$file"
