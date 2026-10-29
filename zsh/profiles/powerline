@@ -11,7 +11,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   dir
   vcs
   status
-  kubecontext
+  # kubecontext
 )
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()

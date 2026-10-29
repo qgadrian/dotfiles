@@ -25,15 +25,15 @@ plugins=(
   #docker
   # brew
   # colored-man-pages
-  colorize
-  git-extras
+  # colorize
+  # git-extras
   gh
   macos
   mix
-  pip
-  python
+  # pip
+  # python
   # vagrant
-  virtualenv
+  # virtualenv
   # yarn
 )
 
