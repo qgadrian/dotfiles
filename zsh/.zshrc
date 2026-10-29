@@ -70,8 +70,10 @@ eval "$(mcfly init zsh)"
 export PATH="$PATH:/Users/adrian/.lmstudio/bin"
 
 # mise
-eval "$(mise activate zsh)"
-export MISE_SHELL=zsh
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+  export MISE_SHELL=zsh
+fi
 
 # opencode
 export PATH=/Users/adrian/.opencode/bin:$PATH
@@ -79,6 +81,15 @@ export PATH=/Users/adrian/.opencode/bin:$PATH
 # peon-ping quick controls
 alias peon="bash /Users/adrian/.claude/hooks/peon-ping/peon.sh"
 [ -f /Users/adrian/.claude/hooks/peon-ping/completions.bash ] && source /Users/adrian/.claude/hooks/peon-ping/completions.bash
+
+# pnpm
+export PNPM_HOME="/Users/adrian/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+export PATH="$HOME/.local/bin:$PATH"
 
 # kimi-code
 export PATH="/Users/adrian/.kimi-code/bin:$PATH"
