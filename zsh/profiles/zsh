@@ -41,6 +41,10 @@ export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # enhancd
+# Keep the log outside ~/.enhancd: agent shells started before the prune below
+# keep rewriting ~/.enhancd/enhancd.log with ~60k temp dirs; isolate from them.
+export ENHANCD_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/enhancd"
+[[ -f $ENHANCD_DIR/config.ltsv ]] || { mkdir -p $ENHANCD_DIR && cp ~/.enhancd/config.ltsv $ENHANCD_DIR/ 2>/dev/null }
 source ~/.enhancd/init.sh
 export ENHANCD_FILTER=peco
 # list folders in ~/workspace and ~/workspace/xxxx
