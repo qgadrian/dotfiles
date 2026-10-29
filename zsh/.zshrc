@@ -79,3 +79,6 @@ export PATH=/Users/adrian/.opencode/bin:$PATH
 # peon-ping quick controls
 alias peon="bash /Users/adrian/.claude/hooks/peon-ping/peon.sh"
 [ -f /Users/adrian/.claude/hooks/peon-ping/completions.bash ] && source /Users/adrian/.claude/hooks/peon-ping/completions.bash
+
+# kimi-code
+export PATH="/Users/adrian/.kimi-code/bin:$PATH"
