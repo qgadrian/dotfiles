@@ -264,4 +264,36 @@ if _G._claude_attention_timer then
   _G._claude_attention_timer:close()
 end
 _G._claude_attention_timer = vim.uv.new_timer()
-_G._claude_attention_timer:start(2000, 2000, vim.schedule_wrap(scan_claude_terminals))
+
+local function has_terminal_buffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "terminal" then
+      return true
+    end
+  end
+  return false
+end
+
+-- Only poll while terminals exist: the tick after the last one closes runs a
+-- final scan (clearing stale tab status) and stops the timer until TermOpen.
+local function claude_attention_tick()
+  scan_claude_terminals()
+  if not has_terminal_buffers() then
+    _G._claude_attention_timer:stop()
+  end
+end
+
+local function start_claude_attention_timer()
+  if not _G._claude_attention_timer:is_active() then
+    _G._claude_attention_timer:start(2000, 2000, vim.schedule_wrap(claude_attention_tick))
+  end
+end
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = augroup("claude_attention"),
+  callback = start_claude_attention_timer,
+})
+
+if has_terminal_buffers() then
+  start_claude_attention_timer()
+end
