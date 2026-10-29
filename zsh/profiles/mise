@@ -1,2 +1,1 @@
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@"
-export PATH="$HOME/.local/share/mise/shims:$PATH"

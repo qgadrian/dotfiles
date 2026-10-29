@@ -48,7 +48,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 
 export PATH=/System/Cryptexes/App/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:$PATH
-export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+typeset -U path
 
 # Export gpg tty
 export GPG_TTY=$(tty)
