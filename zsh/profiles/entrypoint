@@ -2,4 +2,6 @@ if [ ! -d ~/workspace ]; then
   mkdir ~/workspace
 fi
 
-cd ~/workspace
+# Only jump to ~/workspace when the shell starts in $HOME (new terminal window),
+# not in nvim :terminal or tabs that inherit a project directory.
+[[ $PWD == $HOME ]] && cd ~/workspace
