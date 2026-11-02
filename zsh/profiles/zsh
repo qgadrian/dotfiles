@@ -44,9 +44,15 @@ source $ZSH/oh-my-zsh.sh
 # Keep the log outside ~/.enhancd: agent shells started before the prune below
 # keep rewriting ~/.enhancd/enhancd.log with ~60k temp dirs; isolate from them.
 export ENHANCD_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/enhancd"
-[[ -f $ENHANCD_DIR/config.ltsv ]] || { mkdir -p $ENHANCD_DIR && cp ~/.enhancd/config.ltsv $ENHANCD_DIR/ 2>/dev/null }
-source ~/.enhancd/init.sh
-export ENHANCD_FILTER=peco
+# Only in a human's interactive shell. Agent shells (Claude Code sets CLAUDECODE=1, Codex sets
+# CODEX_SANDBOX or CODEX_MANAGED_BY_NPM) snapshot this profile, and enhancd's cd fails under `set -u`
+# while returning 0: a script's `cd X || exit 1` then keeps running where it started. On 2026-11-02
+# that put two agents' throwaway git commits on a shared main checkout.
+if [[ -o interactive && -z ${CLAUDECODE-} && -z ${CODEX_SANDBOX-} && -z ${CODEX_MANAGED_BY_NPM-} ]]; then
+  [[ -f $ENHANCD_DIR/config.ltsv ]] || { mkdir -p $ENHANCD_DIR && cp ~/.enhancd/config.ltsv $ENHANCD_DIR/ 2>/dev/null }
+  source ~/.enhancd/init.sh
+  export ENHANCD_FILTER=peco
+fi
 # list folders in ~/workspace and ~/workspace/xxxx
 # export ENHANCD_COMMAND='rg --hidden --follow --glob "!.git" --glob "!node_modules" --glob "!vendor" --glob "!tmp" --glob "!log" --glob "!coverage" --glob "!dist" --glob "!build" --glob "!public" --glob "!target"'
 
