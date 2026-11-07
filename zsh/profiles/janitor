@@ -1,0 +1,48 @@
+# shell-janitor: clean up orphaned zsh shells (and their gitstatusd helpers).
+#
+# An orphaned shell is a zsh whose parent died (ppid 1), e.g. after nvim or a
+# terminal app was killed hard. Only shells whose tty has been idle for at
+# least N hours are touched, so live windows are left alone.
+#
+#   shell-janitor            # dry run: list what would be closed
+#   shell-janitor -k         # close them (SIGHUP shell + children)
+#   shell-janitor -k -h 6    # idle threshold in hours (default 24)
+shell-janitor() {
+  emulate -L zsh
+  local do_kill=0 hours=24 opt
+  while getopts "kh:" opt; do
+    case $opt in
+      k) do_kill=1 ;;
+      h) hours=$OPTARG ;;
+      *) print -u2 "usage: shell-janitor [-k] [-h hours]"; return 2 ;;
+    esac
+  done
+
+  local now=$EPOCHSECONDS pid ppid tty comm idle
+  [[ -z $now ]] && { zmodload zsh/datetime; now=$EPOCHSECONDS }
+  local -a victims
+  local count=0
+
+  while read -r pid ppid tty comm; do
+    [[ $ppid == 1 && $comm == *zsh && $tty == ttys* ]] || continue
+    (( pid == $$ )) && continue
+    [[ -e /dev/$tty ]] || continue
+    idle=$(( (now - $(stat -f %a /dev/$tty)) / 3600 ))
+    (( idle >= hours )) || continue
+    (( count++ ))
+    printf '%6s  %-8s idle %4sh\n' $pid $tty $idle
+    victims+=($pid ${(f)"$(pgrep -P $pid)"})
+  done < <(ps -A -o pid=,ppid=,tty=,comm=)
+
+  if (( count == 0 )); then
+    print "No orphaned shells idle for ${hours}h+."
+    return 0
+  fi
+
+  if (( do_kill )); then
+    kill -HUP ${victims:#} 2>/dev/null
+    print "Closed $count orphaned shell(s)."
+  else
+    print "$count orphaned shell(s). Run 'shell-janitor -k' to close them."
+  fi
+}

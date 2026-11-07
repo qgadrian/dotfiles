@@ -297,3 +297,24 @@ vim.api.nvim_create_autocmd("TermOpen", {
 if has_terminal_buffers() then
   start_claude_attention_timer()
 end
+
+-- Janitor: stop terminal jobs explicitly on exit so their shells don't
+-- outlive nvim, and expose the zsh shell-janitor as :Janitor[!]
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = augroup("term_janitor"),
+  desc = "Stop terminal jobs before exiting",
+  callback = function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      local job = vim.b[buf].terminal_job_id
+      if job then
+        pcall(vim.fn.jobstop, job)
+      end
+    end
+  end,
+})
+
+vim.api.nvim_create_user_command("Janitor", function(opts)
+  local cmd = "source ~/.zsh/profiles/janitor && shell-janitor" .. (opts.bang and " -k" or "")
+  local out = vim.fn.system({ "zsh", "-c", cmd })
+  vim.notify(out, vim.log.levels.INFO, { title = "Janitor" })
+end, { bang = true, desc = "List orphaned shells (! to close them)" })
