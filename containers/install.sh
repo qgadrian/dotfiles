@@ -4,7 +4,7 @@
 BASE_DIR="$(pwd)/containers"
 
 PS3='Select a container system to install: '
-options=(Orbstack Colima Skip)
+options=(Colima Orbstack Skip)
 
 echo "Install VM container runtime"
 select choice in "${options[@]}"; do

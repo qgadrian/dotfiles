@@ -1,6 +1,8 @@
 # Number of CPUs to be allocated to the virtual machine.
 # Default: 2
-cpu: 14
+# cpu and memory are per-device: colima/install.sh replaces them when it generates
+# ~/.colima/default/colima.yaml. Tune a device by editing that file, not this one.
+cpu: 2
 
 # Size of the disk in GiB to be allocated to the virtual machine.
 # NOTE: value can only be increased after virtual machine has been created.
@@ -10,7 +12,7 @@ disk: 100
 
 # Size of the memory in GiB to be allocated to the virtual machine.
 # Default: 2
-memory: 36
+memory: 2
 
 # Architecture of the virtual machine (x86_64, aarch64, host).
 #
@@ -124,7 +126,7 @@ vmType: vz
 
 # Utilise rosetta for amd64 emulation (requires m1 mac and vmType `vz`)
 # Default: false
-rosetta: false
+rosetta: true
 
 # Enable nested virtualization for the virtual machine (requires m3 mac and vmType `vz`)
 # Default: false
@@ -141,7 +143,7 @@ nestedVirtualization: false
 #
 # NOTE: value cannot be changed after virtual machine is created.
 # Default: virtiofs (for vz), sshfs (for qemu)
-mountType: sshfs
+mountType: virtiofs
 
 # Propagate inotify file events to the VM.
 # NOTE: this is experimental.
