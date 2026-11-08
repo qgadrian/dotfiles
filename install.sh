@@ -17,8 +17,6 @@ source ./mac/config.sh
 
 source ./zsh/install.sh
 
-source ./asdf/install.sh
-
 source ./alfred/install.sh
 
 source ./vicinae/install.sh
