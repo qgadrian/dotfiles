@@ -95,16 +95,23 @@ vim.api.nvim_create_autocmd("BufRead", {
   command = [[noautocmd silent!]],
 })
 
--- Source of truth: ~/.claude/sessions/<pid>.json, written by Claude Code itself.
--- For kind="interactive" sessions, the relevant statuses are:
---   "busy" / "working" / "in_progress" → Claude is actively running
---   "idle"                              → Claude finished its turn (your move)
---   "done" / "completed"                → treated same as idle
---   "error"                             → last turn errored
--- We also read a sibling flag file ~/.claude/sessions/<pid>.flag written by the
--- Claude attention hook (PermissionRequest / Notification). Its contents are
--- "action_needed" or "notify" — signals that don't appear in status itself.
--- Priority (highest urgency first): action_needed > notify > error > idle > working
+-- Claude Code tab status. Sources, all written by Claude Code or its hooks:
+--   ~/.claude/sessions/<pid>.json   per-process session: status (busy/idle),
+--                                   kind (interactive/bg), jobId, parkedJobId
+--   ~/.claude/jobs/<jobId>/state.json  background job: state (working/
+--                                   blocked/done/stopped), inFlight.tasks
+--   ~/.claude/attention/<pid>/      written by .claude/hooks/claude_attention.py:
+--                                   flag ("needs_input <origin>") and
+--                                   agents/<id> (running subagents)
+-- Resulting states, highest tab priority first (several Claude terminals in
+-- one tab show the most important one):
+--   needs_input  a permission prompt / question is waiting on you      ❓
+--   error        last turn errored                                     ❌
+--   background   main loop idle, but subagents, background tasks or a
+--                handoff continuation ("<name> · N") are still running  🔧
+--   working      main loop running                                     🟢
+--   idle         your turn, nothing running                            ⏰
+-- :ClaudeTabDebug shows how each tab's state was derived.
 local _status_map = {
   -- session.json status → normalized status
   busy        = "working",
@@ -115,9 +122,13 @@ local _status_map = {
   completed   = "idle",
   error       = "error",
 }
-local _priority = { action_needed = 5, notify = 4, error = 3, idle = 2, working = 1 }
+local _priority = { needs_input = 5, error = 4, background = 3, working = 2, idle = 1 }
 local _max_session_len = 64
-local _sessions_dir = vim.fn.expand("~/.claude/sessions")
+local _claude_dir = vim.fn.expand("~/.claude")
+local _sessions_dir = _claude_dir .. "/sessions"
+local _attention_dir = _claude_dir .. "/attention"
+local _jobs_dir = _claude_dir .. "/jobs"
+local _agent_marker_ttl = 6 * 3600 -- ignore subagent markers older than this
 
 -- Walk descendant pids of `root_pid`, return the path of the first
 -- ~/.claude/sessions/<pid>.json file found, or nil. Bounded for safety.
@@ -156,48 +167,175 @@ local function find_claude_session_file(root_pid)
   return nil
 end
 
--- Read the sibling .flag file written by the attention hook. Returns one of
--- "action_needed", "notify", or nil. Anything else is treated as nil so a
--- future hook payload can't smuggle arbitrary strings into the tab name.
-local function read_claude_session_flag(session_path)
-  local flag_path = session_path:gsub("%.json$", ".flag")
-  local fd = io.open(flag_path, "r")
+-- JSON reads are cached by (mtime, size) so the 2s poll only re-decodes files
+-- that changed. JSON nulls decode to nil.
+local _json_cache = {} -- [path] = { key = "...", value = table }
+local function read_json(path)
+  local st = vim.uv.fs_stat(path)
+  if not st then
+    _json_cache[path] = nil
+    return nil
+  end
+  local key = st.mtime.sec .. ":" .. st.mtime.nsec .. ":" .. st.size
+  local cached = _json_cache[path]
+  if cached and cached.key == key then return cached.value end
+  local value = nil
+  local fd = io.open(path, "r")
+  if fd then
+    local content = fd:read("*a")
+    fd:close()
+    if content and content ~= "" then
+      local ok, decoded = pcall(vim.json.decode, content, { luanil = { object = true, array = true } })
+      if ok and type(decoded) == "table" then value = decoded end
+    end
+  end
+  _json_cache[path] = { key = key, value = value }
+  return value
+end
+
+local function read_attention_flag(pid)
+  local fd = io.open(_attention_dir .. "/" .. pid .. "/flag", "r")
   if not fd then return nil end
-  local content = fd:read("*a")
+  local content = fd:read("*a") or ""
   fd:close()
-  if not content then return nil end
-  content = vim.trim(content)
-  if content == "action_needed" or content == "notify" then return content end
+  local word, origin = content:match("^(%S+)%s+(%S+)")
+  if word == "needs_input" then return origin end
   return nil
 end
 
-local function read_claude_session_info(path)
-  local fd = io.open(path, "r")
-  if not fd then return nil end
-  local content = fd:read("*a")
-  fd:close()
-  if not content or content == "" then return nil end
-  local ok, decoded = pcall(vim.json.decode, content)
-  if not ok or type(decoded) ~= "table" then return nil end
-  local name = decoded.name
-  if type(name) == "string" then
-    name = vim.trim(name)
-    if name == "" then name = nil end
-    if name and #name > _max_session_len then name = name:sub(1, _max_session_len) end
-  else
-    name = nil
+local function count_active_agents(pid)
+  local dir = _attention_dir .. "/" .. pid .. "/agents"
+  local handle = vim.uv.fs_scandir(dir)
+  if not handle then return 0 end
+  local now, n = os.time(), 0
+  while true do
+    local name = vim.uv.fs_scandir_next(handle)
+    if not name then break end
+    local st = vim.uv.fs_stat(dir .. "/" .. name)
+    if st and now - st.mtime.sec < _agent_marker_ttl then n = n + 1 end
   end
-  local raw = decoded.status
-  local status = (type(raw) == "string") and _status_map[raw] or nil
-  local flag = read_claude_session_flag(path)
-  -- Flag takes precedence over status (it's a more specific signal).
-  local effective = flag or status
-  return { name = name, status = effective }
+  return n
 end
+
+local function read_job(job_id)
+  if type(job_id) ~= "string" or not job_id:match("^[%w_-]+$") then return nil end
+  return read_json(_jobs_dir .. "/" .. job_id .. "/state.json")
+end
+
+-- All live session JSONs, listed at most once per scan (reset by the scanner).
+local _scan_sessions = nil
+local function live_sessions()
+  if _scan_sessions then return _scan_sessions end
+  local list = {}
+  local handle = vim.uv.fs_scandir(_sessions_dir)
+  while handle do
+    local name = vim.uv.fs_scandir_next(handle)
+    if not name then break end
+    if name:match("^%d+%.json$") then
+      local d = read_json(_sessions_dir .. "/" .. name)
+      if d and type(d.pid) == "number" then list[#list + 1] = d end
+    end
+  end
+  _scan_sessions = list
+  return list
+end
+
+-- State of one Claude process from its own session JSON, flag, markers and job.
+local function session_activity(d, why)
+  if read_attention_flag(d.pid) then
+    why[#why + 1] = "flag needs_input (pid " .. d.pid .. ")"
+    return "needs_input"
+  end
+  local status = type(d.status) == "string" and _status_map[d.status] or nil
+  if status == "error" or status == "working" then
+    why[#why + 1] = "status " .. d.status .. " (pid " .. d.pid .. ")"
+    return status
+  end
+  local job = read_job(d.jobId)
+  if job and job.state == "blocked" then
+    why[#why + 1] = "job " .. d.jobId .. " blocked"
+    return "needs_input"
+  end
+  local inflight = job and job.inFlight and tonumber(job.inFlight.tasks) or 0
+  local agents = count_active_agents(d.pid)
+  if inflight > 0 or agents > 0 then
+    why[#why + 1] = ("pid %d idle; job tasks=%d, subagents=%d"):format(d.pid, inflight, agents)
+    return "background"
+  end
+  if status then why[#why + 1] = "status " .. d.status .. " (pid " .. d.pid .. ")" end
+  return status
+end
+
+-- A handoff continuation is a background session named "<name> · N" (and its
+-- own continuations). No field links them, so this matches on the name.
+local function active_continuation(names, why)
+  for _, s in ipairs(live_sessions()) do
+    if s.kind == "bg" and type(s.name) == "string" then
+      for name in pairs(names) do
+        local prefix = name .. " · "
+        if s.name:sub(1, #prefix) == prefix then
+          local act = session_activity(s, {})
+          if act == "working" or act == "background" or act == "needs_input" then
+            why[#why + 1] = ("continuation %q is %s"):format(s.name, act)
+            return true
+          end
+        end
+      end
+    end
+  end
+  return false
+end
+
+local function trim_name(name)
+  if type(name) ~= "string" then return nil end
+  name = vim.trim(name)
+  if name == "" then return nil end
+  if #name > _max_session_len then name = name:sub(1, _max_session_len) end
+  return name
+end
+
+-- Returns { name, status, why } for the Claude process at `path`.
+local function read_claude_session_info(path)
+  local d = read_json(path)
+  if not d or type(d.pid) ~= "number" then return nil end
+  local why = {}
+  local status = session_activity(d, why)
+  if status ~= "needs_input" and status ~= "error" and status ~= "working" then
+    local names = {}
+    if trim_name(d.name) then names[vim.trim(d.name)] = true end
+    -- An interactive client whose conversation was moved to the background
+    -- points at that job; the job's own process (if alive) is the real state.
+    if d.parkedJobId then
+      local job = read_job(d.parkedJobId)
+      if job and type(job.name) == "string" then names[job.name] = true end
+      local bg = nil
+      for _, s in ipairs(live_sessions()) do
+        if s.jobId == d.parkedJobId then bg = s break end
+      end
+      local parked
+      if bg then
+        parked = session_activity(bg, why)
+      elseif job then
+        why[#why + 1] = ("parked job %s %s, no live process"):format(d.parkedJobId, tostring(job.state))
+        parked = job.state == "blocked" and "needs_input" or "idle"
+      end
+      if parked and (_priority[parked] or 0) > (_priority[status] or 0) then status = parked end
+    end
+    if (status == nil or status == "idle") and active_continuation(names, why) then
+      status = "background"
+    end
+  end
+  return { name = trim_name(d.name), status = status, why = why, pid = d.pid }
+end
+
+-- Last scan's per-tab detail, for :ClaudeTabDebug.
+local _tab_debug = {} -- [tab handle] = { { shell_pid, file, info }, ... }
 
 local function scan_claude_terminals()
   local changed = false
   local sync_enabled = vim.g.claude_sync_tab_names and true or false
+  _scan_sessions = nil
+  _tab_debug = {}
 
   for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
     if not sync_enabled then
@@ -218,8 +356,12 @@ local function scan_claude_terminals()
         local ok_pid, shell_pid = pcall(vim.fn.jobpid, vim.bo[buf].channel)
         if ok_pid and shell_pid then
           local sf = find_claude_session_file(shell_pid)
+          local entry = { shell_pid = shell_pid, file = sf }
+          _tab_debug[tab] = _tab_debug[tab] or {}
+          table.insert(_tab_debug[tab], entry)
           if sf then
             local info = read_claude_session_info(sf)
+            entry.info = info
             if info then
               local prio = _priority[info.status] or 0
               if prio > tab_status_prio then
@@ -288,6 +430,28 @@ local function start_claude_attention_timer()
     _G._claude_attention_timer:start(2000, 2000, vim.schedule_wrap(claude_attention_tick))
   end
 end
+
+vim.api.nvim_create_user_command("ClaudeTabDebug", function()
+  scan_claude_terminals()
+  local lines = {}
+  for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+    local entries = _tab_debug[tab]
+    if entries then
+      local ok, st = pcall(vim.api.nvim_tabpage_get_var, tab, "claude_status")
+      lines[#lines + 1] = ("tab %d → %s"):format(vim.api.nvim_tabpage_get_number(tab), ok and st or "none")
+      for _, e in ipairs(entries) do
+        local info = e.info
+        lines[#lines + 1] = ("  shell %s → %s"):format(e.shell_pid, e.file or "no Claude session found")
+        if info then
+          lines[#lines + 1] = ("    name=%s status=%s"):format(tostring(info.name), tostring(info.status))
+          for _, w in ipairs(info.why) do lines[#lines + 1] = "    · " .. w end
+        end
+      end
+    end
+  end
+  if #lines == 0 then lines = { "no terminal tabs" } end
+  vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO, { title = "Claude tabs" })
+end, { desc = "Show how each tab's Claude status was derived" })
 
 vim.api.nvim_create_autocmd("TermOpen", {
   group = augroup("claude_attention"),

@@ -4,14 +4,15 @@
 #
 # What it does:
 #   1. Symlinks <dotfiles>/.claude/hooks/claude-attention-flag.sh into
-#      ~/.claude/hooks/ so changes in dotfiles propagate.
-#   2. Additively patches ~/.claude/settings.json with the 6 hook entries
-#      (PermissionRequest/Notification write; UserPromptSubmit/Stop/
-#      PostToolUse/PostToolUseFailure clear). Preserves everything else
-#      already in settings.json.
+#      ~/.claude/hooks/ so changes in dotfiles propagate (the script runs
+#      claude_attention.py from the dotfiles folder it links to).
+#   2. Patches ~/.claude/settings.json so every event the hook handles calls
+#      it once: removes older entries for this hook, adds one per event.
+#      Everything else in settings.json is preserved.
 #
 # After running, the nvim tabline integration in nvim/lua/config/autocmds.lua
-# will surface 🟢 / 💬 / ⚠️ / 🔔 / ❌ on tab names per Claude session state.
+# shows ❓ / ❌ / 🔧 / 🟢 / ⏰ on tab names per Claude session state
+# (:ClaudeTabDebug explains each tab).
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -63,26 +64,31 @@ else:
 
 hooks = data.setdefault("hooks", {})
 
-ENTRIES = [
-    ("PermissionRequest",  f"{hook_path} write action_needed"),
-    ("Notification",       f"{hook_path} write notify"),
-    ("UserPromptSubmit",   f"{hook_path} clear"),
-    ("Stop",               f"{hook_path} clear"),
-    ("PostToolUse",        f"{hook_path} clear"),
-    ("PostToolUseFailure", f"{hook_path} clear"),
+EVENTS = [
+    "PermissionRequest", "Notification", "PostToolUse", "PostToolUseFailure",
+    "UserPromptSubmit", "Stop", "SubagentStart", "SubagentStop",
+    "SessionStart", "SessionEnd",
 ]
+command = hook_path  # the hook dispatches on hook_event_name; no arguments
+
+# Drop every older entry for this hook (e.g. `... write notify`, `... clear`)
+removed = 0
+for event, arr in list(hooks.items()):
+    for block in arr:
+        before = len(block.get("hooks", []))
+        block["hooks"] = [
+            h for h in block.get("hooks", [])
+            if os.path.basename(h.get("command", "").split()[0] if h.get("command") else "")
+            != "claude-attention-flag.sh"
+        ]
+        removed += before - len(block["hooks"])
+    hooks[event] = [b for b in arr if b.get("hooks")]
+    if not hooks[event]:
+        del hooks[event]
 
 added = []
-for event, command in ENTRIES:
-    arr = hooks.setdefault(event, [])
-    already = any(
-        h.get("command") == command
-        for block in arr
-        for h in block.get("hooks", [])
-    )
-    if already:
-        continue
-    arr.append({
+for event in EVENTS:
+    hooks.setdefault(event, []).append({
         "matcher": "",
         "hooks": [{
             "type": "command",
@@ -96,14 +102,13 @@ for event, command in ENTRIES:
 # Atomic write — never leave settings.json half-written
 tmp_fd, tmp_path = tempfile.mkstemp(prefix="settings.", suffix=".json", dir=os.path.dirname(settings_path) or ".")
 with os.fdopen(tmp_fd, "w") as fd:
-    json.dump(data, fd, indent=2)
+    json.dump(data, fd, indent=2, ensure_ascii=False)
     fd.write("\n")
+if os.path.exists(settings_path):
+    os.chmod(tmp_path, os.stat(settings_path).st_mode & 0o777)
 os.replace(tmp_path, settings_path)
 
-if added:
-    print(f"settings: added hook entries for: {', '.join(added)}")
-else:
-    print("settings: all hook entries already present; nothing to do")
+print(f"settings: replaced {removed} old entries; hook now on: {', '.join(added)}")
 PY
 
 echo "done — restart Claude Code sessions for hooks to take effect"

@@ -1,15 +1,17 @@
 -- Tab name formatter for Claude Code sessions.
 -- Reads two tabpage vars set by lua/config/autocmds.lua:
 --   t:claude_session_name → name from ~/.claude/sessions/<pid>.json (.name)
---   t:claude_status       → one of: action_needed | notify | error | idle | working
--- and prepends a status emoji. Falls back to the bufferline default name for
--- plain shells (no Claude detected in any window of the tab).
+--   t:claude_status       → one of: needs_input | error | background | working | idle
+-- and prepends a status emoji (all single-codepoint, so tab widths stay
+-- stable). Falls back to the bufferline default name for plain shells (no
+-- Claude detected in any window of the tab). See autocmds.lua for how each
+-- state is derived, or run :ClaudeTabDebug.
 local _emoji = {
-  action_needed = "⚠️ ",
-  notify        = "🔔 ",
-  error         = "❌ ",
-  idle          = "💬 ",
-  working       = "🟢 ",
+  needs_input = "❓ ",
+  error       = "❌ ",
+  background  = "🔧 ",
+  working     = "🟢 ",
+  idle        = "⏰ ",
 }
 
 return {
