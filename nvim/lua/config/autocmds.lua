@@ -103,12 +103,18 @@ vim.api.nvim_create_autocmd("BufRead", {
 --   ~/.claude/attention/<pid>/      written by .claude/hooks/claude_attention.py:
 --                                   flag ("needs_input <origin>") and
 --                                   agents/<id> (running subagents)
+--   ~/.claude/daemon/roster.json    which session launched each background
+--                                   worker (handoff continuation chains)
+--   terminal title (b:term_title)   "<spinner> <session name>": a client
+--                                   attached to a background session via the
+--                                   fleet view shows that session, so the
+--                                   title wins over the client's own file
 -- Resulting states, highest tab priority first (several Claude terminals in
 -- one tab show the most important one):
 --   needs_input  a permission prompt / question is waiting on you      ❓
 --   error        last turn errored                                     ❌
 --   background   main loop idle, but subagents, background tasks or a
---                handoff continuation ("<name> · N") are still running  🔧
+--                a launched continuation session are still running      🔧
 --   working      main loop running                                     🟢
 --   idle         your turn, nothing running                            ⏰
 -- :ClaudeTabDebug shows how each tab's state was derived.
@@ -266,24 +272,70 @@ local function session_activity(d, why)
   return status
 end
 
--- A handoff continuation is a background session named "<name> · N" (and its
--- own continuations). No field links them, so this matches on the name.
-local function active_continuation(names, why)
+-- Background sessions launched by a session (handoff continuations, etc.).
+-- The daemon roster records, per live worker, the session ids that launched
+-- it (dispatch.env.CLAUDE_CODE_LAUNCHED_BY_SESSION_IDS). Only that key is read.
+local function launched_children()
+  local roster = read_json(_claude_dir .. "/daemon/roster.json")
+  local children = {} -- [parent session id] = { child session id, ... }
+  if not roster or type(roster.workers) ~= "table" then return children end
+  for _, w in pairs(roster.workers) do
+    local dispatch = type(w) == "table" and w.dispatch or nil
+    local env = type(dispatch) == "table" and dispatch.env or nil
+    local by = type(env) == "table" and env.CLAUDE_CODE_LAUNCHED_BY_SESSION_IDS or nil
+    local child = type(dispatch) == "table" and dispatch.sessionId or w.sessionId
+    if type(by) == "string" and type(child) == "string" then
+      for parent in by:gmatch("[^,%s]+") do
+        children[parent] = children[parent] or {}
+        table.insert(children[parent], child)
+      end
+    end
+  end
+  return children
+end
+
+local function session_by(field, value)
+  if value == nil then return nil end
   for _, s in ipairs(live_sessions()) do
-    if s.kind == "bg" and type(s.name) == "string" then
-      for name in pairs(names) do
-        local prefix = name .. " · "
-        if s.name:sub(1, #prefix) == prefix then
+    if s[field] == value then return s end
+  end
+  return nil
+end
+
+-- True when any live descendant of `session_ids` (launched directly or through
+-- a chain of handoffs) is working, running tasks or waiting on input.
+local function active_continuation(session_ids, why)
+  local children = launched_children()
+  local queue, seen = {}, {}
+  for _, sid in ipairs(session_ids) do queue[#queue + 1] = sid end
+  while #queue > 0 and #queue < 64 do
+    local sid = table.remove(queue, 1)
+    if not seen[sid] then
+      seen[sid] = true
+      for _, child in ipairs(children[sid] or {}) do
+        local s = session_by("sessionId", child)
+        if s then
           local act = session_activity(s, {})
           if act == "working" or act == "background" or act == "needs_input" then
-            why[#why + 1] = ("continuation %q is %s"):format(s.name, act)
+            why[#why + 1] = ("continuation %q is %s"):format(tostring(s.name), act)
             return true
           end
         end
+        queue[#queue + 1] = child
       end
     end
   end
   return false
+end
+
+-- The session a terminal is showing, from its title (Claude sets it to
+-- "<spinner> <session name>"). An interactive client attached to a background
+-- session through the fleet view shows that session, not its own.
+local function session_from_title(title)
+  if type(title) ~= "string" then return nil end
+  local name = vim.trim(title:gsub("^[^%w]+", ""))
+  if name == "" then return nil end
+  return session_by("name", name)
 end
 
 local function trim_name(name)
@@ -294,24 +346,18 @@ local function trim_name(name)
   return name
 end
 
--- Returns { name, status, why } for the Claude process at `path`.
-local function read_claude_session_info(path)
-  local d = read_json(path)
-  if not d or type(d.pid) ~= "number" then return nil end
-  local why = {}
+-- Returns { name, status, why, pid } for a decoded session JSON.
+local function session_info(d, why)
+  why = why or {}
   local status = session_activity(d, why)
   if status ~= "needs_input" and status ~= "error" and status ~= "working" then
-    local names = {}
-    if trim_name(d.name) then names[vim.trim(d.name)] = true end
+    local ids = { d.sessionId }
     -- An interactive client whose conversation was moved to the background
     -- points at that job; the job's own process (if alive) is the real state.
     if d.parkedJobId then
       local job = read_job(d.parkedJobId)
-      if job and type(job.name) == "string" then names[job.name] = true end
-      local bg = nil
-      for _, s in ipairs(live_sessions()) do
-        if s.jobId == d.parkedJobId then bg = s break end
-      end
+      if job and type(job.sessionId) == "string" then ids[#ids + 1] = job.sessionId end
+      local bg = session_by("jobId", d.parkedJobId)
       local parked
       if bg then
         parked = session_activity(bg, why)
@@ -321,11 +367,26 @@ local function read_claude_session_info(path)
       end
       if parked and (_priority[parked] or 0) > (_priority[status] or 0) then status = parked end
     end
-    if (status == nil or status == "idle") and active_continuation(names, why) then
+    if (status == nil or status == "idle") and active_continuation(ids, why) then
       status = "background"
     end
   end
   return { name = trim_name(d.name), status = status, why = why, pid = d.pid }
+end
+
+-- State for one terminal: the Claude process found under its shell (may be
+-- nil), overridden by the session its title says it is showing when that is a
+-- different live session.
+local function terminal_session_info(path, title)
+  local own = path and read_json(path) or nil
+  if own and type(own.pid) ~= "number" then own = nil end
+  local shown = session_from_title(title)
+  if shown and type(shown.pid) == "number" and (not own or shown.pid ~= own.pid) then
+    local why = { ("title shows %q (pid %d)"):format(tostring(shown.name), shown.pid) }
+    if own then why[#why + 1] = ("client %s (pid %d) ignored"):format(tostring(own.name), own.pid) end
+    return session_info(shown, why)
+  end
+  return own and session_info(own) or nil
 end
 
 -- Last scan's per-tab detail, for :ClaudeTabDebug.
@@ -359,8 +420,10 @@ local function scan_claude_terminals()
           local entry = { shell_pid = shell_pid, file = sf }
           _tab_debug[tab] = _tab_debug[tab] or {}
           table.insert(_tab_debug[tab], entry)
-          if sf then
-            local info = read_claude_session_info(sf)
+          local title = vim.b[buf].term_title
+          entry.title = title
+          do
+            local info = terminal_session_info(sf, title)
             entry.info = info
             if info then
               local prio = _priority[info.status] or 0
@@ -441,7 +504,8 @@ vim.api.nvim_create_user_command("ClaudeTabDebug", function()
       lines[#lines + 1] = ("tab %d → %s"):format(vim.api.nvim_tabpage_get_number(tab), ok and st or "none")
       for _, e in ipairs(entries) do
         local info = e.info
-        lines[#lines + 1] = ("  shell %s → %s"):format(e.shell_pid, e.file or "no Claude session found")
+        lines[#lines + 1] = ("  shell %s → %s  title=%q"):format(
+          e.shell_pid, e.file or "no Claude session file", tostring(e.title))
         if info then
           lines[#lines + 1] = ("    name=%s status=%s"):format(tostring(info.name), tostring(info.status))
           for _, w in ipairs(info.why) do lines[#lines + 1] = "    · " .. w end
